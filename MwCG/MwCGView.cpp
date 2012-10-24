@@ -41,6 +41,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_WM_CREATE()
 		ON_WM_DESTROY()
 		ON_WM_SIZE()
+		ON_WM_ERASEBKGND()
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -77,6 +78,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		if (m_render.IsValid())
 		{
 			m_render.Draw(pDoc->GetGLContent());
+			SwapBuffers(pDC->GetSafeHdc());
 		}
 	}
 
@@ -182,4 +184,13 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		// TODO: Add your message handler code here
 		m_render.SetViewSize(cx, cy);
+	}
+
+
+	BOOL CMwCGView::OnEraseBkgnd(CDC* pDC)
+	{
+		// TODO: Add your message handler code here and/or call default
+
+		//return CView::OnEraseBkgnd(pDC);
+		return TRUE;
 	}
