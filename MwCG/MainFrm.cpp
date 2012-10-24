@@ -89,19 +89,23 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Navigation pane will be created at left, so temporary disable docking at the left side:
 	EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_RIGHT);
 
+#ifdef MW_ENABLE_NAVIGATION_BAR
 	// Create and setup "Outlook" navigation bar:
 	if (!CreateOutlookBar(m_wndNavigationBar, ID_VIEW_NAVIGATION, m_wndTree, m_wndCalendar, 250))
 	{
 		TRACE0("Failed to create navigation pane\n");
 		return -1;      // fail to create
 	}
+#endif
 
+//#ifdef MW_ENABLE_CAPTION_BAR
 	// Create a caption bar:
 	if (!CreateCaptionBar())
 	{
 		TRACE0("Failed to create caption bar\n");
 		return -1;      // fail to create
 	}
+//#endif
 
 	// Outlook bar is created and docking on the left side should be allowed.
 	EnableDocking(CBRS_ALIGN_LEFT);
@@ -116,14 +120,33 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create docking windows\n");
 		return -1;
 	}
-
+	
+#ifdef MW_ENABLE_FILE_VIEW
 	m_wndFileView.EnableDocking(CBRS_ALIGN_ANY);
+#endif
+	
+#ifdef MW_ENABLE_CLASS_VIEW
 	m_wndClassView.EnableDocking(CBRS_ALIGN_ANY);
+#endif
+	
+#ifdef MW_ENABLE_FILE_VIEW
 	DockPane(&m_wndFileView);
 	CDockablePane* pTabbedBar = NULL;
+#ifdef MW_ENABLE_CLASS_VIEW
 	m_wndClassView.AttachToTabWnd(&m_wndFileView, DM_SHOW, TRUE, &pTabbedBar);
+#endif
+#endif
+
+#ifdef MW_ENABLE_CLASS_VIEW
+#ifndef MW_ENABLE_FILE_VIEW
+	DockPane(&m_wndClassView);
+#endif
+#endif
+	
+#ifdef MW_ENABLE_OUTPUT
 	m_wndOutput.EnableDocking(CBRS_ALIGN_ANY);
 	DockPane(&m_wndOutput);
+#endif
 
 	// set the visual manager and style based on persisted value
 	OnApplicationLook(theApp.m_nAppLook);
@@ -152,6 +175,7 @@ BOOL CMainFrame::CreateDockingWindows()
 {
 	BOOL bNameValid;
 
+#ifdef MW_ENABLE_CLASS_VIEW
 	// Create class view
 	CString strClassView;
 	bNameValid = strClassView.LoadString(IDS_CLASS_VIEW);
@@ -161,7 +185,9 @@ BOOL CMainFrame::CreateDockingWindows()
 		TRACE0("Failed to create Class View window\n");
 		return FALSE; // failed to create
 	}
+#endif
 
+#ifdef MW_ENABLE_FILE_VIEW
 	// Create file view
 	CString strFileView;
 	bNameValid = strFileView.LoadString(IDS_FILE_VIEW);
@@ -171,7 +197,9 @@ BOOL CMainFrame::CreateDockingWindows()
 		TRACE0("Failed to create File View window\n");
 		return FALSE; // failed to create
 	}
+#endif
 
+#ifdef MW_ENABLE_OUTPUT
 	// Create output window
 	CString strOutputWnd;
 	bNameValid = strOutputWnd.LoadString(IDS_OUTPUT_WND);
@@ -181,6 +209,7 @@ BOOL CMainFrame::CreateDockingWindows()
 		TRACE0("Failed to create Output window\n");
 		return FALSE; // failed to create
 	}
+#endif
 
 	SetDockingWindowIcons(theApp.m_bHiColorIcons);
 	return TRUE;
@@ -188,14 +217,20 @@ BOOL CMainFrame::CreateDockingWindows()
 
 void CMainFrame::SetDockingWindowIcons(BOOL bHiColorIcons)
 {
+#ifdef MW_ENABLE_FILE_VIEW
 	HICON hFileViewIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_FILE_VIEW_HC : IDI_FILE_VIEW), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
 	m_wndFileView.SetIcon(hFileViewIcon, FALSE);
+#endif
 
+#ifdef MW_ENABLE_OUTPUT
 	HICON hClassViewIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_CLASS_VIEW_HC : IDI_CLASS_VIEW), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
 	m_wndClassView.SetIcon(hClassViewIcon, FALSE);
+#endif
 
+#ifdef MW_ENABLE_OUTPUT	
 	HICON hOutputBarIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_OUTPUT_WND_HC : IDI_OUTPUT_WND), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
 	m_wndOutput.SetIcon(hOutputBarIcon, FALSE);
+#endif
 
 	UpdateMDITabbedBarsIcons();
 }
@@ -381,8 +416,9 @@ void CMainFrame::OnApplicationLook(UINT id)
 		CDockingManager::SetDockingMode(DT_SMART);
 		m_wndRibbonBar.SetWindows7Look(FALSE);
 	}
-
+#ifdef MW_ENABLE_OUTPUT	
 	m_wndOutput.UpdateFonts();
+#endif
 	RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE | RDW_UPDATENOW | RDW_FRAME | RDW_ERASE);
 
 	theApp.WriteInt(_T("ApplicationLook"), theApp.m_nAppLook);
