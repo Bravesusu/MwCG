@@ -40,6 +40,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_WM_RBUTTONUP()
 		ON_WM_CREATE()
 		ON_WM_DESTROY()
+		ON_WM_SIZE()
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -65,7 +66,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 	// CMwCGView drawing
 
-	void CMwCGView::OnDraw(CDC* /*pDC*/)
+	void CMwCGView::OnDraw(CDC* pDC)
 	{
 		CMwCGDoc* pDoc = GetDocument();
 		ASSERT_VALID(pDoc);
@@ -73,7 +74,10 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 			return;
 
 		// TODO: add draw code for native data here
-		m_render.Draw(pDoc->GetGLContent());
+		if (m_render.IsValid())
+		{
+			m_render.Draw(pDoc->GetGLContent());
+		}
 	}
 
 
@@ -169,4 +173,13 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		//Finalize the MwGLRenderer
 		m_render.Finalize();
+	}
+
+
+	void CMwCGView::OnSize(UINT nType, int cx, int cy)
+	{
+		CView::OnSize(nType, cx, cy);
+
+		// TODO: Add your message handler code here
+		m_render.SetViewSize(cx, cy);
 	}

@@ -24,5 +24,6 @@ protected:
 	HGLRC m_hRC;
 public:
 	bool IsValid(void);
+	void SetViewSize(int cx, int cy);
 };
 
