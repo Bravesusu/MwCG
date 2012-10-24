@@ -84,6 +84,9 @@ protected:
 	CMFCOutlookBarTabCtrl* FindOutlookParent(CWnd* pWnd);
 	CMFCOutlookBarTabCtrl* m_pCurrOutlookWnd;
 	CMFCOutlookBarPane*    m_pCurrOutlookPage;
+public:
+	//Set the text on caption bar
+	void SetCaptionBarText(const CString& strText);
 };
 
 

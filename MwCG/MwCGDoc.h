@@ -24,7 +24,9 @@ protected: // create from serialization only
 
 // Attributes
 public:
-
+	
+protected:
+	MwGLContent m_glContent;
 // Operations
 public:
 
@@ -55,4 +57,6 @@ protected:
 	// Helper function that sets search content for a Search Handler
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
+public:
+	MwGLContent* GetGLContent(void);
 };

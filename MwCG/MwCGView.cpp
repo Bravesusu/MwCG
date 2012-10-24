@@ -31,107 +31,142 @@
 
 IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
-BEGIN_MESSAGE_MAP(CMwCGView, CView)
-	// Standard printing commands
-	ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CMwCGView::OnFilePrintPreview)
-	ON_WM_CONTEXTMENU()
-	ON_WM_RBUTTONUP()
-END_MESSAGE_MAP()
+	BEGIN_MESSAGE_MAP(CMwCGView, CView)
+		// Standard printing commands
+		ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
+		ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
+		ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CMwCGView::OnFilePrintPreview)
+		ON_WM_CONTEXTMENU()
+		ON_WM_RBUTTONUP()
+		ON_WM_CREATE()
+		ON_WM_DESTROY()
+	END_MESSAGE_MAP()
 
-// CMwCGView construction/destruction
+	// CMwCGView construction/destruction
 
-CMwCGView::CMwCGView()
-{
-	// TODO: add construction code here
+	CMwCGView::CMwCGView()
+	{
+		// TODO: add construction code here
 
-}
+	}
 
-CMwCGView::~CMwCGView()
-{
-}
+	CMwCGView::~CMwCGView()
+	{
+	}
 
-BOOL CMwCGView::PreCreateWindow(CREATESTRUCT& cs)
-{
-	// TODO: Modify the Window class or styles here by modifying
-	//  the CREATESTRUCT cs
+	BOOL CMwCGView::PreCreateWindow(CREATESTRUCT& cs)
+	{
+		// TODO: Modify the Window class or styles here by modifying
+		//  the CREATESTRUCT cs
 
-	return CView::PreCreateWindow(cs);
-}
+		cs.style |= (WS_CLIPCHILDREN | WS_CLIPSIBLINGS);
+		return CView::PreCreateWindow(cs);
+	}
 
-// CMwCGView drawing
+	// CMwCGView drawing
 
-void CMwCGView::OnDraw(CDC* /*pDC*/)
-{
-	CMwCGDoc* pDoc = GetDocument();
-	ASSERT_VALID(pDoc);
-	if (!pDoc)
-		return;
+	void CMwCGView::OnDraw(CDC* /*pDC*/)
+	{
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return;
 
-	// TODO: add draw code for native data here
-}
-
-
-// CMwCGView printing
+		// TODO: add draw code for native data here
+		m_render.Draw(pDoc->GetGLContent());
+	}
 
 
-void CMwCGView::OnFilePrintPreview()
-{
+	// CMwCGView printing
+
+
+	void CMwCGView::OnFilePrintPreview()
+	{
 #ifndef SHARED_HANDLERS
-	AFXPrintPreview(this);
+		AFXPrintPreview(this);
 #endif
-}
+	}
 
-BOOL CMwCGView::OnPreparePrinting(CPrintInfo* pInfo)
-{
-	// default preparation
-	return DoPreparePrinting(pInfo);
-}
+	BOOL CMwCGView::OnPreparePrinting(CPrintInfo* pInfo)
+	{
+		// default preparation
+		return DoPreparePrinting(pInfo);
+	}
 
-void CMwCGView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
-{
-	// TODO: add extra initialization before printing
-}
+	void CMwCGView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
+	{
+		// TODO: add extra initialization before printing
+	}
 
-void CMwCGView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
-{
-	// TODO: add cleanup after printing
-}
+	void CMwCGView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
+	{
+		// TODO: add cleanup after printing
+	}
 
-void CMwCGView::OnRButtonUp(UINT /* nFlags */, CPoint point)
-{
-	ClientToScreen(&point);
-	OnContextMenu(this, point);
-}
+	void CMwCGView::OnRButtonUp(UINT /* nFlags */, CPoint point)
+	{
+		ClientToScreen(&point);
+		OnContextMenu(this, point);
+	}
 
-void CMwCGView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
-{
+	void CMwCGView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
+	{
 #ifndef SHARED_HANDLERS
-	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
+		theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
 #endif
-}
+	}
 
 
-// CMwCGView diagnostics
+	// CMwCGView diagnostics
 
 #ifdef _DEBUG
-void CMwCGView::AssertValid() const
-{
-	CView::AssertValid();
-}
+	void CMwCGView::AssertValid() const
+	{
+		CView::AssertValid();
+	}
 
-void CMwCGView::Dump(CDumpContext& dc) const
-{
-	CView::Dump(dc);
-}
+	void CMwCGView::Dump(CDumpContext& dc) const
+	{
+		CView::Dump(dc);
+	}
 
-CMwCGDoc* CMwCGView::GetDocument() const // non-debug version is inline
-{
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CMwCGDoc)));
-	return (CMwCGDoc*)m_pDocument;
-}
+	CMwCGDoc* CMwCGView::GetDocument() const // non-debug version is inline
+	{
+		ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CMwCGDoc)));
+		return (CMwCGDoc*)m_pDocument;
+	}
 #endif //_DEBUG
 
 
-// CMwCGView message handlers
+	// CMwCGView message handlers
+
+
+	int CMwCGView::OnCreate(LPCREATESTRUCT lpCreateStruct)
+	{
+		if (CView::OnCreate(lpCreateStruct) == -1)
+			return -1;
+
+		//Get DC and initialize the MwGLRenderer
+		//TODO: check result
+		HWND hWnd = this->GetSafeHwnd();    
+		HDC hDC = ::GetDC(hWnd);
+		if (!m_render.Initialize(hDC))
+		{
+			CString strInitFailed;
+			BOOL bStrValid = strInitFailed.LoadStringW(ID_RENDER_INIT_FAILED);
+			ASSERT(bStrValid);
+
+			CMainFrame* pMainFrm = (CMainFrame*)GetParent();
+			pMainFrm->SetCaptionBarText(strInitFailed);
+		}
+		return 0;
+	}
+
+
+	void CMwCGView::OnDestroy()
+	{
+		CView::OnDestroy();
+
+		//Finalize the MwGLRenderer
+		m_render.Finalize();
+	}

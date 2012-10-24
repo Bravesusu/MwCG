@@ -110,6 +110,8 @@
     <ClInclude Include="MwCGDoc.h" />
     <ClInclude Include="MwCGView.h" />
     <ClInclude Include="MwFlag.h" />
+    <ClInclude Include="MwGLContent.h" />
+    <ClInclude Include="MwGLRenderer.h" />
     <ClInclude Include="OutputWnd.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -125,6 +127,8 @@
     <ClCompile Include="MwCG.cpp" />
     <ClCompile Include="MwCGDoc.cpp" />
     <ClCompile Include="MwCGView.cpp" />
+    <ClCompile Include="MwGLContent.cpp" />
+    <ClCompile Include="MwGLRenderer.cpp" />
     <ClCompile Include="OutputWnd.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -178,4 +182,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="MwCG.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

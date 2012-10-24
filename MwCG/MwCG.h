@@ -18,6 +18,7 @@
 #endif
 
 #include "resource.h"       // main symbols
+#include "MwGLContent.h"
 
 
 // CMwCGApp:
@@ -45,6 +46,7 @@ public:
 
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
+
 };
 
 extern CMwCGApp theApp;

@@ -63,6 +63,12 @@
     <ClInclude Include="MwFlag.h">
       <Filter>Header Files\Mw</Filter>
     </ClInclude>
+    <ClInclude Include="MwGLContent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MwGLRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -96,6 +102,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CalendarBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MwGLContent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MwGLRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

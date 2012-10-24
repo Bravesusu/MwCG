@@ -455,3 +455,11 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 	CMDIFrameWndEx::OnSettingChange(uFlags, lpszSection);
 	m_wndOutput.UpdateFonts();
 }
+
+
+void CMainFrame::SetCaptionBarText(const CString& strText)
+{
+	//TODO: bug here. Not updating
+	m_wndCaptionBar.SetText(strText);
+	m_wndCaptionBar.RedrawWindow();
+}

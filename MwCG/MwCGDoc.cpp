@@ -145,3 +145,9 @@ void CMwCGDoc::Dump(CDumpContext& dc) const
 
 
 // CMwCGDoc commands
+
+
+MwGLContent* CMwCGDoc::GetGLContent(void)
+{
+	return &m_glContent;
+}
