@@ -32,6 +32,7 @@
 IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	BEGIN_MESSAGE_MAP(CMwCGDoc, CDocument)
+		ON_COMMAND(ID_CLEAR_COLOR, &CMwCGDoc::OnClearColor)
 	END_MESSAGE_MAP()
 
 
@@ -168,4 +169,19 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 			m_pGLContent = NULL;
 		}
 		CDocument::OnCloseDocument();
+	}
+
+
+	void CMwCGDoc::OnClearColor()
+	{
+		// TODO: Add your command handler code here
+		CMFCRibbonBar* pRibbon = ((CMDIFrameWndEx*) AfxGetMainWnd())->GetRibbonBar();
+		ASSERT_VALID(pRibbon);
+		CMFCRibbonColorButton* pColorBtn = DYNAMIC_DOWNCAST(
+			CMFCRibbonColorButton, pRibbon->FindByID(ID_CLEAR_COLOR));
+		COLORREF clr = pColorBtn->GetColor();
+		m_pGLContent->ClearColor->r = GetRValue(clr) / (float)256;
+		m_pGLContent->ClearColor->g = GetGValue(clr) / (float)256;
+		m_pGLContent->ClearColor->b = GetBValue(clr) / (float)256;
+		UpdateAllViews(NULL);
 	}

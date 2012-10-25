@@ -42,6 +42,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_WM_DESTROY()
 		ON_WM_SIZE()
 		ON_WM_ERASEBKGND()
+		ON_UPDATE_COMMAND_UI(ID_CLEAR_COLOR, &CMwCGView::OnUpdateClearColor)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -194,4 +195,11 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		//return CView::OnEraseBkgnd(pDC);
 		return TRUE;
+	}
+
+
+	void CMwCGView::OnUpdateClearColor(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(m_render.IsValid());
 	}

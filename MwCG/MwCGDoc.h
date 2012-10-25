@@ -60,4 +60,5 @@ protected:
 public:
 	MwGLContent* GetGLContent(void);
 	virtual void OnCloseDocument();
+	afx_msg void OnClearColor();
 };

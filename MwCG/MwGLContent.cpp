@@ -13,6 +13,7 @@ MwGLContent::MwGLContent(void)
 MwGLContent::~MwGLContent(void)
 {
 	delete FooPoint;
+	delete ClearColor;
 }
 
 
