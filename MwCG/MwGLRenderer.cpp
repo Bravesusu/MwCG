@@ -44,7 +44,7 @@ void MwGLRenderer::Finalize(void)
 
 void MwGLRenderer::Draw(MwGLContent* pContent)
 {
-	//MwVector2 v(100.0, 50.0);
+	MwVector2 v(100.0, 50.0);
 	glLoadIdentity();
     glClear(GL_COLOR_BUFFER_BIT);
    /* glBegin(GL_POLYGON);
@@ -59,14 +59,14 @@ void MwGLRenderer::Draw(MwGLContent* pContent)
 	glBegin(GL_LINES); 
 	glVertex2f(0.0, 0.0);
 	//glVertex2f(100.0, 50.0);
-	pContent->FooPoint->GL();
+	(*pContent->FooPoint)();
 	//v.GL();
 	glEnd(); 
 	glBegin(GL_POINTS);
 	glColor3f(0, 1, 0);
 	glVertex2f(0.0, 0.0);
 	//glVertex2f(100.0, 50.0);
-	pContent->FooPoint->GL();
+	(*pContent->FooPoint)();
 	//v.GL();
 	glEnd();
     glFlush();
