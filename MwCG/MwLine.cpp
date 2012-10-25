@@ -36,8 +36,8 @@ void MwLine::Serialize(CArchive& ar)
 
 void MwLine::Draw()
 {
-	glBegin(GL_LINE);
 	Color();
+	glBegin(GL_LINES);
 	Point1();
 	Point2();
 	glEnd();

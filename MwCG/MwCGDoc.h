@@ -17,6 +17,7 @@
 #include "MwGLContent.h"
 #include "MwPoint.h"
 #include "MwLine.h"
+#include "MwSierpinski.h"
 
 class CMwCGDoc : public CDocument
 {

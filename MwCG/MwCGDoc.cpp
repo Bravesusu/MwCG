@@ -213,11 +213,28 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		ln->Color.SetColorRef(AFX_IDC_COLOR_RED);
 		m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
 
-		for (int x = 0; x < canvas->Width; x += 10)
+		/*for (int x = 0; x < canvas->Width; x += 10)
+		{
 			for (int y = 0; y < canvas->Height; y += 10)
 			{
 				MwPoint* pt = new MwPoint(x, y);
 				pt->Color.SetColorRef(AFX_IDC_COLOR_BLUE);
 				m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
 			}
+		}*/
+
+		MwSierpinski* sk = new MwSierpinski();
+
+		sk->Color.SetColorRef(AFX_IDC_COLOR_GREEN);
+
+		sk->Vertex[0].x = 0.0;
+		sk->Vertex[0].y = 0.0;
+
+		sk->Vertex[1].x = 0.0;
+		sk->Vertex[1].y = 200.0;
+
+		sk->Vertex[2].x = 200.0;
+		sk->Vertex[2].y = 0.0;
+
+		m_pGLContent->Elements.push_back(MwElementSafePtr(sk));
 	}

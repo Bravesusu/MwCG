@@ -40,3 +40,30 @@ void MwVector2::Trace()
 { 
 	TRACE("%f, %f", x, y); 
 }
+
+
+MwVector2 MwVector2::operator+(const MwVector2& other) const
+{
+	return MwVector2(x + other.x, y + other.y);
+}
+
+
+MwVector2& MwVector2::operator+=(const MwVector2& other) 
+{
+	x += other.x;
+	y += other.y;
+	return *this;
+}
+
+MwVector2 MwVector2::operator/(float f) const
+{
+	return MwVector2(x / f, y / f);
+}
+
+
+MwVector2& MwVector2::operator/=(float f)
+{
+	x /= f;
+	y /= f;
+	return *this;
+}
