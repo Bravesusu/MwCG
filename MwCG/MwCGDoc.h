@@ -14,7 +14,7 @@
 
 
 #pragma once
-
+#include "MwGLContent.h"
 
 class CMwCGDoc : public CDocument
 {
@@ -26,7 +26,7 @@ protected: // create from serialization only
 public:
 	
 protected:
-	MwGLContent m_glContent;
+	MwPGLContent m_pGLContent;
 // Operations
 public:
 

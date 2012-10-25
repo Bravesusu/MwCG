@@ -54,6 +54,10 @@ BOOL CMwCGDoc::OnNewDocument()
 
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
+	if (!m_pGLContent)
+	{
+		m_pGLContent = new MwGLContent();
+	}
 
 	return TRUE;
 }
@@ -68,10 +72,12 @@ void CMwCGDoc::Serialize(CArchive& ar)
 	if (ar.IsStoring())
 	{
 		// TODO: add storing code here
+		ar<<m_pGLContent;
 	}
 	else
 	{
 		// TODO: add loading code here
+		ar>>m_pGLContent;
 	}
 }
 
@@ -149,5 +155,5 @@ void CMwCGDoc::Dump(CDumpContext& dc) const
 
 MwGLContent* CMwCGDoc::GetGLContent(void)
 {
-	return &m_glContent;
+	return m_pGLContent;
 }

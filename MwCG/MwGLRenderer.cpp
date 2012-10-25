@@ -54,11 +54,16 @@ void MwGLRenderer::Draw(const MwGLContent* pContent)
         glColor4f(0.0f,0.0f,1.0f,1.0f);
         glVertex2f(450.0f,50.0f);
     glEnd();*/
-	::glColor3f(1,0,0);
+	glColor3f(1, 0, 0);
 	glBegin(GL_LINES); 
 	glVertex2f(0.0, 0.0);
 	glVertex2f(100.0, 50.0);
 	glEnd(); 
+	glBegin(GL_POINTS);
+	glColor3f(0, 1, 0);
+	glVertex2f(0.0, 0.0);
+	glVertex2f(100.0, 50.0);
+	glEnd();
     glFlush();
 }
 

@@ -18,7 +18,6 @@
 #endif
 
 #include "resource.h"       // main symbols
-#include "MwGLContent.h"
 
 
 // CMwCGApp:
