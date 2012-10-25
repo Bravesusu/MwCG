@@ -159,25 +159,21 @@ bool MwGLRenderer::IsValid(void)
 }
 
 
-void MwGLRenderer::SetViewSize(int cx, int cy)
+void MwGLRenderer::SetViewSize(int x, int y, int width, int height)
 {
-	GLsizei width, height;
-    GLdouble aspect;
-    width = cx;
-    height = cy;
-    if(cy == 0)
-    {
-        aspect = (GLdouble)width;
-    }
-    else
-    {
-        aspect = (GLdouble)width / (GLdouble)height;
-    }
-    glViewport(0, 0, width, height);
+    //if(cy == 0)
+    //{
+    //    aspect = (GLdouble)width;
+    //}
+    //else
+    //{
+    //    aspect = (GLdouble)width / (GLdouble)height;
+    //}
+    glViewport(x, y, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(0.0, 500.0*aspect, 0.0, 500.0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    //gluOrtho2D(0.0, 500.0*aspect, 0.0, 500.0);
+    //glMatrixMode(GL_MODELVIEW);
+    //glLoadIdentity();
 
 }

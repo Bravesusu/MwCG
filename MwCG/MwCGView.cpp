@@ -185,7 +185,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CScrollView)
 		CScrollView::OnSize(nType, cx, cy);
 
 		// TODO: Add your message handler code here
-		m_render.SetViewSize(cx, cy);
+		//m_render.SetViewSize(cx, cy);
 	}
 
 
@@ -218,6 +218,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CScrollView)
 			return;
 
 		SetScrollSizes(MM_TEXT, CSize(800, 600));
+		m_render.SetViewSize(0, 0, 800, 600);
 		MwPGLContent pGlContent = pDoc->GetGLContent();
 		pColorBtn->SetColor(pGlContent->ClearColor->GetColorRef());
 	}
@@ -233,4 +234,14 @@ IMPLEMENT_DYNCREATE(CMwCGView, CScrollView)
 		{
 			m_render.Activate(m_hDC);
 		}
+	}
+
+
+	BOOL CMwCGView::OnScroll(UINT nScrollCode, UINT nPos, BOOL bDoScroll)
+	{
+		// TODO: Add your specialized code here and/or call the base class
+		CPoint scrollPos = GetScrollPosition();
+		m_render.SetViewSize(-scrollPos.x, scrollPos.y, 800, 600);
+		Invalidate();
+		return CScrollView::OnScroll(nScrollCode, nPos, bDoScroll);
 	}

@@ -23,6 +23,6 @@ protected:
 	HGLRC m_hRC;
 public:
 	bool IsValid(void);
-	void SetViewSize(int cx, int cy);
+	void SetViewSize(int x, int y, int width, int height);
 };
 
