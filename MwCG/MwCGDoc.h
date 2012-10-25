@@ -15,6 +15,8 @@
 
 #pragma once
 #include "MwGLContent.h"
+#include "MwPoint.h"
+#include "MwLine.h"
 
 class CMwCGDoc : public CDocument
 {
@@ -27,6 +29,7 @@ public:
 	
 protected:
 	MwGLContent* m_pGLContent;
+	void FooDocument();
 // Operations
 public:
 

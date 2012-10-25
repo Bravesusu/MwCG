@@ -7,6 +7,12 @@ MwPoint::MwPoint(void)
 {
 }
 
+MwPoint::MwPoint(float x, float y)
+{
+	Position.x = x;
+	Position.y = y;
+}
+
 
 MwPoint::~MwPoint(void)
 {
@@ -24,4 +30,12 @@ void MwPoint::Serialize(CArchive& ar)
 	{	
 		// loading code
 	}
+}
+
+void MwPoint::Draw()
+{
+	glBegin(GL_POINT);
+	Color();
+	Position();
+	glEnd();
 }

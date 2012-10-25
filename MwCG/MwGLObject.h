@@ -9,7 +9,6 @@ public:
 	~MwGLObject(void);
 	virtual void Serialize(CArchive& ar);
 	//Execute GL command
-	virtual void GL() { TRACE0("MwGLObject::GL()\n"); };
+	virtual void GL() {  };
 	void operator ()() { GL(); }
 };
-

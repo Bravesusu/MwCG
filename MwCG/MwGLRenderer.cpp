@@ -46,28 +46,42 @@ void MwGLRenderer::Draw(MwGLContent* pContent)
 {
 	glLoadIdentity();
 	pContent->GetCanvas()->Draw();
-    //glClear(GL_COLOR_BUFFER_BIT);
-   /* glBegin(GL_POLYGON);
-        glColor4f(1.0f,0.0f,0.0f,1.0f);
-        glVertex2f(100.0f,50.0f);
-        glColor4f(0.0f,1.0f,0.0f,1.0f);
-        glVertex2f(450.0f,400.0f);
-        glColor4f(0.0f,0.0f,1.0f,1.0f);
-        glVertex2f(450.0f,50.0f);
-    glEnd();*/
-	glColor3f(1, 0, 0);
-	glBegin(GL_LINES); 
-	glVertex2f(0.0, 0.0);
-	glVertex2f(100.0, 50.0);
-	//v.GL();
-	glEnd(); 
-	glBegin(GL_POINTS);
-	glColor3f(0, 1, 0);
-	glVertex2f(0.0, 0.0);
-	glVertex2f(100.0, 50.0);
-	//v.GL();
+
+	//for (int i = 0; i < pContent->Elements.size(); i++)
+	//{
+	//	pContent->Elements.at(i)->Draw();
+	//}
+	glColor4f(1.0f,0.0f,0.0f,1.0f);
+	glBegin(GL_POINT);
+	glVertex2f(10.0, 10.0);
 	glEnd();
-    glFlush();
+
+	glBegin(GL_LINE);
+	glVertex2f(0.0, 0.0);
+	glVertex2f(100.0, -50.0);
+	glEnd();
+	//glClear(GL_COLOR_BUFFER_BIT);
+	/* glBegin(GL_POLYGON);
+	glColor4f(1.0f,0.0f,0.0f,1.0f);
+	glVertex2f(100.0f,50.0f);
+	glColor4f(0.0f,1.0f,0.0f,1.0f);
+	glVertex2f(450.0f,400.0f);
+	glColor4f(0.0f,0.0f,1.0f,1.0f);
+	glVertex2f(450.0f,50.0f);
+	glEnd();*/
+	//glColor3f(1, 0, 0);
+	//glBegin(GL_LINES); 
+	//glVertex2f(0.0, 0.0);
+	//glVertex2f(100.0, 50.0);
+	////v.GL();
+	//glEnd(); 
+	//glBegin(GL_POINTS);
+	//glColor3f(0, 1, 0);
+	//glVertex2f(0.0, 0.0);
+	//glVertex2f(100.0, 50.0);
+	//v.GL();
+	//glEnd();
+	glFlush();
 }
 
 
@@ -116,23 +130,23 @@ BOOL MwGLRenderer::SetWindowPixelFormat(const HDC& hDC)
 BOOL MwGLRenderer::CreateGLContext(const HDC& hDC)
 {
 	m_hRC = wglCreateContext(hDC);
-    if(!m_hRC)
+	if(!m_hRC)
 	{
-        return FALSE;
-    }
+		return FALSE;
+	}
 
-    if(!Activate(hDC))
-    {
-        return FALSE;
-    }
+	if(!Activate(hDC))
+	{
+		return FALSE;
+	}
 
-    return TRUE;
+	return TRUE;
 }
 
 
 BOOL MwGLRenderer::Activate(const HDC& hDC)
 {
-    return wglMakeCurrent(hDC, m_hRC);
+	return wglMakeCurrent(hDC, m_hRC);
 }
 
 
@@ -159,19 +173,19 @@ bool MwGLRenderer::IsValid(void)
 
 void MwGLRenderer::SetViewSize(int x, int y, int width, int height)
 {
-    //if(cy == 0)
-    //{
-    //    aspect = (GLdouble)width;
-    //}
-    //else
-    //{
-    //    aspect = (GLdouble)width / (GLdouble)height;
-    //}
-    glViewport(x, y, width, height);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    //gluOrtho2D(0.0, 500.0*aspect, 0.0, 500.0);
-    //glMatrixMode(GL_MODELVIEW);
-    //glLoadIdentity();
+	//if(cy == 0)
+	//{
+	//    aspect = (GLdouble)width;
+	//}
+	//else
+	//{
+	//    aspect = (GLdouble)width / (GLdouble)height;
+	//}
+	glViewport(x, y, width, height);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	/*gluOrtho2D(0, 800, 0, 600);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();*/
 
 }

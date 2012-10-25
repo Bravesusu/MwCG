@@ -101,6 +101,7 @@
 #define IDS_EXPLORER                    305
 #define IDS_EDIT_MENU                   306
 #define IDR_RIBBON                      307
+#define IDB_GL_PRIM                     310
 #define ID_WRITE_PASTEASHYPERLINK       32770
 #define ID_CLEAR_COLOR                  32772
 #define ID_BUTTON4                      32773
@@ -109,15 +110,15 @@
 #define ID_CANVAS_HEIGHT                32777
 #define ID_SELECT                       32778
 #define ID_SHAPE_GALLERY                32779
-#define ID_BUTTON2                      32780
-#define ID_RESIZE_CANVAS                32780
+#define ID_BUTTON2                      32781
+#define ID_SHAPE_COLOR                  32781
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        310
-#define _APS_NEXT_COMMAND_VALUE         32781
+#define _APS_NEXT_RESOURCE_VALUE        312
+#define _APS_NEXT_COMMAND_VALUE         32782
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

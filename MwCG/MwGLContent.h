@@ -17,7 +17,7 @@ public:
 	MwCanvas* GetCanvas() const {return m_pCanvas;}
 protected:
 	MwCanvas* m_pCanvas;
-protected:
-	//vector<unique_ptr<MwGLElement>> m_vElements;
+public:
+	vector<MwElementSafePtr> Elements;
 public:
 };

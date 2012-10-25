@@ -48,6 +48,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CScrollView)
 //ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGView::OnCanvasHeight)
 ON_UPDATE_COMMAND_UI(ID_CANVAS_WIDTH, &CMwCGView::OnUpdateCanvasWidth)
 ON_UPDATE_COMMAND_UI(ID_CANVAS_HEIGHT, &CMwCGView::OnUpdateCanvasHeight)
+ON_UPDATE_COMMAND_UI(ID_SHAPE_GALLERY, &CMwCGView::OnUpdateShapeGallery)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -226,7 +227,7 @@ ON_UPDATE_COMMAND_UI(ID_CANVAS_HEIGHT, &CMwCGView::OnUpdateCanvasHeight)
 		MwCanvas* pCanvas = pGlContent->GetCanvas();
 		int cWidth = pCanvas->Width;
 		int cHeight = pCanvas->Height;
-		pColorBtn->SetColor(pCanvas->ClearColor->GetColorRef());
+		pColorBtn->SetColor(pCanvas->Color.GetColorRef());
 		SetScrollSizes(MM_TEXT, CSize(cWidth, cHeight));
 		m_render.SetViewSize(0, 0, cWidth, cHeight);
 	}
@@ -275,4 +276,11 @@ ON_UPDATE_COMMAND_UI(ID_CANVAS_HEIGHT, &CMwCGView::OnUpdateCanvasHeight)
 	{
 		// TODO: Add your command update UI handler code here
 		pCmdUI->Enable(FALSE);
+	}
+
+
+	void CMwCGView::OnUpdateShapeGallery(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(m_render.IsValid());
 	}

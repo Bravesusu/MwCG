@@ -12,7 +12,6 @@ public:
 public:
 	int Width;
 	int Height;
-	MwColor* ClearColor;
 //Serialization
 public:
 	virtual void Serialize(CArchive& ar);
@@ -22,7 +21,6 @@ public:
 public:
 	MwCanvas(void);
 	MwCanvas(int width, int height);
-	MwCanvas(int width, int height, MwColor& color);
 	~MwCanvas(void);
 };
 

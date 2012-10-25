@@ -43,6 +43,17 @@ void MwColor::SetColorRef(COLORREF color)
 	g = GetGValue(color) / (float)256;
 	b = GetBValue(color) / (float)256;
 }
+
+
+
+void MwColor::SetColor(MwColor& color)
+{
+	r = color.r;
+	g = color.g;
+	b = color.b;
+	a = color.a;
+}
+
 COLORREF MwColor::GetColorRef()
 {
 	return RGB(r, g, b);

@@ -14,6 +14,7 @@ public:
 	float a;
 public:
 	void SetColorRef(COLORREF color);
+	void SetColor(MwColor& color);
 	COLORREF GetColorRef();
 public:
 	MwColor(void);
@@ -24,6 +25,7 @@ public:
 	~MwColor(void);
 	void GL();
 	void GL(bool clear);
+	void operator ()() { GL(); };
 	void operator ()(bool clear) { GL(true); };
 	void Serialize(CArchive& ar);
 };

@@ -5,22 +5,14 @@
 IMPLEMENT_SERIAL(MwCanvas, MwGLElement, 1);
 MwCanvas::MwCanvas(void) : Width(DefaultWidth), Height(DefaultHeight)
 {
-	ClearColor = MwRGB(1, 1, 1);
 }
 
 MwCanvas::MwCanvas(int width, int height) : Width(width), Height(height)
 {
-	ClearColor = MwRGB(1, 1, 1);
-}
-
-MwCanvas::MwCanvas(int width, int height, MwColor& color) : Width(width), Height(height)
-{
-	ClearColor = MwRGBA(color.r, color.g, color.b, color.a);
 }
 
 MwCanvas::~MwCanvas(void)
 {
-	delete ClearColor;
 }
 
 void MwCanvas::Serialize(CArchive& ar)
@@ -30,17 +22,17 @@ void MwCanvas::Serialize(CArchive& ar)
 	if (ar.IsStoring())
 	{	
 		// storing code
-		ar<<Width<<Height<<ClearColor;
+		ar<<Width<<Height;
 	}
 	else
 	{	
 		// loading code
-		ar>>Width>>Height>>ClearColor;
+		ar>>Width>>Height;
 	}
 }
 
 void MwCanvas::Draw()
 {
-	(*ClearColor)(true);
+	Color(true);
     glClear(GL_COLOR_BUFFER_BIT);
 }

@@ -59,6 +59,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		// (SDI documents will reuse this document)
 
 		m_pGLContent = new MwGLContent();
+		FooDocument();
 
 		return TRUE;
 	}
@@ -174,7 +175,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		// TODO: Add your command handler code here
 		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
 		COLORREF clr = pColorBtn->GetColor();
-		m_pGLContent->GetCanvas()->ClearColor->SetColorRef(clr);
+		m_pGLContent->GetCanvas()->Color.SetColorRef(clr);
 		UpdateAllViews(NULL);
 	}
 
@@ -185,13 +186,14 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 			return FALSE;
 		return TRUE;
 
+		FooDocument();
 	}
 
 
 	void CMwCGDoc::OnCanvasWidth()
 	{
 		// TODO: Add your command handler code here
-		
+
 		//int newWidth = atoi(widthEdit->GetText());
 	}
 
@@ -201,4 +203,21 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		// TODO: Add your command handler code here
 		//CMFCRibbonEdit* heightEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_CANVAS_HEIGHT);
 
+	}
+
+	//Create a dummy document
+	void CMwCGDoc::FooDocument()
+	{
+		MwCanvas* canvas = m_pGLContent->GetCanvas();
+		MwLine* ln = new MwLine(0.0, 0.0, 100.0, 50.0);
+		ln->Color.SetColorRef(AFX_IDC_COLOR_RED);
+		m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
+
+		for (int x = 0; x < canvas->Width; x += 10)
+			for (int y = 0; y < canvas->Height; y += 10)
+			{
+				MwPoint* pt = new MwPoint(x, y);
+				pt->Color.SetColorRef(AFX_IDC_COLOR_BLUE);
+				m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
+			}
 	}

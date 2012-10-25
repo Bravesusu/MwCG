@@ -1,7 +1,10 @@
 #pragma once
 #include "mwx.h"
+#include "MwColor.h"
 
 using namespace std;
+
+#define MwElementSafePtr unique_ptr<MwGLElement>
 
 class MwGLElement :
 	public MwGLObject
@@ -10,6 +13,7 @@ class MwGLElement :
 public:
 	MwGLElement(void);
 	~MwGLElement(void);
+	MwColor Color;
 
 //Serialization
 public:
@@ -35,4 +39,3 @@ public:
 	//void AttachToContent(MwGLContent* content) {};
 	void SetParent(MwGLElement& parent) {};
 };
-
