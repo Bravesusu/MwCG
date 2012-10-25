@@ -123,12 +123,18 @@ BOOL MwGLRenderer::CreateGLContext(const HDC& hDC)
         return FALSE;
     }
 
-    if(!wglMakeCurrent(hDC, m_hRC))
+    if(!Activate(hDC))
     {
         return FALSE;
     }
 
     return TRUE;
+}
+
+
+BOOL MwGLRenderer::Activate(const HDC& hDC)
+{
+    return wglMakeCurrent(hDC, m_hRC);
 }
 
 

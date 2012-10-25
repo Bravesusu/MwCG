@@ -37,3 +37,13 @@ void MwColor::Serialize(CArchive& ar)
 		ar>>r>>g>>b>>a;
 	}
 }
+void MwColor::SetColorRef(COLORREF color)
+{
+	r = GetRValue(color) / (float)256;
+	g = GetGValue(color) / (float)256;
+	b = GetBValue(color) / (float)256;
+}
+COLORREF MwColor::GetColorRef()
+{
+	return RGB(r, g, b);
+}

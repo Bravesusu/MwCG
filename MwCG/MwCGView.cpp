@@ -203,3 +203,36 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		// TODO: Add your command update UI handler code here
 		pCmdUI->Enable(m_render.IsValid());
 	}
+
+
+	void CMwCGView::OnInitialUpdate()
+	{
+		CView::OnInitialUpdate();
+
+		// TODO: Add your specialized code here and/or call the base class
+		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
+		
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return;
+
+		MwPGLContent pGlContent = pDoc->GetGLContent();
+		pColorBtn->SetColor(pGlContent->ClearColor->GetColorRef());
+	}
+
+
+	void CMwCGView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
+	{
+		// TODO: Add your specialized code here and/or call the base class
+
+		CView::OnActivateView(bActivate, pActivateView, pDeactiveView);
+
+		if (bActivate)
+		{
+			m_render.Activate(m_hDC);
+		}
+		else 
+		{
+		}
+	}

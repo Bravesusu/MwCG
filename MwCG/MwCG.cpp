@@ -39,6 +39,13 @@ BEGIN_MESSAGE_MAP(CMwCGApp, CWinAppEx)
 END_MESSAGE_MAP()
 
 
+CMFCRibbonColorButton* CMwCGApp::GetClearColorButton()
+{
+	CMFCRibbonBar* pRibbon = ((CMDIFrameWndEx*) AfxGetMainWnd())->GetRibbonBar();
+	ASSERT_VALID(pRibbon);
+	return DYNAMIC_DOWNCAST(CMFCRibbonColorButton, pRibbon->FindByID(ID_CLEAR_COLOR));
+}
+
 // CMwCGApp construction
 
 CMwCGApp::CMwCGApp()
@@ -181,13 +188,13 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
-// Dialog Data
+	// Dialog Data
 	enum { IDD = IDD_ABOUTBOX };
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-// Implementation
+	// Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
 };

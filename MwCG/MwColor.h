@@ -1,8 +1,8 @@
 #pragma once
 #include "mwglobject.h"
 
-#define RGB(r, g, b) new MwColor(r, g, b)
-#define RGBA(r, g, b, a) new MwColor(r, g, b, a)
+#define MwRGB(r, g, b) new MwColor(r, g, b)
+#define MwRGBA(r, g, b, a) new MwColor(r, g, b, a)
 
 class MwColor :
 	public MwGLObject
@@ -13,6 +13,9 @@ public:
 	float g;
 	float b;
 	float a;
+public:
+	void SetColorRef(COLORREF color);
+	COLORREF GetColorRef();
 public:
 	MwColor(void);
 	MwColor(float fr, float fg, float fb) 

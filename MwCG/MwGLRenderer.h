@@ -12,6 +12,7 @@ public:
 	bool Initialize(const HDC& hDC);
 	void Finalize(void);
 	void Draw(MwGLContent* pContent);
+	BOOL Activate(const HDC& hDC);
 protected:
 	BOOL SetWindowPixelFormat(const HDC& hDC);
 	BOOL CreateGLContext(const HDC& hDC);

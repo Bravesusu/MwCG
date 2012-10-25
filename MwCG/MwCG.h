@@ -45,7 +45,8 @@ public:
 
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
-
+public:
+	CMFCRibbonColorButton* GetClearColorButton();
 };
 
 extern CMwCGApp theApp;

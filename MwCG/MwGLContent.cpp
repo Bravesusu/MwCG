@@ -6,7 +6,7 @@ IMPLEMENT_SERIAL(MwGLContent, CObject, 1)
 MwGLContent::MwGLContent(void)
 {
 	FooPoint = VECTOR2F(0, 0);
-	ClearColor = RGB(1.0, 1.0, 1.0);
+	ClearColor = MwRGB(1.0, 1.0, 1.0);
 }
 
 

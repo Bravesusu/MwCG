@@ -63,9 +63,6 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		return TRUE;
 	}
 
-
-
-
 	// CMwCGDoc serialization
 
 	void CMwCGDoc::Serialize(CArchive& ar)
@@ -175,13 +172,17 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	void CMwCGDoc::OnClearColor()
 	{
 		// TODO: Add your command handler code here
-		CMFCRibbonBar* pRibbon = ((CMDIFrameWndEx*) AfxGetMainWnd())->GetRibbonBar();
-		ASSERT_VALID(pRibbon);
-		CMFCRibbonColorButton* pColorBtn = DYNAMIC_DOWNCAST(
-			CMFCRibbonColorButton, pRibbon->FindByID(ID_CLEAR_COLOR));
+		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
 		COLORREF clr = pColorBtn->GetColor();
-		m_pGLContent->ClearColor->r = GetRValue(clr) / (float)256;
-		m_pGLContent->ClearColor->g = GetGValue(clr) / (float)256;
-		m_pGLContent->ClearColor->b = GetBValue(clr) / (float)256;
+		m_pGLContent->ClearColor->SetColorRef(clr);
 		UpdateAllViews(NULL);
+	}
+
+
+	BOOL CMwCGDoc::OnOpenDocument(LPCTSTR lpszPathName)
+	{
+		if (!CDocument::OnOpenDocument(lpszPathName))
+			return FALSE;
+		return TRUE;
+
 	}
