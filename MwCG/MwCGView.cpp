@@ -29,12 +29,12 @@
 
 // CMwCGView
 
-IMPLEMENT_DYNCREATE(CMwCGView, CView)
+IMPLEMENT_DYNCREATE(CMwCGView, CScrollView)
 
-	BEGIN_MESSAGE_MAP(CMwCGView, CView)
+	BEGIN_MESSAGE_MAP(CMwCGView, CScrollView)
 		// Standard printing commands
-		ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
-		ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
+		ON_COMMAND(ID_FILE_PRINT, &CScrollView::OnFilePrint)
+		ON_COMMAND(ID_FILE_PRINT_DIRECT, &CScrollView::OnFilePrint)
 		ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CMwCGView::OnFilePrintPreview)
 		ON_WM_CONTEXTMENU()
 		ON_WM_RBUTTONUP()
@@ -63,7 +63,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		//  the CREATESTRUCT cs
 
 		cs.style |= (WS_CLIPCHILDREN | WS_CLIPSIBLINGS);
-		return CView::PreCreateWindow(cs);
+		return CScrollView::PreCreateWindow(cs);
 	}
 
 	// CMwCGView drawing
@@ -129,12 +129,12 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 #ifdef _DEBUG
 	void CMwCGView::AssertValid() const
 	{
-		CView::AssertValid();
+		CScrollView::AssertValid();
 	}
 
 	void CMwCGView::Dump(CDumpContext& dc) const
 	{
-		CView::Dump(dc);
+		CScrollView::Dump(dc);
 	}
 
 	CMwCGDoc* CMwCGView::GetDocument() const // non-debug version is inline
@@ -150,7 +150,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 	int CMwCGView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	{
-		if (CView::OnCreate(lpCreateStruct) == -1)
+		if (CScrollView::OnCreate(lpCreateStruct) == -1)
 			return -1;
 
 		//Get DC and initialize the MwGLRenderer
@@ -172,7 +172,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 	void CMwCGView::OnDestroy()
 	{
-		CView::OnDestroy();
+		CScrollView::OnDestroy();
 
 		//Finalize the MwGLRenderer
 		m_render.Finalize();
@@ -182,7 +182,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 	void CMwCGView::OnSize(UINT nType, int cx, int cy)
 	{
-		CView::OnSize(nType, cx, cy);
+		CScrollView::OnSize(nType, cx, cy);
 
 		// TODO: Add your message handler code here
 		m_render.SetViewSize(cx, cy);
@@ -193,7 +193,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		// TODO: Add your message handler code here and/or call default
 
-		//return CView::OnEraseBkgnd(pDC);
+		//return CScrollView::OnEraseBkgnd(pDC);
 		return TRUE;
 	}
 
@@ -207,7 +207,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 	void CMwCGView::OnInitialUpdate()
 	{
-		CView::OnInitialUpdate();
+		CScrollView::OnInitialUpdate();
 
 		// TODO: Add your specialized code here and/or call the base class
 		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
@@ -217,6 +217,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		if (!pDoc)
 			return;
 
+		SetScrollSizes(MM_TEXT, CSize(800, 600));
 		MwPGLContent pGlContent = pDoc->GetGLContent();
 		pColorBtn->SetColor(pGlContent->ClearColor->GetColorRef());
 	}
@@ -226,13 +227,10 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		// TODO: Add your specialized code here and/or call the base class
 
-		CView::OnActivateView(bActivate, pActivateView, pDeactiveView);
+		CScrollView::OnActivateView(bActivate, pActivateView, pDeactiveView);
 
 		if (bActivate)
 		{
 			m_render.Activate(m_hDC);
-		}
-		else 
-		{
 		}
 	}

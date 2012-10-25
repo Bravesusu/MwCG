@@ -16,7 +16,7 @@
 #include "MwGLRenderer.h"
 #include "MainFrm.h"
 
-class CMwCGView : public CView
+class CMwCGView : public CScrollView
 {
 protected: // create from serialization only
 	CMwCGView();
