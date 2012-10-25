@@ -78,13 +78,16 @@
     <ClInclude Include="MwGLRenderer.h">
       <Filter>Mw\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="MwGLObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="mwx.h">
       <Filter>Mw</Filter>
     </ClInclude>
     <ClInclude Include="MwVector2.h">
+      <Filter>Mw\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="MwGLObject.h">
+      <Filter>Mw\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="MwColor.h">
       <Filter>Mw\Types</Filter>
     </ClInclude>
   </ItemGroup>
@@ -128,10 +131,13 @@
     <ClCompile Include="MwGLRenderer.cpp">
       <Filter>Mw\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="MwGLObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MwVector2.cpp">
+      <Filter>Mw\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="MwGLObject.cpp">
+      <Filter>Mw\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="MwColor.cpp">
       <Filter>Mw\Types</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,8 @@
 #pragma once
 #include "mwglobject.h"
+
+#define VECTOR2F(x, y) new MwVector2(x, y)
+
 class MwVector2 :
 	public MwGLObject
 {
@@ -13,6 +16,6 @@ public:
 	~MwVector2(void);
 	void GL();
 	void Trace();
-	virtual void Serialize(CArchive& ar);
+	void Serialize(CArchive& ar);
 };
 

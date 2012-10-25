@@ -111,6 +111,7 @@
     <ClInclude Include="MwCGDoc.h" />
     <ClInclude Include="MwCGView.h" />
     <ClInclude Include="MwFlag.h" />
+    <ClInclude Include="MwColor.h" />
     <ClInclude Include="MwGLContent.h" />
     <ClInclude Include="MwGLObject.h" />
     <ClInclude Include="MwGLRenderer.h" />
@@ -131,6 +132,7 @@
     <ClCompile Include="MwCG.cpp" />
     <ClCompile Include="MwCGDoc.cpp" />
     <ClCompile Include="MwCGView.cpp" />
+    <ClCompile Include="MwColor.cpp" />
     <ClCompile Include="MwGLContent.cpp" />
     <ClCompile Include="MwGLObject.cpp" />
     <ClCompile Include="MwGLRenderer.cpp" />

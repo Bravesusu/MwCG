@@ -11,6 +11,7 @@ public:
 
 public:
 	MwVector2* FooPoint;
+	MwColor* ClearColor;
 };
 
 typedef MwGLContent* MwPGLContent;

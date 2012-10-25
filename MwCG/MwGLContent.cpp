@@ -5,7 +5,8 @@ IMPLEMENT_SERIAL(MwGLContent, CObject, 1)
 
 MwGLContent::MwGLContent(void)
 {
-	FooPoint = new MwVector2();
+	FooPoint = VECTOR2F(0, 0);
+	ClearColor = RGB(1.0, 1.0, 1.0);
 }
 
 
@@ -21,10 +22,10 @@ void MwGLContent::Serialize(CArchive& ar)
 
 	if (ar.IsStoring())
 	{	// storing code
-		ar<<FooPoint;
+		ar<<ClearColor<<FooPoint;
 	}
 	else
 	{	// loading code
-		ar>>FooPoint;
+		ar>>ClearColor>>FooPoint;
 	}
 }

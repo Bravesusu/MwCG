@@ -44,8 +44,8 @@ void MwGLRenderer::Finalize(void)
 
 void MwGLRenderer::Draw(MwGLContent* pContent)
 {
-	MwVector2 v(100.0, 50.0);
 	glLoadIdentity();
+	(*pContent->ClearColor)(true);
     glClear(GL_COLOR_BUFFER_BIT);
    /* glBegin(GL_POLYGON);
         glColor4f(1.0f,0.0f,0.0f,1.0f);
