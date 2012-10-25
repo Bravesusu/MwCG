@@ -1,7 +1,5 @@
 #pragma once
-#include "afx.h"
-#include <gl/gl.h>   
-#include <gl/glu.h> 
+#include "mwx.h" 
 
 class MwGLObject : public CObject
 {

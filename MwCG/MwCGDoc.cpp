@@ -33,6 +33,8 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	BEGIN_MESSAGE_MAP(CMwCGDoc, CDocument)
 		ON_COMMAND(ID_CLEAR_COLOR, &CMwCGDoc::OnClearColor)
+		ON_COMMAND(ID_CANVAS_WIDTH, &CMwCGDoc::OnCanvasWidth)
+		ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGDoc::OnCanvasHeight)
 	END_MESSAGE_MAP()
 
 
@@ -57,8 +59,6 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		// (SDI documents will reuse this document)
 
 		m_pGLContent = new MwGLContent();
-		m_pGLContent->FooPoint->x = 100.0;
-		m_pGLContent->FooPoint->y = 50.0;
 
 		return TRUE;
 	}
@@ -174,7 +174,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		// TODO: Add your command handler code here
 		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
 		COLORREF clr = pColorBtn->GetColor();
-		m_pGLContent->ClearColor->SetColorRef(clr);
+		m_pGLContent->GetCanvas()->ClearColor->SetColorRef(clr);
 		UpdateAllViews(NULL);
 	}
 
@@ -184,5 +184,21 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		if (!CDocument::OnOpenDocument(lpszPathName))
 			return FALSE;
 		return TRUE;
+
+	}
+
+
+	void CMwCGDoc::OnCanvasWidth()
+	{
+		// TODO: Add your command handler code here
+		
+		//int newWidth = atoi(widthEdit->GetText());
+	}
+
+
+	void CMwCGDoc::OnCanvasHeight()
+	{
+		// TODO: Add your command handler code here
+		//CMFCRibbonEdit* heightEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_CANVAS_HEIGHT);
 
 	}

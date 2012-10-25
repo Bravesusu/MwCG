@@ -1,5 +1,9 @@
 #pragma once
 #include "mwx.h"
+#include "MwGLElement.h"
+#include "MwCanvas.h"
+
+using namespace std;
 
 class MwGLContent : public CObject
 {
@@ -10,8 +14,10 @@ public:
 	virtual void Serialize(CArchive& ar);
 
 public:
-	MwVector2* FooPoint;
-	MwColor* ClearColor;
+	MwCanvas* GetCanvas() const {return m_pCanvas;}
+protected:
+	MwCanvas* m_pCanvas;
+protected:
+	//vector<unique_ptr<MwGLElement>> m_vElements;
+public:
 };
-
-typedef MwGLContent* MwPGLContent;

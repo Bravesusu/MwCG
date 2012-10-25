@@ -66,6 +66,11 @@ public:
 	virtual void OnInitialUpdate();
 	virtual void OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);
 	virtual BOOL OnScroll(UINT nScrollCode, UINT nPos, BOOL bDoScroll = TRUE);
+//	afx_msg void OnCanvasHeight();
+//	afx_msg void OnCanvasWidth();
+//	afx_msg void OnCanvasHeight();
+	afx_msg void OnUpdateCanvasWidth(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateCanvasHeight(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

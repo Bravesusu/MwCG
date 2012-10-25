@@ -43,6 +43,11 @@ IMPLEMENT_DYNCREATE(CMwCGView, CScrollView)
 		ON_WM_SIZE()
 		ON_WM_ERASEBKGND()
 		ON_UPDATE_COMMAND_UI(ID_CLEAR_COLOR, &CMwCGView::OnUpdateClearColor)
+//		ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGView::OnCanvasHeight)
+//ON_COMMAND(ID_CANVAS_WIDTH, &CMwCGView::OnCanvasWidth)
+//ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGView::OnCanvasHeight)
+ON_UPDATE_COMMAND_UI(ID_CANVAS_WIDTH, &CMwCGView::OnUpdateCanvasWidth)
+ON_UPDATE_COMMAND_UI(ID_CANVAS_HEIGHT, &CMwCGView::OnUpdateCanvasHeight)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -217,10 +222,13 @@ IMPLEMENT_DYNCREATE(CMwCGView, CScrollView)
 		if (!pDoc)
 			return;
 
-		SetScrollSizes(MM_TEXT, CSize(800, 600));
-		m_render.SetViewSize(0, 0, 800, 600);
-		MwPGLContent pGlContent = pDoc->GetGLContent();
-		pColorBtn->SetColor(pGlContent->ClearColor->GetColorRef());
+		MwGLContent* pGlContent = pDoc->GetGLContent();
+		MwCanvas* pCanvas = pGlContent->GetCanvas();
+		int cWidth = pCanvas->Width;
+		int cHeight = pCanvas->Height;
+		pColorBtn->SetColor(pCanvas->ClearColor->GetColorRef());
+		SetScrollSizes(MM_TEXT, CSize(cWidth, cHeight));
+		m_render.SetViewSize(0, 0, cWidth, cHeight);
 	}
 
 
@@ -240,8 +248,31 @@ IMPLEMENT_DYNCREATE(CMwCGView, CScrollView)
 	BOOL CMwCGView::OnScroll(UINT nScrollCode, UINT nPos, BOOL bDoScroll)
 	{
 		// TODO: Add your specialized code here and/or call the base class
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return CScrollView::OnScroll(nScrollCode, nPos, bDoScroll);
+
+		MwGLContent* pGlContent = pDoc->GetGLContent();
+		MwCanvas* pCanvas = pGlContent->GetCanvas();
+		int cWidth = pCanvas->Width;
+		int cHeight = pCanvas->Height;
+
 		CPoint scrollPos = GetScrollPosition();
-		m_render.SetViewSize(-scrollPos.x, scrollPos.y, 800, 600);
+		m_render.SetViewSize(-scrollPos.x, scrollPos.y, cWidth, cHeight);
 		Invalidate();
 		return CScrollView::OnScroll(nScrollCode, nPos, bDoScroll);
+	}
+
+	void CMwCGView::OnUpdateCanvasWidth(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(FALSE);
+	}
+
+
+	void CMwCGView::OnUpdateCanvasHeight(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(FALSE);
 	}

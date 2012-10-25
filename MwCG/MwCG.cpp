@@ -38,12 +38,23 @@ BEGIN_MESSAGE_MAP(CMwCGApp, CWinAppEx)
 	ON_COMMAND(ID_FILE_PRINT_SETUP, &CWinAppEx::OnFilePrintSetup)
 END_MESSAGE_MAP()
 
-
-CMFCRibbonColorButton* CMwCGApp::GetClearColorButton()
+CMFCRibbonBar* CMwCGApp::GetRibbonBar()
 {
 	CMFCRibbonBar* pRibbon = ((CMDIFrameWndEx*) AfxGetMainWnd())->GetRibbonBar();
 	ASSERT_VALID(pRibbon);
-	return DYNAMIC_DOWNCAST(CMFCRibbonColorButton, pRibbon->FindByID(ID_CLEAR_COLOR));
+	return pRibbon;
+}
+
+template<class UI>
+UI* CMwCGApp::FindRibbonUIById(UINT uiCmdId)
+{
+	CMFCRibbonBar* pRibbon = GetRibbonBar();
+	return DYNAMIC_DOWNCAST(UI, pRibbon->FindByID(uiCmdId));
+}
+
+CMFCRibbonColorButton* CMwCGApp::GetClearColorButton()
+{
+	return FindRibbonUIById<CMFCRibbonColorButton>(ID_CLEAR_COLOR);
 }
 
 // CMwCGApp construction

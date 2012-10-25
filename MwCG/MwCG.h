@@ -47,6 +47,9 @@ public:
 	DECLARE_MESSAGE_MAP()
 public:
 	CMFCRibbonColorButton* GetClearColorButton();
+	CMFCRibbonBar* GetRibbonBar();
+	template<class UI>
+	UI* FindRibbonUIById(UINT uiCmdId);
 };
 
 extern CMwCGApp theApp;

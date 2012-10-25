@@ -26,7 +26,7 @@ protected: // create from serialization only
 public:
 	
 protected:
-	MwPGLContent m_pGLContent;
+	MwGLContent* m_pGLContent;
 // Operations
 public:
 
@@ -62,4 +62,6 @@ public:
 	virtual void OnCloseDocument();
 	afx_msg void OnClearColor();
 	virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
+	afx_msg void OnCanvasWidth();
+	afx_msg void OnCanvasHeight();
 };

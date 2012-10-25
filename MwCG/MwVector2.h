@@ -1,5 +1,5 @@
 #pragma once
-#include "mwglobject.h"
+#include "mwx.h"
 
 #define VECTOR2F(x, y) new MwVector2(x, y)
 

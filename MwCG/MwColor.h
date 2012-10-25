@@ -1,6 +1,5 @@
 #pragma once
-#include "mwglobject.h"
-
+#include "mwx.h"
 #define MwRGB(r, g, b) new MwColor(r, g, b)
 #define MwRGBA(r, g, b, a) new MwColor(r, g, b, a)
 
