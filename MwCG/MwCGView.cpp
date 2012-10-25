@@ -154,9 +154,9 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		//Get DC and initialize the MwGLRenderer
 		//TODO: check result
-		HWND hWnd = this->GetSafeHwnd();    
-		HDC hDC = ::GetDC(hWnd);
-		if (!m_render.Initialize(hDC))
+		HWND hWnd = GetSafeHwnd();  
+		m_hDC = ::GetDC(hWnd);
+		if (!m_render.Initialize(m_hDC))
 		{
 			CString strInitFailed;
 			BOOL bStrValid = strInitFailed.LoadStringW(ID_RENDER_INIT_FAILED);
@@ -175,6 +175,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		//Finalize the MwGLRenderer
 		m_render.Finalize();
+		::ReleaseDC(GetSafeHwnd(), m_hDC);
 	}
 
 

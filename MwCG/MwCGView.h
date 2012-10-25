@@ -27,6 +27,7 @@ public:
 	CMwCGDoc* GetDocument() const;
 protected:
 	MwGLRenderer m_render;
+	HDC m_hDC;
 
 // Operations
 public:

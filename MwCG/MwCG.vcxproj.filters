@@ -13,8 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Mw">
+    <Filter Include="Mw">
       <UniqueIdentifier>{bda03f42-aac5-44c7-bf5d-82db34139827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mw\Content">
+      <UniqueIdentifier>{21ae04c4-679d-4012-8d29-779698b1ec0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mw\Renderer">
+      <UniqueIdentifier>{86f69a96-8474-4485-bf41-8ca9e5de2b99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mw\Types">
+      <UniqueIdentifier>{cf6b509f-584c-4d2f-a795-8bd5b8ebdb2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -61,13 +70,22 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MwFlag.h">
-      <Filter>Header Files\Mw</Filter>
+      <Filter>Mw</Filter>
     </ClInclude>
     <ClInclude Include="MwGLContent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Content</Filter>
     </ClInclude>
     <ClInclude Include="MwGLRenderer.h">
+      <Filter>Mw\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="MwGLObject.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mwx.h">
+      <Filter>Mw</Filter>
+    </ClInclude>
+    <ClInclude Include="MwVector2.h">
+      <Filter>Mw\Types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -105,10 +123,16 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MwGLContent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\Content</Filter>
     </ClCompile>
     <ClCompile Include="MwGLRenderer.cpp">
+      <Filter>Mw\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="MwGLObject.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MwVector2.cpp">
+      <Filter>Mw\Types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

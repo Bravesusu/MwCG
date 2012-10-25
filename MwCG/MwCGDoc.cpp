@@ -31,129 +31,141 @@
 
 IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
-BEGIN_MESSAGE_MAP(CMwCGDoc, CDocument)
-END_MESSAGE_MAP()
+	BEGIN_MESSAGE_MAP(CMwCGDoc, CDocument)
+	END_MESSAGE_MAP()
 
 
-// CMwCGDoc construction/destruction
+	// CMwCGDoc construction/destruction
 
-CMwCGDoc::CMwCGDoc()
-{
-	// TODO: add one-time construction code here
-
-}
-
-CMwCGDoc::~CMwCGDoc()
-{
-}
-
-BOOL CMwCGDoc::OnNewDocument()
-{
-	if (!CDocument::OnNewDocument())
-		return FALSE;
-
-	// TODO: add reinitialization code here
-	// (SDI documents will reuse this document)
-	if (!m_pGLContent)
+	CMwCGDoc::CMwCGDoc()
 	{
+		// TODO: add one-time construction code here
+
+	}
+
+	CMwCGDoc::~CMwCGDoc()
+	{
+	}
+
+	BOOL CMwCGDoc::OnNewDocument()
+	{
+		if (!CDocument::OnNewDocument())
+			return FALSE;
+
+		// TODO: add reinitialization code here
+		// (SDI documents will reuse this document)
+
 		m_pGLContent = new MwGLContent();
+		m_pGLContent->FooPoint->x = 100.0;
+		m_pGLContent->FooPoint->y = 50.0;
+
+		return TRUE;
 	}
 
-	return TRUE;
-}
 
 
 
+	// CMwCGDoc serialization
 
-// CMwCGDoc serialization
-
-void CMwCGDoc::Serialize(CArchive& ar)
-{
-	if (ar.IsStoring())
+	void CMwCGDoc::Serialize(CArchive& ar)
 	{
-		// TODO: add storing code here
-		ar<<m_pGLContent;
+		if (ar.IsStoring())
+		{
+			// TODO: add storing code here
+			ar<<m_pGLContent;
+		}
+		else
+		{
+			// TODO: add loading code here
+			ar>>m_pGLContent;
+		}
 	}
-	else
-	{
-		// TODO: add loading code here
-		ar>>m_pGLContent;
-	}
-}
 
 #ifdef SHARED_HANDLERS
 
-// Support for thumbnails
-void CMwCGDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
-{
-	// Modify this code to draw the document's data
-	dc.FillSolidRect(lprcBounds, RGB(255, 255, 255));
-
-	CString strText = _T("TODO: implement thumbnail drawing here");
-	LOGFONT lf;
-
-	CFont* pDefaultGUIFont = CFont::FromHandle((HFONT) GetStockObject(DEFAULT_GUI_FONT));
-	pDefaultGUIFont->GetLogFont(&lf);
-	lf.lfHeight = 36;
-
-	CFont fontDraw;
-	fontDraw.CreateFontIndirect(&lf);
-
-	CFont* pOldFont = dc.SelectObject(&fontDraw);
-	dc.DrawText(strText, lprcBounds, DT_CENTER | DT_WORDBREAK);
-	dc.SelectObject(pOldFont);
-}
-
-// Support for Search Handlers
-void CMwCGDoc::InitializeSearchContent()
-{
-	CString strSearchContent;
-	// Set search contents from document's data. 
-	// The content parts should be separated by ";"
-
-	// For example:  strSearchContent = _T("point;rectangle;circle;ole object;");
-	SetSearchContent(strSearchContent);
-}
-
-void CMwCGDoc::SetSearchContent(const CString& value)
-{
-	if (value.IsEmpty())
+	// Support for thumbnails
+	void CMwCGDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
 	{
-		RemoveChunk(PKEY_Search_Contents.fmtid, PKEY_Search_Contents.pid);
+		// Modify this code to draw the document's data
+		dc.FillSolidRect(lprcBounds, RGB(255, 255, 255));
+
+		CString strText = _T("TODO: implement thumbnail drawing here");
+		LOGFONT lf;
+
+		CFont* pDefaultGUIFont = CFont::FromHandle((HFONT) GetStockObject(DEFAULT_GUI_FONT));
+		pDefaultGUIFont->GetLogFont(&lf);
+		lf.lfHeight = 36;
+
+		CFont fontDraw;
+		fontDraw.CreateFontIndirect(&lf);
+
+		CFont* pOldFont = dc.SelectObject(&fontDraw);
+		dc.DrawText(strText, lprcBounds, DT_CENTER | DT_WORDBREAK);
+		dc.SelectObject(pOldFont);
 	}
-	else
+
+	// Support for Search Handlers
+	void CMwCGDoc::InitializeSearchContent()
 	{
-		CMFCFilterChunkValueImpl *pChunk = NULL;
-		ATLTRY(pChunk = new CMFCFilterChunkValueImpl);
-		if (pChunk != NULL)
+		CString strSearchContent;
+		// Set search contents from document's data. 
+		// The content parts should be separated by ";"
+
+		// For example:  strSearchContent = _T("point;rectangle;circle;ole object;");
+		SetSearchContent(strSearchContent);
+	}
+
+	void CMwCGDoc::SetSearchContent(const CString& value)
+	{
+		if (value.IsEmpty())
 		{
-			pChunk->SetTextValue(PKEY_Search_Contents, value, CHUNK_TEXT);
-			SetChunkValue(pChunk);
+			RemoveChunk(PKEY_Search_Contents.fmtid, PKEY_Search_Contents.pid);
+		}
+		else
+		{
+			CMFCFilterChunkValueImpl *pChunk = NULL;
+			ATLTRY(pChunk = new CMFCFilterChunkValueImpl);
+			if (pChunk != NULL)
+			{
+				pChunk->SetTextValue(PKEY_Search_Contents, value, CHUNK_TEXT);
+				SetChunkValue(pChunk);
+			}
 		}
 	}
-}
 
 #endif // SHARED_HANDLERS
 
-// CMwCGDoc diagnostics
+	// CMwCGDoc diagnostics
 
 #ifdef _DEBUG
-void CMwCGDoc::AssertValid() const
-{
-	CDocument::AssertValid();
-}
+	void CMwCGDoc::AssertValid() const
+	{
+		CDocument::AssertValid();
+	}
 
-void CMwCGDoc::Dump(CDumpContext& dc) const
-{
-	CDocument::Dump(dc);
-}
+	void CMwCGDoc::Dump(CDumpContext& dc) const
+	{
+		CDocument::Dump(dc);
+	}
 #endif //_DEBUG
 
 
-// CMwCGDoc commands
+	// CMwCGDoc commands
 
 
-MwGLContent* CMwCGDoc::GetGLContent(void)
-{
-	return m_pGLContent;
-}
+	MwGLContent* CMwCGDoc::GetGLContent(void)
+	{
+		return m_pGLContent;
+	}
+
+
+	void CMwCGDoc::OnCloseDocument()
+	{
+		// TODO: Add your specialized code here and/or call the base class
+		if (!m_pGLContent)
+		{
+			delete m_pGLContent;
+			m_pGLContent = NULL;
+		}
+		CDocument::OnCloseDocument();
+	}

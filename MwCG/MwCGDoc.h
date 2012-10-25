@@ -59,4 +59,5 @@ protected:
 #endif // SHARED_HANDLERS
 public:
 	MwGLContent* GetGLContent(void);
+	virtual void OnCloseDocument();
 };

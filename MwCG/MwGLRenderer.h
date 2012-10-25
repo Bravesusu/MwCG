@@ -9,17 +9,15 @@ public:
 	MwGLRenderer(void);
 	~MwGLRenderer(void);
 	
-	bool Initialize(HDC hDC);
+	bool Initialize(const HDC& hDC);
 	void Finalize(void);
-	void Draw(const MwGLContent* pContent);
+	void Draw(MwGLContent* pContent);
 protected:
-	BOOL SetWindowPixelFormat(void);
-	BOOL CreateGLContext(void);
+	BOOL SetWindowPixelFormat(const HDC& hDC);
+	BOOL CreateGLContext(const HDC& hDC);
 public:
 	void DestoryGLContext(void);
 protected:
-	//The DC of View to render
-	HDC m_hViewDC;
 	//The render context
 	HGLRC m_hRC;
 public:

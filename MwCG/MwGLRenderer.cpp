@@ -11,21 +11,21 @@ MwGLRenderer::~MwGLRenderer(void)
 }
 
 
-bool MwGLRenderer::Initialize(HDC hDC)
+bool MwGLRenderer::Initialize(const HDC& hDC)
 {
-	m_hViewDC = hDC;
+	//m_hViewDC = hDC;
 	if (!hDC)
 	{
 		TRACE0("Cannot Initialize(NULL)\n");
 		return false;
 	}
 
-	if (!SetWindowPixelFormat())
+	if (!SetWindowPixelFormat(hDC))
 	{
 		TRACE0("Failed to SetWindowPixelFormat\n");
 		return false;
 	}
-	if (!CreateGLContext())
+	if (!CreateGLContext(hDC))
 	{
 		TRACE0("Failed to CreateGLContext\n");
 		return false;
@@ -42,8 +42,9 @@ void MwGLRenderer::Finalize(void)
 }
 
 
-void MwGLRenderer::Draw(const MwGLContent* pContent)
+void MwGLRenderer::Draw(MwGLContent* pContent)
 {
+	//MwVector2 v(100.0, 50.0);
 	glLoadIdentity();
     glClear(GL_COLOR_BUFFER_BIT);
    /* glBegin(GL_POLYGON);
@@ -57,18 +58,22 @@ void MwGLRenderer::Draw(const MwGLContent* pContent)
 	glColor3f(1, 0, 0);
 	glBegin(GL_LINES); 
 	glVertex2f(0.0, 0.0);
-	glVertex2f(100.0, 50.0);
+	//glVertex2f(100.0, 50.0);
+	pContent->FooPoint->GL();
+	//v.GL();
 	glEnd(); 
 	glBegin(GL_POINTS);
 	glColor3f(0, 1, 0);
 	glVertex2f(0.0, 0.0);
-	glVertex2f(100.0, 50.0);
+	//glVertex2f(100.0, 50.0);
+	pContent->FooPoint->GL();
+	//v.GL();
 	glEnd();
     glFlush();
 }
 
 
-BOOL MwGLRenderer::SetWindowPixelFormat(void)
+BOOL MwGLRenderer::SetWindowPixelFormat(const HDC& hDC)
 {
 	PIXELFORMATDESCRIPTOR pixelDesc = 
 	{
@@ -92,17 +97,17 @@ BOOL MwGLRenderer::SetWindowPixelFormat(void)
 		0, 0, 0                         // layer masks ignored
 	};
 
-	int nGLPixelIndex = ChoosePixelFormat(m_hViewDC,&pixelDesc);
+	int nGLPixelIndex = ChoosePixelFormat(hDC, &pixelDesc);
 	if (!nGLPixelIndex)
 	{
 		//nGLPixelIndex = 1;
-		if(!DescribePixelFormat(m_hViewDC, nGLPixelIndex, sizeof(PIXELFORMATDESCRIPTOR), &pixelDesc))
+		if(!DescribePixelFormat(hDC, nGLPixelIndex, sizeof(PIXELFORMATDESCRIPTOR), &pixelDesc))
 		{
 			return FALSE;
 		}
 	}
 
-	if(!SetPixelFormat(m_hViewDC, nGLPixelIndex, &pixelDesc))
+	if(!SetPixelFormat(hDC, nGLPixelIndex, &pixelDesc))
 	{
 		return FALSE;
 	}
@@ -110,15 +115,15 @@ BOOL MwGLRenderer::SetWindowPixelFormat(void)
 }
 
 
-BOOL MwGLRenderer::CreateGLContext(void)
+BOOL MwGLRenderer::CreateGLContext(const HDC& hDC)
 {
-	m_hRC = wglCreateContext(m_hViewDC);
+	m_hRC = wglCreateContext(hDC);
     if(!m_hRC)
 	{
         return FALSE;
     }
 
-    if(!wglMakeCurrent(m_hViewDC, m_hRC))
+    if(!wglMakeCurrent(hDC, m_hRC))
     {
         return FALSE;
     }
