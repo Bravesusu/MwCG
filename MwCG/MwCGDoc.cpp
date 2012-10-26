@@ -210,50 +210,35 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	{
 		MwCanvas* canvas = m_pGLContent->GetCanvas();
 
-		m_pGLContent->Elements.push_back(canvas);
 		for (int y = 0; y < canvas->Height; y += 10)
 		{
-			MwLine* ln = new MwLine(0, y, 100.0, y);
-			ln->Color.SetColorRef(AFX_IDC_COLOR_RED);
-			//m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
-			m_pGLContent->Elements.push_back(ln);
+			MwLine* ln = new MwLine(0, y, canvas->Width, y);
+			ln->Color.SetColor(MW_RED);
+			m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
 		}
-		
-		//MwLine* ln2 = new MwLine(0.0, 0.0, 100.0, 100.0);
-		//ln2->Color.SetColorRef(AFX_IDC_COLOR_RED);
-		////m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
-		//m_pGLContent->Elements.push_back(ln2);
 
-		//MwLine* ln = new MwLine(0.0, 0.0, 0.0, 100.0);
-		//ln->Color.SetColorRef(AFX_IDC_COLOR_RED);
-		////m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
-		//m_pGLContent->Elements.push_back(ln);
-
-
-		//for (int x = 0; x < canvas->Width; x += 10)
-		//{
-		//	for (int y = 0; y < canvas->Height; y += 10)
-		//	{
-		//		MwPoint* pt = new MwPoint(x, y);
-		//		pt->Color.SetColorRef(AFX_IDC_COLOR_BLUE);
-		//		//m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
-		//		m_pGLContent->Elements.push_back(pt);
-		//	}
-		//}
+		for (int x = 0; x < canvas->Width; x += 50)
+		{
+			for (int y = 0; y < canvas->Height; y += 50)
+			{
+				MwPoint* pt = new MwPoint(x, y, 5);
+				pt->Color.SetColor(MW_BLUE);
+				m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
+			}
+		}
 
 		MwSierpinski* sk = new MwSierpinski();
+		sk->PointCount = 10000;
+		sk->Color.SetColor(MW_GREEN);
 
-		sk->Color.SetColorRef(AFX_IDC_COLOR_GREEN);
+		sk->Vertex[0].x = 100.0;
+		sk->Vertex[0].y = 50.0;
 
-		sk->Vertex[0].x = 0.0;
-		sk->Vertex[0].y = 0.0;
+		sk->Vertex[1].x = 400.0;
+		sk->Vertex[1].y = 400.0;
 
-		sk->Vertex[1].x = 0.0;
-		sk->Vertex[1].y = 200.0;
+		sk->Vertex[2].x = 700.0;
+		sk->Vertex[2].y = 50.0;
 
-		sk->Vertex[2].x = 200.0;
-		sk->Vertex[2].y = 0.0;
-
-		//m_pGLContent->Elements.push_back(MwElementSafePtr(sk));
-		m_pGLContent->Elements.push_back(sk);
+		m_pGLContent->Elements.push_back(MwElementSafePtr(sk));
 	}

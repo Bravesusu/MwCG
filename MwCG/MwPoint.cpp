@@ -5,12 +5,14 @@ IMPLEMENT_SERIAL(MwPoint, MwGLElement, 1);
 
 MwPoint::MwPoint(void)
 {
+	Size = 1;
 }
 
-MwPoint::MwPoint(float x, float y)
+MwPoint::MwPoint(float x, float y, float size)
 {
 	Position.x = x;
 	Position.y = y;
+	this->Size = size;
 }
 
 
@@ -35,6 +37,7 @@ void MwPoint::Serialize(CArchive& ar)
 void MwPoint::Draw()
 {
 	Color();
+	glPointSize(Size);
 	glBegin(GL_POINTS);
 	Position();
 	glEnd();

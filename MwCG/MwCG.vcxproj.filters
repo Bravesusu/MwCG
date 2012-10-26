@@ -90,20 +90,20 @@
     <ClInclude Include="MwColor.h">
       <Filter>Mw\Types</Filter>
     </ClInclude>
-    <ClInclude Include="MwGLElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MwCanvas.h">
       <Filter>Mw\Content</Filter>
     </ClInclude>
-    <ClInclude Include="MwPoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MwLine.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Content</Filter>
+    </ClInclude>
+    <ClInclude Include="MwPoint.h">
+      <Filter>Mw\Content</Filter>
+    </ClInclude>
+    <ClInclude Include="MwGLElement.h">
+      <Filter>Mw\Content</Filter>
     </ClInclude>
     <ClInclude Include="MwSierpinski.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Content</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -155,20 +155,20 @@
     <ClCompile Include="MwColor.cpp">
       <Filter>Mw\Types</Filter>
     </ClCompile>
-    <ClCompile Include="MwGLElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MwCanvas.cpp">
       <Filter>Mw\Content</Filter>
     </ClCompile>
-    <ClCompile Include="MwPoint.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MwGLElement.cpp">
+      <Filter>Mw\Content</Filter>
     </ClCompile>
     <ClCompile Include="MwLine.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\Content</Filter>
     </ClCompile>
     <ClCompile Include="MwSierpinski.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="MwPoint.cpp">
+      <Filter>Mw\Content</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

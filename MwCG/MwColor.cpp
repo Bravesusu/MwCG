@@ -55,6 +55,15 @@ void MwColor::SetColor(MwColor& color)
 	a = color.a;
 }
 
+
+void MwColor::SetColor(float r, float g, float b, float a)
+{
+	this->r = r;
+	this->g = g;
+	this->b = b;
+	this->a = a;
+}
+
 COLORREF MwColor::GetColorRef()
 {
 	return RGB(r, g, b);

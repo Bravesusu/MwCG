@@ -45,54 +45,12 @@ void MwGLRenderer::Finalize(void)
 void MwGLRenderer::Draw(MwGLContent* pContent)
 {
 	glLoadIdentity();
-	//pContent->GetCanvas()->Draw();
 
 	for (int i = 0; i < pContent->Elements.size(); i++)
 	{
 		pContent->Elements.at(i)->Draw();
 	}
-	//for (int i = 0; i < pContent->GetCanvas()->Width; i++)
-	//{
-	//	glBegin(GL_LINES);
-	//	glVertex2f(0, 0);
-	//	glVertex2f(100, i);
-	//	glEnd();
-	//}
-	//glColor4f(1.0f,0.0f,0.0f,1.0f);
-	//glBegin(GL_POINTS);
-	//glVertex2f(10.0, 10.0);
-	//glEnd();
 
-	//glBegin(GL_LINES);
-	//glVertex2f(0.0, 0.0);
-	//glVertex2f(100.0, -50.0);
-	//glEnd();
-
-	//glBegin(GL_LINES);
-	//glVertex2f(0.0, 0.0);
-	//glVertex2f(100.0, -40.0);
-	//glEnd();
-	//glClear(GL_COLOR_BUFFER_BIT);
-	/* glBegin(GL_POLYGON);
-	glColor4f(1.0f,0.0f,0.0f,1.0f);
-	glVertex2f(100.0f,50.0f);
-	glColor4f(0.0f,1.0f,0.0f,1.0f);
-	glVertex2f(450.0f,400.0f);
-	glColor4f(0.0f,0.0f,1.0f,1.0f);
-	glVertex2f(450.0f,50.0f);
-	glEnd();*/
-	//glColor3f(1, 0, 0);
-	//glBegin(GL_LINES); 
-	//glVertex2f(0.0, 0.0);
-	//glVertex2f(100.0, 50.0);
-	////v.GL();
-	//glEnd(); 
-	//glBegin(GL_POINTS);
-	//glColor3f(0, 1, 0);
-	//glVertex2f(0.0, 0.0);
-	//glVertex2f(100.0, 50.0);
-	//v.GL();
-	//glEnd();
 	glFlush();
 }
 
@@ -185,14 +143,6 @@ bool MwGLRenderer::IsValid(void)
 
 void MwGLRenderer::SetViewSize(int x, int y, int width, int height)
 {
-	//if(cy == 0)
-	//{
-	//    aspect = (GLdouble)width;
-	//}
-	//else
-	//{
-	//    aspect = (GLdouble)width / (GLdouble)height;
-	//}
 	glViewport(x, y, width, height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();

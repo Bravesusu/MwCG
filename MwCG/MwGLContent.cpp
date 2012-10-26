@@ -6,16 +6,14 @@ IMPLEMENT_SERIAL(MwGLContent, CObject, 1)
 MwGLContent::MwGLContent(void)
 {
 	m_pCanvas = new MwCanvas();
+	m_pCanvas->Color.SetColor(MW_WHITE);
+	Elements.push_back(MwElementSafePtr(m_pCanvas));
 }
 
 
 MwGLContent::~MwGLContent(void)
 {
 	delete m_pCanvas;
-	for (int i = 0; i < Elements.size(); i++)
-	{
-		delete Elements.at(i);
-	}
 }
 
 

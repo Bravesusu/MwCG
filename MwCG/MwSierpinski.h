@@ -11,6 +11,7 @@ public:
 	~MwSierpinski(void);
 	//Serialization
 	MwVector2 Vertex[3];
+	int PointCount;
 public:
 	virtual void Serialize(CArchive& ar);
 	void Draw();
