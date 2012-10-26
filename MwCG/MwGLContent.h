@@ -18,7 +18,8 @@ public:
 protected:
 	MwCanvas* m_pCanvas;
 public:
-	vector<MwElementSafePtr> Elements;
+	//vector<MwElementSafePtr> Elements;
 	//vector<MwGLElement> Elements;
+	vector<MwGLElement*> Elements;
 public:
 };

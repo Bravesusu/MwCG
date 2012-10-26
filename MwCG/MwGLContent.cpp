@@ -12,6 +12,10 @@ MwGLContent::MwGLContent(void)
 MwGLContent::~MwGLContent(void)
 {
 	delete m_pCanvas;
+	for (int i = 0; i < Elements.size(); i++)
+	{
+		delete Elements.at(i);
+	}
 }
 
 

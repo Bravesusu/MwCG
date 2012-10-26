@@ -45,13 +45,19 @@ void MwGLRenderer::Finalize(void)
 void MwGLRenderer::Draw(MwGLContent* pContent)
 {
 	glLoadIdentity();
-	pContent->GetCanvas()->Draw();
+	//pContent->GetCanvas()->Draw();
 
-	glPointSize(10);
 	for (int i = 0; i < pContent->Elements.size(); i++)
 	{
 		pContent->Elements.at(i)->Draw();
 	}
+	//for (int i = 0; i < pContent->GetCanvas()->Width; i++)
+	//{
+	//	glBegin(GL_LINES);
+	//	glVertex2f(0, 0);
+	//	glVertex2f(100, i);
+	//	glEnd();
+	//}
 	//glColor4f(1.0f,0.0f,0.0f,1.0f);
 	//glBegin(GL_POINTS);
 	//glVertex2f(10.0, 10.0);
@@ -190,8 +196,8 @@ void MwGLRenderer::SetViewSize(int x, int y, int width, int height)
 	glViewport(x, y, width, height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	/*gluOrtho2D(0, 800, 0, 600);
+	gluOrtho2D(0, 800, 0, 600);
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();*/
+	glLoadIdentity();
 
 }

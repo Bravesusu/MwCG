@@ -39,6 +39,8 @@ void MwLine::Draw()
 	Color();
 	glBegin(GL_LINES);
 	Point1();
+	//glVertex2f(Point1.x, Point1.y);
 	Point2();
+	//glVertex2f(Point2.x, Point2.y);
 	glEnd();
 }

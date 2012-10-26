@@ -210,22 +210,36 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	{
 		MwCanvas* canvas = m_pGLContent->GetCanvas();
 
-		for (int y = 0; y < canvas->Height; y ++)
+		m_pGLContent->Elements.push_back(canvas);
+		for (int y = 0; y < canvas->Height; y += 10)
 		{
-			MwLine* ln = new MwLine(0.0, y, 100.0, y);
+			MwLine* ln = new MwLine(0, y, 100.0, y);
 			ln->Color.SetColorRef(AFX_IDC_COLOR_RED);
-			m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
+			//m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
+			m_pGLContent->Elements.push_back(ln);
 		}
+		
+		//MwLine* ln2 = new MwLine(0.0, 0.0, 100.0, 100.0);
+		//ln2->Color.SetColorRef(AFX_IDC_COLOR_RED);
+		////m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
+		//m_pGLContent->Elements.push_back(ln2);
 
-		for (int x = 0; x < canvas->Width; x += 10)
-		{
-			for (int y = 0; y < canvas->Height; y += 10)
-			{
-				MwPoint* pt = new MwPoint(x, y);
-				pt->Color.SetColorRef(AFX_IDC_COLOR_BLUE);
-				m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
-			}
-		}
+		//MwLine* ln = new MwLine(0.0, 0.0, 0.0, 100.0);
+		//ln->Color.SetColorRef(AFX_IDC_COLOR_RED);
+		////m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
+		//m_pGLContent->Elements.push_back(ln);
+
+
+		//for (int x = 0; x < canvas->Width; x += 10)
+		//{
+		//	for (int y = 0; y < canvas->Height; y += 10)
+		//	{
+		//		MwPoint* pt = new MwPoint(x, y);
+		//		pt->Color.SetColorRef(AFX_IDC_COLOR_BLUE);
+		//		//m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
+		//		m_pGLContent->Elements.push_back(pt);
+		//	}
+		//}
 
 		MwSierpinski* sk = new MwSierpinski();
 
@@ -240,5 +254,6 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		sk->Vertex[2].x = 200.0;
 		sk->Vertex[2].y = 0.0;
 
-		m_pGLContent->Elements.push_back(MwElementSafePtr(sk));
+		//m_pGLContent->Elements.push_back(MwElementSafePtr(sk));
+		m_pGLContent->Elements.push_back(sk);
 	}

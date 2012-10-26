@@ -28,15 +28,15 @@ void MwSierpinski::Serialize(CArchive& ar)
 
 void MwSierpinski::Draw()
 {
-	MwVector2 p(50.0, 50.0);
 	Color();
+	glBegin(GL_POINTS);
+	MwVector2 p(50.0, 50.0);
 	for (int i = 0; i < 5000; i++)
 	{
 		int v = rand() % 3;
 		p += Vertex[v];
 		p /= 2.0;
-		glBegin(GL_LINES);
 		p();
-		glEnd();
 	}
+	glEnd();
 }
