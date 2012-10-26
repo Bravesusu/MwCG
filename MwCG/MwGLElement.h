@@ -21,7 +21,7 @@ public:
 	
 //Rendering
 public:
-	virtual void Draw() {};
+	inline virtual void Draw() {};
 	virtual bool HitTest() { return false; };
 
 //ID

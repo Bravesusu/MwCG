@@ -13,6 +13,6 @@ public:
 	MwVector2 Position;
 public:
 	virtual void Serialize(CArchive& ar);
-	void Draw();
+	inline void Draw();
 };
 

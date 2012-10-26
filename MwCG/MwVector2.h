@@ -14,7 +14,7 @@ public:
 	MwVector2(void);
 	MwVector2(float fx, float fy);
 	~MwVector2(void);
-	void GL();
+	inline void GL();
 	void Trace();
 	void Serialize(CArchive& ar);
 public:

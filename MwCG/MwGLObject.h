@@ -9,6 +9,6 @@ public:
 	~MwGLObject(void);
 	virtual void Serialize(CArchive& ar);
 	//Execute GL command
-	virtual void GL() {  };
-	void operator ()() { GL(); }
+	inline virtual void GL() {  };
+	inline void operator ()() { GL(); }
 };

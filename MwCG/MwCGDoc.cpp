@@ -209,11 +209,15 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	void CMwCGDoc::FooDocument()
 	{
 		MwCanvas* canvas = m_pGLContent->GetCanvas();
-		MwLine* ln = new MwLine(0.0, 0.0, 100.0, 50.0);
-		ln->Color.SetColorRef(AFX_IDC_COLOR_RED);
-		m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
 
-		/*for (int x = 0; x < canvas->Width; x += 10)
+		for (int y = 0; y < canvas->Height; y ++)
+		{
+			MwLine* ln = new MwLine(0.0, y, 100.0, y);
+			ln->Color.SetColorRef(AFX_IDC_COLOR_RED);
+			m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
+		}
+
+		for (int x = 0; x < canvas->Width; x += 10)
 		{
 			for (int y = 0; y < canvas->Height; y += 10)
 			{
@@ -221,7 +225,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 				pt->Color.SetColorRef(AFX_IDC_COLOR_BLUE);
 				m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
 			}
-		}*/
+		}
 
 		MwSierpinski* sk = new MwSierpinski();
 

@@ -47,19 +47,25 @@ void MwGLRenderer::Draw(MwGLContent* pContent)
 	glLoadIdentity();
 	pContent->GetCanvas()->Draw();
 
+	glPointSize(10);
 	for (int i = 0; i < pContent->Elements.size(); i++)
 	{
 		pContent->Elements.at(i)->Draw();
 	}
-	/*glColor4f(1.0f,0.0f,0.0f,1.0f);
-	glBegin(GL_POINTS);
-	glVertex2f(10.0, 10.0);
-	glEnd();
+	//glColor4f(1.0f,0.0f,0.0f,1.0f);
+	//glBegin(GL_POINTS);
+	//glVertex2f(10.0, 10.0);
+	//glEnd();
 
-	glBegin(GL_LINES);
-	glVertex2f(0.0, 0.0);
-	glVertex2f(100.0, -50.0);
-	glEnd();*/
+	//glBegin(GL_LINES);
+	//glVertex2f(0.0, 0.0);
+	//glVertex2f(100.0, -50.0);
+	//glEnd();
+
+	//glBegin(GL_LINES);
+	//glVertex2f(0.0, 0.0);
+	//glVertex2f(100.0, -40.0);
+	//glEnd();
 	//glClear(GL_COLOR_BUFFER_BIT);
 	/* glBegin(GL_POLYGON);
 	glColor4f(1.0f,0.0f,0.0f,1.0f);

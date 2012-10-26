@@ -23,10 +23,9 @@ public:
 	MwColor(float fr, float fg, float fb, float fa)  
 		: r(fr), g(fg), b(fb), a(fa) {};
 	~MwColor(void);
-	void GL();
-	void GL(bool clear);
-	void operator ()() { GL(); };
-	void operator ()(bool clear) { GL(true); };
+	inline void GL();
+	inline void GL(bool clear);
+	//void operator ()(bool clear) { GL(true); };
 	void Serialize(CArchive& ar);
 };
 

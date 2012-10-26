@@ -15,6 +15,6 @@ public:
 	MwVector2 Point2;
 public:
 	virtual void Serialize(CArchive& ar);
-	void Draw();
+	inline void Draw();
 };
 

@@ -38,7 +38,7 @@ void MwVector2::GL()
 
 void MwVector2::Trace() 
 { 
-	TRACE("%f, %f", x, y); 
+	TRACE("%f, %f\n", x, y); 
 }
 
 

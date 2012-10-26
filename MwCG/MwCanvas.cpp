@@ -33,6 +33,7 @@ void MwCanvas::Serialize(CArchive& ar)
 
 void MwCanvas::Draw()
 {
-	Color(true);
+	glClearColor(Color.r, Color.g, Color.b, Color.a);
+	//Color.GL(true);
     glClear(GL_COLOR_BUFFER_BIT);
 }
