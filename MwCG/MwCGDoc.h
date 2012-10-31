@@ -27,13 +27,13 @@ protected: // create from serialization only
 
 // Attributes
 public:
-	
+
 protected:
 	MwGLContent* m_pGLContent;
 	void FooDocument();
 // Operations
 public:
-
+	void SetMousePos(CPoint& point);
 // Overrides
 public:
 	virtual BOOL OnNewDocument();

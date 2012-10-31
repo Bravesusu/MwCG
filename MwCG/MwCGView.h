@@ -72,6 +72,7 @@ public:
 	afx_msg void OnUpdateCanvasWidth(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateCanvasHeight(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateShapeGallery(CCmdUI *pCmdUI);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

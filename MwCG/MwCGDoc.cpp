@@ -43,7 +43,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	CMwCGDoc::CMwCGDoc()
 	{
 		// TODO: add one-time construction code here
-
+		
 	}
 
 	CMwCGDoc::~CMwCGDoc()
@@ -207,19 +207,20 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	//Create a dummy document
 	void CMwCGDoc::FooDocument()
-	{
+	{		
 		MwCanvas* canvas = m_pGLContent->GetCanvas();
-
-		for (int y = 0; y < canvas->Height; y += 10)
+		int hw = canvas->Width / 2;
+		int hh = canvas->Height / 2;
+		for (int y = -hh; y < hh; y += 10)
 		{
 			MwLine* ln = new MwLine(0, y, canvas->Width, y);
 			ln->Color.SetColor(MW_RED);
 			m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
 		}
 
-		for (int x = 0; x < canvas->Width; x += 50)
+		for (int x = -hw; x < hw; x += 100)
 		{
-			for (int y = 0; y < canvas->Height; y += 50)
+			for (int y = -hh; y < hh; y += 100)
 			{
 				MwPoint* pt = new MwPoint(x, y, 5);
 				pt->Color.SetColor(MW_BLUE);
@@ -241,4 +242,13 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		sk->Vertex[2].y = 50.0;
 
 		m_pGLContent->Elements.push_back(MwElementSafePtr(sk));
+	}
+	
+	void CMwCGDoc::SetMousePos(CPoint& point)
+	{
+		MwCanvas* canvas = m_pGLContent->GetCanvas();
+		float hw = canvas->Width / 2;
+		float hh = canvas->Height / 2;
+		m_pGLContent->Mouse.Position.x = point.x - hw;
+		m_pGLContent->Mouse.Position.y = hh - point.y; 
 	}

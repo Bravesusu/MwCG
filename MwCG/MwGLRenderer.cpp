@@ -51,6 +51,8 @@ void MwGLRenderer::Draw(MwGLContent* pContent)
 		pContent->Elements.at(i)->Draw();
 	}
 
+	pContent->Mouse.Draw();
+
 	glFlush();
 }
 
@@ -143,10 +145,12 @@ bool MwGLRenderer::IsValid(void)
 
 void MwGLRenderer::SetViewSize(int x, int y, int width, int height)
 {
-	glViewport(x, y, width, height);
+	GLdouble hw = width / 2;
+	GLdouble hh = height / 2;
+	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(0, 800, 0, 600);
+	gluOrtho2D(-hw - x, hw - x, -hh - y, hh - y);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 

@@ -2,6 +2,7 @@
 #include "mwx.h"
 #include "MwGLElement.h"
 #include "MwCanvas.h"
+#include "MwPoint.h"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ public:
 
 public:
 	MwCanvas* GetCanvas() const {return m_pCanvas;}
+	MwPoint Mouse;
 protected:
 	MwCanvas* m_pCanvas;
 public:

@@ -3,8 +3,10 @@
 
 IMPLEMENT_SERIAL(MwGLContent, CObject, 1)
 
-MwGLContent::MwGLContent(void)
+	MwGLContent::MwGLContent(void)
 {
+	Mouse.Color.SetColor(1, 0, 0);
+	Mouse.Size = 10;
 	m_pCanvas = new MwCanvas();
 	m_pCanvas->Color.SetColor(MW_WHITE);
 	Elements.push_back(MwElementSafePtr(m_pCanvas));

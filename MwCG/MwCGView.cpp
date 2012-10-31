@@ -49,6 +49,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CScrollView)
 ON_UPDATE_COMMAND_UI(ID_CANVAS_WIDTH, &CMwCGView::OnUpdateCanvasWidth)
 ON_UPDATE_COMMAND_UI(ID_CANVAS_HEIGHT, &CMwCGView::OnUpdateCanvasHeight)
 ON_UPDATE_COMMAND_UI(ID_SHAPE_GALLERY, &CMwCGView::OnUpdateShapeGallery)
+ON_WM_MOUSEMOVE()
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -283,4 +284,14 @@ ON_UPDATE_COMMAND_UI(ID_SHAPE_GALLERY, &CMwCGView::OnUpdateShapeGallery)
 	{
 		// TODO: Add your command update UI handler code here
 		pCmdUI->Enable(m_render.IsValid());
+	}
+
+
+	void CMwCGView::OnMouseMove(UINT nFlags, CPoint point)
+	{
+		// TODO: Add your message handler code here and/or call default
+
+		CScrollView::OnMouseMove(nFlags, point);
+		GetDocument()->SetMousePos(point);
+		Invalidate();
 	}
