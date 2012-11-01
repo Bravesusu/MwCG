@@ -16,7 +16,7 @@
 #include "MwGLRenderer.h"
 #include "MainFrm.h"
 
-class CMwCGView : public CScrollView
+class CMwCGView : public CView
 {
 protected: // create from serialization only
 	CMwCGView();
@@ -65,7 +65,6 @@ public:
 	afx_msg void OnUpdateClearColor(CCmdUI *pCmdUI);
 	virtual void OnInitialUpdate();
 	virtual void OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);
-	virtual BOOL OnScroll(UINT nScrollCode, UINT nPos, BOOL bDoScroll = TRUE);
 //	afx_msg void OnCanvasHeight();
 //	afx_msg void OnCanvasWidth();
 //	afx_msg void OnCanvasHeight();

@@ -29,12 +29,12 @@
 
 // CMwCGView
 
-IMPLEMENT_DYNCREATE(CMwCGView, CScrollView)
+IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
-	BEGIN_MESSAGE_MAP(CMwCGView, CScrollView)
+	BEGIN_MESSAGE_MAP(CMwCGView, CView)
 		// Standard printing commands
-		ON_COMMAND(ID_FILE_PRINT, &CScrollView::OnFilePrint)
-		ON_COMMAND(ID_FILE_PRINT_DIRECT, &CScrollView::OnFilePrint)
+		ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
+		ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
 		ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CMwCGView::OnFilePrintPreview)
 		ON_WM_CONTEXTMENU()
 		ON_WM_RBUTTONUP()
@@ -70,7 +70,7 @@ ON_WM_MOUSEMOVE()
 		//  the CREATESTRUCT cs
 
 		cs.style |= (WS_CLIPCHILDREN | WS_CLIPSIBLINGS);
-		return CScrollView::PreCreateWindow(cs);
+		return CView::PreCreateWindow(cs);
 	}
 
 	// CMwCGView drawing
@@ -136,12 +136,12 @@ ON_WM_MOUSEMOVE()
 #ifdef _DEBUG
 	void CMwCGView::AssertValid() const
 	{
-		CScrollView::AssertValid();
+		CView::AssertValid();
 	}
 
 	void CMwCGView::Dump(CDumpContext& dc) const
 	{
-		CScrollView::Dump(dc);
+		CView::Dump(dc);
 	}
 
 	CMwCGDoc* CMwCGView::GetDocument() const // non-debug version is inline
@@ -157,7 +157,7 @@ ON_WM_MOUSEMOVE()
 
 	int CMwCGView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	{
-		if (CScrollView::OnCreate(lpCreateStruct) == -1)
+		if (CView::OnCreate(lpCreateStruct) == -1)
 			return -1;
 
 		//Get DC and initialize the MwGLRenderer
@@ -179,7 +179,7 @@ ON_WM_MOUSEMOVE()
 
 	void CMwCGView::OnDestroy()
 	{
-		CScrollView::OnDestroy();
+		CView::OnDestroy();
 
 		//Finalize the MwGLRenderer
 		m_render.Finalize();
@@ -189,10 +189,11 @@ ON_WM_MOUSEMOVE()
 
 	void CMwCGView::OnSize(UINT nType, int cx, int cy)
 	{
-		CScrollView::OnSize(nType, cx, cy);
+		CView::OnSize(nType, cx, cy);
 
 		// TODO: Add your message handler code here
 		//m_render.SetViewSize(cx, cy);
+		m_render.SetViewSize(0, 0, cx, cy);
 	}
 
 
@@ -200,7 +201,7 @@ ON_WM_MOUSEMOVE()
 	{
 		// TODO: Add your message handler code here and/or call default
 
-		//return CScrollView::OnEraseBkgnd(pDC);
+		//return CView::OnEraseBkgnd(pDC);
 		return TRUE;
 	}
 
@@ -214,7 +215,7 @@ ON_WM_MOUSEMOVE()
 
 	void CMwCGView::OnInitialUpdate()
 	{
-		CScrollView::OnInitialUpdate();
+		CView::OnInitialUpdate();
 
 		// TODO: Add your specialized code here and/or call the base class
 		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
@@ -226,11 +227,12 @@ ON_WM_MOUSEMOVE()
 
 		MwGLContent* pGlContent = pDoc->GetGLContent();
 		MwCanvas* pCanvas = pGlContent->GetCanvas();
-		int cWidth = pCanvas->Width;
-		int cHeight = pCanvas->Height;
 		pColorBtn->SetColor(pCanvas->Color.GetColorRef());
-		SetScrollSizes(MM_TEXT, CSize(cWidth, cHeight));
-		m_render.SetViewSize(0, 0, cWidth, cHeight);
+		
+		CRect rect;
+		GetClientRect(rect);
+		
+		m_render.SetViewSize(0, 0, rect.Width(), rect.Height());
 	}
 
 
@@ -238,32 +240,12 @@ ON_WM_MOUSEMOVE()
 	{
 		// TODO: Add your specialized code here and/or call the base class
 
-		CScrollView::OnActivateView(bActivate, pActivateView, pDeactiveView);
+		CView::OnActivateView(bActivate, pActivateView, pDeactiveView);
 
 		if (bActivate)
 		{
 			m_render.Activate(m_hDC);
 		}
-	}
-
-
-	BOOL CMwCGView::OnScroll(UINT nScrollCode, UINT nPos, BOOL bDoScroll)
-	{
-		// TODO: Add your specialized code here and/or call the base class
-		CMwCGDoc* pDoc = GetDocument();
-		ASSERT_VALID(pDoc);
-		if (!pDoc)
-			return CScrollView::OnScroll(nScrollCode, nPos, bDoScroll);
-
-		MwGLContent* pGlContent = pDoc->GetGLContent();
-		MwCanvas* pCanvas = pGlContent->GetCanvas();
-		int cWidth = pCanvas->Width;
-		int cHeight = pCanvas->Height;
-
-		CPoint scrollPos = GetScrollPosition();
-		m_render.SetViewSize(-scrollPos.x, scrollPos.y, cWidth, cHeight);
-		Invalidate();
-		return CScrollView::OnScroll(nScrollCode, nPos, bDoScroll);
 	}
 
 	void CMwCGView::OnUpdateCanvasWidth(CCmdUI *pCmdUI)
@@ -291,7 +273,7 @@ ON_WM_MOUSEMOVE()
 	{
 		// TODO: Add your message handler code here and/or call default
 
-		CScrollView::OnMouseMove(nFlags, point);
+		CView::OnMouseMove(nFlags, point);
 		GetDocument()->SetMousePos(point);
 		Invalidate();
 	}
