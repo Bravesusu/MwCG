@@ -28,6 +28,7 @@ public:
 protected:
 	MwGLRenderer m_render;
 	HDC m_hDC;
+	CPoint m_ptMouse;
 
 // Operations
 public:

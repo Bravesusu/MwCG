@@ -15,6 +15,7 @@
 #pragma once
 #include "FileView.h"
 #include "ClassView.h"
+#include "MwRibbonBar.h"
 #include "OutputWnd.h"
 #include "CalendarBar.h"
 #include "Resource.h"
@@ -50,7 +51,7 @@ public:
 #endif
 
 protected:  // control bar embedded members
-	CMFCRibbonBar     m_wndRibbonBar;
+	MwRibbonBar     m_wndRibbonBar;
 	CMFCRibbonApplicationButton m_MainButton;
 	CMFCToolBarImages m_PanelImages;
 	CMFCRibbonStatusBar  m_wndStatusBar;

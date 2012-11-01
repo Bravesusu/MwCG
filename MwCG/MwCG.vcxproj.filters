@@ -105,6 +105,9 @@
     <ClInclude Include="MwSierpinski.h">
       <Filter>Mw\Content</Filter>
     </ClInclude>
+    <ClInclude Include="MwRibbonBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -169,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="MwPoint.cpp">
       <Filter>Mw\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="MwRibbonBar.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
