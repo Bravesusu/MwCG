@@ -232,14 +232,11 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		sk->PointCount = 10000;
 		sk->Color.SetColor(MW_GREEN);
 
-		sk->Vertex[0].x = 100.0;
-		sk->Vertex[0].y = 50.0;
+		sk->Vertex[0].set(100.0, 50.0);
 
-		sk->Vertex[1].x = 400.0;
-		sk->Vertex[1].y = 400.0;
+		sk->Vertex[1].set(400.0, 400.0);
 
-		sk->Vertex[2].x = 700.0;
-		sk->Vertex[2].y = 50.0;
+		sk->Vertex[2].set(700.0, 50.0);
 
 		m_pGLContent->Elements.push_back(MwElementSafePtr(sk));
 	}
@@ -249,6 +246,5 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		MwCanvas* canvas = m_pGLContent->GetCanvas();
 		float hw = canvas->Width / 2;
 		float hh = canvas->Height / 2;
-		m_pGLContent->Mouse.Position.x = point.x - hw;
-		m_pGLContent->Mouse.Position.y = hh - point.y; 
+		m_pGLContent->Mouse.set_position(point.x - hw, hh - point.y); 
 	}

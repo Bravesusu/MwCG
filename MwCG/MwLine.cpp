@@ -14,10 +14,8 @@ MwLine::~MwLine(void)
 
 MwLine::MwLine(float x1, float y1, float x2, float y2)
 {
-	Point1.x = x1;
-	Point1.y = y1;
-	Point2.x = x2;
-	Point2.y = y2;
+	Point1.set(x1, y1);
+	Point2.set(x2, y2);
 }
 
 void MwLine::Serialize(CArchive& ar)

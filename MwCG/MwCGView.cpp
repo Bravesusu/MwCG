@@ -83,17 +83,17 @@ ON_WM_MOUSEMOVE()
 			return;
 
 		// TODO: add draw code for native data here
-		/*if (m_render.IsValid())
+		if (m_render.IsValid())
 		{
 			m_render.Draw(pDoc->GetGLContent());
 			SwapBuffers(pDC->GetSafeHdc());
-		}*/
-		CRect rect;
-		GetClientRect(rect);
-		pDC->MoveTo(0, m_ptMouse.y);
-		pDC->LineTo(rect.Width(), m_ptMouse.y);
-		pDC->MoveTo(m_ptMouse.x, 0);
-		pDC->MoveTo(m_ptMouse.x, rect.Height());
+		}
+		//CRect rect;
+		//GetClientRect(rect);
+		//pDC->MoveTo(0, m_ptMouse.y);
+		//pDC->LineTo(rect.Width(), m_ptMouse.y);
+		//pDC->MoveTo(m_ptMouse.x, 0);
+		//pDC->MoveTo(m_ptMouse.x, rect.Height());
 	}
 
 

@@ -6,12 +6,18 @@ class MwPoint :
 {
 	DECLARE_SERIAL(MwPoint)
 public:
-	MwPoint(void);
+	MwPoint(void) : size_(1) {};
 	~MwPoint(void);
-	MwPoint(float x, float y, float size = 1.0);
+	MwPoint(float x, float y, float size = 1.0) : position_(x, y), size_(size) {} ;
 	//Serialization
-	MwVector2 Position;
-	float Size;
+protected:
+	MwVector2 position_;
+	float size_;
+public:
+	MwVector2 position() const { return position_; }
+	float size() const { return size_; }
+	void set_position(float x, float y) { position_.set(x, y); }
+	void set_size(float size) { size_ = size; }
 public:
 	virtual void Serialize(CArchive& ar);
 	inline void Draw();
