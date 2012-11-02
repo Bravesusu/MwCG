@@ -6,7 +6,7 @@ class MwSierpinski :
 	public MwGLElement
 {
 	DECLARE_SERIAL(MwSierpinski);
-protected:
+private:
 	int point_count_;
 	MwVector2 vertex_[3];
 public:

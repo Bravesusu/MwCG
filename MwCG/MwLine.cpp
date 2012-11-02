@@ -34,7 +34,7 @@ void MwLine::Serialize(CArchive& ar)
 
 void MwLine::Draw()
 {
-	color_();
+	color()();
 	glBegin(GL_LINES);
 	point_from_();
 	//glVertex2f(Point1.x, Point1.y);

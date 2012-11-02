@@ -19,13 +19,13 @@ void MwGLElement::Serialize(CArchive& ar)
 	if (ar.IsStoring())
 	{	
 		// storing code
-		ar<<index<<name<<&color_;
+		ar<<&color_;
 	}
 	else
 	{	
 		// loading code
 		MwColor* pColor;
-		ar>>index>>name>>pColor;
+		ar>>pColor;
 		color_.set(*pColor);
 		delete pColor;
 	}

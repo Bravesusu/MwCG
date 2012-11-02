@@ -12,7 +12,7 @@ class MwColor :
 	public MwGLObject
 {
 	DECLARE_SERIAL(MwColor);
-protected:
+private:
 	float r_;
 	float g_;
 	float b_;

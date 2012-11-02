@@ -10,7 +10,7 @@ class MwGLElement :
 	public MwGLObject
 {
 	DECLARE_SERIAL(MwGLElement);
-protected:
+private:
 	MwColor color_;
 public:
 	MwGLElement(void);
@@ -29,16 +29,11 @@ public:
 	inline virtual void Draw() {};
 	virtual bool HitTest() { return false; };
 
-	//ID
-public:
-	int index;
-	CString name;
-
 	//TODO: components
 public:
 
 	//Hierarchy
-protected:
+private:
 	//MwGLContent *m_pContent;
 public:
 	//void AttachToContent(MwGLContent* content) {};

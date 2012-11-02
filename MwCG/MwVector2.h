@@ -7,7 +7,7 @@ class MwVector2 :
 	public MwGLObject
 {
 	DECLARE_SERIAL(MwVector2)
-protected:
+private:
 	float x_;
 	float y_;
 public:

@@ -12,7 +12,7 @@ public:
 	~MwPoint(void);
 	MwPoint(float x, float y, float size = 1.0) : position_(x, y), size_(size) {} ;
 	//Serialization
-protected:
+private:
 	MwVector2 position_;
 	float size_;
 public:

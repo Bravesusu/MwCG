@@ -6,7 +6,7 @@ class MwLine :
 	public MwGLElement
 {
 	DECLARE_SERIAL(MwLine);
-protected:
+private:
 	MwVector2 point_from_, point_to_;
 public:
 	MwLine(void);
