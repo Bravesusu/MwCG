@@ -10,29 +10,34 @@ class MwGLElement :
 	public MwGLObject
 {
 	DECLARE_SERIAL(MwGLElement);
+protected:
+	MwColor color_;
 public:
 	MwGLElement(void);
 	~MwGLElement(void);
-	MwColor Color;
+	MwColor color() const { return color_; }
+	void set_color(float r, float g, float b, float a = 1.0) { color_.set(r, g, b, a); }
+	void set_color(COLORREF color) { color_.set(color); }
+	void set_color(const MwColor& color) { color_.set(color); }
 
-//Serialization
+	//Serialization
 public:
 	virtual void Serialize(CArchive& ar);
-	
-//Rendering
+
+	//Rendering
 public:
 	inline virtual void Draw() {};
 	virtual bool HitTest() { return false; };
 
-//ID
+	//ID
 public:
 	int index;
 	CString name;
 
-//TODO: components
+	//TODO: components
 public:
 
-//Hierarchy
+	//Hierarchy
 protected:
 	//MwGLContent *m_pContent;
 public:

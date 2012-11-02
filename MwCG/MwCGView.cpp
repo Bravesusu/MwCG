@@ -233,7 +233,7 @@ ON_WM_MOUSEMOVE()
 
 		MwGLContent* pGlContent = pDoc->GetGLContent();
 		MwCanvas* pCanvas = pGlContent->GetCanvas();
-		pColorBtn->SetColor(pCanvas->Color.GetColorRef());
+		pColorBtn->SetColor(pCanvas->color().get_color_ref());
 		
 		CRect rect;
 		GetClientRect(rect);

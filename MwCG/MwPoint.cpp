@@ -27,7 +27,7 @@ void MwPoint::Serialize(CArchive& ar)
 
 void MwPoint::Draw()
 {
-	Color();
+	color_();
 	glPointSize(size_);
 	glBegin(GL_POINTS);
 	position_();

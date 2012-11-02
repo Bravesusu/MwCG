@@ -10,5 +10,5 @@ public:
 	virtual void Serialize(CArchive& ar);
 	//Execute GL command
 	inline virtual void GL() {  };
-	inline void operator ()() { GL(); }
+	inline virtual void operator ()() { GL(); }
 };

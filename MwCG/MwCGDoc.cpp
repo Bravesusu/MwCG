@@ -175,7 +175,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		// TODO: Add your command handler code here
 		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
 		COLORREF clr = pColorBtn->GetColor();
-		m_pGLContent->GetCanvas()->Color.SetColorRef(clr);
+		m_pGLContent->GetCanvas()->set_color(clr);
 		UpdateAllViews(NULL);
 	}
 
@@ -209,12 +209,14 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	void CMwCGDoc::FooDocument()
 	{		
 		MwCanvas* canvas = m_pGLContent->GetCanvas();
-		int hw = canvas->Width / 2;
-		int hh = canvas->Height / 2;
+		int width = 800;
+		int height = 600;
+		int hw = width / 2;
+		int hh = height / 2;
 		for (int y = -hh; y < hh; y += 10)
 		{
-			MwLine* ln = new MwLine(0, y, canvas->Width, y);
-			ln->Color.SetColor(MW_RED);
+			MwLine* ln = new MwLine(0, y, width, y);
+			ln->set_color(MW_RED);
 			m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
 		}
 
@@ -223,28 +225,27 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 			for (int y = -hh; y < hh; y += 100)
 			{
 				MwPoint* pt = new MwPoint(x, y, 5);
-				pt->Color.SetColor(MW_BLUE);
+				pt->set_color(MW_BLUE);
 				m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
 			}
 		}
 
 		MwSierpinski* sk = new MwSierpinski();
-		sk->PointCount = 10000;
-		sk->Color.SetColor(MW_GREEN);
-
-		sk->Vertex[0].set(100.0, 50.0);
-
-		sk->Vertex[1].set(400.0, 400.0);
-
-		sk->Vertex[2].set(700.0, 50.0);
+		sk->set_point_count(10000);
+		sk->set_color(MW_GREEN);
+		(*sk)[0] = MwVector2(100.0, 50.0);
+		(*sk)[1] = MwVector2(400.0, 400.0);
+		(*sk)[2] = MwVector2(700.0, 50.0);
 
 		m_pGLContent->Elements.push_back(MwElementSafePtr(sk));
 	}
 	
 	void CMwCGDoc::SetMousePos(CPoint& point)
 	{
+		int width = 800;
+		int height = 600;
 		MwCanvas* canvas = m_pGLContent->GetCanvas();
-		float hw = canvas->Width / 2;
-		float hh = canvas->Height / 2;
+		float hw = width / 2;
+		float hh = height / 2;
 		m_pGLContent->Mouse.set_position(point.x - hw, hh - point.y); 
 	}

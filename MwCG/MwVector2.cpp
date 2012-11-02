@@ -56,3 +56,10 @@ MwVector2& MwVector2::operator/=(float f)
 	y_ /= f;
 	return *this;
 }
+
+
+MwVector2& MwVector2::operator =(const MwVector2 & rhs)
+{
+	set(rhs.x_, rhs.y_);
+	return *this;
+}

@@ -14,15 +14,7 @@ MwColor::~MwColor(void)
 
 void MwColor::GL()
 {
-	glColor3f(r, g, b);
-}
-
-void MwColor::GL(bool clear)
-{
-	if (!clear)
-		glColor4f(r, g, b, a);
-	else 
-		glClearColor(r, g, b, a);
+	glColor3f(r_, g_, b_);
 }
 
 void MwColor::Serialize(CArchive& ar)
@@ -30,41 +22,48 @@ void MwColor::Serialize(CArchive& ar)
 	MwGLObject::Serialize(ar);
 	if (ar.IsStoring())
 	{	// storing code
-		ar<<r<<g<<b<<a;
+		ar<<r_<<g_<<b_<<a_;
 	}
 	else
 	{	// loading code
-		ar>>r>>g>>b>>a;
+		ar>>r_>>g_>>b_>>a_;
 	}
 }
-void MwColor::SetColorRef(COLORREF color)
+void MwColor::set(COLORREF color)
 {
-	r = GetRValue(color) / (float)256;
-	g = GetGValue(color) / (float)256;
-	b = GetBValue(color) / (float)256;
-	//a = 1.0;
+	r_ = GetRValue(color) / (float)256;
+	g_ = GetGValue(color) / (float)256;
+	b_ = GetBValue(color) / (float)256;
+	a_ = 1.0;
 }
 
 
 
-void MwColor::SetColor(MwColor& color)
+void MwColor::set(const MwColor& color)
 {
-	r = color.r;
-	g = color.g;
-	b = color.b;
-	a = color.a;
+	r_ = color.r_;
+	g_ = color.g_;
+	b_ = color.b_;
+	a_ = color.a_;
 }
 
 
-void MwColor::SetColor(float r, float g, float b, float a)
+void MwColor::set(float r, float g, float b, float a)
 {
-	this->r = r;
-	this->g = g;
-	this->b = b;
-	this->a = a;
+	r_ = r;
+	g_ = g;
+	b_ = b;
+	a_ = a;
 }
 
-COLORREF MwColor::GetColorRef()
+COLORREF MwColor::get_color_ref()
 {
-	return RGB(r, g, b);
+	return RGB(r_, g_, b_);
+}
+
+
+MwColor& MwColor::operator =(const MwColor & rhs)
+{
+	set(rhs);
+	return *this;
 }

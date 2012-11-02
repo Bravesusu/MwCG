@@ -26,9 +26,10 @@ public:
 	void Trace();
 	void Serialize(CArchive& ar);
 public:
-	MwVector2 operator+(const MwVector2& other) const;
-	MwVector2& operator+=(const MwVector2& other);
+	MwVector2 operator+(const MwVector2& rhs) const;
+	MwVector2& operator+=(const MwVector2& rhs);
 	MwVector2 operator/(float f) const;
 	MwVector2& operator/=(float f);
+	MwVector2& operator =(const MwVector2 & rhs);
 };
 

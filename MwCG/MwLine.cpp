@@ -14,8 +14,8 @@ MwLine::~MwLine(void)
 
 MwLine::MwLine(float x1, float y1, float x2, float y2)
 {
-	Point1.set(x1, y1);
-	Point2.set(x2, y2);
+	point_from_.set(x1, y1);
+	point_to_.set(x2, y2);
 }
 
 void MwLine::Serialize(CArchive& ar)
@@ -34,11 +34,11 @@ void MwLine::Serialize(CArchive& ar)
 
 void MwLine::Draw()
 {
-	Color();
+	color_();
 	glBegin(GL_LINES);
-	Point1();
+	point_from_();
 	//glVertex2f(Point1.x, Point1.y);
-	Point2();
+	point_to_();
 	//glVertex2f(Point2.x, Point2.y);
 	glEnd();
 }

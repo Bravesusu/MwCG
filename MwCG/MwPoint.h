@@ -1,10 +1,12 @@
 #pragma once
 #include "mwglelement.h"
 #include "MwVector2.h"
+#include <vector>
 class MwPoint :
 	public MwGLElement
 {
 	DECLARE_SERIAL(MwPoint)
+	vector<int> test;
 public:
 	MwPoint(void) : size_(1) {};
 	~MwPoint(void);
