@@ -4,10 +4,10 @@
 
 namespace mw
 {
-	class MwCanvas :
-		public MwGLElement
+	class Canvas :
+		public GlElement
 	{
-		DECLARE_SERIAL(MwCanvas);
+		DECLARE_SERIAL(Canvas);
 	//Serialization
 	public:
 		virtual void Serialize(CArchive& ar);
@@ -15,8 +15,8 @@ namespace mw
 	public:
 		void Draw();
 	public:
-		MwCanvas(void);
-		~MwCanvas(void);
+		Canvas(void);
+		~Canvas(void);
 	};
 }
 

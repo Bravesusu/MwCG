@@ -3,13 +3,13 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(MwSierpinski, MwGLElement, 1);
+IMPLEMENT_SERIAL(Sierpinski, GlElement, 1);
 
-MwSierpinski::~MwSierpinski(void)
+Sierpinski::~Sierpinski(void)
 {
 }
 
-MwSierpinski::MwSierpinski(const MwVector2& v1, const MwVector2& v2, const MwVector2& v3) : 
+Sierpinski::Sierpinski(const Vector2& v1, const Vector2& v2, const Vector2& v3) : 
 	point_count_(5000)
 {
 	vertex_[0] = v1;
@@ -17,9 +17,9 @@ MwSierpinski::MwSierpinski(const MwVector2& v1, const MwVector2& v2, const MwVec
 	vertex_[2] = v3;
 }
 
-void MwSierpinski::Serialize(CArchive& ar)
+void Sierpinski::Serialize(CArchive& ar)
 {
-	MwGLElement::Serialize(ar);
+	GlElement::Serialize(ar);
 
 	if (ar.IsStoring())
 	{	
@@ -31,12 +31,12 @@ void MwSierpinski::Serialize(CArchive& ar)
 	}
 }
 
-void MwSierpinski::Draw()
+void Sierpinski::Draw()
 {
 	color()();
 	glPointSize(1);
 	glBegin(GL_POINTS);
-	MwVector2 p(50.0, 50.0);
+	Vector2 p(50.0, 50.0);
 	for (int i = 0; i < point_count_; i++)
 	{
 		int v = rand() % 3;
@@ -47,12 +47,12 @@ void MwSierpinski::Draw()
 	glEnd();
 }
 
-MwVector2& MwSierpinski::operator[] (int index)
+Vector2& Sierpinski::operator[] (int index)
 {
-	return const_cast<MwVector2&>(static_cast<const MwSierpinski&>(*this)[index]);	
+	return const_cast<Vector2&>(static_cast<const Sierpinski&>(*this)[index]);	
 }
 
-const MwVector2& MwSierpinski::operator[] (int index) const
+const Vector2& Sierpinski::operator[] (int index) const
 {
 	return vertex_[index];
 }

@@ -5,21 +5,21 @@
 
 namespace mw
 {
-	class MwPoint :
-		public MwGLElement
+	class Point :
+		public GlElement
 	{
-		DECLARE_SERIAL(MwPoint)
+		DECLARE_SERIAL(Point)
 		vector<int> test;
 	public:
-		MwPoint(void) : size_(1) {};
-		~MwPoint(void);
-		MwPoint(float x, float y, float size = 1.0) : position_(x, y), size_(size) {} ;
+		Point(void) : size_(1) {};
+		~Point(void);
+		Point(float x, float y, float size = 1.0) : position_(x, y), size_(size) {} ;
 		//Serialization
 	private:
-		MwVector2 position_;
+		Vector2 position_;
 		float size_;
 	public:
-		MwVector2 position() const { return position_; }
+		Vector2 position() const { return position_; }
 		float size() const { return size_; }
 		void set_position(float x, float y) { position_.set(x, y); }
 		void set_size(float size) { size_ = size; }

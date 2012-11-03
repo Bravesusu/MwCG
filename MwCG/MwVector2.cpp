@@ -3,13 +3,13 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(MwVector2, MwGLObject, 1);
+IMPLEMENT_SERIAL(Vector2, MwGLObject, 1);
 
-MwVector2::~MwVector2(void)
+Vector2::~Vector2(void)
 {
 }
 
-void MwVector2::Serialize(CArchive& ar)
+void Vector2::Serialize(CArchive& ar)
 {
 	MwGLObject::Serialize(ar);
 	if (ar.IsStoring())
@@ -22,37 +22,37 @@ void MwVector2::Serialize(CArchive& ar)
 	}
 }
 
-void MwVector2::GL() 
+void Vector2::GL() 
 { 
 	glVertex2f(x_, y_); 
 }
 
-void MwVector2::Trace() 
+void Vector2::Trace() 
 { 
 	TRACE("%f, %f\n", x_, y_); 
 }
 
 
-MwVector2 MwVector2::operator+(const MwVector2& other) const
+Vector2 Vector2::operator+(const Vector2& other) const
 {
-	return MwVector2(x_ + other.x_, y_ + other.y_);
+	return Vector2(x_ + other.x_, y_ + other.y_);
 }
 
 
-MwVector2& MwVector2::operator+=(const MwVector2& other) 
+Vector2& Vector2::operator+=(const Vector2& other) 
 {
 	x_ += other.x_;
 	y_ += other.y_;
 	return *this;
 }
 
-MwVector2 MwVector2::operator/(float f) const
+Vector2 Vector2::operator/(float f) const
 {
-	return MwVector2(x_ / f, y_ / f);
+	return Vector2(x_ / f, y_ / f);
 }
 
 
-MwVector2& MwVector2::operator/=(float f)
+Vector2& Vector2::operator/=(float f)
 {
 	x_ /= f;
 	y_ /= f;
@@ -60,7 +60,7 @@ MwVector2& MwVector2::operator/=(float f)
 }
 
 
-MwVector2& MwVector2::operator =(const MwVector2 & rhs)
+Vector2& Vector2::operator =(const Vector2 & rhs)
 {
 	set(rhs.x_, rhs.y_);
 	return *this;

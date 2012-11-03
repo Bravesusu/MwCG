@@ -3,15 +3,15 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(MwPoint, MwGLElement, 1);
+IMPLEMENT_SERIAL(Point, GlElement, 1);
 
-MwPoint::~MwPoint(void)
+Point::~Point(void)
 {
 }
 
-void MwPoint::Serialize(CArchive& ar)
+void Point::Serialize(CArchive& ar)
 {
-	MwGLElement::Serialize(ar);
+	GlElement::Serialize(ar);
 
 	position_.Serialize(ar);
 
@@ -27,7 +27,7 @@ void MwPoint::Serialize(CArchive& ar)
 	}
 }
 
-void MwPoint::Draw()
+void Point::Draw()
 {
 	color()();
 	glPointSize(size_);

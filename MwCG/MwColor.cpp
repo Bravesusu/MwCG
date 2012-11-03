@@ -3,23 +3,23 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(MwColor, MwGLObject, 1);
+IMPLEMENT_SERIAL(Color, MwGLObject, 1);
 
-MwColor::MwColor(void)
+Color::Color(void)
 {
 }
 
 
-MwColor::~MwColor(void)
+Color::~Color(void)
 {
 }
 
-void MwColor::GL()
+void Color::GL()
 {
 	glColor3f(r_, g_, b_);
 }
 
-void MwColor::Serialize(CArchive& ar)
+void Color::Serialize(CArchive& ar)
 {
 	MwGLObject::Serialize(ar);
 	if (ar.IsStoring())
@@ -31,7 +31,7 @@ void MwColor::Serialize(CArchive& ar)
 		ar>>r_>>g_>>b_>>a_;
 	}
 }
-void MwColor::set(COLORREF color)
+void Color::set(COLORREF color)
 {
 	r_ = GetRValue(color) / (float)256;
 	g_ = GetGValue(color) / (float)256;
@@ -41,7 +41,7 @@ void MwColor::set(COLORREF color)
 
 
 
-void MwColor::set(const MwColor& color)
+void Color::set(const Color& color)
 {
 	r_ = color.r_;
 	g_ = color.g_;
@@ -50,7 +50,7 @@ void MwColor::set(const MwColor& color)
 }
 
 
-void MwColor::set(float r, float g, float b, float a)
+void Color::set(float r, float g, float b, float a)
 {
 	r_ = r;
 	g_ = g;
@@ -58,13 +58,13 @@ void MwColor::set(float r, float g, float b, float a)
 	a_ = a;
 }
 
-COLORREF MwColor::get_color_ref()
+COLORREF Color::get_color_ref()
 {
 	return RGB(r_, g_, b_);
 }
 
 
-MwColor& MwColor::operator =(const MwColor & rhs)
+Color& Color::operator =(const Color & rhs)
 {
 	set(rhs);
 	return *this;

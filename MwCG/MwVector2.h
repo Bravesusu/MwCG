@@ -1,22 +1,22 @@
 #pragma once
 #include "mwx.h"
 
-#define VECTOR2F(x, y) new MwVector2(x, y)
+#define VECTOR2F(x, y) new Vector2(x, y)
 
 namespace mw
 {
-	class MwVector2 :
+	class Vector2 :
 		public MwGLObject
 	{
-		DECLARE_SERIAL(MwVector2)
+		DECLARE_SERIAL(Vector2)
 	private:
 		float x_;
 		float y_;
 	public:
-		MwVector2(void) : x_(0), y_(0) {};
-		MwVector2(float fx, float fy) : x_(fx), y_(fy){};
-		MwVector2(const MwVector2 & v2) : x_(v2.x_), y_(v2.y_) {}
-		~MwVector2(void);
+		Vector2(void) : x_(0), y_(0) {};
+		Vector2(float fx, float fy) : x_(fx), y_(fy){};
+		Vector2(const Vector2 & v2) : x_(v2.x_), y_(v2.y_) {}
+		~Vector2(void);
 	public:
 		float x() const { return x_; }
 		float y() const { return y_; }
@@ -28,11 +28,11 @@ namespace mw
 		void Trace();
 		void Serialize(CArchive& ar);
 	public:
-		MwVector2 operator+(const MwVector2& rhs) const;
-		MwVector2& operator+=(const MwVector2& rhs);
-		MwVector2 operator/(float f) const;
-		MwVector2& operator/=(float f);
-		MwVector2& operator =(const MwVector2 & rhs);
+		Vector2 operator+(const Vector2& rhs) const;
+		Vector2& operator+=(const Vector2& rhs);
+		Vector2 operator/(float f) const;
+		Vector2& operator/=(float f);
+		Vector2& operator =(const Vector2 & rhs);
 	};
 	
 }

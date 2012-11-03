@@ -31,7 +31,7 @@ protected: // create from serialization only
 public:
 
 protected:
-	MwGLContent* m_pGLContent;
+	GlContent* m_pGLContent;
 	void FooDocument();
 // Operations
 public:
@@ -64,7 +64,7 @@ protected:
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
 public:
-	MwGLContent* GetGLContent(void);
+	GlContent* GetGLContent(void);
 	virtual void OnCloseDocument();
 	afx_msg void OnClearColor();
 	virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);

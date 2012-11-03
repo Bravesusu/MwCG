@@ -8,19 +8,19 @@ using namespace std;
 
 namespace mw
 {
-	class MwGLContent : public CObject
+	class GlContent : public CObject
 	{
-		DECLARE_SERIAL(MwGLContent);
+		DECLARE_SERIAL(GlContent);
 	public:
-		MwGLContent(void);
-		~MwGLContent(void);
+		GlContent(void);
+		~GlContent(void);
 		virtual void Serialize(CArchive& ar);
 	
 	public:
-		MwCanvas* GetCanvas() const {return m_pCanvas;}
-		MwPoint Mouse;
+		Canvas* GetCanvas() const {return m_pCanvas;}
+		Point Mouse;
 	protected:
-		MwCanvas* m_pCanvas;
+		Canvas* m_pCanvas;
 	public:
 		vector<MwElementSafePtr> Elements;
 		//vector<MwGLElement> Elements;

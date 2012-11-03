@@ -3,17 +3,17 @@
 
 using namespace mw;
 
-MwGLRenderer::MwGLRenderer(void)
+GlRenderer::GlRenderer(void)
 {
 }
 
 
-MwGLRenderer::~MwGLRenderer(void)
+GlRenderer::~GlRenderer(void)
 {
 }
 
 
-bool MwGLRenderer::Initialize(const HDC& hDC)
+bool GlRenderer::Initialize(const HDC& hDC)
 {
 	//m_hViewDC = hDC;
 	if (!hDC)
@@ -38,17 +38,17 @@ bool MwGLRenderer::Initialize(const HDC& hDC)
 }
 
 
-void MwGLRenderer::Finalize(void)
+void GlRenderer::Finalize(void)
 {
 	DestoryGLContext();
 }
 
 
-void MwGLRenderer::Draw(MwGLContent* pContent)
+void GlRenderer::Draw(GlContent* pContent)
 {
 	glLoadIdentity();
 
-	for (int i = 0; i < pContent->Elements.size(); i++)
+	for (UINT i = 0; i < pContent->Elements.size(); i++)
 	{
 		pContent->Elements.at(i)->Draw();
 	}
@@ -59,7 +59,7 @@ void MwGLRenderer::Draw(MwGLContent* pContent)
 }
 
 
-BOOL MwGLRenderer::SetWindowPixelFormat(const HDC& hDC)
+BOOL GlRenderer::SetWindowPixelFormat(const HDC& hDC)
 {
 	PIXELFORMATDESCRIPTOR pixelDesc = 
 	{
@@ -101,7 +101,7 @@ BOOL MwGLRenderer::SetWindowPixelFormat(const HDC& hDC)
 }
 
 
-BOOL MwGLRenderer::CreateGLContext(const HDC& hDC)
+BOOL GlRenderer::CreateGLContext(const HDC& hDC)
 {
 	m_hRC = wglCreateContext(hDC);
 	if(!m_hRC)
@@ -118,13 +118,13 @@ BOOL MwGLRenderer::CreateGLContext(const HDC& hDC)
 }
 
 
-BOOL MwGLRenderer::Activate(const HDC& hDC)
+BOOL GlRenderer::Activate(const HDC& hDC)
 {
 	return wglMakeCurrent(hDC, m_hRC);
 }
 
 
-void MwGLRenderer::DestoryGLContext(void)
+void GlRenderer::DestoryGLContext(void)
 {
 	if(wglGetCurrentContext())
 	{
@@ -139,13 +139,13 @@ void MwGLRenderer::DestoryGLContext(void)
 }
 
 
-bool MwGLRenderer::IsValid(void)
+bool GlRenderer::IsValid(void)
 {
-	return m_hRC;
+	return m_hRC != NULL;
 }
 
 
-void MwGLRenderer::SetViewSize(int x, int y, int width, int height)
+void GlRenderer::SetViewSize(int x, int y, int width, int height)
 {
 	GLdouble hw = width / 2;
 	GLdouble hh = height / 2;

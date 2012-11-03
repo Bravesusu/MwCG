@@ -3,26 +3,26 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(MwLine, MwGLElement, 1);
+IMPLEMENT_SERIAL(Line, GlElement, 1);
 
-MwLine::MwLine(void)
+Line::Line(void)
 {
 }
 
-MwLine::~MwLine(void)
+Line::~Line(void)
 {
 }
 
 
-MwLine::MwLine(float x1, float y1, float x2, float y2)
+Line::Line(float x1, float y1, float x2, float y2)
 {
 	point_from_.set(x1, y1);
 	point_to_.set(x2, y2);
 }
 
-void MwLine::Serialize(CArchive& ar)
+void Line::Serialize(CArchive& ar)
 {
-	MwGLElement::Serialize(ar);
+	GlElement::Serialize(ar);
 
 	if (ar.IsStoring())
 	{	
@@ -34,7 +34,7 @@ void MwLine::Serialize(CArchive& ar)
 	}
 }
 
-void MwLine::Draw()
+void Line::Draw()
 {
 	color()();
 	glBegin(GL_LINES);

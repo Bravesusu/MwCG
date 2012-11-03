@@ -4,19 +4,19 @@
 
 namespace mw
 {
-	class MwSierpinski :
-		public MwGLElement
+	class Sierpinski :
+		public GlElement
 	{
-		DECLARE_SERIAL(MwSierpinski);
+		DECLARE_SERIAL(Sierpinski);
 	private:
 		int point_count_;
-		MwVector2 vertex_[3];
+		Vector2 vertex_[3];
 	public:
-		MwVector2& operator[] (int index);
-		const MwVector2& operator[] (int index) const;
-		MwSierpinski(void) : point_count_(5000) {};
-		MwSierpinski(const MwVector2& v1, const MwVector2& v2, const MwVector2& v3);
-		~MwSierpinski(void);
+		Vector2& operator[] (int index);
+		const Vector2& operator[] (int index) const;
+		Sierpinski(void) : point_count_(5000) {};
+		Sierpinski(const Vector2& v1, const Vector2& v2, const Vector2& v3);
+		~Sierpinski(void);
 		int point_count() { return point_count_; }
 		void set_point_count(int count) { point_count_ = count; }
 		//Serialization

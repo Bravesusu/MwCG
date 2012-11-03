@@ -28,7 +28,7 @@ protected: // create from serialization only
 public:
 	CMwCGDoc* GetDocument() const;
 protected:
-	MwGLRenderer m_render;
+	GlRenderer m_render;
 	HDC m_hDC;
 	CPoint m_ptMouse;
 

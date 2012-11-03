@@ -5,15 +5,15 @@
 
 namespace mw
 {
-	class MwGLRenderer
+	class GlRenderer
 	{
 	public:
-		MwGLRenderer(void);
-		~MwGLRenderer(void);
+		GlRenderer(void);
+		~GlRenderer(void);
 		
 		bool Initialize(const HDC& hDC);
 		void Finalize(void);
-		void Draw(MwGLContent* pContent);
+		void Draw(GlContent* pContent);
 		BOOL Activate(const HDC& hDC);
 	protected:
 		BOOL SetWindowPixelFormat(const HDC& hDC);

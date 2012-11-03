@@ -58,7 +58,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		// TODO: add reinitialization code here
 		// (SDI documents will reuse this document)
 
-		m_pGLContent = new MwGLContent();
+		m_pGLContent = new GlContent();
 		FooDocument();
 
 		return TRUE;
@@ -151,7 +151,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	// CMwCGDoc commands
 
 
-	MwGLContent* CMwCGDoc::GetGLContent(void)
+	GlContent* CMwCGDoc::GetGLContent(void)
 	{
 		return m_pGLContent;
 	}
@@ -207,14 +207,14 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	//Create a dummy document
 	void CMwCGDoc::FooDocument()
 	{		
-		MwCanvas* canvas = m_pGLContent->GetCanvas();
+		Canvas* canvas = m_pGLContent->GetCanvas();
 		int width = 800;
 		int height = 600;
 		int hw = width / 2;
 		int hh = height / 2;
 		for (int y = -hh; y < hh; y += 10)
 		{
-			MwLine* ln = new MwLine(0, y, width, y);
+			Line* ln = new Line(0, (float)y, (float)width, (float)y);
 			ln->set_color(MW_RED);
 			m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
 		}
@@ -223,18 +223,18 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		{
 			for (int y = -hh; y < hh; y += 100)
 			{
-				MwPoint* pt = new MwPoint(x, y, 5);
+				Point* pt = new Point((float)x, (float)y, 5.0);
 				pt->set_color(MW_BLUE);
 				m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
 			}
 		}
 
-		MwSierpinski* sk = new MwSierpinski();
+		Sierpinski* sk = new Sierpinski();
 		sk->set_point_count(10000);
 		sk->set_color(MW_GREEN);
-		(*sk)[0] = MwVector2(100.0, 50.0);
-		(*sk)[1] = MwVector2(400.0, 400.0);
-		(*sk)[2] = MwVector2(700.0, 50.0);
+		(*sk)[0] = Vector2(100.0, 50.0);
+		(*sk)[1] = Vector2(400.0, 400.0);
+		(*sk)[2] = Vector2(700.0, 50.0);
 
 		m_pGLContent->Elements.push_back(MwElementSafePtr(sk));
 	}
@@ -243,8 +243,8 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	{
 		int width = 800;
 		int height = 600;
-		MwCanvas* canvas = m_pGLContent->GetCanvas();
-		float hw = width / 2;
-		float hh = height / 2;
+		Canvas* canvas = m_pGLContent->GetCanvas();
+		float hw = (float)width / 2;
+		float hh = (float)height / 2;
 		m_pGLContent->Mouse.set_position(point.x - hw, hh - point.y); 
 	}

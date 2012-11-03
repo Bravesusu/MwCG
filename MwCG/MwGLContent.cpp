@@ -3,25 +3,25 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(MwGLContent, CObject, 1);
+IMPLEMENT_SERIAL(GlContent, CObject, 1);
 
-MwGLContent::MwGLContent(void)
+GlContent::GlContent(void)
 {
 	Mouse.set_color(1, 0, 0);
 	Mouse.set_size(10);
-	m_pCanvas = new MwCanvas();
+	m_pCanvas = new Canvas();
 	m_pCanvas->set_color(MW_WHITE);
 	Elements.push_back(MwElementSafePtr(m_pCanvas));
 }
 
 
-MwGLContent::~MwGLContent(void)
+GlContent::~GlContent(void)
 {
 	delete m_pCanvas;
 }
 
 
-void MwGLContent::Serialize(CArchive& ar)
+void GlContent::Serialize(CArchive& ar)
 {
 	CObject::Serialize(ar);
 

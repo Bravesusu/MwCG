@@ -231,8 +231,8 @@ ON_WM_MOUSEMOVE()
 		if (!pDoc)
 			return;
 
-		MwGLContent* pGlContent = pDoc->GetGLContent();
-		MwCanvas* pCanvas = pGlContent->GetCanvas();
+		GlContent* pGlContent = pDoc->GetGLContent();
+		Canvas* pCanvas = pGlContent->GetCanvas();
 		pColorBtn->SetColor(pCanvas->color().get_color_ref());
 		
 		CRect rect;

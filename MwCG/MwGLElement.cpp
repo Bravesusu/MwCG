@@ -3,18 +3,18 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(MwGLElement, CObject, 1);
+IMPLEMENT_SERIAL(GlElement, CObject, 1);
 
-MwGLElement::MwGLElement(void)
+GlElement::GlElement(void)
 {
 }
 
 
-MwGLElement::~MwGLElement(void)
+GlElement::~GlElement(void)
 {
 }
 
-void MwGLElement::Serialize(CArchive& ar)
+void GlElement::Serialize(CArchive& ar)
 {
 	CObject::Serialize(ar);
 

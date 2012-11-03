@@ -3,19 +3,19 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(MwCanvas, MwGLElement, 1);
+IMPLEMENT_SERIAL(Canvas, GlElement, 1);
 
-MwCanvas::MwCanvas(void)
+Canvas::Canvas(void)
 {
 }
 
-MwCanvas::~MwCanvas(void)
+Canvas::~Canvas(void)
 {
 }
 
-void MwCanvas::Serialize(CArchive& ar)
+void Canvas::Serialize(CArchive& ar)
 {
-	MwGLElement::Serialize(ar);
+	GlElement::Serialize(ar);
 
 	if (ar.IsStoring())
 	{	
@@ -27,7 +27,7 @@ void MwCanvas::Serialize(CArchive& ar)
 	}
 }
 
-void MwCanvas::Draw()
+void Canvas::Draw()
 {
 	color().Clear();
     glClear(GL_COLOR_BUFFER_BIT);
