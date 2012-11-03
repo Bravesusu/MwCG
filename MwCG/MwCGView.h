@@ -16,6 +16,8 @@
 #include "MwGLRenderer.h"
 #include "MainFrm.h"
 
+using namespace mw;
+
 class CMwCGView : public CView
 {
 protected: // create from serialization only

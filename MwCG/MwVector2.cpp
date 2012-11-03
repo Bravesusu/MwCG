@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MwVector2.h"
 
+using namespace mw;
+
 IMPLEMENT_SERIAL(MwVector2, MwGLObject, 1);
 
 MwVector2::~MwVector2(void)

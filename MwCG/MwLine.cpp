@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MwLine.h"
 
+using namespace mw;
+
 IMPLEMENT_SERIAL(MwLine, MwGLElement, 1);
 
 MwLine::MwLine(void)

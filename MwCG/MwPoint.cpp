@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MwPoint.h"
 
+using namespace mw;
+
 IMPLEMENT_SERIAL(MwPoint, MwGLElement, 1);
 
 MwPoint::~MwPoint(void)

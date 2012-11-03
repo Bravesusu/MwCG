@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MwColor.h"
 
+using namespace mw;
+
 IMPLEMENT_SERIAL(MwColor, MwGLObject, 1);
 
 MwColor::MwColor(void)

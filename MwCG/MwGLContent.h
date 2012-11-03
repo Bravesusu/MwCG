@@ -6,22 +6,25 @@
 
 using namespace std;
 
-class MwGLContent : public CObject
+namespace mw
 {
-	DECLARE_SERIAL(MwGLContent);
-public:
-	MwGLContent(void);
-	~MwGLContent(void);
-	virtual void Serialize(CArchive& ar);
-
-public:
-	MwCanvas* GetCanvas() const {return m_pCanvas;}
-	MwPoint Mouse;
-protected:
-	MwCanvas* m_pCanvas;
-public:
-	vector<MwElementSafePtr> Elements;
-	//vector<MwGLElement> Elements;
-	//vector<MwGLElement*> Elements;
-public:
-};
+	class MwGLContent : public CObject
+	{
+		DECLARE_SERIAL(MwGLContent);
+	public:
+		MwGLContent(void);
+		~MwGLContent(void);
+		virtual void Serialize(CArchive& ar);
+	
+	public:
+		MwCanvas* GetCanvas() const {return m_pCanvas;}
+		MwPoint Mouse;
+	protected:
+		MwCanvas* m_pCanvas;
+	public:
+		vector<MwElementSafePtr> Elements;
+		//vector<MwGLElement> Elements;
+		//vector<MwGLElement*> Elements;
+	public:
+	};
+}

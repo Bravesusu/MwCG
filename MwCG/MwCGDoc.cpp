@@ -68,15 +68,14 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	void CMwCGDoc::Serialize(CArchive& ar)
 	{
+		m_pGLContent->Serialize(ar);
 		if (ar.IsStoring())
 		{
 			// TODO: add storing code here
-			ar<<m_pGLContent;
 		}
 		else
 		{
 			// TODO: add loading code here
-			ar>>m_pGLContent;
 		}
 	}
 

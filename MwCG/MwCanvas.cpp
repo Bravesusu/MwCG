@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include "MwCanvas.h"
 
+using namespace mw;
 
 IMPLEMENT_SERIAL(MwCanvas, MwGLElement, 1);
+
 MwCanvas::MwCanvas(void)
 {
 }

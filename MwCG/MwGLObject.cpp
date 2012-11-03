@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MwGLObject.h"
 
+using namespace mw;
+
 IMPLEMENT_SERIAL(MwGLObject, CObject, 1)
 
 MwGLObject::MwGLObject(void)

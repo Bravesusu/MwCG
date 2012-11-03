@@ -19,6 +19,8 @@
 #include "MwLine.h"
 #include "MwSierpinski.h"
 
+using namespace mw;
+
 class CMwCGDoc : public CDocument
 {
 protected: // create from serialization only

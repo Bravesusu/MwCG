@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MwSierpinski.h"
 
+using namespace mw;
+
 IMPLEMENT_SERIAL(MwSierpinski, MwGLElement, 1);
 
 MwSierpinski::~MwSierpinski(void)
@@ -47,10 +49,10 @@ void MwSierpinski::Draw()
 
 MwVector2& MwSierpinski::operator[] (int index)
 {
-	return vertex_[index];
+	return const_cast<MwVector2&>(static_cast<const MwSierpinski&>(*this)[index]);	
 }
 
 const MwVector2& MwSierpinski::operator[] (int index) const
 {
-	return const_cast<MwVector2&>(static_cast<const MwSierpinski&>(*this)[index]);;
+	return vertex_[index];
 }
