@@ -25,7 +25,7 @@ namespace mw
 		void set_size(float size) { size_ = size; }
 	public:
 		virtual void Serialize(CArchive& ar);
-		inline void Draw();
+		void Draw();
 	};
 	
 }

@@ -27,7 +27,7 @@ namespace mw
 
 		//Rendering
 	public:
-		inline virtual void Draw() {};
+		virtual void Draw() {};
 		virtual bool HitTest() { return false; };
 
 		//TODO: components

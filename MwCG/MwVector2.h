@@ -24,7 +24,7 @@ namespace mw
 		float set_y(float fy) { y_ = fy; }
 		void set(float fx, float fy) { x_ = fx; y_ = fy; }
 	public:
-		inline void GL();
+		void GL();
 		void Trace();
 		void Serialize(CArchive& ar);
 	public:

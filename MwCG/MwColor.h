@@ -39,7 +39,7 @@ namespace mw
 		Color(float fr, float fg, float fb, float fa)  
 			: r_(fr), g_(fg), b_(fb), a_(fa) {};
 		~Color(void);
-		inline void GL();
+		void GL();
 		void Clear() { glClearColor(r_, g_, b_, a_); }
 		void Serialize(CArchive& ar);
 	};

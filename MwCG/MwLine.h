@@ -26,7 +26,7 @@ namespace mw
 		void set_to(const Vector2& to) { point_to_ = to; }
 	public:
 		virtual void Serialize(CArchive& ar);
-		inline void Draw();
+		void Draw();
 	};
 	
 }

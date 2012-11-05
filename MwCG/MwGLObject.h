@@ -11,7 +11,7 @@ namespace mw
 		~MwGLObject(void);
 		virtual void Serialize(CArchive& ar);
 		//Execute GL command
-		inline virtual void GL() {  };
-		inline virtual void operator ()() { GL(); }
+		virtual void GL() {  };
+		virtual void operator ()() { GL(); }
 	};
 }
