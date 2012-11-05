@@ -13,7 +13,7 @@ namespace mw
 		
 		bool Initialize(const HDC& hDC);
 		void Finalize(void);
-		void Draw(GlContent* pContent);
+		void Draw(const shared_ptr<GlContent>& pContent);
 		BOOL Activate(const HDC& hDC);
 	protected:
 		BOOL SetWindowPixelFormat(const HDC& hDC);

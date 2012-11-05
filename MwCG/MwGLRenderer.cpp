@@ -44,7 +44,7 @@ void GlRenderer::Finalize(void)
 }
 
 
-void GlRenderer::Draw(GlContent* pContent)
+void GlRenderer::Draw(const shared_ptr<GlContent>& pContent)
 {
 	glLoadIdentity();
 

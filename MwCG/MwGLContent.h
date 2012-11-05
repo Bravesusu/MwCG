@@ -17,14 +17,12 @@ namespace mw
 		virtual void Serialize(CArchive& ar);
 	
 	public:
-		Canvas* GetCanvas() const {return m_pCanvas;}
+		const shared_ptr<Canvas>& canvas() const {return canvas_;}
 		Point Mouse;
 	protected:
-		Canvas* m_pCanvas;
+		shared_ptr<Canvas> canvas_;
 	public:
 		vector<MwElementSafePtr> Elements;
-		//vector<MwGLElement> Elements;
-		//vector<MwGLElement*> Elements;
 	public:
 	};
 }

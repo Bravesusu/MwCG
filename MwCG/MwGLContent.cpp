@@ -9,15 +9,14 @@ GlContent::GlContent(void)
 {
 	Mouse.set_color(1, 0, 0);
 	Mouse.set_size(10);
-	m_pCanvas = new Canvas();
-	m_pCanvas->set_color(MW_WHITE);
-	Elements.push_back(MwElementSafePtr(m_pCanvas));
+	canvas_.reset(new Canvas());
+	canvas_->set_color(MW_WHITE);
+	Elements.push_back(MwElementSafePtr(canvas_));
 }
 
 
 GlContent::~GlContent(void)
 {
-	delete m_pCanvas;
 }
 
 
@@ -25,5 +24,5 @@ void GlContent::Serialize(CArchive& ar)
 {
 	CObject::Serialize(ar);
 
-	m_pCanvas->Serialize(ar);
+	canvas_->Serialize(ar);
 }

@@ -30,8 +30,8 @@ protected: // create from serialization only
 // Attributes
 public:
 
-protected:
-	GlContent* m_pGLContent;
+private:
+	shared_ptr<GlContent> glContent_;
 	void FooDocument();
 // Operations
 public:
@@ -64,7 +64,7 @@ protected:
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
 public:
-	GlContent* GetGLContent(void);
+	const shared_ptr<GlContent>& glContent(void) const { return glContent_; }
 	virtual void OnCloseDocument();
 	afx_msg void OnClearColor();
 	virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);

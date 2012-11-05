@@ -85,7 +85,7 @@ ON_WM_MOUSEMOVE()
 		// TODO: add draw code for native data here
 		if (m_render.IsValid())
 		{
-			m_render.Draw(pDoc->GetGLContent());
+			m_render.Draw(pDoc->glContent());
 			SwapBuffers(pDC->GetSafeHdc());
 		}
 		//CRect rect;
@@ -231,8 +231,8 @@ ON_WM_MOUSEMOVE()
 		if (!pDoc)
 			return;
 
-		GlContent* pGlContent = pDoc->GetGLContent();
-		Canvas* pCanvas = pGlContent->GetCanvas();
+		shared_ptr<GlContent> pGlContent = pDoc->glContent();
+		shared_ptr<Canvas> pCanvas = pGlContent->canvas();
 		pColorBtn->SetColor(pCanvas->color().get_color_ref());
 		
 		CRect rect;

@@ -58,7 +58,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		// TODO: add reinitialization code here
 		// (SDI documents will reuse this document)
 
-		m_pGLContent = new GlContent();
+		glContent_.reset(new GlContent());
 		FooDocument();
 
 		return TRUE;
@@ -68,7 +68,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	void CMwCGDoc::Serialize(CArchive& ar)
 	{
-		m_pGLContent->Serialize(ar);
+		glContent_->Serialize(ar);
 		if (ar.IsStoring())
 		{
 			// TODO: add storing code here
@@ -150,21 +150,10 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	// CMwCGDoc commands
 
-
-	GlContent* CMwCGDoc::GetGLContent(void)
-	{
-		return m_pGLContent;
-	}
-
-
 	void CMwCGDoc::OnCloseDocument()
 	{
 		// TODO: Add your specialized code here and/or call the base class
-		if (!m_pGLContent)
-		{
-			delete m_pGLContent;
-			m_pGLContent = NULL;
-		}
+		
 		CDocument::OnCloseDocument();
 	}
 
@@ -174,7 +163,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		// TODO: Add your command handler code here
 		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
 		COLORREF clr = pColorBtn->GetColor();
-		m_pGLContent->GetCanvas()->set_color(clr);
+		glContent_->canvas()->set_color(clr);
 		UpdateAllViews(NULL);
 	}
 
@@ -207,7 +196,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	//Create a dummy document
 	void CMwCGDoc::FooDocument()
 	{		
-		Canvas* canvas = m_pGLContent->GetCanvas();
+		shared_ptr<Canvas> canvas = glContent_->canvas();
 		int width = 800;
 		int height = 600;
 		int hw = width / 2;
@@ -220,7 +209,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 				static_cast<float>(width), 
 				static_cast<float>(y));
 			ln->set_color(MW_RED);
-			m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
+			glContent_->Elements.push_back(MwElementSafePtr(ln));
 		}
 
 		for (int x = -hw; x < hw; x += 100)
@@ -232,7 +221,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 					static_cast<float>(y), 
 					5.0);
 				pt->set_color(MW_BLUE);
-				m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
+				glContent_->Elements.push_back(MwElementSafePtr(pt));
 			}
 		}
 
@@ -243,15 +232,15 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		(*sk)[1] = Vector2(400.0, 400.0);
 		(*sk)[2] = Vector2(700.0, 50.0);
 
-		m_pGLContent->Elements.push_back(MwElementSafePtr(sk));
+		glContent_->Elements.push_back(MwElementSafePtr(sk));
 	}
 	
 	void CMwCGDoc::SetMousePos(CPoint& point)
 	{
 		int width = 800;
 		int height = 600;
-		Canvas* canvas = m_pGLContent->GetCanvas();
+		shared_ptr<Canvas> canvas = glContent_->canvas();
 		float hw = static_cast<float>(width / 2);
 		float hh = static_cast<float>(height / 2);
-		m_pGLContent->Mouse.set_position(point.x - hw, hh - point.y); 
+		glContent_->Mouse.set_position(point.x - hw, hh - point.y); 
 	}
