@@ -11,7 +11,7 @@ GlContent::GlContent(void)
 	Mouse.set_size(10);
 	canvas_.reset(new Canvas());
 	canvas_->set_color(MW_WHITE);
-	Elements.push_back(MwElementSafePtr(canvas_));
+	Elements.push_back(GlElementPtr(canvas_));
 }
 
 

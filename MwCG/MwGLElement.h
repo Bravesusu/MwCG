@@ -2,7 +2,7 @@
 #include "mwx.h"
 #include "MwColor.h"
 
-#define MwElementSafePtr shared_ptr<GlElement>
+//#define MwElementSafePtr shared_ptr<GlElement>
 using namespace std;
 
 namespace mw 
@@ -40,4 +40,6 @@ namespace mw
 		//void AttachToContent(MwGLContent* content) {};
 		void SetParent(GlElement& parent) {};
 	};
+
+	typedef shared_ptr<GlElement> GlElementPtr;
 }

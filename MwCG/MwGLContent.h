@@ -22,7 +22,7 @@ namespace mw
 	protected:
 		shared_ptr<Canvas> canvas_;
 	public:
-		vector<MwElementSafePtr> Elements;
+		vector<GlElementPtr> Elements;
 	public:
 	};
 }
