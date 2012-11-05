@@ -2,7 +2,7 @@
 #include "mwx.h"
 #include "MwColor.h"
 
-#define MwElementSafePtr unique_ptr<GlElement>
+#define MwElementSafePtr shared_ptr<GlElement>
 using namespace std;
 
 namespace mw 

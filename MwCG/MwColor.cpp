@@ -33,9 +33,10 @@ void Color::Serialize(CArchive& ar)
 }
 void Color::set(COLORREF color)
 {
-	r_ = GetRValue(color) / (float)256;
-	g_ = GetGValue(color) / (float)256;
-	b_ = GetBValue(color) / (float)256;
+	float c = 256;
+	r_ = GetRValue(color) / c;
+	g_ = GetGValue(color) / c;
+	b_ = GetBValue(color) / c;
 	a_ = 1.0;
 }
 

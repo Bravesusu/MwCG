@@ -214,7 +214,11 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		int hh = height / 2;
 		for (int y = -hh; y < hh; y += 10)
 		{
-			Line* ln = new Line(0, (float)y, (float)width, (float)y);
+			Line* ln = new Line(
+				0, 
+				static_cast<float>(y), 
+				static_cast<float>(width), 
+				static_cast<float>(y));
 			ln->set_color(MW_RED);
 			m_pGLContent->Elements.push_back(MwElementSafePtr(ln));
 		}
@@ -223,7 +227,10 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		{
 			for (int y = -hh; y < hh; y += 100)
 			{
-				Point* pt = new Point((float)x, (float)y, 5.0);
+				Point* pt = new Point(
+					static_cast<float>(x), 
+					static_cast<float>(y), 
+					5.0);
 				pt->set_color(MW_BLUE);
 				m_pGLContent->Elements.push_back(MwElementSafePtr(pt));
 			}
@@ -244,7 +251,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		int width = 800;
 		int height = 600;
 		Canvas* canvas = m_pGLContent->GetCanvas();
-		float hw = (float)width / 2;
-		float hh = (float)height / 2;
+		float hw = static_cast<float>(width / 2);
+		float hh = static_cast<float>(height / 2);
 		m_pGLContent->Mouse.set_position(point.x - hw, hh - point.y); 
 	}
