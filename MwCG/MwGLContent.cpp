@@ -38,3 +38,12 @@ void GlContent::Draw()
 	//Decorator & interaction layer
 	Mouse.Draw();
 }
+
+void GlContent::set_mouse(const CPoint& viewPoint) const
+{
+	//Translate to canvas coordinate system
+
+	//Invoke hitTest
+
+	//Create decorator layer
+}

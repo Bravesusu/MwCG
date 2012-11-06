@@ -25,5 +25,7 @@ namespace mw
 		vector<GlElementPtr> Elements;
 	public:
 		void Draw();
+		void set_mouse(const CPoint& viewPoint) const;
+		
 	};
 }
