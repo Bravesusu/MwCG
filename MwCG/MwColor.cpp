@@ -70,3 +70,13 @@ Color& Color::operator =(const Color & rhs)
 	set(rhs);
 	return *this;
 }
+
+void glColor(const Color& color)
+{
+	color.ChangeColor();
+}
+
+void glClearColor(const Color& color)
+{
+	color.Clear();
+}

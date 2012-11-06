@@ -114,11 +114,11 @@
     <ClInclude Include="GlCmd.h">
       <Filter>Mw\GL</Filter>
     </ClInclude>
-    <ClInclude Include="GlVertex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GlColor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="GlVertex.h">
+      <Filter>Mw\GL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,11 +191,11 @@
     <ClCompile Include="GlCmd.cpp">
       <Filter>Mw\GL</Filter>
     </ClCompile>
-    <ClCompile Include="GlVertex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GlColor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="GlVertex.cpp">
+      <Filter>Mw\GL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

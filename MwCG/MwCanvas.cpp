@@ -30,5 +30,5 @@ void Canvas::Serialize(CArchive& ar)
 void Canvas::Draw()
 {
 	color().Clear();
-    glClear(GL_COLOR_BUFFER_BIT);
+    ::glClear(GL_COLOR_BUFFER_BIT);
 }

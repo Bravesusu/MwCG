@@ -40,8 +40,11 @@ namespace mw
 			: r_(fr), g_(fg), b_(fb), a_(fa) {};
 		~Color(void);
 		void GL();
-		void Clear() { glClearColor(r_, g_, b_, a_); }
+		void ChangeColor() const { ::glColor4f(r_, g_, b_, a_); }
+		void Clear() const { ::glClearColor(r_, g_, b_, a_); }
 		void Serialize(CArchive& ar);
 	};
 	
+	void glColor(const Color& color);
+	void glClearColor(const Color& color);
 }

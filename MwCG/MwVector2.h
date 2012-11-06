@@ -37,5 +37,5 @@ namespace mw
 		void Vertex() const;
 	};
 	
-	void Vertex(const Vector2& vector);
+	void glVertex(const Vector2& vector);
 }
