@@ -29,6 +29,13 @@ void GlContent::Serialize(CArchive& ar)
 
 void GlContent::Draw()
 {
+	//This function is called every time when updating a frame
+	//Events should be coming before
+
+	//Handle events
+	HitTest();
+	//TODO: keyboard
+
 	//Contents
 	for (UINT i = 0; i < Elements.size(); i++)
 	{
@@ -39,11 +46,20 @@ void GlContent::Draw()
 	Mouse.Draw();
 }
 
+bool GlContent::HitTest()
+{
+	//TODO: point of optimization
+
+	for (UINT i = 0; i < Elements.size(); i++)
+	{
+		if (Elements.at(i)->HitTest())
+			return true;
+	}
+	return false;
+}
+
 void GlContent::set_mouse(const CPoint& viewPoint) const
 {
 	//Translate to canvas coordinate system
 
-	//Invoke hitTest
-
-	//Create decorator layer
 }
