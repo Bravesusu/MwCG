@@ -33,5 +33,6 @@ void Point::Draw()
 	glPointSize(size_);
 	glBegin(GL_POINTS);
 	position_();
+	//Vertex(position_);
 	glEnd();
 }

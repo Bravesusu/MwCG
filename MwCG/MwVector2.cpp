@@ -65,3 +65,13 @@ Vector2& Vector2::operator =(const Vector2 & rhs)
 	set(rhs.x_, rhs.y_);
 	return *this;
 }
+
+void Vector2::Vertex() const
+{
+	glVertex2f(x_, y_);
+}
+
+void Vertex(const Vector2& vector) 
+{
+	vector.Vertex();
+}

@@ -33,6 +33,9 @@ namespace mw
 		Vector2 operator/(float f) const;
 		Vector2& operator/=(float f);
 		Vector2& operator =(const Vector2 & rhs);
+	public:
+		void Vertex() const;
 	};
 	
+	void Vertex(const Vector2& vector);
 }

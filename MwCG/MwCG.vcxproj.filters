@@ -25,6 +25,9 @@
     <Filter Include="Mw\Types">
       <UniqueIdentifier>{cf6b509f-584c-4d2f-a795-8bd5b8ebdb2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mw\GL">
+      <UniqueIdentifier>{dc603a65-3cc4-4f90-82eb-f728386f1927}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -108,6 +111,15 @@
     <ClInclude Include="MwRibbonBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GlCmd.h">
+      <Filter>Mw\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="GlVertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -174,6 +186,15 @@
       <Filter>Mw\Content</Filter>
     </ClCompile>
     <ClCompile Include="MwRibbonBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlCmd.cpp">
+      <Filter>Mw\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="GlVertex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlColor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

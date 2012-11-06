@@ -27,5 +27,6 @@ namespace mw
 		virtual void Serialize(CArchive& ar);
 		void Draw();
 	};
+
 	
 }

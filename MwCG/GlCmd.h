@@ -8,6 +8,8 @@ namespace mw {
 	public:
 		GlCmd(void);
 		~GlCmd(void);
+	public:
+		virtual void operator()() = 0;
 	};
 };
 
