@@ -8,7 +8,7 @@ using namespace std;
 
 namespace mw
 {
-	class GlContent : public CObject
+	class GlContent : public GlElement
 	{
 		DECLARE_SERIAL(GlContent);
 	public:
@@ -24,5 +24,6 @@ namespace mw
 	public:
 		vector<GlElementPtr> Elements;
 	public:
+		void Draw();
 	};
 }

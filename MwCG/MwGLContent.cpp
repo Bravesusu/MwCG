@@ -3,7 +3,7 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(GlContent, CObject, 1);
+IMPLEMENT_SERIAL(GlContent, GlElement, 1);
 
 GlContent::GlContent(void)
 {
@@ -22,7 +22,19 @@ GlContent::~GlContent(void)
 
 void GlContent::Serialize(CArchive& ar)
 {
-	CObject::Serialize(ar);
+	//GlElement::Serialize(ar);
 
 	canvas_->Serialize(ar);
+}
+
+void GlContent::Draw()
+{
+	//Contents
+	for (UINT i = 0; i < Elements.size(); i++)
+	{
+		Elements.at(i)->Draw();
+	}
+
+	//Decorator & interaction layer
+	Mouse.Draw();
 }

@@ -48,13 +48,8 @@ void GlRenderer::Draw(const shared_ptr<GlContent>& pContent)
 {
 	glLoadIdentity();
 
-	for (UINT i = 0; i < pContent->Elements.size(); i++)
-	{
-		pContent->Elements.at(i)->Draw();
-	}
-
-	pContent->Mouse.Draw();
-
+	pContent->Draw();
+	
 	glFlush();
 }
 
