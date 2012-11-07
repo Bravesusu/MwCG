@@ -12,6 +12,6 @@ namespace mw
 		virtual void Serialize(CArchive& ar);
 		//Execute GL command
 		virtual void GL() {  };
-		virtual void operator ()() { GL(); }
+		void operator ()() { GL(); }
 	};
 }

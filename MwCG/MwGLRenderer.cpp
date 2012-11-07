@@ -140,15 +140,15 @@ bool GlRenderer::IsValid(void)
 }
 
 
-void GlRenderer::SetViewSize(int x, int y, int width, int height)
-{
-	GLdouble hw = width / 2;
-	GLdouble hh = height / 2;
-	glViewport(0, 0, width, height);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluOrtho2D(-hw - x, hw - x, -hh - y, hh - y);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-
-}
+//void GlRenderer::SetViewSize(int x, int y, int width, int height)
+//{
+//	GLdouble hw = width / 2;
+//	GLdouble hh = height / 2;
+//	glViewport(0, 0, width, height);
+//	glMatrixMode(GL_PROJECTION);
+//	glLoadIdentity();
+//	gluOrtho2D(-hw - x, hw - x, -hh - y, hh - y);
+//	glMatrixMode(GL_MODELVIEW);
+//	glLoadIdentity();
+//
+//}

@@ -88,12 +88,6 @@ ON_WM_MOUSEMOVE()
 			m_render.Draw(pDoc->glContent());
 			SwapBuffers(pDC->GetSafeHdc());
 		}
-		//CRect rect;
-		//GetClientRect(rect);
-		//pDC->MoveTo(0, m_ptMouse.y);
-		//pDC->LineTo(rect.Width(), m_ptMouse.y);
-		//pDC->MoveTo(m_ptMouse.x, 0);
-		//pDC->MoveTo(m_ptMouse.x, rect.Height());
 	}
 
 
@@ -199,7 +193,17 @@ ON_WM_MOUSEMOVE()
 
 		// TODO: Add your message handler code here
 		//m_render.SetViewSize(cx, cy);
-		m_render.SetViewSize(0, 0, cx, cy);
+		//m_render.SetViewSize(0, 0, cx, cy);
+
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return;
+
+		shared_ptr<GlContent> pGlContent = pDoc->glContent();
+		shared_ptr<GlScreen> scr = pGlContent->screen();
+		scr->set(cx, cy);
+		scr->update_xy();
 	}
 
 
@@ -237,8 +241,15 @@ ON_WM_MOUSEMOVE()
 		
 		CRect rect;
 		GetClientRect(rect);
+
+		float x0 = -rect.Width() / 2;
+		float y0 = rect.Height() / 2;
+
+		shared_ptr<GlScreen> scr = pGlContent->screen();
+		scr->set(rect.Width(), rect.Height());
+		scr->set_xy(x0, y0, 1);
 		
-		m_render.SetViewSize(0, 0, rect.Width(), rect.Height());
+		//m_render.SetViewSize(0, 0, rect.Width(), rect.Height());
 	}
 
 

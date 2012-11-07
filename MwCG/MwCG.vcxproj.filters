@@ -120,6 +120,9 @@
     <ClInclude Include="GlVertex.h">
       <Filter>Mw\GL</Filter>
     </ClInclude>
+    <ClInclude Include="MwGlScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="GlVertex.cpp">
       <Filter>Mw\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="MwGlScreen.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

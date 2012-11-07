@@ -25,7 +25,7 @@ namespace mw
 		HGLRC m_hRC;
 	public:
 		bool IsValid(void);
-		void SetViewSize(int x, int y, int width, int height);
+		//void SetViewSize(int x, int y, int width, int height);
 	};
 	
 }

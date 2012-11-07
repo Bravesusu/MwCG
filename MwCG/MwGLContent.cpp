@@ -7,10 +7,9 @@ IMPLEMENT_SERIAL(GlContent, GlElement, 1);
 
 GlContent::GlContent(void)
 {
-	Mouse.set_color(1, 0, 0);
-	Mouse.set_size(10);
 	canvas_.reset(new Canvas());
 	canvas_->set_color(MW_WHITE);
+	screen_.reset(new GlScreen());
 }
 
 
@@ -30,6 +29,8 @@ void GlContent::Draw()
 {
 	//This function is called every time when updating a frame
 	//Events should be coming before
+	//Update screen
+	screen_->GL();
 
 	//Handle events
 	HitTest();
@@ -45,7 +46,6 @@ void GlContent::Draw()
 	}
 
 	//Decorator & interaction layer
-	Mouse.Draw();
 }
 
 bool GlContent::HitTest()
