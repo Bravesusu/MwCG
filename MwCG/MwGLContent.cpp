@@ -65,9 +65,11 @@ bool GlContent::HitTest()
 	return false;
 }
 
-void GlContent::set_mouse(const CPoint& viewPoint) const
+//Set current mouse position with in view coordinate and return screen corrdinate.
+Vector2 GlContent::set_mouse(const CPoint& viewPoint) const
 {
 	//Translate to canvas coordinate system
 	Vector2 xyPos = screen_->ScreenToXY(viewPoint.x, viewPoint.y);
 	mouse_->set_position(xyPos);
+	return xyPos;
 }

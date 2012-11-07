@@ -474,6 +474,10 @@ STRINGTABLE
 BEGIN
     IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
     ID_RENDER_INIT_FAILED   "Failed to initialize the renderer."
+    IDS_STATUS_PROGRESS     "Progress of current task."
+    IDS_STATUS_POS          "Cursor position."
+    IDS_STATUS_ZOOM         "Zoom level."
+    IDS_STATUS_ZOOM_SLIDER  "Zoom slider."
 END
 
 STRINGTABLE

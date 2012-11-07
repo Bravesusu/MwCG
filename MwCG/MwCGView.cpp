@@ -50,6 +50,7 @@ ON_UPDATE_COMMAND_UI(ID_CANVAS_WIDTH, &CMwCGView::OnUpdateCanvasWidth)
 ON_UPDATE_COMMAND_UI(ID_CANVAS_HEIGHT, &CMwCGView::OnUpdateCanvasHeight)
 ON_UPDATE_COMMAND_UI(ID_SHAPE_GALLERY, &CMwCGView::OnUpdateShapeGallery)
 ON_WM_MOUSEMOVE()
+ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGView::OnUpdateIdsStatusPos)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -291,7 +292,23 @@ ON_WM_MOUSEMOVE()
 		// TODO: Add your message handler code here and/or call default
 
 		CView::OnMouseMove(nFlags, point);
-		GetDocument()->SetMousePos(point);
+
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return;
+
+		mouse_xy_ = pDoc->SetMousePos(point);
 		m_ptMouse = point;
 		Invalidate();
+	}
+
+
+	void CMwCGView::OnUpdateIdsStatusPos(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(m_render.IsValid());
+		CString strPos;
+		strPos.Format(_T("%.4f, %.4f"), mouse_xy_.x(), mouse_xy_.y());
+		pCmdUI->SetText(strPos);
 	}

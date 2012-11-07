@@ -29,7 +29,7 @@ namespace mw
 	public:
 		void Draw();
 		bool HitTest();
-		void set_mouse(const CPoint& viewPoint) const;
+		Vector2 set_mouse(const CPoint& viewPoint) const;
 
 	};
 }

@@ -35,7 +35,7 @@ private:
 	void FooDocument();
 // Operations
 public:
-	void SetMousePos(CPoint& point);
+	Vector2 SetMousePos(CPoint& point);
 // Overrides
 public:
 	virtual BOOL OnNewDocument();
@@ -70,4 +70,5 @@ public:
 	virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
 	afx_msg void OnCanvasWidth();
 	afx_msg void OnCanvasHeight();
+//	afx_msg void OnUpdateIdsStatusPos(CCmdUI *pCmdUI);
 };

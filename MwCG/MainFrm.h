@@ -19,6 +19,9 @@
 #include "OutputWnd.h"
 #include "CalendarBar.h"
 #include "Resource.h"
+#include "MwVector2.h"
+
+using namespace mw;
 
 class COutlookBar : public CMFCOutlookBar
 {

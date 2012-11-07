@@ -5,6 +5,10 @@
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
 #define ID_RENDER_INIT_FAILED           101
+#define IDS_STATUS_PROGRESS             102
+#define IDS_STATUS_POS                  103
+#define IDS_STATUS_ZOOM                 104
+#define IDS_STATUS_ZOOM_SLIDER          105
 #define IDB_WRITESMALL                  110
 #define IDB_WRITELARGE                  111
 #define IDB_MAIN                        112
@@ -110,7 +114,6 @@
 #define ID_CANVAS_HEIGHT                32777
 #define ID_SELECT                       32778
 #define ID_SHAPE_GALLERY                32779
-#define ID_BUTTON2                      32782
 
 // Next default values for new objects
 // 

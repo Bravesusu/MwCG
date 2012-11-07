@@ -31,6 +31,7 @@ protected:
 	GlRenderer m_render;
 	HDC m_hDC;
 	CPoint m_ptMouse;
+	Vector2 mouse_xy_;
 
 // Operations
 public:
@@ -75,6 +76,7 @@ public:
 	afx_msg void OnUpdateCanvasHeight(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateShapeGallery(CCmdUI *pCmdUI);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnUpdateIdsStatusPos(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

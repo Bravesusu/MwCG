@@ -35,6 +35,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		ON_COMMAND(ID_CLEAR_COLOR, &CMwCGDoc::OnClearColor)
 		ON_COMMAND(ID_CANVAS_WIDTH, &CMwCGDoc::OnCanvasWidth)
 		ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGDoc::OnCanvasHeight)
+		//		ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGDoc::OnUpdateIdsStatusPos)
 	END_MESSAGE_MAP()
 
 
@@ -43,7 +44,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	CMwCGDoc::CMwCGDoc()
 	{
 		// TODO: add one-time construction code here
-		
+
 	}
 
 	CMwCGDoc::~CMwCGDoc()
@@ -153,7 +154,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	void CMwCGDoc::OnCloseDocument()
 	{
 		// TODO: Add your specialized code here and/or call the base class
-		
+
 		CDocument::OnCloseDocument();
 	}
 
@@ -234,8 +235,8 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 		glContent_->Elements.push_back(GlElementPtr(sk));
 	}
-	
-	void CMwCGDoc::SetMousePos(CPoint& point)
+
+	mw::Vector2 CMwCGDoc::SetMousePos( CPoint& point )
 	{
-		glContent_->set_mouse(point);
+		return glContent_->set_mouse(point);
 	}
