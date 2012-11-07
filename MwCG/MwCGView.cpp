@@ -51,6 +51,10 @@ ON_UPDATE_COMMAND_UI(ID_CANVAS_HEIGHT, &CMwCGView::OnUpdateCanvasHeight)
 ON_UPDATE_COMMAND_UI(ID_SHAPE_GALLERY, &CMwCGView::OnUpdateShapeGallery)
 ON_WM_MOUSEMOVE()
 ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGView::OnUpdateIdsStatusPos)
+ON_UPDATE_COMMAND_UI(IDS_STATUS_ZOOM, &CMwCGView::OnUpdateIdsStatusZoom)
+//ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
+ON_UPDATE_COMMAND_UI(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnUpdateIdsStatusZoomSlider)
+ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -163,6 +167,7 @@ ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGView::OnUpdateIdsStatusPos)
 
 		//Get DC and initialize the MwGLRenderer
 		//TODO: check result
+		zoom_level_ = 100;
 		HWND hWnd = GetSafeHwnd();  
 		m_hDC = ::GetDC(hWnd);
 		if (!m_render.Initialize(m_hDC))
@@ -308,4 +313,44 @@ ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGView::OnUpdateIdsStatusPos)
 		CString strPos;
 		strPos.Format(_T("%.4f, %.4f"), mouse_xy_.x(), mouse_xy_.y());
 		pCmdUI->SetText(strPos);
+	}
+
+
+	void CMwCGView::OnUpdateIdsStatusZoom(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		//pCmdUI->Enable(m_render.IsValid());
+		CString strZoom;
+		strZoom.Format(_T("%d%%"), zoom_level_);
+		pCmdUI->SetText(strZoom);
+	}
+
+
+	void CMwCGView::OnUpdateIdsStatusZoomSlider(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(m_render.IsValid());
+	}
+
+
+	void CMwCGView::OnIdsStatusZoomSlider()
+	{
+		// TODO: Add your command handler code here
+		CMFCRibbonStatusBar* pStatusBar = (CMFCRibbonStatusBar*) AfxGetMainWnd()->GetDescendantWindow(AFX_IDW_STATUS_BAR);
+		ASSERT_VALID(pStatusBar);
+		CMFCRibbonSlider* pSlider = DYNAMIC_DOWNCAST(CMFCRibbonSlider, pStatusBar->FindByID(IDS_STATUS_ZOOM_SLIDER));
+		ASSERT_VALID(pSlider);
+		zoom_level_ = pSlider->GetPos();
+
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return;
+
+		float zoom_scale(100 / (float)zoom_level_);
+
+		shared_ptr<GlScreen> scr = pDoc->glContent()->screen();
+		scr->set_scale(zoom_scale);
+
+		Invalidate();
 	}

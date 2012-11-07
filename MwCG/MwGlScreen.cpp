@@ -59,3 +59,8 @@ void GlScreen::GL()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
+
+void mw::GlScreen::set_scale( float scale )
+{
+	set_xy(x0_, y0_, scale);
+}

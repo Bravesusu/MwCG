@@ -493,7 +493,7 @@ BOOL CMainFrame::CreateStatusBar(void)
 	m_wndStatusBar.AddSeparator();
 
 	m_wndStatusBar.AddExtendedElement(
-		new CMFCRibbonStatusBarPane(IDS_STATUS_ZOOM, _T("100%"), FALSE), 
+		new CMFCRibbonStatusBarPane(IDS_STATUS_ZOOM, _T("100%"), FALSE, 0, _T("1000%")), 
 		strZoomBtn);
 	CMFCRibbonSlider* pSlider = new CMFCRibbonSlider(IDS_STATUS_ZOOM_SLIDER);
 	pSlider->SetZoomButtons();

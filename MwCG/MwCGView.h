@@ -32,6 +32,7 @@ protected:
 	HDC m_hDC;
 	CPoint m_ptMouse;
 	Vector2 mouse_xy_;
+	int zoom_level_;
 
 // Operations
 public:
@@ -77,6 +78,10 @@ public:
 	afx_msg void OnUpdateShapeGallery(CCmdUI *pCmdUI);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnUpdateIdsStatusPos(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateIdsStatusZoom(CCmdUI *pCmdUI);
+//	afx_msg void OnIdsStatusZoomSlider();
+	afx_msg void OnUpdateIdsStatusZoomSlider(CCmdUI *pCmdUI);
+	afx_msg void OnIdsStatusZoomSlider();
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp
