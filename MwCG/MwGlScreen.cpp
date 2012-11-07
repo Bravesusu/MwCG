@@ -13,18 +13,26 @@ void GlScreen::set(int width, int height)
 	height_ = height;
 }
 
+//Set coordinate system with center point and scale
 void GlScreen::set_xy(float x0, float y0, float scale)
 {
-	left_ = x0;
-	top_ = y0;
+	float half_width = scale * width_ / 2;
+	float half_height = scale * height_ / 2;
 	scale_ = scale;
-	bottom_ = y0 - scale * height_;
-	right_ = x0 + scale * width_;
+	x0_ = x0;
+	y0_ = y0;
+
+	left_ = x0 - half_width;
+	right_ = x0 + half_width;
+
+	top_ = y0 + half_height;
+	bottom_ = y0 - half_height;
 }
 
+//Update coordinate system to make sure the center remain fixed
 void GlScreen::update_xy()
 {
-	set_xy(left_, top_, scale_);
+	set_xy(x0_, y0_, scale_);
 }
 
 

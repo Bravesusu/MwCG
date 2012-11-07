@@ -243,12 +243,9 @@ ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGView::OnUpdateIdsStatusPos)
 		CRect rect;
 		GetClientRect(rect);
 
-		float x0 = -rect.Width() / 2;
-		float y0 = rect.Height() / 2;
-
 		shared_ptr<GlScreen> scr = pGlContent->screen();
 		scr->set(rect.Width(), rect.Height());
-		scr->set_xy(x0, y0, 1);
+		scr->set_xy(0, 0, 1);
 		
 		//m_render.SetViewSize(0, 0, rect.Width(), rect.Height());
 	}
