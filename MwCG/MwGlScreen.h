@@ -1,5 +1,6 @@
 #pragma once
 #include "MwGLObject.h"
+#include "MwVector2.h"
 
 namespace mw
 {
@@ -14,14 +15,19 @@ namespace mw
 
 		float bottom_, right_;
 	public:
+		//Accessors
 		int width() const { return width_; }
 		int height() const { return height_; }
 		void set(int width, int height);
 		void set_xy(float x0, float y0, float scale);
 		void update_xy();
 	public:
-		GlScreen(void) : width_(0), height_(0) {};
-		GlScreen(int width, int height) : width_(width), height_(height) {};
+		//Transform
+		Vector2 ScreenToXY(int sx, int sy);
+		Vector2 XYToScreen(int x, int y);
+	public:
+		GlScreen(void) : width_(0), height_(0), scale_(1) {};
+		GlScreen(int width, int height) : width_(width), height_(height), scale_(1) {};
 		~GlScreen(void);
 	public:
 		void GL();

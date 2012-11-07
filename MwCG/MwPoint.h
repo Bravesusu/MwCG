@@ -22,6 +22,7 @@ namespace mw
 		Vector2 position() const { return position_; }
 		float size() const { return size_; }
 		void set_position(float x, float y) { position_.set(x, y); }
+		void set_position(const Vector2& pos) { position_.set(pos); }
 		void set_size(float size) { size_ = size; }
 	public:
 		virtual void Serialize(CArchive& ar);

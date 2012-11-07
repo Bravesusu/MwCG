@@ -27,6 +27,21 @@ void GlScreen::update_xy()
 	set_xy(left_, top_, scale_);
 }
 
+
+Vector2 GlScreen::ScreenToXY(int sx, int sy)
+{
+	float x = left_ + sx * scale_;
+	float y = top_ - sy * scale_;
+	return Vector2(x, y);
+}
+
+Vector2 GlScreen::XYToScreen(int x, int y)
+{
+	float sx = (x - left_) / scale_;
+	float sy = (top_ - y) / scale_;
+	return Vector2(sx, sy);
+}
+
 void GlScreen::GL()
 {
 	glViewport(0, 0, width_, height_);

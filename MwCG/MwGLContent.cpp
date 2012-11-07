@@ -10,6 +10,10 @@ GlContent::GlContent(void)
 	canvas_.reset(new Canvas());
 	canvas_->set_color(MW_WHITE);
 	screen_.reset(new GlScreen());
+
+	mouse_.reset(new Point());
+	mouse_->set_size(10);
+	mouse_->set_color(1, 0, 0);
 }
 
 
@@ -46,6 +50,7 @@ void GlContent::Draw()
 	}
 
 	//Decorator & interaction layer
+	mouse_->Draw();
 }
 
 bool GlContent::HitTest()
@@ -63,5 +68,6 @@ bool GlContent::HitTest()
 void GlContent::set_mouse(const CPoint& viewPoint) const
 {
 	//Translate to canvas coordinate system
-
+	Vector2 xyPos = screen_->ScreenToXY(viewPoint.x, viewPoint.y);
+	mouse_->set_position(xyPos);
 }

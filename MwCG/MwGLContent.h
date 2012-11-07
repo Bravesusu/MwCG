@@ -23,6 +23,7 @@ namespace mw
 	private:
 		shared_ptr<Canvas> canvas_;
 		shared_ptr<GlScreen> screen_;
+		shared_ptr<Point> mouse_;
 	public:
 		vector<GlElementPtr> Elements;
 	public:
