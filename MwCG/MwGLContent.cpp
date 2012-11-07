@@ -11,7 +11,6 @@ GlContent::GlContent(void)
 	Mouse.set_size(10);
 	canvas_.reset(new Canvas());
 	canvas_->set_color(MW_WHITE);
-	Elements.push_back(GlElementPtr(canvas_));
 }
 
 
@@ -35,6 +34,9 @@ void GlContent::Draw()
 	//Handle events
 	HitTest();
 	//TODO: keyboard
+
+	//Canvas
+	canvas_->Draw();
 
 	//Contents
 	for (UINT i = 0; i < Elements.size(); i++)

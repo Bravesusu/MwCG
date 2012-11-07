@@ -237,11 +237,5 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	
 	void CMwCGDoc::SetMousePos(CPoint& point)
 	{
-		//int width = 800;
-		//int height = 600;
-		//shared_ptr<Canvas> canvas = glContent_->canvas();
 		glContent_->set_mouse(point);
-		//float hw = static_cast<float>(width / 2);
-		//float hh = static_cast<float>(height / 2);
-		//glContent_->Mouse.set_position(point.x - hw, hh - point.y); 
 	}
