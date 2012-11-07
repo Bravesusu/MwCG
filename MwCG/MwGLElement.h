@@ -34,11 +34,13 @@ namespace mw
 	public:
 
 		//Hierarchy
-	private:
-		//MwGLContent *m_pContent;
-	public:
-		//void AttachToContent(MwGLContent* content) {};
-		void SetParent(GlElement& parent) {};
+	//private:
+	//	shared_ptr<GlContent> content_;
+	//public:
+	//	const shared_ptr<GlContent>& content() const { return content_; }
+	//	void set_content(const shared_ptr<GlContent>& content) { content_ = content; }
+	//	void set_content(const GlContent& content) { content_.reset(&content); }
+	//	void set_content(const GlContent* content) { content_.reset(content); }
 	};
 
 	typedef shared_ptr<GlElement> GlElementPtr;

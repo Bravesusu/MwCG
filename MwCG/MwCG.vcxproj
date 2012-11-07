@@ -127,6 +127,7 @@
     <ClInclude Include="MwGLObject.h" />
     <ClInclude Include="MwGLRenderer.h" />
     <ClInclude Include="MwLine.h" />
+    <ClInclude Include="MwMouse.h" />
     <ClInclude Include="MwPoint.h" />
     <ClInclude Include="MwRibbonBar.h" />
     <ClInclude Include="MwSierpinski.h" />
@@ -158,6 +159,7 @@
     <ClCompile Include="MwGLObject.cpp" />
     <ClCompile Include="MwGLRenderer.cpp" />
     <ClCompile Include="MwLine.cpp" />
+    <ClCompile Include="MwMouse.cpp" />
     <ClCompile Include="MwPoint.cpp" />
     <ClCompile Include="MwRibbonBar.cpp" />
     <ClCompile Include="MwSierpinski.cpp" />

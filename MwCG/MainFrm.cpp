@@ -497,7 +497,7 @@ BOOL CMainFrame::CreateStatusBar(void)
 		strZoomBtn);
 	CMFCRibbonSlider* pSlider = new CMFCRibbonSlider(IDS_STATUS_ZOOM_SLIDER);
 	pSlider->SetZoomButtons();
-	pSlider->SetRange(0, 200);
+	pSlider->SetRange(10, 200);
 	pSlider->SetPos(100);
 
 	m_wndStatusBar.AddExtendedElement(pSlider, strZoomSlider);

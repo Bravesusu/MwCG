@@ -4,6 +4,7 @@
 #include "MwGlScreen.h"
 #include "MwCanvas.h"
 #include "MwPoint.h"
+#include "MwMouse.h"
 
 using namespace std;
 
@@ -23,7 +24,7 @@ namespace mw
 	private:
 		shared_ptr<Canvas> canvas_;
 		shared_ptr<GlScreen> screen_;
-		shared_ptr<Point> mouse_;
+		shared_ptr<Mouse> mouse_;
 	public:
 		vector<GlElementPtr> Elements;
 	public:

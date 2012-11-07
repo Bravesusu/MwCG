@@ -121,6 +121,9 @@
       <Filter>Mw\GL</Filter>
     </ClInclude>
     <ClInclude Include="MwGlScreen.h">
+      <Filter>Mw\Content</Filter>
+    </ClInclude>
+    <ClInclude Include="MwMouse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -201,6 +204,9 @@
       <Filter>Mw\GL</Filter>
     </ClCompile>
     <ClCompile Include="MwGlScreen.cpp">
+      <Filter>Mw\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="MwMouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -11,9 +11,9 @@ GlContent::GlContent(void)
 	canvas_->set_color(MW_WHITE);
 	screen_.reset(new GlScreen());
 
-	mouse_.reset(new Point());
-	mouse_->set_size(10);
-	mouse_->set_color(1, 0, 0);
+	mouse_.reset(new Mouse());
+	mouse_->set_color(0, 0, 0);
+	mouse_->set_screen(screen_);
 }
 
 
@@ -65,7 +65,7 @@ bool GlContent::HitTest()
 	return false;
 }
 
-//Set current mouse position with in view coordinate and return screen corrdinate.
+//Set current mouse position with in view coordinate and return screen coordinate.
 Vector2 GlContent::set_mouse(const CPoint& viewPoint) const
 {
 	//Translate to canvas coordinate system

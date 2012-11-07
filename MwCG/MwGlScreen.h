@@ -23,6 +23,10 @@ namespace mw
 		void set_xy(float x0, float y0, float scale);
 		void set_scale(float scale);
 		void update_xy();
+		float left() const { return left_; }
+		float right() const { return right_; }
+		float top() const { return top_; }
+		float bottom() const { return bottom_; }
 	public:
 		//Transform
 		Vector2 ScreenToXY(int sx, int sy);
