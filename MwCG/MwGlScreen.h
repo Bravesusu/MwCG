@@ -21,6 +21,7 @@ namespace mw
 		int height() const { return height_; }
 		void set(int width, int height);
 		void set_xy(float x0, float y0, float scale);
+		void translate_xy(float dx, float dy);
 		void set_scale(float scale);
 		void update_xy();
 		float left() const { return left_; }

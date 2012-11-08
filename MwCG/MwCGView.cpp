@@ -43,18 +43,21 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_WM_SIZE()
 		ON_WM_ERASEBKGND()
 		ON_UPDATE_COMMAND_UI(ID_CLEAR_COLOR, &CMwCGView::OnUpdateClearColor)
-//		ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGView::OnCanvasHeight)
-//ON_COMMAND(ID_CANVAS_WIDTH, &CMwCGView::OnCanvasWidth)
-//ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGView::OnCanvasHeight)
-ON_UPDATE_COMMAND_UI(ID_CANVAS_WIDTH, &CMwCGView::OnUpdateCanvasWidth)
-ON_UPDATE_COMMAND_UI(ID_CANVAS_HEIGHT, &CMwCGView::OnUpdateCanvasHeight)
-ON_UPDATE_COMMAND_UI(ID_SHAPE_GALLERY, &CMwCGView::OnUpdateShapeGallery)
-ON_WM_MOUSEMOVE()
-ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGView::OnUpdateIdsStatusPos)
-ON_UPDATE_COMMAND_UI(IDS_STATUS_ZOOM, &CMwCGView::OnUpdateIdsStatusZoom)
-//ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
-ON_UPDATE_COMMAND_UI(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnUpdateIdsStatusZoomSlider)
-ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
+		//		ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGView::OnCanvasHeight)
+		//ON_COMMAND(ID_CANVAS_WIDTH, &CMwCGView::OnCanvasWidth)
+		//ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGView::OnCanvasHeight)
+		ON_UPDATE_COMMAND_UI(ID_CANVAS_WIDTH, &CMwCGView::OnUpdateCanvasWidth)
+		ON_UPDATE_COMMAND_UI(ID_CANVAS_HEIGHT, &CMwCGView::OnUpdateCanvasHeight)
+		ON_UPDATE_COMMAND_UI(ID_SHAPE_GALLERY, &CMwCGView::OnUpdateShapeGallery)
+		ON_WM_MOUSEMOVE()
+		ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGView::OnUpdateIdsStatusPos)
+		ON_UPDATE_COMMAND_UI(IDS_STATUS_ZOOM, &CMwCGView::OnUpdateIdsStatusZoom)
+		//ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
+		ON_UPDATE_COMMAND_UI(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnUpdateIdsStatusZoomSlider)
+		ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
+//		ON_WM_MBUTTONDOWN()
+		ON_WM_LBUTTONUP()
+		ON_WM_LBUTTONDOWN()
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -167,6 +170,7 @@ ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
 
 		//Get DC and initialize the MwGLRenderer
 		//TODO: check result
+		m_bMouseDown = false;
 		zoom_level_ = 100;
 		HWND hWnd = GetSafeHwnd();  
 		m_hDC = ::GetDC(hWnd);
@@ -235,7 +239,7 @@ ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
 
 		// TODO: Add your specialized code here and/or call the base class
 		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
-		
+
 		CMwCGDoc* pDoc = GetDocument();
 		ASSERT_VALID(pDoc);
 		if (!pDoc)
@@ -244,14 +248,14 @@ ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
 		shared_ptr<GlContent> pGlContent = pDoc->glContent();
 		shared_ptr<Canvas> pCanvas = pGlContent->canvas();
 		pColorBtn->SetColor(pCanvas->color().get_color_ref());
-		
+
 		CRect rect;
 		GetClientRect(rect);
 
 		shared_ptr<GlScreen> scr = pGlContent->screen();
 		scr->set(rect.Width(), rect.Height());
 		scr->set_xy(0, 0, 1);
-		
+
 		//m_render.SetViewSize(0, 0, rect.Width(), rect.Height());
 	}
 
@@ -302,6 +306,14 @@ ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
 
 		mouse_xy_ = pDoc->SetMousePos(point);
 		m_ptMouse = point;
+
+		if (m_bMouseDown)
+		{
+			Vector2 delta = mouse_xy_ - mouse_down_xy_;
+			pDoc->glContent()->screen()->translate_xy(delta.x(), delta.y());
+			mouse_down_xy_ = mouse_xy_;
+		}
+
 		Invalidate();
 	}
 
@@ -353,4 +365,40 @@ ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
 		scr->set_scale(zoom_scale);
 
 		Invalidate();
+	}
+
+
+//	void CMwCGView::OnMButtonDown(UINT nFlags, CPoint point)
+//	{
+//		// TODO: Add your message handler code here and/or call default
+//
+//		CView::OnMButtonDown(nFlags, point);
+//
+//		
+//	}
+
+
+	void CMwCGView::OnLButtonUp(UINT nFlags, CPoint point)
+	{
+		// TODO: Add your message handler code here and/or call default
+
+		CView::OnLButtonUp(nFlags, point);
+
+		m_bMouseDown = false;
+	}
+
+
+	void CMwCGView::OnLButtonDown(UINT nFlags, CPoint point)
+	{
+		// TODO: Add your message handler code here and/or call default
+
+		CView::OnLButtonDown(nFlags, point);
+
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return;
+
+		mouse_down_xy_ = pDoc->glContent()->screen()->ScreenToXY(point.x, point.y);
+		m_bMouseDown = true;
 	}

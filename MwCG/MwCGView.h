@@ -31,8 +31,9 @@ protected:
 	GlRenderer m_render;
 	HDC m_hDC;
 	CPoint m_ptMouse;
-	Vector2 mouse_xy_;
+	Vector2 mouse_xy_, mouse_down_xy_;
 	int zoom_level_;
+	bool m_bMouseDown;
 
 // Operations
 public:
@@ -82,6 +83,9 @@ public:
 //	afx_msg void OnIdsStatusZoomSlider();
 	afx_msg void OnUpdateIdsStatusZoomSlider(CCmdUI *pCmdUI);
 	afx_msg void OnIdsStatusZoomSlider();
+//	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

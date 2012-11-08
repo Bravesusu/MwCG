@@ -1,6 +1,7 @@
 #pragma once
 #include "mwglelement.h"
 #include "MwColor.h"
+#include "MwLine.h"
 
 namespace mw
 {
@@ -17,6 +18,10 @@ namespace mw
 	public:
 		Canvas(void);
 		~Canvas(void);
+
+	private:
+		Line gird_line_;
+		void DrawAxisGird();
 	};
 }
 

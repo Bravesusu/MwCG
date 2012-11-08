@@ -64,3 +64,8 @@ void mw::GlScreen::set_scale( float scale )
 {
 	set_xy(x0_, y0_, scale);
 }
+
+void mw::GlScreen::translate_xy( float dx, float dy )
+{
+	set_xy(x0_ - dx, y0_ - dy, scale_);
+}

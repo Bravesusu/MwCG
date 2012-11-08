@@ -8,6 +8,7 @@ IMPLEMENT_SERIAL(GlContent, GlElement, 1);
 GlContent::GlContent(void)
 {
 	screen_.reset(new GlScreen());
+	set_screen(screen_);
 
 	canvas_.reset(new Canvas());
 	canvas_->set_color(MW_WHITE);

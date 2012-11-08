@@ -10,10 +10,11 @@ namespace mw
 		DECLARE_SERIAL(Line);
 	private:
 		Vector2 point_from_, point_to_;
+		float width_;
 	public:
 		Line(void);
-		Line(float x1, float y1, float x2, float y2);
-		Line(const Vector2& from, const Vector2& to) : point_from_(from), point_to_(to) {} ;
+		Line(float x1, float y1, float x2, float y2, float width = 1) ;
+		Line(const Vector2& from, const Vector2& to, float width = 1) : width_(width), point_from_(from), point_to_(to) {} ;
 		~Line(void);
 		//Serialization
 		Vector2 point_from() const { return point_from_; }
@@ -24,6 +25,8 @@ namespace mw
 		void set_from(const Vector2& from) { point_from_ = from; }
 		void set_to(float x, float y) { point_to_.set(x, y);}
 		void set_to(const Vector2& to) { point_to_ = to; }
+		float width() const { return width_; }
+		void set_width(float width) { width_ = width; }
 	public:
 		virtual void Serialize(CArchive& ar);
 		void Draw();
