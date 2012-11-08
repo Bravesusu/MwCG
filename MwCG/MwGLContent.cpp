@@ -7,9 +7,11 @@ IMPLEMENT_SERIAL(GlContent, GlElement, 1);
 
 GlContent::GlContent(void)
 {
+	screen_.reset(new GlScreen());
+
 	canvas_.reset(new Canvas());
 	canvas_->set_color(MW_WHITE);
-	screen_.reset(new GlScreen());
+	canvas_->set_screen(screen_);
 
 	mouse_.reset(new Mouse());
 	mouse_->set_color(0, 0, 0);
@@ -72,4 +74,10 @@ Vector2 GlContent::set_mouse(const CPoint& viewPoint) const
 	Vector2 xyPos = screen_->ScreenToXY(viewPoint.x, viewPoint.y);
 	mouse_->set_position(xyPos);
 	return xyPos;
+}
+
+void mw::GlContent::AddElement(GlElementPtr element)
+{
+	Elements.push_back(element);
+	element->set_screen(screen_);
 }

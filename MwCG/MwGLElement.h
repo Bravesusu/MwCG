@@ -1,8 +1,8 @@
 #pragma once
 #include "mwx.h"
 #include "MwColor.h"
+#include "MwGlScreen.h"
 
-//#define MwElementSafePtr shared_ptr<GlElement>
 using namespace std;
 
 namespace mw 
@@ -10,7 +10,7 @@ namespace mw
 	class GlElement :
 		public CObject
 	{
-		DECLARE_SERIAL(GlElement);
+		DECLARE_SERIAL(GlElement); 
 	private:
 		Color color_;
 	public:
@@ -34,13 +34,11 @@ namespace mw
 	public:
 
 		//Hierarchy
-	//private:
-	//	shared_ptr<GlContent> content_;
-	//public:
-	//	const shared_ptr<GlContent>& content() const { return content_; }
-	//	void set_content(const shared_ptr<GlContent>& content) { content_ = content; }
-	//	void set_content(const GlContent& content) { content_.reset(&content); }
-	//	void set_content(const GlContent* content) { content_.reset(content); }
+	private:
+		shared_ptr<GlScreen> screen_;
+	public:
+		const shared_ptr<GlScreen>& screen() const { return screen_; }
+		void set_screen(const shared_ptr<GlScreen>& screen) { screen_ = screen; }
 	};
 
 	typedef shared_ptr<GlElement> GlElementPtr;

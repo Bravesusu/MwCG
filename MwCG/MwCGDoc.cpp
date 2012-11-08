@@ -210,7 +210,8 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 				static_cast<float>(width), 
 				static_cast<float>(y));
 			ln->set_color(MW_RED);
-			glContent_->Elements.push_back(GlElementPtr(ln));
+			glContent_->AddElement(GlElementPtr(ln));
+			//glContent_->Elements.push_back(GlElementPtr(ln));
 		}
 
 		for (int x = -hw; x < hw; x += 100)
@@ -222,7 +223,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 					static_cast<float>(y), 
 					5.0);
 				pt->set_color(MW_BLUE);
-				glContent_->Elements.push_back(GlElementPtr(pt));
+				glContent_->AddElement(GlElementPtr(pt));
 			}
 		}
 
@@ -233,7 +234,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		(*sk)[1] = Vector2(400.0, 400.0);
 		(*sk)[2] = Vector2(700.0, 50.0);
 
-		glContent_->Elements.push_back(GlElementPtr(sk));
+		glContent_->AddElement(GlElementPtr(sk));
 	}
 
 	mw::Vector2 CMwCGDoc::SetMousePos( CPoint& point )
