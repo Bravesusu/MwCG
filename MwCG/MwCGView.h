@@ -30,7 +30,7 @@ public:
 protected:
 	GlRenderer m_render;
 	HDC m_hDC;
-	CPoint m_ptMouse;
+	CPoint last_mouse_point_;
 	Vector2 mouse_xy_, mouse_down_xy_;
 	int zoom_level_;
 	bool m_bMouseDown;

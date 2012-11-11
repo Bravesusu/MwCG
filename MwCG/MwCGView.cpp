@@ -305,13 +305,23 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 			return;
 
 		mouse_xy_ = pDoc->SetMousePos(point);
-		m_ptMouse = point;
 
 		if (m_bMouseDown)
 		{
+			/*TRACE("Point: (%d, %d)\n", point.x, point.y);
+			TRACE("XY: (%.2f, %.2f)\n", mouse_xy_.x(), mouse_xy_.y());
 			Vector2 delta = mouse_xy_ - mouse_down_xy_;
+			TRACE("Last: (%.2f, %.2f) -> ", mouse_down_xy_.x(), mouse_down_xy_.y());
+			TRACE("Current: (%.2f, %.2f) == ", mouse_xy_.x(), mouse_xy_.y());
+			TRACE("Delta: (%.2f, %.2f)\n", delta.x(), delta.y());
 			pDoc->glContent()->screen()->translate_xy(delta.x(), delta.y());
-			mouse_down_xy_ = mouse_xy_;
+			mouse_down_xy_ = mouse_xy_;*/
+			pDoc->
+				glContent()->
+				screen()->
+				translate_xy_scr(point.x - last_mouse_point_.x, point.y - last_mouse_point_.y);
+
+			last_mouse_point_ = point;
 		}
 
 		Invalidate();
@@ -394,6 +404,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		CView::OnLButtonDown(nFlags, point);
 
+		last_mouse_point_ = point;
 		CMwCGDoc* pDoc = GetDocument();
 		ASSERT_VALID(pDoc);
 		if (!pDoc)

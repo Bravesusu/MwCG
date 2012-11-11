@@ -69,3 +69,10 @@ void mw::GlScreen::translate_xy( float dx, float dy )
 {
 	set_xy(x0_ - dx, y0_ - dy, scale_);
 }
+
+void mw::GlScreen::translate_xy_scr( int dx, int dy )
+{
+	float dx0 = (float)dx * scale_;
+	float dy0 = (float)dy * scale_;
+	set_xy(x0_ - dx0, y0_ + dy0, scale_);
+}
