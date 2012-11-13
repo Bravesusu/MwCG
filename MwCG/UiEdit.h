@@ -16,6 +16,10 @@ namespace mw
 
 		virtual void OnLButtonUp( UINT nFlags, CPoint point );
 
+		virtual void OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags );
+
+		virtual void OnKeyUp( UINT nChar, UINT nRepCnt, UINT nFlags );
+
 	};
 }
 

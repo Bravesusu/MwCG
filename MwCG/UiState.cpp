@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "UiState.h"
 
+#include "MwCGDoc.h"
+#include "MwCGView.h"
+
 using namespace mw;
 
 UiState::UiState(void)

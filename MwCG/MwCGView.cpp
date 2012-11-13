@@ -191,9 +191,9 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		//state_.Initilize(this, pDoc);
 		uiNavState_.reset(new UiNav());
-		UiEditState_.reset(new UiEdit());
+		uiEditState_.reset(new UiEdit());
 		uiNavState_->Initialize(pDoc, this);
-		UiEditState_->Initialize(pDoc, this);
+		uiEditState_->Initialize(pDoc, this);
 
 		uiState_ = uiNavState_;
 
@@ -441,6 +441,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		CView::OnKeyDown(nChar, nRepCnt, nFlags);
 
+		uiState_->OnKeyDown(nChar, nRepCnt, nFlags);
+
 		//TODO: switch to nav mode in edit mode on space
 	}
 
@@ -451,5 +453,10 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		CView::OnKeyUp(nChar, nRepCnt, nFlags);
 
+		uiState_->OnKeyUp(nChar, nRepCnt, nFlags);
 		//TODO: switch back to edit mode on space
+		if (' ' == nChar)
+		{
+
+		}
 	}

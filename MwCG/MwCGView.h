@@ -34,9 +34,9 @@ protected:
 	Vector2 mouse_xy_, mouse_down_xy_;
 	int zoom_level_;
 	bool m_bMouseDown;
-	shared_ptr<UiState> uiState_;
+	shared_ptr<mw::UiState> uiState_;
 	shared_ptr<UiNav> uiNavState_;
-	shared_ptr<UiEdit> UiEditState_;
+	shared_ptr<UiEdit> uiEditState_;
 	// Operations
 public:
 
@@ -88,6 +88,8 @@ public:
 	//	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

@@ -1,7 +1,7 @@
 #pragma once
-#include "MwCGDoc.h"
-#include "MwCGView.h"
 
+class CMwCGDoc;
+class CMwCGView;
 namespace mw
 {
 	class UiState
@@ -20,5 +20,7 @@ namespace mw
 		virtual void OnMouseMove(UINT nFlags, CPoint point) = 0;
 		virtual void OnLButtonDown(UINT nFlags, CPoint point) = 0;
 		virtual void OnLButtonUp(UINT nFlags, CPoint point) = 0;
+		virtual void OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags ) = 0;
+		virtual void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) = 0;
 	};
 }
