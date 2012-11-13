@@ -465,18 +465,12 @@ BOOL CMainFrame::CreateStatusBar(void)
 		return FALSE;      // fail to create
 	}
 
-	//CString strTitlePane1;
-	//CString strTitlePane2;
-	//bNameValid = strTitlePane1.LoadString(IDS_STATUS_PANE1);
-	//ASSERT(bNameValid);
-	//bNameValid = strTitlePane2.LoadString(IDS_STATUS_PANE2);
-	//ASSERT(bNameValid);
-	//m_wndStatusBar.AddElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE1, /*strTitlePane1*/_T("Panel"), TRUE), /*strTitlePane1*/_T("S1"));
-	//m_wndStatusBar.AddExtendedElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE2, strTitlePane2, TRUE), strTitlePane2);
 	CString strPosPanel;
 	CString strProgress;
 	CString strZoomBtn;
 	CString strZoomSlider;
+	CString strUiMode;
+
 	bNameValid = strPosPanel.LoadString(IDS_STATUS_POS);
 	ASSERT(bNameValid);
 	bNameValid = strProgress.LoadString(IDS_STATUS_PROGRESS);
@@ -485,6 +479,17 @@ BOOL CMainFrame::CreateStatusBar(void)
 	ASSERT(bNameValid);
 	bNameValid = strZoomSlider.LoadString(IDS_STATUS_ZOOM_SLIDER);
 	ASSERT(bNameValid);
+	bNameValid = strUiMode.LoadString(IDS_STATUS_MODE);
+	ASSERT(bNameValid);
+
+	//TODO: check CMFCRibbonCustomizeDialog
+
+	m_wndStatusBar.AddElement(
+		new CMFCRibbonStatusBarPane(IDS_STATUS_MODE, strUiMode, TRUE, 0, _T("Long name")),
+		strUiMode
+		);
+
+	m_wndStatusBar.AddSeparator();
 
 	m_wndStatusBar.AddElement(
 		new CMFCRibbonStatusBarPane(IDS_STATUS_POS, _T("0, 0"), TRUE, 0, _T("000000000.000000000, 000000000.000000000")),

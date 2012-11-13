@@ -478,6 +478,9 @@ BEGIN
     IDS_STATUS_POS          "Cursor position."
     IDS_STATUS_ZOOM         "Zoom level."
     IDS_STATUS_ZOOM_SLIDER  "Zoom slider."
+    IDS_STATUS_MODE         "Mode"
+    IDS_UI_NAVIGATION       "Navigation"
+    IDS_UI_EDIT             "Edit"
 END
 
 STRINGTABLE

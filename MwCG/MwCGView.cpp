@@ -60,6 +60,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_WM_LBUTTONDOWN()
 		ON_WM_KEYDOWN()
 		ON_WM_KEYUP()
+		ON_UPDATE_COMMAND_UI(IDS_STATUS_MODE, &CMwCGView::OnUpdateIdsStatusMode)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -195,7 +196,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		uiNavState_->Initialize(pDoc, this);
 		uiEditState_->Initialize(pDoc, this);
 
-		uiState_ = uiNavState_;
+		SwitchToEditMode();
 
 		return 0;
 	}
@@ -459,4 +460,23 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		{
 
 		}
+	}
+
+	void CMwCGView::SwitchToEditMode()
+	{
+		//TODO: assert current state
+		uiState_ = uiEditState_;
+	}
+
+	void CMwCGView::SwitchToNavMode()
+	{
+		//TODO: assert current state
+		uiState_ = uiNavState_;
+	}
+
+
+	void CMwCGView::OnUpdateIdsStatusMode(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->SetText(uiState_->name());
 	}

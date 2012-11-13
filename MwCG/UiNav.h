@@ -20,6 +20,8 @@ namespace mw
 
 		virtual void OnKeyUp( UINT nChar, UINT nRepCnt, UINT nFlags );
 
+		virtual void InitializeName();
+
 	private:
 		bool m_bSpaceDown;
 

@@ -3,6 +3,9 @@
 
 using namespace mw;
 
+#include "MwCGDoc.h"
+#include "MwCGView.h"
+
 UiNav::UiNav(void)
 {
 }
@@ -26,21 +29,18 @@ void mw::UiNav::OnLButtonUp( UINT nFlags, CPoint point )
 
 void mw::UiNav::OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	if (' ' == nChar)
-	{
-		m_bSpaceDown = true;
-	}
 }
 
 void mw::UiNav::OnKeyUp( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
 	if (' ' == nChar)
 	{
-		//TODO: mark space up
-		if (!m_bSpaceDown)
-		{
-			//TODO: switch back to edit mode
-		}
-		m_bSpaceDown = false;
+		view()->SwitchToEditMode();
 	}
+}
+
+void mw::UiNav::InitializeName()
+{
+	name_.LoadString(IDS_UI_NAVIGATION);
+	ASSERT(name_);
 }

@@ -16,6 +16,10 @@
 #include "MwGLRenderer.h"
 #include "MainFrm.h"
 
+#include "UiState.h"
+#include "UiNav.h"
+#include "UiEdit.h"
+
 using namespace mw;
 
 class CMwCGView : public CView
@@ -34,7 +38,7 @@ protected:
 	Vector2 mouse_xy_, mouse_down_xy_;
 	int zoom_level_;
 	bool m_bMouseDown;
-	shared_ptr<mw::UiState> uiState_;
+	shared_ptr<UiState> uiState_;
 	shared_ptr<UiNav> uiNavState_;
 	shared_ptr<UiEdit> uiEditState_;
 	// Operations
@@ -90,6 +94,9 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
+	void SwitchToEditMode();
+	void SwitchToNavMode();
+	afx_msg void OnUpdateIdsStatusMode(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

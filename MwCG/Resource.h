@@ -9,6 +9,9 @@
 #define IDS_STATUS_POS                  103
 #define IDS_STATUS_ZOOM                 104
 #define IDS_STATUS_ZOOM_SLIDER          105
+#define IDS_STATUS_MODE                 106
+#define IDS_UI_NAVIGATION               107
+#define IDS_UI_EDIT                     108
 #define IDB_WRITESMALL                  110
 #define IDB_WRITELARGE                  111
 #define IDB_MAIN                        112

@@ -1,7 +1,8 @@
 #pragma once
 
-class CMwCGDoc;
 class CMwCGView;
+class CMwCGDoc;
+
 namespace mw
 {
 	class UiState
@@ -9,10 +10,14 @@ namespace mw
 	private:
 		CMwCGView* pView_;
 		CMwCGDoc* pDoc_;
+	protected:
+		CString name_;
+	private:
+		virtual void InitializeName() = 0;
 	public:
 		void Initialize(CMwCGDoc* pDoc, CMwCGView* pView);
-		const CMwCGDoc* doc() const { return pDoc_; }
-		const CMwCGView* view() const { return pView_; }
+		CMwCGDoc* doc() const { return pDoc_; }
+		CMwCGView* view() const { return pView_; }
 	public:
 		UiState(void);
 		~UiState(void);
@@ -22,5 +27,8 @@ namespace mw
 		virtual void OnLButtonUp(UINT nFlags, CPoint point) = 0;
 		virtual void OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags ) = 0;
 		virtual void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) = 0;
+	public:
+		CString name() const { return name_; }
+
 	};
 }
