@@ -95,7 +95,7 @@ ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
 		// TODO: add draw code for native data here
 		if (m_render.IsValid())
 		{
-			m_render.Draw(pDoc->glContent());
+			m_render.Draw(content_);
 			SwapBuffers(pDC->GetSafeHdc());
 		}
 	}
@@ -253,14 +253,15 @@ ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
 		if (!pDoc)
 			return;
 
-		shared_ptr<GlContent> pGlContent = pDoc->glContent();
-		shared_ptr<Canvas> pCanvas = pGlContent->canvas();
-		pColorBtn->SetColor(pCanvas->color().get_color_ref());
+		content_ = pDoc->glContent();
+		screen_ = content_->screen();
+		canvas_ = content_->canvas();
+		pColorBtn->SetColor(canvas_->color().get_color_ref());
 
 		CRect rect;
 		GetClientRect(rect);
 
-		shared_ptr<GlScreen> scr = pGlContent->screen();
+		shared_ptr<GlScreen> scr = content_->screen();
 		scr->set(rect.Width(), rect.Height());
 		scr->set_xy(0, 0, 1);
 
@@ -357,8 +358,7 @@ ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
 
 		float zoom_scale(100 / (float)zoom_level_);
 
-		shared_ptr<GlScreen> scr = pDoc->glContent()->screen();
-		scr->set_scale(zoom_scale);
+		screen_->set_scale(zoom_scale);
 
 		Invalidate();
 	}
@@ -394,12 +394,12 @@ ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
 
 		uiState_->OnMouseMove(nFlags, point);
 
-		CMwCGDoc* pDoc = GetDocument();
+		/*CMwCGDoc* pDoc = GetDocument();
 		ASSERT_VALID(pDoc);
 		if (!pDoc)
-			return;
+		return;*/
 
-		mouse_xy_ = pDoc->SetMousePos(point);
+		mouse_xy_ = screen_->ScreenToXY(point.x, point.y);
 
 		Invalidate();
 	}
@@ -465,5 +465,5 @@ ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
 	{
 		// TODO: Add your command update UI handler code here
 		pCmdUI->Enable(m_render.IsValid());
-		pCmdUI->SetCheck(GetDocument()->glContent()->canvas()->gird_enabled());
+		pCmdUI->SetCheck(canvas_->gird_enabled());
 	}

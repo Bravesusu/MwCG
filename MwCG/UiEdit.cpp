@@ -17,6 +17,7 @@ UiEdit::~UiEdit(void)
 
 void mw::UiEdit::OnMouseMove( UINT nFlags, CPoint point )
 {
+	doc()->SetMousePos(point);
 }
 
 void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )

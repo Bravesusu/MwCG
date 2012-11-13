@@ -37,6 +37,9 @@ protected:
 	Vector2 mouse_xy_;
 	int zoom_level_;
 	bool m_bMouseDown;
+	shared_ptr<GlContent> content_;
+	shared_ptr<Canvas> canvas_;
+	shared_ptr<GlScreen> screen_;
 	shared_ptr<UiState> uiState_;
 	shared_ptr<UiNav> uiNavState_;
 	shared_ptr<UiEdit> uiEditState_;

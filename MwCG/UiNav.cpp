@@ -6,7 +6,7 @@ using namespace mw;
 #include "MwCGDoc.h"
 #include "MwCGView.h"
 
-UiNav::UiNav(void)
+UiNav::UiNav(void) : m_bMouseDown(false)
 {
 }
 
