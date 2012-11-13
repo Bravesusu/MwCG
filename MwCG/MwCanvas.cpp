@@ -32,7 +32,8 @@ void Canvas::Draw()
 {
 	color().Clear();
 	::glClear(GL_COLOR_BUFFER_BIT);
-	DrawAxisGird();
+	if (enable_gird_)
+		DrawAxisGird();
 }
 
 void Canvas::DrawAxisGird() 

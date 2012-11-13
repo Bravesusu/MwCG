@@ -96,6 +96,8 @@ public:
 	void SwitchToEditMode();
 	void SwitchToNavMode();
 	afx_msg void OnUpdateIdsStatusMode(CCmdUI *pCmdUI);
+//	afx_msg void OnUpdateFilePrintPreview(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateCheckGird(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

@@ -71,4 +71,5 @@ public:
 	afx_msg void OnCanvasWidth();
 	afx_msg void OnCanvasHeight();
 //	afx_msg void OnUpdateIdsStatusPos(CCmdUI *pCmdUI);
+	afx_msg void OnCheckGird();
 };

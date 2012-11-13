@@ -22,6 +22,13 @@ namespace mw
 	private:
 		Line gird_line_;
 		void DrawAxisGird();
+	private:
+		bool enable_gird_;
+
+	public:
+		bool gird_enabled() const { return enable_gird_; }
+		void set_enable_gird(bool enabled) { enable_gird_ = enabled; } 
+		void toggle_gird() { enable_gird_ = !enable_gird_; }
 	};
 }
 

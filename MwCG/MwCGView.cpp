@@ -46,8 +46,6 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		//		ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGView::OnCanvasHeight)
 		//ON_COMMAND(ID_CANVAS_WIDTH, &CMwCGView::OnCanvasWidth)
 		//ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGView::OnCanvasHeight)
-		ON_UPDATE_COMMAND_UI(ID_CANVAS_WIDTH, &CMwCGView::OnUpdateCanvasWidth)
-		ON_UPDATE_COMMAND_UI(ID_CANVAS_HEIGHT, &CMwCGView::OnUpdateCanvasHeight)
 		ON_UPDATE_COMMAND_UI(ID_SHAPE_GALLERY, &CMwCGView::OnUpdateShapeGallery)
 		ON_WM_MOUSEMOVE()
 		ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGView::OnUpdateIdsStatusPos)
@@ -61,6 +59,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_WM_KEYDOWN()
 		ON_WM_KEYUP()
 		ON_UPDATE_COMMAND_UI(IDS_STATUS_MODE, &CMwCGView::OnUpdateIdsStatusMode)
+//		ON_UPDATE_COMMAND_UI(ID_FILE_PRINT_PREVIEW, &CMwCGView::OnUpdateFilePrintPreview)
+ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -453,3 +453,17 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		uiState_ = uiNavState_;
 	}
 
+
+
+//	void CMwCGView::OnUpdateFilePrintPreview(CCmdUI *pCmdUI)
+//	{
+//		// TODO: Add your command update UI handler code here
+//	}
+
+
+	void CMwCGView::OnUpdateCheckGird(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(m_render.IsValid());
+		pCmdUI->SetCheck(GetDocument()->glContent()->canvas()->gird_enabled());
+	}

@@ -659,6 +659,11 @@ BEGIN
     IDS_CAPTION_IMAGE_TEXT  "Here is an informational message for the user."
 END
 
+STRINGTABLE
+BEGIN
+    ID_CHECK_GIRD           "Show gird"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

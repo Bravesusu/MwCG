@@ -33,9 +33,8 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	BEGIN_MESSAGE_MAP(CMwCGDoc, CDocument)
 		ON_COMMAND(ID_CLEAR_COLOR, &CMwCGDoc::OnClearColor)
-		ON_COMMAND(ID_CANVAS_WIDTH, &CMwCGDoc::OnCanvasWidth)
-		ON_COMMAND(ID_CANVAS_HEIGHT, &CMwCGDoc::OnCanvasHeight)
 		//		ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGDoc::OnUpdateIdsStatusPos)
+		ON_COMMAND(ID_CHECK_GIRD, &CMwCGDoc::OnCheckGird)
 	END_MESSAGE_MAP()
 
 
@@ -240,4 +239,13 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	mw::Vector2 CMwCGDoc::SetMousePos( CPoint& point )
 	{
 		return glContent_->set_mouse(point);
+	}
+
+
+	void CMwCGDoc::OnCheckGird()
+	{
+		// TODO: Add your command handler code here
+		
+		glContent_->canvas()->toggle_gird();
+		UpdateAllViews(NULL);
 	}
