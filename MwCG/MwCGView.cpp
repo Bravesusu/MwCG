@@ -58,6 +58,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 //		ON_WM_MBUTTONDOWN()
 		ON_WM_LBUTTONUP()
 		ON_WM_LBUTTONDOWN()
+		ON_WM_KEYDOWN()
+		ON_WM_KEYUP()
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -408,6 +410,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		CView::OnLButtonUp(nFlags, point);
 
+		uiState_->OnLButtonUp(nFlags, point);
+
 		m_bMouseDown = false;
 	}
 
@@ -418,6 +422,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		CView::OnLButtonDown(nFlags, point);
 
+		uiState_->OnLButtonDown(nFlags, point);
+
 		last_mouse_point_ = point;
 		CMwCGDoc* pDoc = GetDocument();
 		ASSERT_VALID(pDoc);
@@ -426,4 +432,24 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		mouse_down_xy_ = pDoc->glContent()->screen()->ScreenToXY(point.x, point.y);
 		m_bMouseDown = true;
+	}
+
+
+	void CMwCGView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+	{
+		// TODO: Add your message handler code here and/or call default
+
+		CView::OnKeyDown(nChar, nRepCnt, nFlags);
+
+		//TODO: switch to nav mode in edit mode on space
+	}
+
+
+	void CMwCGView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+	{
+		// TODO: Add your message handler code here and/or call default
+
+		CView::OnKeyUp(nChar, nRepCnt, nFlags);
+
+		//TODO: switch back to edit mode on space
 	}
