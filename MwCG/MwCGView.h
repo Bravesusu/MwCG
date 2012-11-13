@@ -15,6 +15,7 @@
 #pragma once
 #include "MwGLRenderer.h"
 #include "MainFrm.h"
+#include "UiState.h"
 
 using namespace mw;
 
@@ -34,6 +35,7 @@ protected:
 	Vector2 mouse_xy_, mouse_down_xy_;
 	int zoom_level_;
 	bool m_bMouseDown;
+	//UiState<CMwCGView, CMwCGDoc> state_	;
 
 // Operations
 public:

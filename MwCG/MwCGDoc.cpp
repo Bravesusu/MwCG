@@ -175,7 +175,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 			return FALSE;
 		return TRUE;
 
-		FooDocument();
+		//FooDocument();
 	}
 
 

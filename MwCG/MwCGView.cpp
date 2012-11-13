@@ -65,7 +65,6 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	CMwCGView::CMwCGView()
 	{
 		// TODO: add construction code here
-
 	}
 
 	CMwCGView::~CMwCGView()
@@ -183,6 +182,12 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 			CMainFrame* pMainFrm = (CMainFrame*)GetParent();
 			pMainFrm->SetCaptionBarText(strInitFailed);
 		}
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return -1;
+
+		//state_.Initilize(this, pDoc);
 		return 0;
 	}
 

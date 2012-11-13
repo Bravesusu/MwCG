@@ -27,9 +27,26 @@ GlContent::~GlContent(void)
 
 void GlContent::Serialize(CArchive& ar)
 {
-	//GlElement::Serialize(ar);
-
+	GlElement::Serialize(ar);
 	canvas_->Serialize(ar);
+	CObArray arr;
+
+	if (ar.IsStoring())
+	{
+		for (int i = 0; i < Elements.size(); i++)
+		{
+			arr.Add(Elements.at(i).get());
+		}
+		arr.Serialize(ar);
+	}
+	else
+	{
+		arr.Serialize(ar);
+		for (int i = 0; i < arr.GetSize(); i++)
+		{
+			Elements.push_back(GlElementPtr(dynamic_cast<GlElement*>(arr[i])));
+		}
+	}
 }
 
 void GlContent::Draw()

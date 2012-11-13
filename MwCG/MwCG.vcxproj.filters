@@ -28,6 +28,9 @@
     <Filter Include="Mw\GL">
       <UniqueIdentifier>{dc603a65-3cc4-4f90-82eb-f728386f1927}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mw\UI">
+      <UniqueIdentifier>{c55d51bd-6099-4830-a22c-b50518868a2d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -126,6 +129,9 @@
     <ClInclude Include="MwMouse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UiState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -207,6 +213,9 @@
       <Filter>Mw\Content</Filter>
     </ClCompile>
     <ClCompile Include="MwMouse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UiState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
