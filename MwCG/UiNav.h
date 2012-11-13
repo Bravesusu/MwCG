@@ -1,5 +1,6 @@
 #pragma once
 #include "uistate.h"
+//#include "MwVector2.h"
 
 namespace mw
 {
@@ -23,7 +24,7 @@ namespace mw
 		virtual void InitializeName();
 
 	private:
-		bool m_bSpaceDown;
-
+		bool m_bMouseDown;
+		CPoint last_mouse_point_;
 	};
 }

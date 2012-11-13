@@ -241,13 +241,6 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	}
 
 
-	void CMwCGView::OnUpdateClearColor(CCmdUI *pCmdUI)
-	{
-		// TODO: Add your command update UI handler code here
-		pCmdUI->Enable(m_render.IsValid());
-	}
-
-
 	void CMwCGView::OnInitialUpdate()
 	{
 		CView::OnInitialUpdate();
@@ -287,6 +280,13 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		}
 	}
 
+	void CMwCGView::OnUpdateClearColor(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(m_render.IsValid());
+	}
+
+
 	void CMwCGView::OnUpdateCanvasWidth(CCmdUI *pCmdUI)
 	{
 		// TODO: Add your command update UI handler code here
@@ -305,43 +305,6 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		// TODO: Add your command update UI handler code here
 		pCmdUI->Enable(m_render.IsValid());
-	}
-
-
-	void CMwCGView::OnMouseMove(UINT nFlags, CPoint point)
-	{
-		// TODO: Add your message handler code here and/or call default
-
-		CView::OnMouseMove(nFlags, point);
-
-		uiState_->OnMouseMove(nFlags, point);
-
-		CMwCGDoc* pDoc = GetDocument();
-		ASSERT_VALID(pDoc);
-		if (!pDoc)
-			return;
-
-		mouse_xy_ = pDoc->SetMousePos(point);
-
-		if (m_bMouseDown)
-		{
-			/*TRACE("Point: (%d, %d)\n", point.x, point.y);
-			TRACE("XY: (%.2f, %.2f)\n", mouse_xy_.x(), mouse_xy_.y());
-			Vector2 delta = mouse_xy_ - mouse_down_xy_;
-			TRACE("Last: (%.2f, %.2f) -> ", mouse_down_xy_.x(), mouse_down_xy_.y());
-			TRACE("Current: (%.2f, %.2f) == ", mouse_xy_.x(), mouse_xy_.y());
-			TRACE("Delta: (%.2f, %.2f)\n", delta.x(), delta.y());
-			pDoc->glContent()->screen()->translate_xy(delta.x(), delta.y());
-			mouse_down_xy_ = mouse_xy_;*/
-			pDoc->
-				glContent()->
-				screen()->
-				translate_xy_scr(point.x - last_mouse_point_.x, point.y - last_mouse_point_.y);
-
-			last_mouse_point_ = point;
-		}
-
-		Invalidate();
 	}
 
 
@@ -371,6 +334,12 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		pCmdUI->Enable(m_render.IsValid());
 	}
 
+
+	void CMwCGView::OnUpdateIdsStatusMode(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->SetText(uiState_->name());
+	}
 
 	void CMwCGView::OnIdsStatusZoomSlider()
 	{
@@ -417,6 +386,25 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	}
 
 
+	void CMwCGView::OnMouseMove(UINT nFlags, CPoint point)
+	{
+		// TODO: Add your message handler code here and/or call default
+
+		CView::OnMouseMove(nFlags, point);
+
+		uiState_->OnMouseMove(nFlags, point);
+
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return;
+
+		mouse_xy_ = pDoc->SetMousePos(point);
+
+		Invalidate();
+	}
+
+
 	void CMwCGView::OnLButtonDown(UINT nFlags, CPoint point)
 	{
 		// TODO: Add your message handler code here and/or call default
@@ -425,13 +413,11 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		uiState_->OnLButtonDown(nFlags, point);
 
-		last_mouse_point_ = point;
 		CMwCGDoc* pDoc = GetDocument();
 		ASSERT_VALID(pDoc);
 		if (!pDoc)
 			return;
 
-		mouse_down_xy_ = pDoc->glContent()->screen()->ScreenToXY(point.x, point.y);
 		m_bMouseDown = true;
 	}
 
@@ -474,9 +460,3 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		uiState_ = uiNavState_;
 	}
 
-
-	void CMwCGView::OnUpdateIdsStatusMode(CCmdUI *pCmdUI)
-	{
-		// TODO: Add your command update UI handler code here
-		pCmdUI->SetText(uiState_->name());
-	}
