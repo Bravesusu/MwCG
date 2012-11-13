@@ -12,6 +12,7 @@
 #define IDS_STATUS_MODE                 106
 #define IDS_UI_NAVIGATION               107
 #define IDS_UI_EDIT                     108
+#define IDS_STATUS_RECT                 109
 #define IDB_WRITESMALL                  110
 #define IDB_WRITELARGE                  111
 #define IDB_MAIN                        112
@@ -115,7 +116,6 @@
 #define ID_BUTTON5                      32774
 #define ID_SELECT                       32778
 #define ID_SHAPE_GALLERY                32779
-#define ID_CHECK2                       32783
 #define ID_CHECK_GIRD                   32783
 
 // Next default values for new objects

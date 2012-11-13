@@ -101,6 +101,7 @@ public:
 	afx_msg void OnUpdateIdsStatusMode(CCmdUI *pCmdUI);
 //	afx_msg void OnUpdateFilePrintPreview(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateCheckGird(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateIdsStatusRect(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

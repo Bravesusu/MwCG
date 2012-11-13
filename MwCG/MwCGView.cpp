@@ -61,6 +61,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_UPDATE_COMMAND_UI(IDS_STATUS_MODE, &CMwCGView::OnUpdateIdsStatusMode)
 //		ON_UPDATE_COMMAND_UI(ID_FILE_PRINT_PREVIEW, &CMwCGView::OnUpdateFilePrintPreview)
 ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
+ON_UPDATE_COMMAND_UI(IDS_STATUS_RECT, &CMwCGView::OnUpdateIdsStatusRect)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -466,4 +467,20 @@ ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
 		// TODO: Add your command update UI handler code here
 		pCmdUI->Enable(m_render.IsValid());
 		pCmdUI->SetCheck(canvas_->gird_enabled());
+	}
+
+
+	void CMwCGView::OnUpdateIdsStatusRect(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(m_render.IsValid());
+		CString strRect;
+		strRect.Format(
+			_T("(%4.4f, %4.4f)x(%4.4f, %4.4f)"), 
+			screen_->top(),
+			screen_->left(),
+			screen_->right(),
+			screen_->bottom() 
+			);
+		pCmdUI->SetText(strRect);
 	}

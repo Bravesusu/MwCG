@@ -466,12 +466,15 @@ BOOL CMainFrame::CreateStatusBar(void)
 	}
 
 	CString strPosPanel;
+	CString strRectPanel;
 	CString strProgress;
 	CString strZoomBtn;
 	CString strZoomSlider;
 	CString strUiMode;
 
 	bNameValid = strPosPanel.LoadString(IDS_STATUS_POS);
+	ASSERT(bNameValid);
+	bNameValid =strRectPanel.LoadString(IDS_STATUS_RECT);
 	ASSERT(bNameValid);
 	bNameValid = strProgress.LoadString(IDS_STATUS_PROGRESS);
 	ASSERT(bNameValid);
@@ -493,6 +496,12 @@ BOOL CMainFrame::CreateStatusBar(void)
 
 	m_wndStatusBar.AddElement(
 		new CMFCRibbonStatusBarPane(IDS_STATUS_POS, _T("0, 0"), TRUE, 0, _T("000000000.000000000, 000000000.000000000")),
+		strPosPanel
+		);
+	m_wndStatusBar.AddSeparator();
+
+	m_wndStatusBar.AddElement(
+		new CMFCRibbonStatusBarPane(IDS_STATUS_RECT, _T("(0, 0)x(0, 0)"), TRUE, 0, _T("(0000.0000, 0000.0000)x(0000.0000, 0000.0000)")),
 		strPosPanel
 		);
 	m_wndStatusBar.AddSeparator();
