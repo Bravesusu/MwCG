@@ -50,22 +50,23 @@ void Canvas::DrawAxisGird()
 	gird_line_.set(left, 0, right, 0);
 	gird_line_.Draw();
 
-	int x_min = (int)left;
-	int x_max = (int)right;
+	int gird_unit = 100;
+	int x_min = (int)left / gird_unit * gird_unit;
+	int x_max = (int)right / gird_unit * gird_unit;
 
 	gird_line_.set_width(1);
-	if (x_min < 0)
+	for (int x = x_min; x <= x_max; x += gird_unit)
 	{
-		for (int x = 0; x > x_min; x -= 100)
-		{
-			gird_line_.set(x, top, x, bottom);
-			gird_line_.Draw();
-		}
-		if (x_max > 0)
-			for (int x = 0; x < x_max; x += 100)
-			{
-				gird_line_.set(x, top, x, bottom);
-				gird_line_.Draw();
-			}
+		gird_line_.set(x, top, x, bottom);
+		gird_line_.Draw();
+	}
+
+	int y_max = (int)top / gird_unit * gird_unit;
+	int y_min = (int)bottom / gird_unit * gird_unit;
+
+	for (int y = y_min; y <= y_max; y += gird_unit)
+	{
+		gird_line_.set(left, y, right, y);
+		gird_line_.Draw();
 	}
 }

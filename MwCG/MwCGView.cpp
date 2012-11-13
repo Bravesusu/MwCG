@@ -413,10 +413,10 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		uiState_->OnLButtonDown(nFlags, point);
 
-		CMwCGDoc* pDoc = GetDocument();
-		ASSERT_VALID(pDoc);
-		if (!pDoc)
-			return;
+		//CMwCGDoc* pDoc = GetDocument();
+		//ASSERT_VALID(pDoc);
+		//if (!pDoc)
+			//return;
 
 		m_bMouseDown = true;
 	}
@@ -426,11 +426,9 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		// TODO: Add your message handler code here and/or call default
 
-		CView::OnKeyDown(nChar, nRepCnt, nFlags);
-
 		uiState_->OnKeyDown(nChar, nRepCnt, nFlags);
 
-		//TODO: switch to nav mode in edit mode on space
+		CView::OnKeyDown(nChar, nRepCnt, nFlags);
 	}
 
 
@@ -438,14 +436,9 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		// TODO: Add your message handler code here and/or call default
 
-		CView::OnKeyUp(nChar, nRepCnt, nFlags);
-
 		uiState_->OnKeyUp(nChar, nRepCnt, nFlags);
-		//TODO: switch back to edit mode on space
-		if (' ' == nChar)
-		{
 
-		}
+		CView::OnKeyUp(nChar, nRepCnt, nFlags);
 	}
 
 	void CMwCGView::SwitchToEditMode()
