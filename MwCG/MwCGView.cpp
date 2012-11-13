@@ -188,6 +188,13 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 			return -1;
 
 		//state_.Initilize(this, pDoc);
+		uiNavState_.reset(new UiNav());
+		UiEditState_.reset(new UiEdit());
+		uiNavState_->Initialize(pDoc, this);
+		UiEditState_->Initialize(pDoc, this);
+
+		uiState_ = uiNavState_;
+
 		return 0;
 	}
 
@@ -303,6 +310,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		// TODO: Add your message handler code here and/or call default
 
 		CView::OnMouseMove(nFlags, point);
+
+		uiState_->OnMouseMove(nFlags, point);
 
 		CMwCGDoc* pDoc = GetDocument();
 		ASSERT_VALID(pDoc);

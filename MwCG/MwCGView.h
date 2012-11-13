@@ -15,7 +15,6 @@
 #pragma once
 #include "MwGLRenderer.h"
 #include "MainFrm.h"
-#include "UiState.h"
 
 using namespace mw;
 
@@ -25,7 +24,7 @@ protected: // create from serialization only
 	CMwCGView();
 	DECLARE_DYNCREATE(CMwCGView)
 
-// Attributes
+	// Attributes
 public:
 	CMwCGDoc* GetDocument() const;
 protected:
@@ -35,12 +34,13 @@ protected:
 	Vector2 mouse_xy_, mouse_down_xy_;
 	int zoom_level_;
 	bool m_bMouseDown;
-	//UiState<CMwCGView, CMwCGDoc> state_	;
-
-// Operations
+	shared_ptr<UiState> uiState_;
+	shared_ptr<UiNav> uiNavState_;
+	shared_ptr<UiEdit> UiEditState_;
+	// Operations
 public:
 
-// Overrides
+	// Overrides
 public:
 	virtual void OnDraw(CDC* pDC);  // overridden to draw this view
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -49,7 +49,7 @@ protected:
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
-// Implementation
+	// Implementation
 public:
 	virtual ~CMwCGView();
 #ifdef _DEBUG
@@ -59,7 +59,7 @@ public:
 
 protected:
 
-// Generated message map functions
+	// Generated message map functions
 protected:
 	afx_msg void OnFilePrintPreview();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
@@ -73,25 +73,25 @@ public:
 	afx_msg void OnUpdateClearColor(CCmdUI *pCmdUI);
 	virtual void OnInitialUpdate();
 	virtual void OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);
-//	afx_msg void OnCanvasHeight();
-//	afx_msg void OnCanvasWidth();
-//	afx_msg void OnCanvasHeight();
+	//	afx_msg void OnCanvasHeight();
+	//	afx_msg void OnCanvasWidth();
+	//	afx_msg void OnCanvasHeight();
 	afx_msg void OnUpdateCanvasWidth(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateCanvasHeight(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateShapeGallery(CCmdUI *pCmdUI);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnUpdateIdsStatusPos(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateIdsStatusZoom(CCmdUI *pCmdUI);
-//	afx_msg void OnIdsStatusZoomSlider();
+	//	afx_msg void OnIdsStatusZoomSlider();
 	afx_msg void OnUpdateIdsStatusZoomSlider(CCmdUI *pCmdUI);
 	afx_msg void OnIdsStatusZoomSlider();
-//	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
+	//	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp
 inline CMwCGDoc* CMwCGView::GetDocument() const
-   { return reinterpret_cast<CMwCGDoc*>(m_pDocument); }
+{ return reinterpret_cast<CMwCGDoc*>(m_pDocument); }
 #endif
 

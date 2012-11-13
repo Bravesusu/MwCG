@@ -132,6 +132,12 @@
     <ClInclude Include="UiState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UiNav.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UiEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -216,6 +222,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UiState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UiNav.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UiEdit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

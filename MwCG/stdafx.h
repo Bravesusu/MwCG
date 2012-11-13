@@ -62,3 +62,7 @@
 
 
 #include "MwFlag.h"
+
+#include "UiState.h"
+#include "UiEdit.h"
+#include "UiNav.h"
