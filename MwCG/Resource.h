@@ -117,13 +117,17 @@
 #define ID_SELECT                       32778
 #define ID_SHAPE_GALLERY                32779
 #define ID_CHECK_GIRD                   32783
+#define ID_CONTEXT_INSERT               32784
+#define ID_EDIT_POS_X                   32785
+#define ID_EDIT3                        32786
+#define ID_EDIT_POS_Y                   32786
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        312
-#define _APS_NEXT_COMMAND_VALUE         32784
+#define _APS_NEXT_COMMAND_VALUE         32787
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

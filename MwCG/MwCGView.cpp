@@ -384,6 +384,8 @@ ON_UPDATE_COMMAND_UI(IDS_STATUS_RECT, &CMwCGView::OnUpdateIdsStatusRect)
 		uiState_->OnLButtonUp(nFlags, point);
 
 		m_bMouseDown = false;
+
+		FooFloaty(point);
 	}
 
 
@@ -483,4 +485,27 @@ ON_UPDATE_COMMAND_UI(IDS_STATUS_RECT, &CMwCGView::OnUpdateIdsStatusRect)
 			screen_->bottom() 
 			);
 		pCmdUI->SetText(strRect);
+	}
+
+	void CMwCGView::FooFloaty( CPoint point )
+	{
+		CMFCRibbonMiniToolBar* pFloaty = new CMFCRibbonMiniToolBar;
+
+		InitFloaty(pFloaty);
+
+		ClientToScreen(&point);
+		pFloaty->Show(point.x, point.y);
+	}
+
+	void CMwCGView::InitFloaty( CMFCRibbonMiniToolBar* pFloaty )
+	{
+		ASSERT_VALID(pFloaty);
+
+		CList<UINT, UINT> lstCmds;
+		lstCmds.AddTail(ID_EDIT_PASTE);
+		lstCmds.AddTail(ID_SHAPE_GALLERY);
+		lstCmds.AddTail(ID_CHECK_GIRD);
+		lstCmds.AddTail(ID_EDIT_POS_X);
+		lstCmds.AddTail(ID_EDIT_POS_Y);
+		pFloaty->SetCommands(((CMainFrame*) GetTopLevelFrame())->GetRibbonBar(), lstCmds);
 	}

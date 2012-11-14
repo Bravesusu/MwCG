@@ -137,8 +137,11 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UiCreator.h" />
     <ClInclude Include="UiEdit.h" />
+    <ClInclude Include="UiEditor.h" />
     <ClInclude Include="UiNav.h" />
+    <ClInclude Include="UiSelector.h" />
     <ClInclude Include="UiState.h" />
     <ClInclude Include="ViewTree.h" />
   </ItemGroup>
@@ -172,8 +175,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="UiCreator.cpp" />
     <ClCompile Include="UiEdit.cpp" />
+    <ClCompile Include="UiEditor.cpp" />
     <ClCompile Include="UiNav.cpp" />
+    <ClCompile Include="UiSelector.cpp" />
     <ClCompile Include="UiState.cpp" />
     <ClCompile Include="ViewTree.cpp" />
   </ItemGroup>
