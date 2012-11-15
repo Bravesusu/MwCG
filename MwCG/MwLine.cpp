@@ -34,7 +34,7 @@ void Line::Serialize(CArchive& ar)
 	}
 }
 
-void Line::Draw()
+void Line::DoDraw()
 {
 	color()();
 	glLineWidth(width_);

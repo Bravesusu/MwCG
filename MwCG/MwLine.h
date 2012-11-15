@@ -29,7 +29,8 @@ namespace mw
 		void set_width(float width) { width_ = width; }
 	public:
 		virtual void Serialize(CArchive& ar);
-		void Draw();
+	private:
+		void DoDraw();
 	};
 	
 }

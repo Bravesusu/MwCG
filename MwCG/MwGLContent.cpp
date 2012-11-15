@@ -49,7 +49,7 @@ void GlContent::Serialize(CArchive& ar)
 	}
 }
 
-void GlContent::Draw()
+void GlContent::DoDraw()
 {
 	//This function is called every time when updating a frame
 	//Events should be coming before

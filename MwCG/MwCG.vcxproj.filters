@@ -138,9 +138,6 @@
     <ClInclude Include="MwGlScreen.h">
       <Filter>Mw\Content</Filter>
     </ClInclude>
-    <ClInclude Include="MwMouse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UiState.h">
       <Filter>Mw\UI State</Filter>
     </ClInclude>
@@ -173,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="Rect.h">
       <Filter>Mw\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="MwMouse.h">
+      <Filter>Mw\Content</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -254,9 +254,6 @@
     <ClCompile Include="MwGlScreen.cpp">
       <Filter>Mw\Content</Filter>
     </ClCompile>
-    <ClCompile Include="MwMouse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UiState.cpp">
       <Filter>Mw\UI State</Filter>
     </ClCompile>
@@ -280,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="Rect.cpp">
       <Filter>Mw\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="MwMouse.cpp">
+      <Filter>Mw\Content</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

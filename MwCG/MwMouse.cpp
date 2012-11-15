@@ -12,7 +12,7 @@ Mouse::~Mouse(void)
 {
 }
 
-void mw::Mouse::Draw()
+void mw::Mouse::DoDraw()
 {
 	if (!screen())
 		return;

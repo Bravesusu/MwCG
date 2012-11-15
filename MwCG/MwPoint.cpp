@@ -27,7 +27,7 @@ void Point::Serialize(CArchive& ar)
 	}
 }
 
-void Point::Draw()
+void Point::DoDraw()
 {
 	color()();
 	glPointSize(size_);

@@ -27,3 +27,8 @@ Rect mw::GlElement::bound() const
 {
 	return Rect();
 }
+
+void mw::GlElement::Draw()
+{
+	DoDraw();
+}

@@ -27,8 +27,10 @@ namespace mw
 		virtual void Serialize(CArchive& ar);
 
 		//Rendering
+	private:
+		virtual void DoDraw() {};
 	public:
-		virtual void Draw() {};
+		void Draw();
 		virtual bool HitTest() { return false; };
 
 		//TODO: components

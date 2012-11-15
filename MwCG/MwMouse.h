@@ -17,8 +17,8 @@ namespace mw
 		Vector2 position() const { return position_; }
 		void set_position(float x, float y) { position_.set(x, y); }
 		void set_position(const Vector2& pos) { position_.set(pos); }
-	public:
-		void Draw();
+	private:
+		void DoDraw();
 	};
 };
 

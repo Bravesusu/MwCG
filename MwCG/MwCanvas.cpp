@@ -28,7 +28,7 @@ void Canvas::Serialize(CArchive& ar)
 	}
 }
 
-void Canvas::Draw()
+void Canvas::DoDraw()
 {
 	color().Clear();
 	::glClear(GL_COLOR_BUFFER_BIT);

@@ -30,8 +30,9 @@ namespace mw
 	public:
 		void AddElement(GlElementPtr element);
 		void RemoveElement(GlElementPtr element);
+	private:
+		void DoDraw();
 	public:
-		void Draw();
 		bool HitTest();
 		Vector2 set_mouse(const CPoint& viewPoint) const;
 

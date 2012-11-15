@@ -13,8 +13,8 @@ namespace mw
 	public:
 		virtual void Serialize(CArchive& ar);
 	
-	public:
-		void Draw();
+	private:
+		void DoDraw();
 	public:
 		Canvas(void);
 		~Canvas(void);

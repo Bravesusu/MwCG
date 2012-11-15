@@ -31,7 +31,7 @@ void Sierpinski::Serialize(CArchive& ar)
 	}
 }
 
-void Sierpinski::Draw()
+void Sierpinski::DoDraw()
 {
 	color()();
 	glPointSize(1);

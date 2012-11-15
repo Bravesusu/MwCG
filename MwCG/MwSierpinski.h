@@ -22,7 +22,8 @@ namespace mw
 		//Serialization
 	public:
 		virtual void Serialize(CArchive& ar);
-		void Draw();
+	private:
+		void DoDraw();
 	};
 	
 }
