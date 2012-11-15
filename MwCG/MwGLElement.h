@@ -7,6 +7,7 @@ using namespace std;
 
 namespace mw 
 {
+	class Rect;
 	class GlElement :
 		public CObject
 	{
@@ -39,6 +40,9 @@ namespace mw
 	public:
 		const shared_ptr<GlScreen>& screen() const { return screen_; }
 		void set_screen(const shared_ptr<GlScreen>& screen) { screen_ = screen; }
+
+	public:
+		virtual Rect bound() const;
 	};
 
 	typedef shared_ptr<GlElement> GlElementPtr;

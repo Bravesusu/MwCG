@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MwGLElement.h"
 
+#include "Rect.h"
+
 using namespace mw;
 
 IMPLEMENT_SERIAL(GlElement, CObject, 1);
@@ -19,4 +21,9 @@ void GlElement::Serialize(CArchive& ar)
 	CObject::Serialize(ar);
 
 	color_.Serialize(ar);
+}
+
+Rect mw::GlElement::bound() const
+{
+	return Rect();
 }

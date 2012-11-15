@@ -40,6 +40,9 @@
     <Filter Include="Mw\Interfaces">
       <UniqueIdentifier>{f2be3b7e-155e-484b-8e4b-62ad958ac763}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mw\Commands">
+      <UniqueIdentifier>{69082143-7e58-45df-98db-1e735147eef1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -150,12 +153,6 @@
     <ClInclude Include="UiEditor.h">
       <Filter>Mw\UI State\Edit</Filter>
     </ClInclude>
-    <ClInclude Include="UiSelector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UiCreator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IDrawable.h">
       <Filter>Mw\Interfaces</Filter>
     </ClInclude>
@@ -165,8 +162,17 @@
     <ClInclude Include="IOperation.h">
       <Filter>Mw\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="UiCreator.h">
+      <Filter>Mw\UI State</Filter>
+    </ClInclude>
+    <ClInclude Include="UiSelector.h">
+      <Filter>Mw\UI State</Filter>
+    </ClInclude>
     <ClInclude Include="AddElementToContent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Mw\Types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -263,14 +269,17 @@
     <ClCompile Include="UiEditor.cpp">
       <Filter>Mw\UI State\Edit</Filter>
     </ClCompile>
-    <ClCompile Include="UiSelector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UiCreator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\UI State</Filter>
+    </ClCompile>
+    <ClCompile Include="UiSelector.cpp">
+      <Filter>Mw\UI State</Filter>
     </ClCompile>
     <ClCompile Include="AddElementToContent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>Mw\Types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
