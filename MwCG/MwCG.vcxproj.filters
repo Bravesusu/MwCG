@@ -174,6 +174,12 @@
     <ClInclude Include="MwMouse.h">
       <Filter>Mw\Content</Filter>
     </ClInclude>
+    <ClInclude Include="RemoveElementFromContent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentElementOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -280,6 +286,12 @@
     </ClCompile>
     <ClCompile Include="MwMouse.cpp">
       <Filter>Mw\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="RemoveElementFromContent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentElementOperation.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

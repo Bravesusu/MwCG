@@ -10,20 +10,17 @@ AddElementToContent::~AddElementToContent(void)
 {
 }
 
-mw::AddElementToContent::AddElementToContent( shared_ptr<GlContent> content, shared_ptr<GlElement> element ) :
-	content_(content),
-	element_(element)
+mw::AddElementToContent::AddElementToContent( shared_ptr<GlContent> content, shared_ptr<GlElement> element )
 {
-	ASSERT(content_);
-	ASSERT(element_);
+	Initialize(content, element);
 }
 
 void mw::AddElementToContent::Undo()
 {
-	content_->RemoveElement(element_);
+	content()->RemoveElement(element());
 }
 
 void mw::AddElementToContent::Redo()
 {
-	content_->AddElement(element_);
+	content()->AddElement(element());
 }
