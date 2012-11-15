@@ -35,12 +35,14 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		ON_COMMAND(ID_CLEAR_COLOR, &CMwCGDoc::OnClearColor)
 		//		ON_UPDATE_COMMAND_UI(IDS_STATUS_POS, &CMwCGDoc::OnUpdateIdsStatusPos)
 		ON_COMMAND(ID_CHECK_GIRD, &CMwCGDoc::OnCheckGird)
+		ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, &CMwCGDoc::OnUpdateEditUndo)
+		ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, &CMwCGDoc::OnUpdateEditRedo)
 	END_MESSAGE_MAP()
 
 
 	// CMwCGDoc construction/destruction
 
-	CMwCGDoc::CMwCGDoc()
+	CMwCGDoc::CMwCGDoc() : op_index(-1)
 	{
 		// TODO: add one-time construction code here
 
@@ -245,7 +247,63 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	void CMwCGDoc::OnCheckGird()
 	{
 		// TODO: Add your command handler code here
-		
+
 		glContent_->canvas()->toggle_gird();
 		UpdateAllViews(NULL);
+	}
+
+	bool CMwCGDoc::CanUndo() const
+	{
+		int size = ops_.size();
+		ASSERT(op_index >= -1 && op_index < size);
+		return !ops_.empty() && op_index > -1 && op_index < size;
+	}
+
+	bool CMwCGDoc::CanRedo() const
+	{
+		int size = ops_.size();
+		ASSERT(op_index >= -1 && op_index < size);
+		return !ops_.empty() > 0 && op_index >= -1 && op_index < size - 1;
+	}
+
+	void CMwCGDoc::CommitOperation( shared_ptr<IOperation> operation )
+	{
+		//Increase index
+		op_index++;
+
+		//Remove current index to the tail
+		if (op_index < ops_.size())
+			ops_.erase(ops_.begin() + op_index, ops_.end());
+
+		ops_.push_back(operation);
+	}
+
+	void CMwCGDoc::Redo()
+	{
+		if (!CanRedo())
+			return;
+		op_index++;
+		ops_.at(op_index)->Redo();
+	}
+
+	void CMwCGDoc::Undo()
+	{
+		if (!CanUndo())
+			return;
+		ops_.at(op_index)->Undo();
+		op_index--;
+	}
+
+
+	void CMwCGDoc::OnUpdateEditUndo(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(CanUndo());
+	}
+
+
+	void CMwCGDoc::OnUpdateEditRedo(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(CanRedo());
 	}

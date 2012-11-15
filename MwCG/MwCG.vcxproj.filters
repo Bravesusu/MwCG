@@ -37,6 +37,9 @@
     <Filter Include="Mw\UI State\Edit">
       <UniqueIdentifier>{05491d61-cd13-4ad2-9202-b0afe6324ef5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mw\Interfaces">
+      <UniqueIdentifier>{f2be3b7e-155e-484b-8e4b-62ad958ac763}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -154,7 +157,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IDrawable.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IReversible.h">
+      <Filter>Mw\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IOperation.h">
+      <Filter>Mw\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -255,9 +264,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UiCreator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDrawable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

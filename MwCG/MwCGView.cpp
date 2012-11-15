@@ -62,6 +62,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 //		ON_UPDATE_COMMAND_UI(ID_FILE_PRINT_PREVIEW, &CMwCGView::OnUpdateFilePrintPreview)
 ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
 ON_UPDATE_COMMAND_UI(IDS_STATUS_RECT, &CMwCGView::OnUpdateIdsStatusRect)
+ON_COMMAND(ID_EDIT_UNDO, &CMwCGView::OnEditUndo)
+ON_COMMAND(ID_EDIT_REDO, &CMwCGView::OnEditRedo)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -508,4 +510,28 @@ ON_UPDATE_COMMAND_UI(IDS_STATUS_RECT, &CMwCGView::OnUpdateIdsStatusRect)
 		lstCmds.AddTail(ID_EDIT_POS_X);
 		lstCmds.AddTail(ID_EDIT_POS_Y);
 		pFloaty->SetCommands(((CMainFrame*) GetTopLevelFrame())->GetRibbonBar(), lstCmds);
+	}
+
+
+	void CMwCGView::OnEditUndo()
+	{
+		// TODO: Add your command handler code here
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return;
+
+		pDoc->Undo();
+	}
+
+
+	void CMwCGView::OnEditRedo()
+	{
+		// TODO: Add your command handler code here
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return;
+		
+		pDoc->Redo();
 	}

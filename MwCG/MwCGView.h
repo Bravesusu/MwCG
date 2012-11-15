@@ -104,6 +104,8 @@ public:
 	afx_msg void OnUpdateIdsStatusRect(CCmdUI *pCmdUI);
 	void FooFloaty( CPoint point );
 	void InitFloaty( CMFCRibbonMiniToolBar* pFloaty );
+	afx_msg void OnEditUndo();
+	afx_msg void OnEditRedo();
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

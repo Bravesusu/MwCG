@@ -2,7 +2,7 @@
 
 namespace mw
 {
-	class ICommand
+	class IOperation
 	{
 	public:
 		virtual void Undo() = 0;

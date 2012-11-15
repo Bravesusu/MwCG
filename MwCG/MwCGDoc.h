@@ -14,6 +14,8 @@
 
 
 #pragma once
+#include "IOperation.h"
+
 #include "MwGLContent.h"
 #include "MwPoint.h"
 #include "MwLine.h"
@@ -26,6 +28,17 @@ class CMwCGDoc : public CDocument
 protected: // create from serialization only
 	CMwCGDoc();
 	DECLARE_DYNCREATE(CMwCGDoc)
+
+private:
+	vector<shared_ptr<IOperation>> ops_;
+	//Point to current op [-1, ops_.size())
+	int op_index;
+public:
+	bool CanUndo() const;
+	bool CanRedo() const;
+	void CommitOperation(shared_ptr<IOperation> operation);
+	void Redo();
+	void Undo();
 
 // Attributes
 public:
@@ -72,4 +85,6 @@ public:
 	afx_msg void OnCanvasHeight();
 //	afx_msg void OnUpdateIdsStatusPos(CCmdUI *pCmdUI);
 	afx_msg void OnCheckGird();
+	afx_msg void OnUpdateEditUndo(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateEditRedo(CCmdUI *pCmdUI);
 };
