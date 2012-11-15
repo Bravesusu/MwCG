@@ -9,4 +9,5 @@
 
 #include "afx.h"
 
-#include "MwGLObject.h"
+#include "IDrawable.h"
+#include "MwGLObject.h"  
