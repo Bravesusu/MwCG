@@ -1,10 +1,10 @@
 #pragma once
-#include "uieditor.h"
+#include "UiEditorTool.h"
 
 namespace mw
 {
 	class UiCreator :
-		public UiEditor
+		public UiEditorTool
 	{
 	public:
 		UiCreator(void);

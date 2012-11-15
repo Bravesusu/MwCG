@@ -116,6 +116,7 @@
 #define ID_BUTTON4                      32773
 #define ID_BUTTON5                      32774
 #define ID_SELECT                       32778
+#define ID_TOOL_SELECT                  32778
 #define ID_SHAPE_GALLERY                32779
 #define ID_CHECK_GIRD                   32783
 #define ID_CONTEXT_SHAPE                32784

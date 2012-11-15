@@ -146,7 +146,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UiCreator.h" />
     <ClInclude Include="UiEdit.h" />
-    <ClInclude Include="UiEditor.h" />
+    <ClInclude Include="UiEditorTool.h" />
     <ClInclude Include="UiNav.h" />
     <ClInclude Include="UiSelector.h" />
     <ClInclude Include="UiState.h" />
@@ -188,7 +188,7 @@
     </ClCompile>
     <ClCompile Include="UiCreator.cpp" />
     <ClCompile Include="UiEdit.cpp" />
-    <ClCompile Include="UiEditor.cpp" />
+    <ClCompile Include="UiEditorTool.cpp" />
     <ClCompile Include="UiNav.cpp" />
     <ClCompile Include="UiSelector.cpp" />
     <ClCompile Include="UiState.cpp" />

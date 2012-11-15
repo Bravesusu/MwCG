@@ -106,6 +106,8 @@ public:
 	void InitFloaty( CMFCRibbonMiniToolBar* pFloaty );
 	afx_msg void OnEditUndo();
 	afx_msg void OnEditRedo();
+	afx_msg void OnToolSelect();
+	afx_msg void OnUpdateToolSelect(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

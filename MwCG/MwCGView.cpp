@@ -64,6 +64,8 @@ ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
 ON_UPDATE_COMMAND_UI(IDS_STATUS_RECT, &CMwCGView::OnUpdateIdsStatusRect)
 ON_COMMAND(ID_EDIT_UNDO, &CMwCGView::OnEditUndo)
 ON_COMMAND(ID_EDIT_REDO, &CMwCGView::OnEditRedo)
+ON_COMMAND(ID_TOOL_SELECT, &CMwCGView::OnToolSelect)
+ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -537,4 +539,18 @@ ON_COMMAND(ID_EDIT_REDO, &CMwCGView::OnEditRedo)
 		
 		pDoc->Redo();
 		Invalidate();
+	}
+
+
+	void CMwCGView::OnToolSelect()
+	{
+		// TODO: Add your command handler code here
+		uiEditState_->use_selector();
+	}
+
+
+	void CMwCGView::OnUpdateToolSelect(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(m_render.IsValid());
 	}

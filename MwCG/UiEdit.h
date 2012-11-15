@@ -7,17 +7,24 @@ using namespace std;
 
 namespace mw
 {
-	class UiEditor;
+	class UiEditorTool;
+	class UiSelector;
 
 	class UiEdit :
 		public UiState
 	{
 	private:
-		shared_ptr<UiEditor> editor_;
+		shared_ptr<UiEditorTool> tool_;
+		shared_ptr<UiSelector> selector_;
 		Vector2 mouse_xy_;
+		bool mouse_left_down_;
 		void UpdateMouseInput(UINT nFlags, CPoint point);
 	public:
-		
+		//Get default selector
+		shared_ptr<UiSelector> selector() const { return selector_; }
+		//Set tool from command
+		void set_tool(shared_ptr<UiEditorTool> tool);
+		void use_selector();
 	public:
 		UiEdit(void);
 		~UiEdit(void);

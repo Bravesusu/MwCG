@@ -147,9 +147,6 @@
     <ClInclude Include="UiEdit.h">
       <Filter>Mw\UI State</Filter>
     </ClInclude>
-    <ClInclude Include="UiEditor.h">
-      <Filter>Mw\UI State\Edit</Filter>
-    </ClInclude>
     <ClInclude Include="IDrawable.h">
       <Filter>Mw\Interfaces</Filter>
     </ClInclude>
@@ -179,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="ContentElementOperation.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UiEditorTool.h">
+      <Filter>Mw\UI State\Edit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -269,9 +269,6 @@
     <ClCompile Include="UiEdit.cpp">
       <Filter>Mw\UI State</Filter>
     </ClCompile>
-    <ClCompile Include="UiEditor.cpp">
-      <Filter>Mw\UI State\Edit</Filter>
-    </ClCompile>
     <ClCompile Include="UiCreator.cpp">
       <Filter>Mw\UI State</Filter>
     </ClCompile>
@@ -292,6 +289,9 @@
     </ClCompile>
     <ClCompile Include="ContentElementOperation.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UiEditorTool.cpp">
+      <Filter>Mw\UI State\Edit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
