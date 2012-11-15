@@ -33,9 +33,9 @@ void GlContent::Serialize(CArchive& ar)
 
 	if (ar.IsStoring())
 	{
-		for (int i = 0; i < Elements.size(); i++)
+		for (int i = 0; i < elements_.size(); i++)
 		{
-			arr.Add(Elements.at(i).get());
+			arr.Add(elements_.at(i).get());
 		}
 		arr.Serialize(ar);
 	}
@@ -44,7 +44,7 @@ void GlContent::Serialize(CArchive& ar)
 		arr.Serialize(ar);
 		for (int i = 0; i < arr.GetSize(); i++)
 		{
-			Elements.push_back(GlElementPtr(dynamic_cast<GlElement*>(arr[i])));
+			elements_.push_back(GlElementPtr(dynamic_cast<GlElement*>(arr[i])));
 		}
 	}
 }
@@ -64,9 +64,9 @@ void GlContent::Draw()
 	canvas_->Draw();
 
 	//Contents
-	for (UINT i = 0; i < Elements.size(); i++)
+	for (UINT i = 0; i < elements_.size(); i++)
 	{
-		Elements.at(i)->Draw();
+		elements_.at(i)->Draw();
 	}
 
 	//Decorator & interaction layer
@@ -77,9 +77,9 @@ bool GlContent::HitTest()
 {
 	//TODO: point of optimization
 
-	for (UINT i = 0; i < Elements.size(); i++)
+	for (UINT i = 0; i < elements_.size(); i++)
 	{
-		if (Elements.at(i)->HitTest())
+		if (elements_.at(i)->HitTest())
 			return true;
 	}
 	return false;
@@ -96,7 +96,7 @@ Vector2 GlContent::set_mouse(const CPoint& viewPoint) const
 
 void mw::GlContent::AddElement(GlElementPtr element)
 {
-	Elements.push_back(element);
+	elements_.push_back(element);
 	element->set_screen(screen_);
 }
 

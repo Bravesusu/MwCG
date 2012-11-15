@@ -26,7 +26,7 @@ namespace mw
 		shared_ptr<GlScreen> screen_;
 		shared_ptr<Mouse> mouse_;
 	private:
-		vector<GlElementPtr> Elements;
+		vector<GlElementPtr> elements_;
 	public:
 		void AddElement(GlElementPtr element);
 		void RemoveElement(GlElementPtr element);
