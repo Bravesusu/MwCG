@@ -103,4 +103,8 @@ void mw::GlContent::AddElement(GlElementPtr element)
 void mw::GlContent::RemoveElement( GlElementPtr element )
 {
 	//TODO: remove element from hierarchy
+
+	//TO REMOVE: hide element for the result, not final implementations
+	//WARNING: possible hazard for duplications
+	element->set_hidden(true);
 }

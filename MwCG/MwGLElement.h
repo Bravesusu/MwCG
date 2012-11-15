@@ -45,6 +45,13 @@ namespace mw
 
 	public:
 		virtual Rect bound() const;
+
+	private:
+		bool hidden_;
+
+	public:
+		bool hidden() const { return hidden_; }
+		void set_hidden(bool hidden) { hidden_ = hidden; }
 	};
 
 	typedef shared_ptr<GlElement> GlElementPtr;

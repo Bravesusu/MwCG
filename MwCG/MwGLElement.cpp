@@ -30,5 +30,6 @@ Rect mw::GlElement::bound() const
 
 void mw::GlElement::Draw()
 {
-	DoDraw();
+	if (!hidden_)
+		DoDraw();
 }
