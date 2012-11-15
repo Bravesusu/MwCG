@@ -33,9 +33,9 @@ void GlContent::Serialize(CArchive& ar)
 
 	if (ar.IsStoring())
 	{
-		for (int i = 0; i < elements_.size(); i++)
+		for (list<GlElementPtr>::iterator i = elements_.begin(); i != elements_.end(); i++)
 		{
-			arr.Add(elements_.at(i).get());
+			arr.Add(i->get());
 		}
 		arr.Serialize(ar);
 	}
@@ -64,9 +64,9 @@ void GlContent::DoDraw()
 	canvas_->Draw();
 
 	//Contents
-	for (UINT i = 0; i < elements_.size(); i++)
+	for (list<GlElementPtr>::iterator i = elements_.begin(); i != elements_.end(); i++)
 	{
-		elements_.at(i)->Draw();
+		(*i)->Draw();
 	}
 
 	//Decorator & interaction layer
@@ -77,11 +77,12 @@ bool GlContent::HitTest()
 {
 	//TODO: point of optimization
 
-	for (UINT i = 0; i < elements_.size(); i++)
+	for (list<GlElementPtr>::iterator i = elements_.begin(); i != elements_.end(); i++)
 	{
-		if (elements_.at(i)->HitTest())
+		if ((*i)->HitTest())
 			return true;
 	}
+
 	return false;
 }
 
@@ -102,9 +103,9 @@ void mw::GlContent::AddElement(GlElementPtr element)
 
 void mw::GlContent::RemoveElement( GlElementPtr element )
 {
-	//TODO: remove element from hierarchy
-
+	//remove element from hierarchy
+	elements_.remove(element);
 	//TO REMOVE: hide element for the result, not final implementations
 	//WARNING: possible hazard for duplications
-	element->set_hidden(true);
+	//element->set_hidden(true);
 }

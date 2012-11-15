@@ -522,6 +522,8 @@ ON_COMMAND(ID_EDIT_REDO, &CMwCGView::OnEditRedo)
 			return;
 
 		pDoc->Undo();
+
+		Invalidate();
 	}
 
 
@@ -534,4 +536,5 @@ ON_COMMAND(ID_EDIT_REDO, &CMwCGView::OnEditRedo)
 			return;
 		
 		pDoc->Redo();
+		Invalidate();
 	}

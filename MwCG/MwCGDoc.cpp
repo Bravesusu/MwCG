@@ -207,16 +207,17 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		int hh = height / 2;
 		for (int y = -hh; y < hh; y += 10)
 		{
-			Line* ln = new Line(
+			GlElementPtr ln(
+				new Line(
 				0, 
 				static_cast<float>(y), 
 				static_cast<float>(width), 
-				static_cast<float>(y));
+				static_cast<float>(y)));
 			ln->set_color(MW_RED);
 			//glContent_->AddElement(GlElementPtr(ln));
 			//glContent_->Elements.push_back(GlElementPtr(ln));
 			CommitOperation(OperationPtr(
-				new AddElementToContent(glContent_, GlElementPtr(ln))
+				new AddElementToContent(glContent_, ln)
 				));
 		}
 

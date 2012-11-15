@@ -7,7 +7,7 @@ using namespace mw;
 
 IMPLEMENT_SERIAL(GlElement, CObject, 1);
 
-GlElement::GlElement(void)
+GlElement::GlElement(void) : hidden_(false)
 {
 }
 
