@@ -659,6 +659,11 @@ BEGIN
     ID_CHECK_GIRD           "Show gird"
 END
 
+STRINGTABLE
+BEGIN
+    ID_MW_DYNAMIC           "Dynamic command"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

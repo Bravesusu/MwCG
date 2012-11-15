@@ -110,6 +110,7 @@
 #define IDS_EDIT_MENU                   306
 #define IDR_RIBBON                      307
 #define IDB_GL_PRIM                     310
+#define ID_MW_DYNAMIC                   30000
 #define ID_WRITE_PASTEASHYPERLINK       32770
 #define ID_CLEAR_COLOR                  32772
 #define ID_BUTTON4                      32773
@@ -120,7 +121,6 @@
 #define ID_CONTEXT_SHAPE                32784
 #define ID_EDIT_POS_X                   32785
 #define ID_EDIT_POS_Y                   32786
-#define ID_BUTTON6                      32789
 
 // Next default values for new objects
 // 

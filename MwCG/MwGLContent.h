@@ -29,6 +29,7 @@ namespace mw
 		vector<GlElementPtr> Elements;
 	public:
 		void AddElement(GlElementPtr element);
+		void RemoveElement(GlElementPtr element);
 	public:
 		void Draw();
 		bool HitTest();

@@ -99,3 +99,8 @@ void mw::GlContent::AddElement(GlElementPtr element)
 	Elements.push_back(element);
 	element->set_screen(screen_);
 }
+
+void mw::GlContent::RemoveElement( GlElementPtr element )
+{
+	//TODO: remove element from hierarchy
+}
