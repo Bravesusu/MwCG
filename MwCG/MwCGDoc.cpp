@@ -21,6 +21,8 @@
 
 #include "MwCGDoc.h"
 
+#include "AddElementToContent.h"
+
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -211,8 +213,11 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 				static_cast<float>(width), 
 				static_cast<float>(y));
 			ln->set_color(MW_RED);
-			glContent_->AddElement(GlElementPtr(ln));
+			//glContent_->AddElement(GlElementPtr(ln));
 			//glContent_->Elements.push_back(GlElementPtr(ln));
+			CommitOperation(OperationPtr(
+				new AddElementToContent(glContent_, GlElementPtr(ln))
+				));
 		}
 
 		for (int x = -hw; x < hw; x += 100)
@@ -235,7 +240,11 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		(*sk)[1] = Vector2(400.0, 400.0);
 		(*sk)[2] = Vector2(700.0, 50.0);
 
-		glContent_->AddElement(GlElementPtr(sk));
+		//glContent_->AddElement(GlElementPtr(sk));
+
+		CommitOperation(OperationPtr(
+			new AddElementToContent(glContent_, GlElementPtr(sk))
+			));
 	}
 
 	mw::Vector2 CMwCGDoc::SetMousePos( CPoint& point )
@@ -276,6 +285,8 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 			ops_.erase(ops_.begin() + op_index, ops_.end());
 
 		ops_.push_back(operation);
+
+		operation->Redo();
 	}
 
 	void CMwCGDoc::Redo()
