@@ -1,13 +1,18 @@
 #pragma once
-#include "ioperation.h"
+#include "ContentElementOperation.h"
 
 namespace mw
 {
 	class RemoveElementFromContent :
-		public IOperation
+		public ContentElementOperation
 	{
 	public:
-		RemoveElementFromContent(void);
+		RemoveElementFromContent(shared_ptr<GlContent> content, shared_ptr<GlElement> element);
 		~RemoveElementFromContent(void);
+
+		virtual void Undo();
+
+		virtual void Redo();
+
 	};
 }
