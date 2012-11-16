@@ -7,7 +7,7 @@
 
 using namespace mw;
 
-PointTool::PointTool(void) : isIdle_(true)
+PointTool::PointTool(void) : isFinished_(false)
 {
 	decorator_.reset(new PointDecorator());
 }
@@ -25,6 +25,7 @@ mw::OperationPtr mw::PointTool::PopNewOperation()
 
 void mw::PointTool::DoUpdateInput()
 {
+	point_->set_hidden(false);
 	point_->set_position(current());
 }
 
@@ -36,17 +37,23 @@ void mw::PointTool::Draw()
 void mw::PointTool::DoNew()
 {
 	point_.reset(new Point());
+	point_->set_hidden(true);
 	point_->set_size(5);
 	point_ += decorator_;
+	isFinished_ = false;
 }
 
 void mw::PointTool::DoNextInput()
 {
-	set_status(AcceptNone);
-	TRACE("WTF\n");
+	isFinished_ = true;
 }
 
 void mw::PointTool::DoFixInput()
 {
 	point_->set_position(current());
+}
+
+bool mw::PointTool::IsFinished() const
+{
+	return isFinished_;
 }

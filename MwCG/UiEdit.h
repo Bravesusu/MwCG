@@ -48,6 +48,8 @@ namespace mw
 	public:
 		virtual void Draw();
 
+		virtual void OnRButtonUp( UINT nFlags, CPoint point );
+
 	public:
 
 	};

@@ -60,3 +60,7 @@ void mw::UiNav::InitializeName()
 void mw::UiNav::Draw()
 {
 }
+
+void mw::UiNav::OnRButtonUp( UINT nFlags, CPoint point )
+{
+}

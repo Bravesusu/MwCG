@@ -22,9 +22,11 @@ namespace mw
 		virtual void OnKeyUp( UINT nChar, UINT nRepCnt, UINT nFlags );
 
 		virtual void InitializeName();
+		virtual void OnRButtonUp( UINT nFlags, CPoint point );
 
 	public:
 		virtual void Draw();
+
 
 	private:
 		bool m_bMouseDown;

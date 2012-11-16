@@ -6,7 +6,7 @@
 
 using namespace mw;
 
-LineTool::LineTool(void) : input_count_(0)
+LineTool::LineTool(void) 
 {
 	ptFrom_.reset(new Point());
 	ptFrom_->set_hidden(true);
@@ -36,7 +36,7 @@ mw::OperationPtr mw::LineTool::PopNewOperation()
 
 void mw::LineTool::DoInput()
 {
-	switch (input_count_)
+	switch (currentIndex())
 	{
 	case 0:
 		//TRACE("Set from(%.3f, %.3f)\n", curent().x(), curent().y());
@@ -61,7 +61,6 @@ void mw::LineTool::DoNew()
 	line_.reset(new Line());
 	ptFrom_->set_hidden(true);
 	ptTo_->set_hidden(true);
-	input_count_ = 0;
 }
 
 void mw::LineTool::DoUpdateInput()
@@ -69,19 +68,9 @@ void mw::LineTool::DoUpdateInput()
 	DoInput();
 }
 
-void mw::LineTool::DoNextInput()
-{
-	input_count_++;
-	if (input_count_ > 1)
-	{
-		set_status(AcceptNone);
-		input_count_ = -1;
-	}
-}
-
 void mw::LineTool::DoFixInput()
 {
-	DoInput();
+	//TODO:
 }
 
 void mw::LineTool::Draw()
@@ -89,4 +78,9 @@ void mw::LineTool::Draw()
 	line_->Draw();
 	ptFrom_->Draw();
 	ptTo_->Draw();
+}
+
+bool mw::LineTool::IsFinished() const
+{
+	return input_count() == 3;
 }

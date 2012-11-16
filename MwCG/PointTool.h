@@ -9,7 +9,7 @@ namespace mw
 		public UiEditorTool
 	{
 	private:
-		bool isIdle_;
+		bool isFinished_;
 		shared_ptr<Point> point_;
 		shared_ptr<PointDecorator> decorator_;
 	public:
@@ -28,6 +28,8 @@ namespace mw
 		virtual void DoUpdateInput();
 
 		virtual void DoFixInput();
+
+		virtual bool IsFinished() const;
 
 	};
 	

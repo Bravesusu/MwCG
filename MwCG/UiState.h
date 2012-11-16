@@ -28,8 +28,8 @@ namespace mw
 		virtual void OnLButtonUp(UINT nFlags, CPoint point) = 0;
 		virtual void OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags ) = 0;
 		virtual void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) = 0;
+		virtual void OnRButtonUp( UINT nFlags, CPoint point ) = 0;
 	public:
 		CString name() const { return name_; }
-
 	};
 }

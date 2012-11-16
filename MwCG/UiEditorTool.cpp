@@ -3,7 +3,7 @@
 
 using namespace mw;
 
-UiEditorTool::UiEditorTool(void) : status_(AcceptUpdate)
+UiEditorTool::UiEditorTool(void) : input_index(-1)
 {
 }
 
@@ -14,29 +14,28 @@ UiEditorTool::~UiEditorTool(void)
 
 void mw::UiEditorTool::UpdateInput( const Vector2& pos )
 {
-	if (status_ != AcceptUpdate)
-		return;
-	current_ = pos;
+	if (input_index >= inputs_.size())
+		inputs_.push_back(pos);
+	else
+	{
+		inputs_[input_index] = pos;
+	}
+	ASSERT(input_index == inputs_.size() - 1);
 	DoUpdateInput();
-}
-
-void mw::UiEditorTool::CommitInput()
-{
-	status_ = AcceptFix;
-	DoCommitInput();
 }
 
 void mw::UiEditorTool::New()
 {
-	status_ = AcceptUpdate;
+	input_index = 0;
+	inputs_.clear();
 	DoNew();
 }
 
-void mw::UiEditorTool::NextInput( const Vector2& pos )
+int mw::UiEditorTool::NextInput()
 {
-	status_ = AcceptUpdate;
-	current_ = pos;
+	input_index++;
 	DoNextInput();
+	return input_index - 1;
 }
 
 void mw::UiEditorTool::Cancel()
@@ -45,10 +44,8 @@ void mw::UiEditorTool::Cancel()
 	New();
 }
 
-void mw::UiEditorTool::FixInput( const Vector2& pos )
+void mw::UiEditorTool::FixInput( const int index, const Vector2& pos )
 {
-	if (status_ == AcceptNone)
-		return;
-	current_ = pos;
-	DoFixInput();
+	inputs_[index] = pos;
+	DoFixInput(index);
 }

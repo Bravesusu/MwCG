@@ -29,7 +29,8 @@ void mw::UiEdit::OnMouseMove( UINT nFlags, CPoint point )
 
 	if (!tool_)
 		return;
-	tool_->UpdateInput(mouse_xy_);
+	if (!tool_->IsFinished())
+		tool_->UpdateInput(mouse_xy_);
 }
 
 void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
@@ -47,11 +48,6 @@ void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
 		//TODO: configurable behavior
 		tool_->New();
 	}
-	else if (tool_->status() == AcceptFix)
-	{
-		TRACE("Go Next\n");
-		tool_->NextInput(mouse_xy_);
-	}
 }
 
 void mw::UiEdit::OnLButtonUp( UINT nFlags, CPoint point )
@@ -66,7 +62,9 @@ void mw::UiEdit::OnLButtonUp( UINT nFlags, CPoint point )
 	if (mouse_left_down_)
 	{
 		if (!tool_->IsFinished())
-			tool_->CommitInput();
+		{
+			int oldIndex = tool_->NextInput();
+		}
 	}
 
 	mouse_left_down_ = false;
@@ -120,5 +118,10 @@ void mw::UiEdit::Draw()
 {
 	if (tool_)
 		tool_->Draw();
+}
+
+void mw::UiEdit::OnRButtonUp( UINT nFlags, CPoint point )
+{
+	tool_->Cancel();
 }
 

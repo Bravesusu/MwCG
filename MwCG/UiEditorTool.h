@@ -5,19 +5,25 @@
 
 namespace mw
 {
-	enum InputStatus { AcceptUpdate, AcceptFix, AcceptNone };
+	//enum InputStatus { AcceptUpdate, AcceptFix, AcceptNone };
 	class UiEditorTool :
 		public IDrawable
 	{
 	private:
 		shared_ptr<GlContent> content_;
-		InputStatus status_;
-		Vector2 current_;
+		//InputStatus status_;
+		vector<Vector2> inputs_;
+		int input_index;
+		//Vector2 current_;
 	protected:
-		Vector2 current() const { return current_; }
-		void set_status(InputStatus status) {status_ = status; }
+		int input_count() const { return inputs_.size(); }
+
+		int currentIndex() const { return input_index; }
+		Vector2 current() const { return inputs_.at(input_index); }
+
+		//void set_status(InputStatus status) {status_ = status; }
 	public:
-		InputStatus status() const { return status_; }
+		//InputStatus status() const { return status_; }
 		shared_ptr<GlContent> content() const { return content_; }
 		void set_content(const shared_ptr<GlContent>& content) { content_ = content; }
 	public:
@@ -28,16 +34,14 @@ namespace mw
 		virtual void DoNew() {};
 		virtual void DoNextInput() {};
 		virtual void DoUpdateInput() {};
-		virtual void DoCommitInput() {};
-		virtual void DoFixInput() {};
+		virtual void DoFixInput(const int index) {};
 		virtual void DidCancel() {};
+		virtual bool IsFinished() const = 0;
 		void New();
 		void Cancel();
-		bool IsFinished() const { return status_ == AcceptNone; }
-		void NextInput(const Vector2& pos);
 		void UpdateInput(const Vector2& pos);
-		void FixInput(const Vector2& pos);
-		void CommitInput();
+		void FixInput(const int index, const Vector2& pos);
+		int NextInput();
 	};
 }
 

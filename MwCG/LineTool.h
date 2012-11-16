@@ -11,7 +11,6 @@ namespace mw
 	private:
 		shared_ptr<Point> ptFrom_, ptTo_;
 		shared_ptr<Line> line_;
-		int input_count_;
 		void DoInput();
 	public:
 		LineTool(void);
@@ -23,11 +22,11 @@ namespace mw
 
 		virtual void DoNew();
 
-		virtual void DoNextInput();
-
 		virtual void DoUpdateInput();
 
 		virtual void DoFixInput();
+
+		virtual bool IsFinished() const;
 
 	};
 	

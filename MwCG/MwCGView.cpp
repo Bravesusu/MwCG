@@ -135,10 +135,11 @@ ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
 		// TODO: add cleanup after printing
 	}
 
-	void CMwCGView::OnRButtonUp(UINT /* nFlags */, CPoint point)
+	void CMwCGView::OnRButtonUp(UINT  nFlags , CPoint point)
 	{
-		ClientToScreen(&point);
-		OnContextMenu(this, point);
+		uiState_->OnRButtonUp(nFlags, point);
+		//ClientToScreen(&point);
+		//OnContextMenu(this, point);
 	}
 
 	void CMwCGView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
