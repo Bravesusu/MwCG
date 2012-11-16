@@ -23,6 +23,8 @@
 #include "MwCGView.h"
 
 #include "MwCanvas.h"
+#include "PointTool.h"
+#include "LineTool.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -68,6 +70,7 @@ ON_COMMAND(ID_EDIT_UNDO, &CMwCGView::OnEditUndo)
 ON_COMMAND(ID_EDIT_REDO, &CMwCGView::OnEditRedo)
 ON_COMMAND(ID_TOOL_SELECT, &CMwCGView::OnToolSelect)
 ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
+ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -204,6 +207,9 @@ ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
 		uiEditState_.reset(new UiEdit());
 		uiNavState_->Initialize(pDoc, this);
 		uiEditState_->Initialize(pDoc, this);
+		
+		toolPoint_.reset(new PointTool());
+		toolLine_.reset(new LineTool());
 
 		SwitchToEditMode();
 
@@ -557,4 +563,22 @@ ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
 	{
 		// TODO: Add your command update UI handler code here
 		pCmdUI->Enable(m_render.IsValid());
+	}
+
+
+	void CMwCGView::OnShapeGallery()
+	{
+		// TODO: Add your command handler code here
+		int shape_index = CMFCRibbonGallery::GetLastSelectedItem(ID_SHAPE_GALLERY);
+		switch (shape_index)
+		{
+		case 0:
+			uiEditState_->set_tool(toolPoint_);
+			break;
+		case 1:
+			uiEditState_->set_tool(toolLine_);
+			break;
+		default:
+			break;
+		}
 	}

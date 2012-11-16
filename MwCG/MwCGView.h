@@ -22,6 +22,12 @@
 
 using namespace mw;
 
+namespace mw
+{
+	class LineTool;
+	class PointTool;
+}
+
 class CMwCGView : public CView
 {
 protected: // create from serialization only
@@ -43,6 +49,10 @@ protected:
 	shared_ptr<UiState> uiState_;
 	shared_ptr<UiNav> uiNavState_;
 	shared_ptr<UiEdit> uiEditState_;
+
+private:
+	shared_ptr<PointTool> toolPoint_;
+	shared_ptr<LineTool> toolLine_;
 	// Operations
 public:
 
@@ -108,6 +118,7 @@ public:
 	afx_msg void OnEditRedo();
 	afx_msg void OnToolSelect();
 	afx_msg void OnUpdateToolSelect(CCmdUI *pCmdUI);
+	afx_msg void OnShapeGallery();
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

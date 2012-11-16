@@ -50,6 +50,9 @@ namespace mw
 
 		virtual void OnRButtonUp( UINT nFlags, CPoint point );
 
+	private:
+		bool TryFinishTool();
+
 	public:
 
 	};

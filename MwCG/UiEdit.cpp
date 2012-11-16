@@ -40,12 +40,8 @@ void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
 	if (!tool_)
 		return;
 
-	if (tool_->IsFinished())
+	if (TryFinishTool())
 	{
-		TRACE("Finish\n");
-		doc()->CommitOperation(tool_->PopNewOperation());
-		//New input
-		//TODO: configurable behavior
 		tool_->New();
 	}
 }
@@ -98,7 +94,10 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 {
 	//Cancel current one
 	if (tool_)
-		tool_->Cancel();
+	{
+		if (!TryFinishTool())
+			tool_->Cancel();
+	}
 
 	tool->set_content(doc()->glContent());
 	tool_ = tool;
@@ -123,5 +122,17 @@ void mw::UiEdit::Draw()
 void mw::UiEdit::OnRButtonUp( UINT nFlags, CPoint point )
 {
 	tool_->Cancel();
+}
+
+bool mw::UiEdit::TryFinishTool()
+{
+	if (tool_->IsFinished())
+	{
+		TRACE("Finish\n");
+		doc()->CommitOperation(tool_->PopNewOperation());
+
+		return true;
+	}
+	return false;
 }
 
