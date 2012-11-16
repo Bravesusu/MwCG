@@ -13,19 +13,19 @@ Decorator::~Decorator(void)
 {
 }
 
-void mw::Decorator::Decorate( const shared_ptr<GlElement> element )
+void mw::Decorator::Decorate()
 {
-	DoDecorate(element);
+	DoDecorate();
 }
-
-shared_ptr<GlElement>& mw::Decorator::operator+( shared_ptr<GlElement>& rhs ) 
-{
-	rhs->AddDecorator(shared_ptr<Decorator>(this));
-	return rhs;
-}
-
-GlElement& mw::Decorator::operator+( GlElement& rhs ) 
-{
-	rhs.AddDecorator(shared_ptr<Decorator>(this));
-	return rhs;
-}
+//
+//shared_ptr<GlElement>& mw::Decorator::operator+( shared_ptr<GlElement>& rhs ) 
+//{
+//	rhs->AddDecorator(shared_ptr<Decorator>(this));
+//	return rhs;
+//}
+//
+//GlElement& mw::Decorator::operator+( GlElement& rhs ) 
+//{
+//	rhs.AddDecorator(shared_ptr<Decorator>(this));
+//	return rhs;
+//}

@@ -35,7 +35,7 @@ void mw::GlElement::Draw()
 		DoDraw();
 	for (list<shared_ptr<Decorator>>::iterator it = decorators_.begin(); it != decorators_.end(); it++)
 	{
-		(*it)->Decorate(shared_ptr<GlElement>(this));
+		(*it)->Decorate();
 	}
 }
 
@@ -49,38 +49,40 @@ void mw::GlElement::AddDecorator( shared_ptr<Decorator> decorator )
 	decorators_.push_back(decorator);
 }
 
-shared_ptr<GlElement> mw::GlElement::operator+( shared_ptr<Decorator> decorator )
-{
-	AddDecorator(decorator);
-	return shared_ptr<GlElement>(this);
-}
-
-shared_ptr<GlElement> mw::GlElement::operator+( Decorator* decorator )
-{
-	AddDecorator(shared_ptr<Decorator>(decorator));
-	return shared_ptr<GlElement>(this);
-}
-
-GlElement& mw::GlElement::operator+( Decorator& decorator )
-{
-	AddDecorator(shared_ptr<Decorator>(&decorator));
-	return *this;
-}
-
-shared_ptr<GlElement> mw::GlElement::operator-( shared_ptr<Decorator> decorator )
-{
-	RemoveDecorator(decorator);
-	return shared_ptr<GlElement>(this);
-}
-
-GlElement& mw::GlElement::operator-( Decorator& decorator )
-{
-	RemoveDecorator(shared_ptr<Decorator>(&decorator));
-	return *this;
-}
 
 void mw::GlElement::ClearAllDecorators()
 {
 	decorators_.clear();
 }
+
+//shared_ptr<GlElement> mw::GlElement::operator+( shared_ptr<Decorator> decorator )
+//{
+//	AddDecorator(decorator);
+//	return shared_ptr<GlElement>(this);
+//}
+//
+//shared_ptr<GlElement> mw::GlElement::operator+( Decorator* decorator )
+//{
+//	AddDecorator(shared_ptr<Decorator>(decorator));
+//	return shared_ptr<GlElement>(this);
+//}
+//
+//GlElement& mw::GlElement::operator+( Decorator& decorator )
+//{
+//	AddDecorator(shared_ptr<Decorator>(&decorator));
+//	return *this;
+//}
+//
+//shared_ptr<GlElement> mw::GlElement::operator-( shared_ptr<Decorator> decorator )
+//{
+//	RemoveDecorator(decorator);
+//	return shared_ptr<GlElement>(this);
+//}
+//
+//GlElement& mw::GlElement::operator-( Decorator& decorator )
+//{
+//	RemoveDecorator(shared_ptr<Decorator>(&decorator));
+//	return *this;
+//}
+
 
