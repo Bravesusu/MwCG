@@ -2,6 +2,7 @@
 #include "MwGLElement.h"
 
 #include "Rect.h"
+#include "Decorator.h"
 
 using namespace mw;
 
@@ -32,4 +33,18 @@ void mw::GlElement::Draw()
 {
 	if (!hidden_)
 		DoDraw();
+	for (list<shared_ptr<Decorator>>::iterator it = decorators_.begin(); it != decorators_.end(); it++)
+	{
+		(*it)->Draw();
+	}
+}
+
+void mw::GlElement::RemoveDecorator( const shared_ptr<Decorator> decorator )
+{
+	decorators_.remove(decorator);
+}
+
+void mw::GlElement::AddDecorator( const shared_ptr<Decorator> decorator )
+{
+	decorators_.push_back(decorator);
 }

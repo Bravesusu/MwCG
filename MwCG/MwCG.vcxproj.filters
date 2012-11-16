@@ -43,6 +43,9 @@
     <Filter Include="Mw\Commands">
       <UniqueIdentifier>{69082143-7e58-45df-98db-1e735147eef1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mw\Content\Decorator">
+      <UniqueIdentifier>{bc5db0ef-bb8a-43a6-b542-11bce56a23c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -171,20 +174,23 @@
     <ClInclude Include="MwMouse.h">
       <Filter>Mw\Content</Filter>
     </ClInclude>
-    <ClInclude Include="RemoveElementFromContent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ContentElementOperation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UiEditorTool.h">
       <Filter>Mw\UI State\Edit</Filter>
     </ClInclude>
-    <ClInclude Include="LineTool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PointTool.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\UI State\Edit</Filter>
+    </ClInclude>
+    <ClInclude Include="LineTool.h">
+      <Filter>Mw\UI State\Edit</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentElementOperation.h">
+      <Filter>Mw\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="RemoveElementFromContent.h">
+      <Filter>Mw\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator.h">
+      <Filter>Mw\Content\Decorator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -290,20 +296,23 @@
     <ClCompile Include="MwMouse.cpp">
       <Filter>Mw\Content</Filter>
     </ClCompile>
-    <ClCompile Include="RemoveElementFromContent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ContentElementOperation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UiEditorTool.cpp">
       <Filter>Mw\UI State\Edit</Filter>
     </ClCompile>
     <ClCompile Include="LineTool.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\UI State\Edit</Filter>
     </ClCompile>
     <ClCompile Include="PointTool.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\UI State\Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentElementOperation.cpp">
+      <Filter>Mw\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="RemoveElementFromContent.cpp">
+      <Filter>Mw\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorator.cpp">
+      <Filter>Mw\Content\Decorator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

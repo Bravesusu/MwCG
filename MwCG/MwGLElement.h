@@ -9,6 +9,7 @@ using namespace std;
 namespace mw 
 {
 	class Rect;
+	class Decorator;
 	class GlElement :
 		public CObject, 
 		public IDrawable
@@ -16,6 +17,11 @@ namespace mw
 		DECLARE_SERIAL(GlElement); 
 	private:
 		Color color_;
+	private:
+		list<shared_ptr<Decorator>> decorators_;
+	public:
+		void RemoveDecorator(const shared_ptr<Decorator> decorator);
+		void AddDecorator(const shared_ptr<Decorator> decorator);
 	public:
 		GlElement(void);
 		~GlElement(void);

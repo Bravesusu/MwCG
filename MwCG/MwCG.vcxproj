@@ -112,6 +112,7 @@
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="ContentElementOperation.h" />
+    <ClInclude Include="Decorator.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="GlCmd.h" />
     <ClInclude Include="GlColor.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="ContentElementOperation.cpp" />
+    <ClCompile Include="Decorator.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="GlCmd.cpp" />
     <ClCompile Include="GlColor.cpp" />
