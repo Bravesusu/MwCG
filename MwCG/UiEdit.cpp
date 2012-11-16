@@ -58,7 +58,7 @@ void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
 			{
 				doc()->CommitOperation(tool_->PopNewOperation());
 				//New input
-				//TODO: configurable behviour
+				//TODO: configurable behavior
 				tool_->New();
 			}
 			//Begin new input
@@ -107,6 +107,7 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 	if (tool_ && !tool->IsIdle())
 		tool_->Cancel();
 
+	tool->set_content(doc()->glContent());
 	tool_ = tool;
 
 	//Initialize new one
