@@ -1,15 +1,14 @@
 #pragma once
 #include "mwx.h"
 #include "MwGLElement.h"
-//#include "MwGlScreen.h"
-#include "MwCanvas.h"
-#include "MwPoint.h"
-#include "MwMouse.h"
-
 using namespace std;
 
 namespace mw
 {
+	class Canvas;
+	class GlScreen;
+	class Mouse;
+
 	class GlContent : public GlElement
 	{
 		DECLARE_SERIAL(GlContent);

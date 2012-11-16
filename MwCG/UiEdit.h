@@ -9,10 +9,13 @@ namespace mw
 {
 	class UiEditorTool;
 	class UiSelector;
+	class LineTool;
 
 	class UiEdit :
 		public UiState
 	{
+	private:
+		shared_ptr<LineTool> line_;
 	private:
 		shared_ptr<UiEditorTool> tool_;
 		shared_ptr<UiSelector> selector_;
@@ -40,6 +43,8 @@ namespace mw
 		virtual void OnKeyUp( UINT nChar, UINT nRepCnt, UINT nFlags );
 
 		virtual void InitializeName();
+	public:
+		virtual void Draw();
 
 	public:
 

@@ -180,6 +180,9 @@
     <ClInclude Include="UiEditorTool.h">
       <Filter>Mw\UI State\Edit</Filter>
     </ClInclude>
+    <ClInclude Include="LineTool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -292,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="UiEditorTool.cpp">
       <Filter>Mw\UI State\Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="LineTool.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

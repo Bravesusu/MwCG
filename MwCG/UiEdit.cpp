@@ -6,12 +6,14 @@
 
 #include "UiEditorTool.h"
 #include "UiSelector.h"
+#include "LineTool.h"
 
 using namespace mw;
 
 UiEdit::UiEdit(void) : mouse_left_down_(false)
 {
 	selector_.reset(new UiSelector());
+	line_.reset(new LineTool());
 }
 
 
@@ -25,10 +27,13 @@ void mw::UiEdit::OnMouseMove( UINT nFlags, CPoint point )
 	//editor_->MouseMove(mouse_xy_);
 	if (!tool_)
 		return;
+	//TRACE("Mouse Move\n");
 	if (!tool_->IsIdle())
 	{
+		//TRACE("Tool not idle\n");
 		if (mouse_left_down_)
 		{
+			//TRACE("Did down. Do update.\n");
 			tool_->UpdateInput(mouse_xy_);
 		}
 	}
@@ -41,8 +46,12 @@ void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
 	if (!tool_)
 		return;
 	//Idle->Inputting
+
+	TRACE("Mouse Down\n");
+
 	if (tool_->IsIdle())
 	{
+		//TRACE("Tool idle\n");
 		tool_->BeginInput(mouse_xy_);
 	}
 	//Inputting
@@ -50,12 +59,15 @@ void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
 	{
 		if (tool_->IsInputting())
 		{
+			//TRACE("Tool inputting\n");
 			//End last one
 			tool_->EndInput();
 
 			//Is Finished?
 			if (tool_->IsFinished())
 			{
+
+				//TRACE("Tool Finished\n");
 				doc()->CommitOperation(tool_->PopNewOperation());
 				//New input
 				//TODO: configurable behavior
@@ -64,8 +76,13 @@ void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
 			//Begin new input
 			else 
 			{
+				//TRACE("Tool not finished.\n");
 				tool_->BeginInput(mouse_xy_);
 			}
+		}
+		else
+		{
+			//TRACE("Tool not inputting\n");
 		}
 	}
 }
@@ -74,6 +91,8 @@ void mw::UiEdit::OnLButtonUp( UINT nFlags, CPoint point )
 {
 	mouse_left_down_ = false;
 	UpdateMouseInput(nFlags, point);
+
+	TRACE("Mouse Up\n");
 	//editor_->MouseLUp(mouse_xy_);
 }
 
@@ -116,6 +135,13 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 
 void mw::UiEdit::use_selector()
 {
-	set_tool(selector_);
+	//set_tool(selector_);
+	set_tool(line_);
+}
+
+void mw::UiEdit::Draw()
+{
+	if (tool_)
+		tool_->Draw();
 }
 

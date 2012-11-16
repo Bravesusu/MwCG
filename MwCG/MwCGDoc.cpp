@@ -20,6 +20,7 @@
 #endif
 
 #include "MwCGDoc.h"
+#include "MwCanvas.h"
 
 #include "AddElementToContent.h"
 

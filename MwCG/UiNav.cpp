@@ -56,3 +56,7 @@ void mw::UiNav::InitializeName()
 	name_.LoadString(IDS_UI_NAVIGATION);
 	ASSERT(name_);
 }
+
+void mw::UiNav::Draw()
+{
+}

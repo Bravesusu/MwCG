@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MwGLRenderer.h"
 
+
 using namespace mw;
 
 GlRenderer::GlRenderer(void)
@@ -43,13 +44,22 @@ void GlRenderer::Finalize(void)
 	DestoryGLContext();
 }
 
+//
+//void GlRenderer::Draw(const shared_ptr<GlContent>& pContent)
+//{
+//	glLoadIdentity();
+//
+//	pContent->Draw();
+//	
+//	glFlush();
+//}
 
-void GlRenderer::Draw(const shared_ptr<GlContent>& pContent)
+void mw::GlRenderer::Draw( const shared_ptr<IDrawable>& drawable )
 {
 	glLoadIdentity();
 
-	pContent->Draw();
-	
+	drawable->Draw();
+
 	glFlush();
 }
 

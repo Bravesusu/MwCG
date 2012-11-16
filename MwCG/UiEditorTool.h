@@ -1,10 +1,12 @@
 #pragma once
 #include "MwGLContent.h"
+#include "IDrawable.h"
 #include "IOperation.h"
 
 namespace mw
 {
-	class UiEditorTool
+	class UiEditorTool :
+		public IDrawable
 	{
 	private:
 		shared_ptr<GlContent> content_;

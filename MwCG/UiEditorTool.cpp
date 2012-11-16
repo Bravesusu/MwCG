@@ -14,9 +14,16 @@ UiEditorTool::~UiEditorTool(void)
 
 void mw::UiEditorTool::BeginInput( const Vector2& pos )
 {
-	inputting_ = true;
-	current_ = pos;
-	DoBeginInput();
+	if (!inputting_)
+	{
+		inputting_ = true;
+		current_ = pos;
+		DoBeginInput();
+	}
+	else 
+	{
+		UpdateInput(pos);
+	}
 }
 
 void mw::UiEditorTool::UpdateInput( const Vector2& pos )
@@ -27,6 +34,9 @@ void mw::UiEditorTool::UpdateInput( const Vector2& pos )
 
 void mw::UiEditorTool::EndInput()
 {
-	inputting_ = false;
-	DoEndInput();
+	if (inputting_)
+	{
+		inputting_ = false;
+		DoEndInput();
+	}
 }

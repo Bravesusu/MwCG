@@ -23,6 +23,9 @@ namespace mw
 
 		virtual void InitializeName();
 
+	public:
+		virtual void Draw();
+
 	private:
 		bool m_bMouseDown;
 		CPoint last_mouse_point_;

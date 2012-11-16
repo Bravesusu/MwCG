@@ -18,15 +18,15 @@ namespace mw
 
 		virtual bool IsIdle() const;
 
-		virtual bool IsInputting() const;
-
-		virtual void BeginInput( const Vector2& pos );
-
-		virtual void UpdateInput( const Vector2& pos );
-
-		virtual void EndInput();
-
 		virtual void Cancel();
+
+		virtual void DoBeginInput();
+
+		virtual void DoUpdateInput();
+
+		virtual void DoEndInput();
+
+		virtual void Draw();
 
 	};
 }

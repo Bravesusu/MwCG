@@ -2,6 +2,7 @@
 #include "MwGLContent.h"
 #include <gl/gl.h>   
 #include <gl/glu.h> 
+#include "IDrawable.h"
 
 namespace mw
 {
@@ -13,7 +14,8 @@ namespace mw
 		
 		bool Initialize(const HDC& hDC);
 		void Finalize(void);
-		void Draw(const shared_ptr<GlContent>& pContent);
+		//void Draw(const shared_ptr<GlContent>& pContent);
+		void Draw(const shared_ptr<IDrawable>& drawable);
 		BOOL Activate(const HDC& hDC);
 	protected:
 		BOOL SetWindowPixelFormat(const HDC& hDC);

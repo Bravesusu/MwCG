@@ -31,6 +31,8 @@ namespace mw
 
 		virtual void DoEndInput();
 
+		virtual void Draw();
+
 	};
 	
 }

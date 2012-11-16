@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "MwGLContent.h"
 
+#include "MwCanvas.h"
+#include "MwPoint.h"
+#include "MwMouse.h"
+
 using namespace mw;
 
 IMPLEMENT_SERIAL(GlContent, GlElement, 1);

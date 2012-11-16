@@ -22,6 +22,8 @@
 #include "MwCGDoc.h"
 #include "MwCGView.h"
 
+#include "MwCanvas.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -101,6 +103,7 @@ ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
 		if (m_render.IsValid())
 		{
 			m_render.Draw(content_);
+			m_render.Draw(uiState_);
 			SwapBuffers(pDC->GetSafeHdc());
 		}
 	}

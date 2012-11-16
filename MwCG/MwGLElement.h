@@ -1,5 +1,6 @@
 #pragma once
 #include "mwx.h"
+#include "IDrawable.h"
 #include "MwColor.h"
 #include "MwGlScreen.h"
 
@@ -9,7 +10,8 @@ namespace mw
 {
 	class Rect;
 	class GlElement :
-		public CObject
+		public CObject, 
+		public IDrawable
 	{
 		DECLARE_SERIAL(GlElement); 
 	private:

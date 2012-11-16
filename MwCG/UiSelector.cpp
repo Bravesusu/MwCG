@@ -32,27 +32,26 @@ bool mw::UiSelector::IsIdle() const
 	throw std::exception("The method or operation is not implemented.");
 }
 
-bool mw::UiSelector::IsInputting() const
-{
-	throw std::exception("The method or operation is not implemented.");
-}
-
-void mw::UiSelector::BeginInput( const Vector2& pos )
-{
-	throw std::exception("The method or operation is not implemented.");
-}
-
-void mw::UiSelector::UpdateInput( const Vector2& pos )
-{
-	throw std::exception("The method or operation is not implemented.");
-}
-
-void mw::UiSelector::EndInput()
-{
-	throw std::exception("The method or operation is not implemented.");
-}
-
 void mw::UiSelector::Cancel()
 {
 	throw std::exception("The method or operation is not implemented.");
+}
+
+void mw::UiSelector::DoBeginInput()
+{
+	throw std::exception("The method or operation is not implemented.");
+}
+
+void mw::UiSelector::DoUpdateInput()
+{
+	throw std::exception("The method or operation is not implemented.");
+}
+
+void mw::UiSelector::DoEndInput()
+{
+	throw std::exception("The method or operation is not implemented.");
+}
+
+void mw::UiSelector::Draw()
+{
 }

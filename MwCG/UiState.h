@@ -1,11 +1,12 @@
 #pragma once
-
+#include "IDrawable.h"
 class CMwCGView;
 class CMwCGDoc;
 
 namespace mw
 {
-	class UiState
+	class UiState :
+		public IDrawable
 	{
 	private:
 		CMwCGView* pView_;
