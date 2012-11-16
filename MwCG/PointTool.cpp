@@ -3,11 +3,13 @@
 
 #include "AddElementToContent.h"
 #include "MwPoint.h"
+#include "PointDecorator.h"
 
 using namespace mw;
 
 PointTool::PointTool(void) : isIdle_(true)
 {
+	decorator_.reset(new PointDecorator());
 }
 
 
@@ -17,13 +19,15 @@ PointTool::~PointTool(void)
 
 mw::OperationPtr mw::PointTool::PopNewOperation()
 {
+	point_ -= decorator_;
 	return OperationPtr(new AddElementToContent(content(), point_));
 }
 
 void mw::PointTool::New()
 {
 	point_.reset(new Point());
-	point_->set_size(10);
+	point_->set_size(5);
+	point_ += decorator_;
 	isIdle_ = true;
 }
 

@@ -14,9 +14,11 @@ namespace mw
 		void Decorate();
 
 		virtual void DoDecorate() = 0;
+		virtual void Removed() {};
 	//public:
 	//	shared_ptr<GlElement>& operator+(shared_ptr<GlElement>& rhs);
 	//	GlElement& operator+(GlElement& rhs);
 	};
 
+	typedef shared_ptr<Decorator> DecoratorPtr;
 }

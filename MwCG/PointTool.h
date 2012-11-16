@@ -4,12 +4,14 @@
 namespace mw
 {
 	class Point;
+	class PointDecorator;
 	class PointTool :
 		public UiEditorTool
 	{
 	private:
 		bool isIdle_;
 		shared_ptr<Point> point_;
+		shared_ptr<PointDecorator> decorator_;
 	public:
 		PointTool(void);
 		~PointTool(void);
