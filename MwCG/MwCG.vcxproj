@@ -140,6 +140,7 @@
     <ClInclude Include="MwVector2.h" />
     <ClInclude Include="mwx.h" />
     <ClInclude Include="OutputWnd.h" />
+    <ClInclude Include="PointTool.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="RemoveElementFromContent.h" />
     <ClInclude Include="Resource.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="MwSierpinski.cpp" />
     <ClCompile Include="MwVector2.cpp" />
     <ClCompile Include="OutputWnd.cpp" />
+    <ClCompile Include="PointTool.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="RemoveElementFromContent.cpp" />
     <ClCompile Include="stdafx.cpp">

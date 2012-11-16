@@ -66,11 +66,11 @@ void mw::LineTool::DoInput()
 	{
 	case 0:
 		//TRACE("Set from(%.3f, %.3f)\n", curent().x(), curent().y());
-		line_->set_from(curent());
+		line_->set_from(current());
 		break;
 	case 1:
 		//TRACE("Set to(%.3f, %.3f)\n", curent().x(), curent().y());
-		line_->set_to(curent());
+		line_->set_to(current());
 		break;
 	default:
 		break;

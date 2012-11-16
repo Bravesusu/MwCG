@@ -183,6 +183,9 @@
     <ClInclude Include="LineTool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PointTool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -297,6 +300,9 @@
       <Filter>Mw\UI State\Edit</Filter>
     </ClCompile>
     <ClCompile Include="LineTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PointTool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

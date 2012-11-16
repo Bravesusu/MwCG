@@ -7,6 +7,7 @@
 #include "UiEditorTool.h"
 #include "UiSelector.h"
 #include "LineTool.h"
+#include "PointTool.h"
 
 using namespace mw;
 
@@ -14,6 +15,7 @@ UiEdit::UiEdit(void) : mouse_left_down_(false)
 {
 	selector_.reset(new UiSelector());
 	line_.reset(new LineTool());
+	point_.reset(new PointTool());
 }
 
 
@@ -36,6 +38,10 @@ void mw::UiEdit::OnMouseMove( UINT nFlags, CPoint point )
 			//TRACE("Did down. Do update.\n");
 			tool_->UpdateInput(mouse_xy_);
 		}
+	}
+	else
+	{
+		tool_->BeginInput(mouse_xy_);
 	}
 }
 
@@ -136,7 +142,8 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 void mw::UiEdit::use_selector()
 {
 	//set_tool(selector_);
-	set_tool(line_);
+	//set_tool(line_);
+	set_tool(point_);
 }
 
 void mw::UiEdit::Draw()

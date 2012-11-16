@@ -13,7 +13,7 @@ namespace mw
 		bool inputting_;
 		Vector2 current_;
 	protected:
-		Vector2 curent() const { return current_; }
+		Vector2 current() const { return current_; }
 	public:
 		shared_ptr<GlContent> content() const { return content_; }
 		void set_content(const shared_ptr<GlContent>& content) { content_ = content; }
