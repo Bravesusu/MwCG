@@ -13,9 +13,9 @@ Decorator::~Decorator(void)
 {
 }
 
-void mw::Decorator::Draw()
+void mw::Decorator::Decorate( const shared_ptr<GlElement> element )
 {
-	DoDraw();
+	DoDecorate(element);
 }
 
 shared_ptr<GlElement>& mw::Decorator::operator+( shared_ptr<GlElement>& rhs ) 

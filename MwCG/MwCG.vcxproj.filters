@@ -192,6 +192,9 @@
     <ClInclude Include="Decorator.h">
       <Filter>Mw\Content\Decorator</Filter>
     </ClInclude>
+    <ClInclude Include="PointDecorator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -313,6 +316,9 @@
     </ClCompile>
     <ClCompile Include="Decorator.cpp">
       <Filter>Mw\Content\Decorator</Filter>
+    </ClCompile>
+    <ClCompile Include="PointDecorator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

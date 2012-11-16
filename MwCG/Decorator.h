@@ -5,16 +5,15 @@ namespace mw
 {
 	class GlElement;
 
-	class Decorator :
-		public IDrawable
+	class Decorator
 	{
 	public:
 		Decorator(void);
 		~Decorator(void);
 
-		void Draw();
+		void Decorate(const shared_ptr<GlElement>);
 
-		virtual void DoDraw() = 0;
+		virtual void DoDecorate(const shared_ptr<GlElement>) = 0;
 	public:
 		shared_ptr<GlElement>& operator+(shared_ptr<GlElement>& rhs);
 		GlElement& operator+(GlElement& rhs);

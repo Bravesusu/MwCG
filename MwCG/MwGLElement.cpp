@@ -35,7 +35,7 @@ void mw::GlElement::Draw()
 		DoDraw();
 	for (list<shared_ptr<Decorator>>::iterator it = decorators_.begin(); it != decorators_.end(); it++)
 	{
-		(*it)->Draw();
+		(*it)->Decorate(shared_ptr<GlElement>(this));
 	}
 }
 
