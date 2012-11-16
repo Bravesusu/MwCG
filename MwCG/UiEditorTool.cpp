@@ -3,7 +3,7 @@
 
 using namespace mw;
 
-UiEditorTool::UiEditorTool(void) : inputting_(false)
+UiEditorTool::UiEditorTool(void) : status_(AcceptUpdate)
 {
 }
 
@@ -12,31 +12,43 @@ UiEditorTool::~UiEditorTool(void)
 {
 }
 
-void mw::UiEditorTool::BeginInput( const Vector2& pos )
-{
-	if (!inputting_)
-	{
-		inputting_ = true;
-		current_ = pos;
-		DoBeginInput();
-	}
-	else 
-	{
-		UpdateInput(pos);
-	}
-}
-
 void mw::UiEditorTool::UpdateInput( const Vector2& pos )
 {
+	if (status_ != AcceptUpdate)
+		return;
 	current_ = pos;
 	DoUpdateInput();
 }
 
-void mw::UiEditorTool::EndInput()
+void mw::UiEditorTool::CommitInput()
 {
-	if (inputting_)
-	{
-		inputting_ = false;
-		DoEndInput();
-	}
+	status_ = AcceptFix;
+	DoCommitInput();
+}
+
+void mw::UiEditorTool::New()
+{
+	status_ = AcceptUpdate;
+	DoNew();
+}
+
+void mw::UiEditorTool::NextInput( const Vector2& pos )
+{
+	status_ = AcceptUpdate;
+	current_ = pos;
+	DoNextInput();
+}
+
+void mw::UiEditorTool::Cancel()
+{
+	DidCancel();
+	New();
+}
+
+void mw::UiEditorTool::FixInput( const Vector2& pos )
+{
+	if (status_ == AcceptNone)
+		return;
+	current_ = pos;
+	DoFixInput();
 }

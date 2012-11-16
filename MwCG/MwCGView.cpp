@@ -392,7 +392,7 @@ ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
 
 		m_bMouseDown = false;
 
-		FooFloaty(point);
+		//FooFloaty(point);
 	}
 
 

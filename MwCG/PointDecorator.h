@@ -12,7 +12,7 @@ namespace mw
 		shared_ptr<Point> dec_;
 	public:
 		void set(shared_ptr<Point> point) { point_ = point; }
-	public:
+	public:	
 		PointDecorator(void);
 		~PointDecorator(void);
 

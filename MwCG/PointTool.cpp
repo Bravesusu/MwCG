@@ -23,45 +23,30 @@ mw::OperationPtr mw::PointTool::PopNewOperation()
 	return OperationPtr(new AddElementToContent(content(), point_));
 }
 
-void mw::PointTool::New()
-{
-	point_.reset(new Point());
-	point_->set_size(5);
-	point_ += decorator_;
-	isIdle_ = true;
-}
-
-bool mw::PointTool::IsFinished() const
-{
-	return !isIdle_ && !IsInputting();
-}
-
-bool mw::PointTool::IsIdle() const
-{
-	return isIdle_;
-}
-
-void mw::PointTool::Cancel()
-{
-	New();
-}
-
-void mw::PointTool::DoBeginInput()
-{
-	isIdle_ = false;
-	point_->set_position(current());
-}
-
 void mw::PointTool::DoUpdateInput()
 {
 	point_->set_position(current());
 }
 
-void mw::PointTool::DoEndInput()
-{
-}
-
 void mw::PointTool::Draw()
 {
 	point_->Draw();
+}
+
+void mw::PointTool::DoNew()
+{
+	point_.reset(new Point());
+	point_->set_size(5);
+	point_ += decorator_;
+}
+
+void mw::PointTool::DoNextInput()
+{
+	set_status(AcceptNone);
+	TRACE("WTF\n");
+}
+
+void mw::PointTool::DoFixInput()
+{
+	point_->set_position(current());
 }

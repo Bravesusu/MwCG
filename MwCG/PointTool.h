@@ -18,21 +18,16 @@ namespace mw
 
 		virtual OperationPtr PopNewOperation();
 
-		virtual void New();
 
-		virtual bool IsFinished() const;
+		virtual void Draw();
 
-		virtual bool IsIdle() const;
+		virtual void DoNew();
 
-		virtual void Cancel();
-
-		virtual void DoBeginInput();
+		virtual void DoNextInput();
 
 		virtual void DoUpdateInput();
 
-		virtual void DoEndInput();
-
-		virtual void Draw();
+		virtual void DoFixInput();
 
 	};
 	

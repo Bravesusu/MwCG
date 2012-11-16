@@ -1,12 +1,22 @@
 #include "stdafx.h"
 #include "LineTool.h"
 #include "MwLine.h"
+#include "MwPoint.h"
 #include "AddElementToContent.h"
 
 using namespace mw;
 
 LineTool::LineTool(void) : input_count_(0)
 {
+	ptFrom_.reset(new Point());
+	ptFrom_->set_hidden(true);
+	ptFrom_->set_size(10);
+	ptFrom_->set_color(1, 0, 0);
+
+	ptTo_.reset(new Point());
+	ptTo_->set_hidden(true);
+	ptTo_->set_size(10);
+	ptTo_->set_color(1, 0, 0);
 }
 
 
@@ -23,42 +33,6 @@ mw::OperationPtr mw::LineTool::PopNewOperation()
 	return OperationPtr(new AddElementToContent(content(), line_));
 }
 
-void mw::LineTool::New()
-{
-	line_.reset(new Line());
-	input_count_ = 0;
-	TRACE("New Line\n");
-}
-
-bool mw::LineTool::IsFinished() const
-{
-	return input_count_ == 2;
-}
-
-bool mw::LineTool::IsIdle() const
-{
-	return input_count_ == 0 && !IsInputting();
-}
-
-void mw::LineTool::Cancel()
-{
-	New();
-}
-
-void mw::LineTool::DoBeginInput()
-{
-	DoInput();
-}
-
-void mw::LineTool::DoUpdateInput()
-{
-	DoInput();
-	input_count_++;
-}
-
-void mw::LineTool::DoEndInput()
-{
-}
 
 void mw::LineTool::DoInput()
 {
@@ -66,10 +40,15 @@ void mw::LineTool::DoInput()
 	{
 	case 0:
 		//TRACE("Set from(%.3f, %.3f)\n", curent().x(), curent().y());
+		ptFrom_->set_position(current());
+		ptFrom_->set_hidden(false);
 		line_->set_from(current());
+		line_->set_to(current());
 		break;
 	case 1:
-		//TRACE("Set to(%.3f, %.3f)\n", curent().x(), curent().y());
+		TRACE("Set to(%.3f, %.3f)\n", current().x(), current().y());
+		ptTo_->set_position(current());
+		ptTo_->set_hidden(false);
 		line_->set_to(current());
 		break;
 	default:
@@ -77,7 +56,37 @@ void mw::LineTool::DoInput()
 	}
 }
 
+void mw::LineTool::DoNew()
+{
+	line_.reset(new Line());
+	ptFrom_->set_hidden(true);
+	ptTo_->set_hidden(true);
+	input_count_ = 0;
+}
+
+void mw::LineTool::DoUpdateInput()
+{
+	DoInput();
+}
+
+void mw::LineTool::DoNextInput()
+{
+	input_count_++;
+	if (input_count_ > 1)
+	{
+		set_status(AcceptNone);
+		input_count_ = -1;
+	}
+}
+
+void mw::LineTool::DoFixInput()
+{
+	DoInput();
+}
+
 void mw::LineTool::Draw()
 {
 	line_->Draw();
+	ptFrom_->Draw();
+	ptTo_->Draw();
 }

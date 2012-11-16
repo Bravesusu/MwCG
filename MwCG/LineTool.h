@@ -4,10 +4,12 @@
 namespace mw
 {
 	class Line;
+	class Point;
 	class LineTool :
 		public UiEditorTool
 	{
 	private:
+		shared_ptr<Point> ptFrom_, ptTo_;
 		shared_ptr<Line> line_;
 		int input_count_;
 		void DoInput();
@@ -17,21 +19,15 @@ namespace mw
 
 		virtual OperationPtr PopNewOperation();
 
-		virtual void New();
+		virtual void Draw();
 
-		virtual bool IsFinished() const;
+		virtual void DoNew();
 
-		virtual bool IsIdle() const;
-
-		virtual void Cancel();
-
-		virtual void DoBeginInput();
+		virtual void DoNextInput();
 
 		virtual void DoUpdateInput();
 
-		virtual void DoEndInput();
-
-		virtual void Draw();
+		virtual void DoFixInput();
 
 	};
 	
