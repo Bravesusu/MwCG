@@ -3,6 +3,8 @@
 
 namespace mw
 {
+	class GlElement;
+
 	class Decorator :
 		public IDrawable
 	{
@@ -13,6 +15,9 @@ namespace mw
 		void Draw();
 
 		virtual void DoDraw() = 0;
-
+	public:
+		shared_ptr<GlElement>& operator+(shared_ptr<GlElement>& rhs);
+		GlElement& operator+(GlElement& rhs);
 	};
+
 }

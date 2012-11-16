@@ -20,8 +20,22 @@ namespace mw
 	private:
 		list<shared_ptr<Decorator>> decorators_;
 	public:
-		void RemoveDecorator(const shared_ptr<Decorator> decorator);
-		void AddDecorator(const shared_ptr<Decorator> decorator);
+		void RemoveDecorator(shared_ptr<Decorator> decorator);
+		void AddDecorator(shared_ptr<Decorator> decorator);
+		shared_ptr<GlElement> operator+(shared_ptr<Decorator> decorator);
+		shared_ptr<GlElement> operator+(Decorator* decorator);
+		shared_ptr<GlElement> operator-(shared_ptr<Decorator> decorator);
+		void ClearAllDecorators();
+		//NOTE: a raw pointer means possibility of memory leak, should not be encouraged.
+		//shared_ptr<GlElement> operator-(const Decorator* decorator);
+		//NOTE: doesn't make much sense. 
+		//An instance will be allocated on stack space, its address is not unique for identification
+		//However they might be useful in a very long method body
+		//And also an overload on the == operator of Decorator class might be utilized.
+		//TBD.
+		GlElement& operator+(Decorator& decorator);
+		GlElement& operator-(Decorator& decorator);
+
 	public:
 		GlElement(void);
 		~GlElement(void);
