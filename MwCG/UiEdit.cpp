@@ -108,9 +108,7 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 
 void mw::UiEdit::use_selector()
 {
-	//set_tool(selector_);
 	set_tool(line_);
-	//set_tool(point_);
 }
 
 void mw::UiEdit::Draw()
