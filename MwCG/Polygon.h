@@ -6,6 +6,10 @@ namespace mw
 	class Polygon :
 		public GlElement
 	{
+	private:
+		list<Vector2> vertex_;
+	public:
+		int count() const { return vertex_.size(); }
 	public:
 		Polygon(void);
 		~Polygon(void);
