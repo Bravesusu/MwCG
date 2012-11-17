@@ -111,6 +111,7 @@
     <ClInclude Include="BoundDecorator.h" />
     <ClInclude Include="CalendarBar.h" />
     <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="Circle.h" />
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="ContentElementOperation.h" />
     <ClInclude Include="Decorator.h" />
@@ -144,6 +145,7 @@
     <ClInclude Include="OutputWnd.h" />
     <ClInclude Include="PointDecorator.h" />
     <ClInclude Include="PointTool.h" />
+    <ClInclude Include="Polygon.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="RemoveElementFromContent.h" />
     <ClInclude Include="Resource.h" />
@@ -162,6 +164,7 @@
     <ClCompile Include="BoundDecorator.cpp" />
     <ClCompile Include="CalendarBar.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="Circle.cpp" />
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="ContentElementOperation.cpp" />
     <ClCompile Include="Decorator.cpp" />
@@ -190,6 +193,7 @@
     <ClCompile Include="OutputWnd.cpp" />
     <ClCompile Include="PointDecorator.cpp" />
     <ClCompile Include="PointTool.cpp" />
+    <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="RemoveElementFromContent.cpp" />
     <ClCompile Include="stdafx.cpp">

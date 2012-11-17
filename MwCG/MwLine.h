@@ -31,6 +31,9 @@ namespace mw
 		virtual void Serialize(CArchive& ar);
 	private:
 		void DoDraw();
+
+		virtual Rect bound() const;
+
 	};
 	
 }

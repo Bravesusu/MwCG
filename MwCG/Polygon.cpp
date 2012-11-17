@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Polygon.h"
+#include "Rect.h"
 
 using namespace mw;
 

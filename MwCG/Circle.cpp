@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Circle.h"
+#include "Rect.h"
 
 using namespace mw;
 Circle::Circle(void)

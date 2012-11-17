@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "MwLine.h"
+#include "Rect.h"
 
 using namespace mw;
 
@@ -44,4 +45,10 @@ void Line::DoDraw()
 	point_to_();
 	//glVertex2f(Point2.x, Point2.y);
 	glEnd();
+}
+
+Rect mw::Line::bound() const
+{
+	//TODO: cache result and update only when changed
+	return Rect(point_from_, point_to_);
 }
