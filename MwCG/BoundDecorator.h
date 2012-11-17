@@ -7,6 +7,10 @@ namespace mw
 	class BoundDecorator :
 		public Decorator
 	{
+	private:
+		shared_ptr<GlElement> dec_;
+	public:
+		void set(shared_ptr<GlElement> element);
 	public:
 		BoundDecorator(void);
 		~BoundDecorator(void);
