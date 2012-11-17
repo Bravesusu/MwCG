@@ -24,7 +24,12 @@ bool mw::Circle::HitTest()
 
 Rect mw::Circle::bound() const
 {
-	throw std::exception("The method or operation is not implemented.");
+	return Rect(
+		center_.x() - radius_, 
+		center_.x() + radius_,
+		center_.y() + radius_,
+		center_.y() - radius_
+		);
 }
 
 void mw::Circle::Draw()
