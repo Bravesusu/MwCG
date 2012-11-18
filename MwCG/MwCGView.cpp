@@ -19,6 +19,8 @@
 #include "MwCG.h"
 #endif
 
+#include "MwMiniToolBar.h"
+
 #include "MwCGDoc.h"
 #include "MwCGView.h"
 
@@ -505,15 +507,15 @@ ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 
 	void CMwCGView::FooFloaty( CPoint point )
 	{
-		CMFCRibbonMiniToolBar* pFloaty = new CMFCRibbonMiniToolBar;
-
+		//CMFCRibbonMiniToolBar* pFloaty = new CMFCRibbonMiniToolBar;
+		MwMiniToolBar* pFloaty = new MwMiniToolBar(this);
 		InitFloaty(pFloaty);
 
 		ClientToScreen(&point);
 		pFloaty->Show(point.x, point.y);
 	}
 
-	void CMwCGView::InitFloaty( CMFCRibbonMiniToolBar* pFloaty )
+	void CMwCGView::InitFloaty( MwMiniToolBar* pFloaty )
 	{
 		ASSERT_VALID(pFloaty);
 
@@ -585,4 +587,10 @@ ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 		default:
 			break;
 		}
+	}
+
+	void CMwCGView::SendMouseMove( UINT nFlags, CPoint screenPoint )
+	{
+		ScreenToClient(&screenPoint);
+		OnMouseMove(nFlags, screenPoint);
 	}

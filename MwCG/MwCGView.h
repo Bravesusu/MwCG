@@ -19,6 +19,7 @@
 #include "UiState.h"
 #include "UiNav.h"
 #include "UiEdit.h"
+#include "IRecvView.h"
 
 using namespace mw;
 
@@ -29,7 +30,8 @@ namespace mw
 	class CircleTool;
 }
 
-class CMwCGView : public CView
+class MwMiniToolBar;
+class CMwCGView : public CView, public IRecvView
 {
 protected: // create from serialization only
 	CMwCGView();
@@ -115,12 +117,15 @@ public:
 	afx_msg void OnUpdateCheckGird(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateIdsStatusRect(CCmdUI *pCmdUI);
 	void FooFloaty( CPoint point );
-	void InitFloaty( CMFCRibbonMiniToolBar* pFloaty );
+	void InitFloaty( MwMiniToolBar* pFloaty );
 	afx_msg void OnEditUndo();
 	afx_msg void OnEditRedo();
 	afx_msg void OnToolSelect();
 	afx_msg void OnUpdateToolSelect(CCmdUI *pCmdUI);
 	afx_msg void OnShapeGallery();
+
+	virtual void SendMouseMove( UINT nFlags, CPoint screenPoint );
+
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

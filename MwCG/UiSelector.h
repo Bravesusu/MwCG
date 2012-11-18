@@ -9,6 +9,13 @@ namespace mw
 	public:
 		UiSelector(void);
 		~UiSelector(void);
+
+		virtual OperationPtr PopNewOperation();
+
+		virtual bool IsFinished() const;
+
+		virtual void Draw();
+
 	};
 }
 

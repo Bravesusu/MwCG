@@ -216,6 +216,12 @@
     <ClInclude Include="BoundDecorator.h">
       <Filter>Mw\Content\Decorator</Filter>
     </ClInclude>
+    <ClInclude Include="MwMiniToolBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IRecvView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -361,6 +367,12 @@
     </ClCompile>
     <ClCompile Include="BoundDecorator.cpp">
       <Filter>Mw\Content\Decorator</Filter>
+    </ClCompile>
+    <ClCompile Include="MwMiniToolBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IRecvView.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
