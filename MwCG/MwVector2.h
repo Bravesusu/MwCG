@@ -29,6 +29,7 @@ namespace mw
 		void Trace();
 		void Serialize(CArchive& ar);
 	public:
+		float magnitude() const;
 		Vector2 operator+(const Vector2& rhs) const;
 		Vector2& operator+=(const Vector2& rhs);
 		Vector2 operator-(const Vector2& rhs) const;

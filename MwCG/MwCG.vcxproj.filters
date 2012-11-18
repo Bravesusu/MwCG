@@ -198,19 +198,22 @@
     <ClInclude Include="BoundDecorator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Polygon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Circle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Content</Filter>
     </ClInclude>
     <ClInclude Include="Rectangle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Content</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon.h">
+      <Filter>Mw\Content</Filter>
     </ClInclude>
     <ClInclude Include="RectBase.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Types</Filter>
     </ClInclude>
     <ClInclude Include="TwoPointTool.h">
+      <Filter>Mw\UI State\Edit</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleTool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -341,19 +344,22 @@
     <ClCompile Include="BoundDecorator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Polygon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Circle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RectBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>Mw\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="Polygon.cpp">
+      <Filter>Mw\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Mw\Content</Filter>
+    </ClCompile>
     <ClCompile Include="TwoPointTool.cpp">
+      <Filter>Mw\UI State\Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleTool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

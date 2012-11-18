@@ -88,3 +88,8 @@ void Vertex(const Vector2& vector)
 {
 	vector.Vertex();
 }
+
+float mw::Vector2::magnitude() const
+{
+	return sqrt(x_ * x_ + y_ * y_);
+}

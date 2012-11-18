@@ -9,8 +9,11 @@ namespace mw
 		public UiEditorTool
 	{
 	private:
-		shared_ptr<Point> ptFrom_, ptTo_;
+		shared_ptr<Point> first_, second_;
 		void DoInput();
+	public:
+		Vector2 first() const;
+		Vector2 second() const;
 	public:
 		TwoPointTool(void);
 		~TwoPointTool(void);

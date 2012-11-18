@@ -22,7 +22,6 @@ mw::OperationPtr mw::LineTool::PopNewOperation()
 	//TRACE("Try pop operation\n");
 	if (!IsFinished())
 		return NULL;
-	TRACE("Operation Poped\n");
 	return OperationPtr(new AddElementToContent(content(), line_));
 }
 

@@ -10,15 +10,15 @@ using namespace mw;
 
 TwoPointTool::TwoPointTool(void) 
 {
-	ptFrom_.reset(new Point());
-	ptFrom_->set_hidden(true);
-	ptFrom_->set_size(10);
-	ptFrom_->set_color(1, 0, 0);
+	first_.reset(new Point());
+	first_->set_hidden(true);
+	first_->set_size(10);
+	first_->set_color(1, 0, 0);
 
-	ptTo_.reset(new Point());
-	ptTo_->set_hidden(true);
-	ptTo_->set_size(10);
-	ptTo_->set_color(1, 0, 0);
+	second_.reset(new Point());
+	second_->set_hidden(true);
+	second_->set_size(10);
+	second_->set_color(1, 0, 0);
 }
 
 
@@ -32,14 +32,14 @@ void mw::TwoPointTool::DoInput()
 	{
 	case 0:
 		//TRACE("Set from(%.3f, %.3f)\n", curent().x(), curent().y());
-		ptFrom_->set_position(current());
-		ptFrom_->set_hidden(false);
+		first_->set_position(current());
+		first_->set_hidden(false);
 		OnFirstPoint(current());
 		break;
 	case 1:
 		TRACE("Set to(%.3f, %.3f)\n", current().x(), current().y());
-		ptTo_->set_position(current());
-		ptTo_->set_hidden(false);
+		second_->set_position(current());
+		second_->set_hidden(false);
 		OnSecondPoint(current());
 		break;
 	default:
@@ -49,8 +49,8 @@ void mw::TwoPointTool::DoInput()
 
 void mw::TwoPointTool::DoNew()
 {
-	ptFrom_->set_hidden(true);
-	ptTo_->set_hidden(true);
+	first_->set_hidden(true);
+	second_->set_hidden(true);
 	OnNew();
 }
 
@@ -67,11 +67,21 @@ void mw::TwoPointTool::DoFixInput()
 void mw::TwoPointTool::Draw()
 {
 	OnDraw();
-	ptFrom_->Draw();
-	ptTo_->Draw();
+	first_->Draw();
+	second_->Draw();
 }
 
 bool mw::TwoPointTool::IsFinished() const
 {
 	return input_count() == 3;
+}
+
+mw::Vector2 mw::TwoPointTool::first() const
+{
+	return first_->position();
+}
+
+mw::Vector2 mw::TwoPointTool::second() const
+{
+	return second_->position();
 }
