@@ -31,8 +31,13 @@ Rect mw::GlElement::bound() const
 
 void mw::GlElement::Draw()
 {
-	if (!hidden_)
-		DoDraw();
+	if (hidden_)
+		return;
+	//TODO: do coloring
+	color()();
+	//TODO: do sizing
+
+	DoDraw();
 	for (list<shared_ptr<Decorator>>::iterator it = decorators_.begin(); it != decorators_.end(); it++)
 	{
 		(*it)->Decorate();

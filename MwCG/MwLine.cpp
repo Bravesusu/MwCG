@@ -37,7 +37,7 @@ void Line::Serialize(CArchive& ar)
 
 void Line::DoDraw()
 {
-	color()();
+	//color()();
 	glLineWidth(width_);
 	glBegin(GL_LINES);
 	point_from_();

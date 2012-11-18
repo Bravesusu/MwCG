@@ -33,7 +33,7 @@ void Sierpinski::Serialize(CArchive& ar)
 
 void Sierpinski::DoDraw()
 {
-	color()();
+	//color()();
 	glPointSize(1);
 	glBegin(GL_POINTS);
 	Vector2 p(50.0, 50.0);

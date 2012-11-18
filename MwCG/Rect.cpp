@@ -8,11 +8,7 @@ using namespace mw;
 
 IMPLEMENT_SERIAL(Rect, MwGLObject, 1);
 
-Rect::Rect(void) :
-	left_(0),
-	right_(0),
-	top_(0),
-	bottom_(0)
+Rect::Rect(void) : RectBase()
 {
 }
 
@@ -23,33 +19,18 @@ Rect::~Rect(void)
 
 void mw::Rect::Serialize( CArchive& ar )
 {
-	if (ar.IsStoring())
-	{
-		ar<<left_<<right_<<top_<<bottom_;
-	}
-	else
-	{
-		ar>>left_>>right_>>top_>>bottom_;
-	}
+	DoSerialize(ar);
 }
 
 void mw::Rect::GL()
 {
+	DoGL();
 }
 
-mw::Rect::Rect( float left, float right, float top, float bottom ) :
-	left_(left),
-	right_(right),
-	top_(top),
-	bottom_(bottom)
+mw::Rect::Rect( float left, float right, float top, float bottom ) : RectBase(left, right, top, bottom)
 {
-
 }
 
-mw::Rect::Rect( const Vector2& point1, const Vector2& point2 )
+mw::Rect::Rect( const Vector2& point1, const Vector2& point2 ) : RectBase(point1, point2)
 {
-	left_ = min(point1.x(),point2.x());
-	right_ = max(point1.x(),point2.x());
-	top_ = max(point1.y(),point2.y());
-	bottom_ = min(point1.y(),point2.y());
 }

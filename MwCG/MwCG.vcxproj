@@ -120,6 +120,7 @@
     <ClInclude Include="GlColor.h" />
     <ClInclude Include="IOperation.h" />
     <ClInclude Include="IDrawable.h" />
+    <ClInclude Include="RectBase.h" />
     <ClInclude Include="IReversible.h" />
     <ClInclude Include="LineTool.h" />
     <ClInclude Include="MwGlScreen.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="PointTool.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="Rect.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RemoveElementFromContent.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -171,6 +173,7 @@
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="GlCmd.cpp" />
     <ClCompile Include="GlColor.cpp" />
+    <ClCompile Include="RectBase.cpp" />
     <ClCompile Include="LineTool.cpp" />
     <ClCompile Include="MwGlScreen.cpp" />
     <ClCompile Include="GlVertex.cpp" />
@@ -195,6 +198,7 @@
     <ClCompile Include="PointTool.cpp" />
     <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RemoveElementFromContent.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
