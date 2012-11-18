@@ -1,32 +1,28 @@
 #pragma once
-#include "uieditortool.h"
+#include "TwoPointTool.h"
 
 namespace mw
 {
 	class Line;
 	class Point;
 	class LineTool :
-		public UiEditorTool
+		public TwoPointTool
 	{
 	private:
-		shared_ptr<Point> ptFrom_, ptTo_;
 		shared_ptr<Line> line_;
-		void DoInput();
 	public:
 		LineTool(void);
 		~LineTool(void);
 
 		virtual OperationPtr PopNewOperation();
 
-		virtual void Draw();
+		virtual void OnFirstPoint( const Vector2& point );
 
-		virtual void DoNew();
+		virtual void OnSecondPoint( const Vector2& point );
 
-		virtual void DoUpdateInput();
+		virtual void OnNew();
 
-		virtual void DoFixInput();
-
-		virtual bool IsFinished() const;
+		virtual void OnDraw();
 
 	};
 	
