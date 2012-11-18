@@ -20,7 +20,7 @@ namespace mw
 
 		virtual void DoDraw();
 
-		virtual bool HitTest();
+		//virtual bool HitTest();
 
 		virtual Rect bound() const;
 

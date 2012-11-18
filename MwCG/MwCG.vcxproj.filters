@@ -195,9 +195,6 @@
     <ClInclude Include="PointDecorator.h">
       <Filter>Mw\Content\Decorator</Filter>
     </ClInclude>
-    <ClInclude Include="BoundDecorator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Circle.h">
       <Filter>Mw\Content</Filter>
     </ClInclude>
@@ -214,7 +211,10 @@
       <Filter>Mw\UI State\Edit</Filter>
     </ClInclude>
     <ClInclude Include="CircleTool.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\UI State\Edit</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundDecorator.h">
+      <Filter>Mw\Content\Decorator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -341,9 +341,6 @@
     <ClCompile Include="PointDecorator.cpp">
       <Filter>Mw\Content\Decorator</Filter>
     </ClCompile>
-    <ClCompile Include="BoundDecorator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RectBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -360,7 +357,10 @@
       <Filter>Mw\UI State\Edit</Filter>
     </ClCompile>
     <ClCompile Include="CircleTool.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\UI State\Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundDecorator.cpp">
+      <Filter>Mw\Content\Decorator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

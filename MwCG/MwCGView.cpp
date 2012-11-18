@@ -25,6 +25,7 @@
 #include "MwCanvas.h"
 #include "PointTool.h"
 #include "LineTool.h"
+#include "CircleTool.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -210,6 +211,7 @@ ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 		
 		toolPoint_.reset(new PointTool());
 		toolLine_.reset(new LineTool());
+		toolCircle_.reset(new CircleTool());
 
 		SwitchToEditMode();
 
@@ -399,7 +401,7 @@ ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 
 		m_bMouseDown = false;
 
-		//FooFloaty(point);
+		FooFloaty(point);
 	}
 
 
@@ -578,6 +580,8 @@ ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 		case 1:
 			uiEditState_->set_tool(toolLine_);
 			break;
+		case 2:
+			uiEditState_->set_tool(toolCircle_);
 		default:
 			break;
 		}

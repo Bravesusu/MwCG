@@ -26,6 +26,7 @@ namespace mw
 {
 	class LineTool;
 	class PointTool;
+	class CircleTool;
 }
 
 class CMwCGView : public CView
@@ -53,6 +54,7 @@ protected:
 private:
 	shared_ptr<PointTool> toolPoint_;
 	shared_ptr<LineTool> toolLine_;
+	shared_ptr<CircleTool> toolCircle_;
 	// Operations
 public:
 

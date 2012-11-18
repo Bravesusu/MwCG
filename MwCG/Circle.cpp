@@ -12,15 +12,27 @@ Circle::~Circle(void)
 {
 }
 
-void mw::Circle::DoDraw()
+void FooCircle(float x, float y, float r, int segments)
 {
-	throw std::exception("The method or operation is not implemented.");
+	glBegin( GL_LINE_LOOP );
+	glVertex2f(x, y);
+	for( int n = 0; n <= segments; ++n ) {
+		float const t = 2*3.14*(float)n/(float)segments;
+		glVertex2f(x + sin(t)*r, y + cos(t)*r);
+	}
+	glEnd();
 }
 
-bool mw::Circle::HitTest()
+
+void mw::Circle::DoDraw()
 {
-	throw std::exception("The method or operation is not implemented.");
+	FooCircle(center_.x(), center_.y(), radius_, 100);
 }
+
+//bool mw::Circle::HitTest()
+//{
+//	return false;
+//}
 
 Rect mw::Circle::bound() const
 {
@@ -30,9 +42,4 @@ Rect mw::Circle::bound() const
 		center_.y() + radius_,
 		center_.y() - radius_
 		);
-}
-
-void mw::Circle::Draw()
-{
-	throw std::exception("The method or operation is not implemented.");
 }
