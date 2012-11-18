@@ -7,7 +7,7 @@ namespace mw
 		public GlElement
 	{
 	private:
-		list<Vector2> vertex_;
+		list<shared_ptr<Vector2>> vertex_;
 	public:
 		int count() const { return vertex_.size(); }
 	public:
