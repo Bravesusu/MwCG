@@ -228,6 +228,12 @@
     <ClInclude Include="RenderContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ElementOperation.h">
+      <Filter>Mw\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeElementColor.h">
+      <Filter>Mw\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -385,6 +391,12 @@
     </ClCompile>
     <ClCompile Include="RenderContext.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementOperation.cpp">
+      <Filter>Mw\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeElementColor.cpp">
+      <Filter>Mw\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
