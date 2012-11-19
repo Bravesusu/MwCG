@@ -31,6 +31,8 @@ namespace mw
 
 		virtual bool IsFinished() const;
 
+		virtual shared_ptr<GlElement> GetEditingElement();
+
 	};
 	
 }

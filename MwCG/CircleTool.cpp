@@ -44,3 +44,8 @@ mw::OperationPtr mw::CircleTool::PopNewOperation()
 		return NULL;
 	return OperationPtr(new AddElementToContent(content(), circle_));
 }
+
+shared_ptr<GlElement> mw::CircleTool::GetEditingElement()
+{
+	return circle_;
+}

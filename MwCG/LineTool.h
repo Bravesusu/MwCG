@@ -24,6 +24,8 @@ namespace mw
 
 		virtual void OnDraw();
 
+		virtual shared_ptr<GlElement> GetEditingElement();
+
 	};
 	
 }

@@ -23,6 +23,8 @@ namespace mw
 
 		virtual OperationPtr PopNewOperation();
 
+		virtual shared_ptr<GlElement> GetEditingElement();
+
 	};
 }
 

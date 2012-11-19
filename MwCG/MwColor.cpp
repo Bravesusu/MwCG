@@ -80,3 +80,8 @@ void glClearColor(const Color& color)
 {
 	color.Clear();
 }
+
+mw::Color::Color( COLORREF colorRef )
+{
+	set(colorRef);
+}

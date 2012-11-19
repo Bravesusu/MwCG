@@ -16,6 +16,8 @@ namespace mw
 		int input_index;
 		//Vector2 current_;
 	protected:
+		virtual shared_ptr<GlElement> GetEditingElement() { return NULL; }
+	protected:
 		int input_count() const { return inputs_.size(); }
 
 		int currentIndex() const { return input_index; }
@@ -29,6 +31,8 @@ namespace mw
 	public:
 		UiEditorTool(void);
 		~UiEditorTool(void);
+	protected:
+		Color elementColor_;
 	public:
 		virtual OperationPtr PopNewOperation() = 0;
 		virtual void DoNew() {};
@@ -42,6 +46,9 @@ namespace mw
 		void UpdateInput(const Vector2& pos);
 		void FixInput(const int index, const Vector2& pos);
 		int NextInput();
+		void UpdateElementColor( const COLORREF elementColor );
+	protected:
+		void TrySetElementColor();
 	};
 }
 

@@ -74,6 +74,8 @@ ON_COMMAND(ID_EDIT_REDO, &CMwCGView::OnEditRedo)
 ON_COMMAND(ID_TOOL_SELECT, &CMwCGView::OnToolSelect)
 ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
 ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
+ON_COMMAND(ID_BUTTON_COLOR, &CMwCGView::OnButtonColor)
+ON_UPDATE_COMMAND_UI(ID_BUTTON_COLOR, &CMwCGView::OnUpdateButtonColor)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -211,9 +213,7 @@ ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 		uiNavState_->Initialize(pDoc, this);
 		uiEditState_->Initialize(pDoc, this);
 		
-		toolPoint_.reset(new PointTool());
-		toolLine_.reset(new LineTool());
-		toolCircle_.reset(new CircleTool());
+		InitializeTools();
 
 		SwitchToEditMode();
 
@@ -520,6 +520,7 @@ ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 		ASSERT_VALID(pFloaty);
 
 		CList<UINT, UINT> lstCmds;
+		lstCmds.AddTail(ID_BUTTON_COLOR);
 		lstCmds.AddTail(ID_EDIT_PASTE);
 		lstCmds.AddTail(ID_SHAPE_GALLERY);
 		lstCmds.AddTail(ID_CHECK_GIRD);
@@ -574,23 +575,73 @@ ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 	{
 		// TODO: Add your command handler code here
 		int shape_index = CMFCRibbonGallery::GetLastSelectedItem(ID_SHAPE_GALLERY);
-		switch (shape_index)
+
+		if (shape_index < tools_.size())
 		{
-		case 0:
-			uiEditState_->set_tool(toolPoint_);
-			break;
-		case 1:
-			uiEditState_->set_tool(toolLine_);
-			break;
-		case 2:
-			uiEditState_->set_tool(toolCircle_);
-		default:
-			break;
+			uiEditState_->set_tool(tools_[shape_index]);
 		}
+
+		else
+		{
+			TRACE("Invalid tool index %d\n", shape_index);
+		}
+		//switch (shape_index)
+		//{
+		//case 0:
+		//	uiEditState_->set_tool(toolPoint_);
+		//	break;
+		//case 1:
+		//	uiEditState_->set_tool(toolLine_);
+		//	break;
+		//case 2:
+		//	uiEditState_->set_tool(toolCircle_);
+		//default:
+		//	break;
+		//}
 	}
 
 	void CMwCGView::SendMouseMove( UINT nFlags, CPoint screenPoint )
 	{
 		ScreenToClient(&screenPoint);
 		OnMouseMove(nFlags, screenPoint);
+	}
+
+
+	void CMwCGView::OnButtonColor()
+	{
+		// TODO: Add your command handler code here
+		CMFCRibbonColorButton* pColorButton = theApp.FindRibbonUIById<CMFCRibbonColorButton>(ID_BUTTON_COLOR);
+		ASSERT_VALID(pColorButton);
+		UpdateToolColor(pColorButton->GetColor());
+
+		Invalidate();
+	}
+
+
+	void CMwCGView::OnUpdateButtonColor(CCmdUI *pCmdUI)
+	{
+		pCmdUI->Enable(m_render.IsValid());
+	}
+
+	void CMwCGView::InitializeTools()
+	{
+		toolPoint_.reset(new PointTool());
+		tools_.push_back(toolPoint_);
+
+		toolLine_.reset(new LineTool());
+		tools_.push_back(toolLine_);
+
+		toolCircle_.reset(new CircleTool());
+		tools_.push_back(toolCircle_);
+
+		OnButtonColor();
+	}
+
+	void CMwCGView::UpdateToolColor( const COLORREF elementColor )
+	{
+		for (vector<shared_ptr<UiEditorTool>>::iterator it = tools_.begin();
+			it != tools_.end(); it++)
+		{
+			(*it)->UpdateElementColor(elementColor);
+		}
 	}

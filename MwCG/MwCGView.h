@@ -28,6 +28,7 @@ namespace mw
 	class LineTool;
 	class PointTool;
 	class CircleTool;
+	class UiEditorTool;
 }
 
 class MwMiniToolBar;
@@ -54,9 +55,12 @@ protected:
 	shared_ptr<UiEdit> uiEditState_;
 
 private:
+	vector<shared_ptr<UiEditorTool>> tools_;
 	shared_ptr<PointTool> toolPoint_;
 	shared_ptr<LineTool> toolLine_;
 	shared_ptr<CircleTool> toolCircle_;
+	void InitializeTools();
+	void UpdateToolColor(const COLORREF elementColor);
 	// Operations
 public:
 
@@ -126,6 +130,8 @@ public:
 
 	virtual void SendMouseMove( UINT nFlags, CPoint screenPoint );
 
+	afx_msg void OnButtonColor();
+	afx_msg void OnUpdateButtonColor(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

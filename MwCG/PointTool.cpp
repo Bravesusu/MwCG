@@ -57,3 +57,8 @@ bool mw::PointTool::IsFinished() const
 {
 	return isFinished_;
 }
+
+shared_ptr<GlElement> mw::PointTool::GetEditingElement()
+{
+	return point_;
+}

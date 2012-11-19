@@ -45,3 +45,8 @@ void mw::LineTool::OnDraw()
 {
 	line_->Draw();
 }
+
+shared_ptr<GlElement> mw::LineTool::GetEditingElement()
+{
+	return line_;
+}

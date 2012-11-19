@@ -33,6 +33,7 @@ namespace mw
 		Color& operator =(const Color & rhs);
 	public:
 		Color(void);
+		Color(COLORREF colorRef);
 		Color(const Color & color) { set(color); }
 		Color(float fr, float fg, float fb) 
 			: r_(fr), g_(fg), b_(fb), a_(1.0) {};

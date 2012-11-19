@@ -23,6 +23,7 @@
 #include "MwCanvas.h"
 
 #include "AddElementToContent.h"
+#include "ChangeElementColor.h"
 
 #include <propkey.h>
 
@@ -167,8 +168,15 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	{
 		// TODO: Add your command handler code here
 		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
-		COLORREF clr = pColorBtn->GetColor();
-		glContent_->canvas()->set_color(clr);
+		//COLORREF clr = pColorBtn->GetColor();
+		Color clr(pColorBtn->GetColor());
+
+		CommitOperation(OperationPtr(
+			new ChangeElementColor(
+				glContent_->canvas(),
+				clr
+			)));
+
 		UpdateAllViews(NULL);
 	}
 
