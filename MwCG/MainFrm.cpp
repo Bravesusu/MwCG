@@ -16,6 +16,7 @@
 #include "MwCG.h"
 
 #include "MainFrm.h"
+#include "MwNumberEdit.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -69,6 +70,12 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (!CreateStatusBar())
 	{
 		TRACE0("Failed to create status bar\n");
+		return -1;      // fail to create
+	}
+
+	if (!CreateDynamicRibbon())
+	{
+		TRACE0("Failed to create dynamic ribbon components\n");
 		return -1;      // fail to create
 	}
 
@@ -455,6 +462,19 @@ void CMainFrame::SetCaptionBarText(const CString& strText)
 	m_wndCaptionBar.RedrawWindow();
 }
 
+BOOL CMainFrame::CreateDynamicRibbon(void)
+{
+	//CMFCRibbonCategory* pInsert = m_wndRibbonBar.GetCategory(0);
+	//ASSERT_VALID(pInsert);
+	//CMFCRibbonPanel* pPanel = pInsert->GetPanel(2);
+	//ASSERT_VALID(pPanel);
+	//MwNumberEdit* pMwEdit = new MwNumberEdit(ID_EDIT_SIZE, 50, _T("Size"));
+	//pPanel->Add(pMwEdit);
+	CMFCRibbonCategory* pCate = m_wndRibbonBar.AddCategory(_T("Foo"), 0, 0);
+	CMFCRibbonPanel* pPanel = pCate->AddPanel(_T("Bar"));
+	pPanel->Add(new MwNumberEdit(ID_EDIT_SIZE, 50, _T("Size")));
+	return TRUE;
+}
 
 BOOL CMainFrame::CreateStatusBar(void)
 {

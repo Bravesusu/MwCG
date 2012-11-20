@@ -48,7 +48,8 @@ void GlContent::Serialize(CArchive& ar)
 		arr.Serialize(ar);
 		for (int i = 0; i < arr.GetSize(); i++)
 		{
-			elements_.push_back(GlElementPtr(dynamic_cast<GlElement*>(arr[i])));
+			
+			elements_.push_back(GlElementPtr(DYNAMIC_DOWNCAST(GlElement, arr[i])));
 		}
 	}
 }

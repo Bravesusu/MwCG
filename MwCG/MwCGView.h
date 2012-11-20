@@ -132,6 +132,8 @@ public:
 
 	afx_msg void OnButtonColor();
 	afx_msg void OnUpdateButtonColor(CCmdUI *pCmdUI);
+	afx_msg void OnEditSize();
+	afx_msg void OnUpdateEditSize(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

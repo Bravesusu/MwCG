@@ -234,6 +234,9 @@
     <ClInclude Include="ChangeElementColor.h">
       <Filter>Mw\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="MwNumberEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -397,6 +400,9 @@
     </ClCompile>
     <ClCompile Include="ChangeElementColor.cpp">
       <Filter>Mw\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="MwNumberEdit.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

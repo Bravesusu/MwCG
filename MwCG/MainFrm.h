@@ -92,6 +92,7 @@ public:
 	//Set the text on caption bar
 	void SetCaptionBarText(const CString& strText);
 	BOOL CreateStatusBar(void);
+	BOOL CreateDynamicRibbon(void);
 };
 
 

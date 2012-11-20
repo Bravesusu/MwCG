@@ -76,6 +76,8 @@ ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
 ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 ON_COMMAND(ID_BUTTON_COLOR, &CMwCGView::OnButtonColor)
 ON_UPDATE_COMMAND_UI(ID_BUTTON_COLOR, &CMwCGView::OnUpdateButtonColor)
+ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
+ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -611,7 +613,6 @@ ON_UPDATE_COMMAND_UI(ID_BUTTON_COLOR, &CMwCGView::OnUpdateButtonColor)
 	{
 		// TODO: Add your command handler code here
 		CMFCRibbonColorButton* pColorButton = theApp.FindRibbonUIById<CMFCRibbonColorButton>(ID_BUTTON_COLOR);
-		ASSERT_VALID(pColorButton);
 		UpdateToolColor(pColorButton->GetColor());
 
 		Invalidate();
@@ -644,4 +645,19 @@ ON_UPDATE_COMMAND_UI(ID_BUTTON_COLOR, &CMwCGView::OnUpdateButtonColor)
 		{
 			(*it)->UpdateElementColor(elementColor);
 		}
+	}
+
+
+	void CMwCGView::OnEditSize()
+	{
+		// TODO: Add your command handler code here
+	}
+
+
+	void CMwCGView::OnUpdateEditSize(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(m_render.IsValid());
+		/*CMFCRibbonEdit *pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_SIZE);
+		*/
 	}

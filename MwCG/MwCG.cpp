@@ -49,7 +49,9 @@ template<class UI>
 UI* CMwCGApp::FindRibbonUIById(UINT uiCmdId)
 {
 	CMFCRibbonBar* pRibbon = GetRibbonBar();
-	return DYNAMIC_DOWNCAST(UI, pRibbon->FindByID(uiCmdId));
+	UI* pUI = DYNAMIC_DOWNCAST(UI, pRibbon->FindByID(uiCmdId));
+	ASSERT_VALID(pUI);
+	return pUI;
 }
 
 CMFCRibbonColorButton* CMwCGApp::GetClearColorButton()
