@@ -22,6 +22,9 @@
 #include "MwCGDoc.h"
 #include "MwCanvas.h"
 
+#include "MwGLContent.h"
+#include "IOperation.h"
+
 #include "AddElementToContent.h"
 #include "ChangeElementColor.h"
 
@@ -65,7 +68,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		// (SDI documents will reuse this document)
 
 		glContent_.reset(new GlContent());
-		FooDocument();
+		//FooDocument();
 
 		return TRUE;
 	}
@@ -210,55 +213,55 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 	}
 
 	//Create a dummy document
-	void CMwCGDoc::FooDocument()
-	{		
-		shared_ptr<Canvas> canvas = glContent_->canvas();
-		int width = 800;
-		int height = 600;
-		int hw = width / 2;
-		int hh = height / 2;
-		for (int y = -hh; y < hh; y += 10)
-		{
-			GlElementPtr ln(
-				new Line(
-				0, 
-				static_cast<float>(y), 
-				static_cast<float>(width), 
-				static_cast<float>(y)));
-			ln->set_color(MW_RED);
-			//glContent_->AddElement(GlElementPtr(ln));
-			//glContent_->Elements.push_back(GlElementPtr(ln));
-			CommitOperation(OperationPtr(
-				new AddElementToContent(glContent_, ln)
-				));
-		}
+	//void CMwCGDoc::FooDocument()
+	//{		
+	//	shared_ptr<Canvas> canvas = glContent_->canvas();
+	//	int width = 800;
+	//	int height = 600;
+	//	int hw = width / 2;
+	//	int hh = height / 2;
+	//	for (int y = -hh; y < hh; y += 10)
+	//	{
+	//		GlElementPtr ln(
+	//			new Line(
+	//			0, 
+	//			static_cast<float>(y), 
+	//			static_cast<float>(width), 
+	//			static_cast<float>(y)));
+	//		ln->set_color(MW_RED);
+	//		//glContent_->AddElement(GlElementPtr(ln));
+	//		//glContent_->Elements.push_back(GlElementPtr(ln));
+	//		CommitOperation(OperationPtr(
+	//			new AddElementToContent(glContent_, ln)
+	//			));
+	//	}
 
-		for (int x = -hw; x < hw; x += 100)
-		{
-			for (int y = -hh; y < hh; y += 100)
-			{
-				Point* pt = new Point(
-					static_cast<float>(x), 
-					static_cast<float>(y), 
-					5.0);
-				pt->set_color(MW_BLUE);
-				glContent_->AddElement(GlElementPtr(pt));
-			}
-		}
+	//	for (int x = -hw; x < hw; x += 100)
+	//	{
+	//		for (int y = -hh; y < hh; y += 100)
+	//		{
+	//			Point* pt = new Point(
+	//				static_cast<float>(x), 
+	//				static_cast<float>(y), 
+	//				5.0);
+	//			pt->set_color(MW_BLUE);
+	//			glContent_->AddElement(GlElementPtr(pt));
+	//		}
+	//	}
 
-		Sierpinski* sk = new Sierpinski();
-		sk->set_point_count(10000);
-		sk->set_color(MW_GREEN);
-		(*sk)[0] = Vector2(100.0, 50.0);
-		(*sk)[1] = Vector2(400.0, 400.0);
-		(*sk)[2] = Vector2(700.0, 50.0);
+	//	Sierpinski* sk = new Sierpinski();
+	//	sk->set_point_count(10000);
+	//	sk->set_color(MW_GREEN);
+	//	(*sk)[0] = Vector2(100.0, 50.0);
+	//	(*sk)[1] = Vector2(400.0, 400.0);
+	//	(*sk)[2] = Vector2(700.0, 50.0);
 
-		//glContent_->AddElement(GlElementPtr(sk));
+	//	//glContent_->AddElement(GlElementPtr(sk));
 
-		CommitOperation(OperationPtr(
-			new AddElementToContent(glContent_, GlElementPtr(sk))
-			));
-	}
+	//	CommitOperation(OperationPtr(
+	//		new AddElementToContent(glContent_, GlElementPtr(sk))
+	//		));
+	//}
 
 	mw::Vector2 CMwCGDoc::SetMousePos( CPoint& point )
 	{

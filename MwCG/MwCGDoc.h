@@ -14,12 +14,13 @@
 
 
 #pragma once
-#include "IOperation.h"
 
-#include "MwGLContent.h"
-#include "MwPoint.h"
-#include "MwLine.h"
-#include "MwSierpinski.h"
+
+namespace mw
+{
+	class IOperation;
+	class GlContent;
+}
 
 using namespace mw;
 
@@ -45,7 +46,7 @@ public:
 
 private:
 	shared_ptr<GlContent> glContent_;
-	void FooDocument();
+	//void FooDocument();
 // Operations
 public:
 	Vector2 SetMousePos(CPoint& point);

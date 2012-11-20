@@ -105,6 +105,10 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 	{
 		if (!TryFinishTool())
 			tool_->Cancel();
+		else
+		{
+			tool_->New();
+		}
 	}
 
 	tool->set_content(doc()->glContent());
