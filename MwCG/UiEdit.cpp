@@ -66,6 +66,7 @@ void mw::UiEdit::OnLButtonUp( UINT nFlags, CPoint point )
 		else if (!tool_->IsFinished())
 		{
 			int oldIndex = tool_->NextInput();
+			view()->ShowFloaty(oldIndex, nFlags, point);
 		}
 	}
 

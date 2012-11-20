@@ -411,7 +411,6 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 
 		m_bMouseDown = false;
 
-		FooFloaty(point);
 	}
 
 
@@ -684,4 +683,9 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 		{
 			(*it)->UpdateElementSize(size);
 		}
+	}
+
+	void CMwCGView::ShowFloaty( int inputIndex, UINT nFlags, CPoint point )
+	{
+		FooFloaty(point);
 	}

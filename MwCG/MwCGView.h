@@ -137,6 +137,7 @@ public:
 	afx_msg void OnUpdateEditSize(CCmdUI *pCmdUI);
 	afx_msg void OnEditSize();
 	void UpdateToolSize( int size );
+	void ShowFloaty( int inputIndex, UINT nFlags, CPoint point );
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

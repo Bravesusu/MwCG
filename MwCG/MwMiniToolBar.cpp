@@ -34,9 +34,9 @@ void MwMiniToolBar::OnMouseMove(UINT nFlags, CPoint point)
 
 	CMFCRibbonMiniToolBar::OnMouseMove(nFlags, point);
 
-	/*ClientToScreen(&point);
+	ClientToScreen(&point);
 	if (m_pView)
-	m_pView->SendMouseMove(nFlags, point);*/
+		m_pView->SendMouseMove(nFlags, point);
 	//ClientToScreen()
 }
 
