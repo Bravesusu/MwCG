@@ -3,6 +3,9 @@
 #include "Rect.h"
 
 using namespace mw;
+
+IMPLEMENT_SERIAL(Circle, GlElement, 1);
+
 Circle::Circle(void)
 {
 }
@@ -42,4 +45,19 @@ Rect mw::Circle::bound() const
 		center_.y() + radius_,
 		center_.y() - radius_
 		);
+}
+
+void mw::Circle::Serialize( CArchive& ar )
+{
+	GlElement::Serialize(ar);
+	center_.Serialize(ar);
+	
+	if (ar.IsStoring())
+	{
+		ar<<radius_;
+	}
+	else
+	{
+		ar>>radius_;
+	}
 }

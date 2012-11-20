@@ -19,11 +19,10 @@ namespace mw
 
 	public:
 		const shared_ptr<Canvas>& canvas() const { return canvas_; }
-		const shared_ptr<GlScreen>& screen() const { return screen_; }
 	private:
 		shared_ptr<Canvas> canvas_;
-		shared_ptr<GlScreen> screen_;
 		shared_ptr<Mouse> mouse_;
+		shared_ptr<GlScreen> theScreen_;
 	private:
 		list<GlElementPtr> elements_;
 	public:

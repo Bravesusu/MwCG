@@ -4,6 +4,8 @@
 
 using namespace mw;
 
+//IMPLEMENT_SERIAL(Polygon, GlElement, 1);
+
 Polygon::Polygon(void)
 {
 }

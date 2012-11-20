@@ -6,6 +6,7 @@ namespace mw
 {
 	class GlScreen : public MwGLObject
 	{
+		DECLARE_SERIAL(GlScreen);
 	private:
 		int width_;
 		int height_;
@@ -39,6 +40,9 @@ namespace mw
 		~GlScreen(void);
 	public:
 		void GL();
+
+		virtual void Serialize( CArchive& ar );
+
 	};
 }
 

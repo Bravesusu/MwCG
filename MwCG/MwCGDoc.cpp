@@ -81,10 +81,10 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		}
 		else
 		{
-			GlContent content;
-			content.Serialize(ar);
+			GlContent* pContent = new GlContent();
+			pContent->Serialize(ar);
 			// TODO: add loading code here
-			glContent_.reset(&content);
+			glContent_.reset(pContent);
 		}
 	}
 

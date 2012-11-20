@@ -25,9 +25,10 @@ void Line::Serialize(CArchive& ar)
 {
 	GlElement::Serialize(ar);
 
+	point_from_.Serialize(ar);
+	point_to_.Serialize(ar);
 	if (ar.IsStoring())
 	{	
-		// storing code
 	}
 	else
 	{	

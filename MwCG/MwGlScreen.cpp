@@ -3,6 +3,8 @@
 
 using namespace mw;
 
+IMPLEMENT_SERIAL(GlScreen, MwGLObject, 1);
+
 GlScreen::~GlScreen(void)
 {
 }
@@ -75,4 +77,20 @@ void mw::GlScreen::translate_xy_scr( int dx, int dy )
 	float dx0 = (float)dx * scale_;
 	float dy0 = (float)dy * scale_;
 	set_xy(x0_ - dx0, y0_ + dy0, scale_);
+}
+
+void mw::GlScreen::Serialize( CArchive& ar )
+{
+	MwGLObject::Serialize(ar);
+	if (ar.IsStoring())
+	{
+		ar<<width_<<height_<<x0_<<y0_<<scale_;
+	}
+	else
+	{
+		ar>>width_>>height_>>x0_>>y0_>>scale_;
+
+		set(width_, height_);
+		set_xy(x0_, y0_, scale_);
+	}
 }

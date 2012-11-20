@@ -6,6 +6,7 @@ namespace mw
 	class Polygon :
 		public GlElement
 	{
+		//DECLARE_SERIAL(Polygon);
 	private:
 		list<shared_ptr<Vector2>> vertex_;
 	public:

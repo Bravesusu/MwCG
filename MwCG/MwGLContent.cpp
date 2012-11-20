@@ -11,16 +11,16 @@ IMPLEMENT_SERIAL(GlContent, GlElement, 1);
 
 GlContent::GlContent(void)
 {
-	screen_.reset(new GlScreen());
-	set_screen(screen_);
+	theScreen_.reset(new GlScreen());
+	set_screen(theScreen_);
 
 	canvas_.reset(new Canvas());
 	canvas_->set_color(MW_WHITE);
-	canvas_->set_screen(screen_);
+	canvas_->set_screen(screen());
 
 	mouse_.reset(new Mouse());
 	mouse_->set_color(0, 0, 0);
-	mouse_->set_screen(screen_);
+	mouse_->set_screen(screen());
 }
 
 
@@ -31,8 +31,11 @@ GlContent::~GlContent(void)
 
 void GlContent::Serialize(CArchive& ar)
 {
+	
 	GlElement::Serialize(ar);
 	canvas_->Serialize(ar);
+	theScreen_->Serialize(ar);
+
 	CObArray arr;
 
 	if (ar.IsStoring())
@@ -45,12 +48,20 @@ void GlContent::Serialize(CArchive& ar)
 	}
 	else
 	{
+		set_screen(theScreen_);
+
+		canvas_->set_screen(screen());
+
 		arr.Serialize(ar);
 		for (int i = 0; i < arr.GetSize(); i++)
-		{
-			
-			elements_.push_back(GlElementPtr(DYNAMIC_DOWNCAST(GlElement, arr[i])));
+		{			
+			GlElementPtr element = GlElementPtr(DYNAMIC_DOWNCAST(GlElement, arr[i]));
+			AddElement(element);
 		}
+
+		mouse_.reset(new Mouse());
+		mouse_->set_color(0, 0, 0);
+		mouse_->set_screen(screen());
 	}
 }
 
@@ -59,7 +70,7 @@ void GlContent::DoDraw()
 	//This function is called every time when updating a frame
 	//Events should be coming before
 	//Update screen
-	screen_->GL();
+	screen()->GL();
 
 	//Handle events
 	HitTest();
@@ -95,7 +106,7 @@ bool GlContent::HitTest()
 Vector2 GlContent::set_mouse(const CPoint& viewPoint) const
 {
 	//Translate to canvas coordinate system
-	Vector2 xyPos = screen_->ScreenToXY(viewPoint.x, viewPoint.y);
+	Vector2 xyPos = screen()->ScreenToXY(viewPoint.x, viewPoint.y);
 	mouse_->set_position(xyPos);
 	return xyPos;
 }
@@ -103,7 +114,7 @@ Vector2 GlContent::set_mouse(const CPoint& viewPoint) const
 void mw::GlContent::AddElement(GlElementPtr element)
 {
 	elements_.push_back(element);
-	element->set_screen(screen_);
+	element->set_screen(screen());
 }
 
 void mw::GlContent::RemoveElement( GlElementPtr element )

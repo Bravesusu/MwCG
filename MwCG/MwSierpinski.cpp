@@ -21,13 +21,17 @@ void Sierpinski::Serialize(CArchive& ar)
 {
 	GlElement::Serialize(ar);
 
+	vertex_[0].Serialize(ar);
+	vertex_[1].Serialize(ar);
+	vertex_[2].Serialize(ar);
+
 	if (ar.IsStoring())
 	{	
-		// storing code
+		ar<<point_count_;
 	}
 	else
 	{	
-		// loading code
+		ar>>point_count_;
 	}
 }
 

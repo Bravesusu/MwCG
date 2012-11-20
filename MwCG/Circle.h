@@ -6,6 +6,7 @@ namespace mw
 	class Circle :
 		public GlElement
 	{
+		DECLARE_SERIAL(Circle);
 	private:
 		Vector2 center_;
 		float radius_;
@@ -23,6 +24,8 @@ namespace mw
 		//virtual bool HitTest();
 
 		virtual Rect bound() const;
+
+		virtual void Serialize( CArchive& ar );
 
 
 	};

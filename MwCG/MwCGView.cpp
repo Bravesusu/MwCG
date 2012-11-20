@@ -247,7 +247,11 @@ ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
 			return;
 
 		shared_ptr<GlContent> pGlContent = pDoc->glContent();
+		if (pGlContent == NULL)
+			return;
 		shared_ptr<GlScreen> scr = pGlContent->screen();
+		if (scr == NULL)
+			return;
 		scr->set(cx, cy);
 		scr->update_xy();
 	}
