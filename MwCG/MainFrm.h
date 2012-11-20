@@ -93,6 +93,14 @@ public:
 	void SetCaptionBarText(const CString& strText);
 	BOOL CreateStatusBar(void);
 	BOOL CreateDynamicRibbon(void);
+
+private:
+	// Document colors for demo:
+	CList<COLORREF,COLORREF> m_lstMainColors;
+	CList<COLORREF,COLORREF> m_lstAdditionalColors;
+	CList<COLORREF,COLORREF> m_lstStandardColors;
+
+	void CreateDocumentColors();
 };
 
 
