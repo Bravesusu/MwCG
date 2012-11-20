@@ -8,7 +8,7 @@ using namespace mw;
 
 IMPLEMENT_SERIAL(GlElement, CObject, 1);
 
-GlElement::GlElement(void) : hidden_(false), size_(1)
+GlElement::GlElement(void) : hidden_(false), size_(1), stroke_(FullStroke)
 {
 }
 
@@ -24,11 +24,11 @@ void GlElement::Serialize(CArchive& ar)
 	color_.Serialize(ar);
 	if (ar.IsStoring())
 	{
-		ar<<size_;
+		ar<<size_<<stroke_.pattern;
 	}
 	else
 	{
-		ar>>size_;
+		ar>>size_>>stroke_.pattern;
 	}
 }
 

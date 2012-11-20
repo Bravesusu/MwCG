@@ -4,18 +4,19 @@
 
 namespace mw
 {
-	class Stroke 
-		//: public RenderContext
+	enum StrokeType : GLushort
 	{
-	public:
-		Stroke(void);
-		~Stroke(void);
-	private:
-		GLushort pattern_;
-	public:
-
-		GLushort pattern() const { return pattern_; }
-		void set_pattern(GLushort pattern) { pattern_ = pattern; }
+		ST_FULL		= 0xFFFF,
+		ST_DOT		= 0xAAAA,
+		ST_DASH		= 0xCCCC
 	};
+	struct Stroke 
+	{
+		GLushort pattern;
+	};
+
+	const struct Stroke FullStroke = { ST_FULL };
+	const struct Stroke DotStroke = { ST_DOT };
+	const struct Stroke DashStroke = { ST_DASH };
 }
 

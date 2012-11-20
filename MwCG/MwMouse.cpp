@@ -8,8 +8,8 @@ using namespace mw;
 
 Mouse::Mouse(void)
 {
-	line_h_.set_pattern(0xAAAA);
-	line_v_.set_pattern(0xAAAA);
+	line_h_.set_stroke(DotStroke);
+	line_v_.set_stroke(DotStroke);
 }
 
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "mwx.h"
+#include "Stroke.h"
 #include "IDrawable.h"
 #include "MwColor.h"
 #include "MwGlScreen.h"
@@ -18,9 +19,12 @@ namespace mw
 	private:
 		Color color_;
 		int size_;
+		Stroke stroke_;
 	public:
 		int size() const { return size_; }
 		void set_size(int size) { size_ = size; }
+		Stroke stroke() const { return stroke_; }
+		void set_stroke(Stroke stroke) { stroke_ = stroke; }
 	private:
 		list<shared_ptr<Decorator>> decorators_;
 	public:

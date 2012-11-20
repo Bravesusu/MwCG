@@ -6,7 +6,7 @@ using namespace mw;
 
 IMPLEMENT_SERIAL(Line, GlElement, 1);
 
-Line::Line(void) :  pattern_(0xFFFF)
+Line::Line(void)
 {
 }
 
@@ -15,7 +15,7 @@ Line::~Line(void)
 }
 
 
-Line::Line(float x1, float y1, float x2, float y2) : pattern_(0xFFFF)
+Line::Line(float x1, float y1, float x2, float y2)
 {
 	point_from_.set(x1, y1);
 	point_to_.set(x2, y2);
@@ -42,7 +42,7 @@ void Line::DoDraw()
 	glLineWidth(size());
 
 	glEnable(GL_LINE_STIPPLE);
-	glLineStipple(1, pattern_);
+	glLineStipple(1, stroke().pattern);
 	glBegin(GL_LINES);
 	point_from_();
 	point_to_();

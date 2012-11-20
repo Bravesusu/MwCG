@@ -3,11 +3,3 @@
 
 using namespace mw;
 
-Stroke::Stroke(void)
-{
-}
-
-
-Stroke::~Stroke(void)
-{
-}
