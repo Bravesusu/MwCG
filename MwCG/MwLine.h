@@ -11,6 +11,7 @@ namespace mw
 	private:
 		Vector2 point_from_, point_to_;
 		float width_;
+		GLushort pattern_;
 	public:
 		Line(void);
 		Line(float x1, float y1, float x2, float y2, float width = 1) ;
@@ -27,6 +28,8 @@ namespace mw
 		void set_to(const Vector2& to) { point_to_ = to; }
 		float width() const { return width_; }
 		void set_width(float width) { width_ = width; }
+		GLushort pattern() const { return pattern_; }
+		void set_pattern(GLushort pattern) { pattern_ = pattern; }
 	public:
 		virtual void Serialize(CArchive& ar);
 		virtual Rect bound() const;

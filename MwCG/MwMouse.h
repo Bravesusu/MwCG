@@ -1,10 +1,12 @@
 #pragma once
 #include "mwglelement.h"
 #include "MwVector2.h"
-#include "MwGlScreen.h"
+#include "MwLine.h"
 
 namespace mw
 {
+	class GlScreen;
+	class Line;
 	class Mouse :
 		public GlElement
 	{
@@ -13,6 +15,7 @@ namespace mw
 		~Mouse(void);
 	private:
 		Vector2 position_;
+		Line line_v_, line_h_;
 	public:
 		Vector2 position() const { return position_; }
 		void set_position(float x, float y) { position_.set(x, y); }
