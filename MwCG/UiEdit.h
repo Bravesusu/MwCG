@@ -23,6 +23,7 @@ namespace mw
 		shared_ptr<UiSelector> selector_;
 		Vector2 mouse_xy_;
 		bool mouse_left_down_;
+		bool just_finished_;
 		void UpdateMouseInput(UINT nFlags, CPoint point);
 	public:
 		//Get default selector
