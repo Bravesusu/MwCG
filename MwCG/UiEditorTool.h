@@ -28,6 +28,7 @@ namespace mw
 		//InputStatus status() const { return status_; }
 		shared_ptr<GlContent> content() const { return content_; }
 		void set_content(const shared_ptr<GlContent>& content) { content_ = content; }
+		bool GetInput(int index, Vector2& pos) const;
 	public:
 		UiEditorTool(void);
 		~UiEditorTool(void);
@@ -42,6 +43,7 @@ namespace mw
 		virtual void DoFixInput(const int index) {};
 		virtual void DidCancel() {};
 		virtual bool IsFinished() const = 0;
+		//virtual bool CanFixInput() const { return false; }
 		void New();
 		void Cancel();
 		void UpdateInput(const Vector2& pos);

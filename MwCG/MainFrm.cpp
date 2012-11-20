@@ -467,26 +467,29 @@ void CMainFrame::SetCaptionBarText(const CString& strText)
 BOOL CMainFrame::CreateDynamicRibbon(void)
 {
 	CMFCRibbonCategory* pInsert = m_wndRibbonBar.GetCategory(1);
-	//ASSERT_VALID(pInsert);
 	CMFCRibbonPanel* pPanel = pInsert->GetPanel(2);
-	//ASSERT_VALID(pPanel);
-	//MwNumberEdit* pMwEdit = new MwNumberEdit(ID_EDIT_SIZE, 50, _T("Size"));
-	//pPanel->Add(pMwEdit);
-	// Replace ID_FONT_COLOR and ID_FONT_TEXTHIGHLIGHT elements
-	// by color pickers:
-	CMFCRibbonColorButton* pFontColorBtn = new CMFCRibbonColorButton(ID_BUTTON_COLOR, _T("Color"), 0, 0);
-	pFontColorBtn->EnableAutomaticButton(_T("&Automatic"), RGB(0, 0, 0));
-	pFontColorBtn->EnableOtherButton(_T("&More Colors..."), _T("More Colors"));
-	pFontColorBtn->SetColumns(10);
-	pFontColorBtn->SetColor(RGB(255, 0, 0));
-	pFontColorBtn->SetColorBoxSize(CSize(32, 32));
+	CMFCRibbonColorButton* pColorBtn = new CMFCRibbonColorButton(ID_BUTTON_COLOR, _T("Color"), 0, 0);
+	pColorBtn->EnableAutomaticButton(_T("&Automatic"), RGB(0, 0, 0));
+	pColorBtn->EnableOtherButton(_T("&More Colors..."), _T("More Colors"));
+	pColorBtn->SetColumns(10);
+	pColorBtn->SetColor(RGB(255, 0, 0));
+	pColorBtn->SetColorBoxSize(CSize(32, 32));
 
-	pFontColorBtn->AddColorsGroup(_T("Theme Colors"), m_lstMainColors);
-	pFontColorBtn->AddColorsGroup(_T(""), m_lstAdditionalColors, TRUE /* Contiguous Columns*/);
-	pFontColorBtn->AddColorsGroup(_T("Standard Colors"), m_lstStandardColors);
+	pColorBtn->AddColorsGroup(_T("Theme Colors"), m_lstMainColors);
+	pColorBtn->AddColorsGroup(_T(""), m_lstAdditionalColors, TRUE /* Contiguous Columns*/);
+	pColorBtn->AddColorsGroup(_T("Standard Colors"), m_lstStandardColors);
 
-	pPanel->Add(pFontColorBtn);
-	//pPanel->ReplaceByID(ID_BUTTON_COLOR, pFontColorBtn);
+	pPanel->Add(pColorBtn);
+
+	CMFCRibbonCategory* pTemp = m_wndRibbonBar.AddContextCategory(_T("Temp"), _T("Temp"), ID_TEMP_CATEGORY, AFX_CategoryColor_Yellow, 0, 0);
+
+	CMFCRibbonPanel* pPosPanel = pTemp->AddPanel(_T("Pos"));
+	MwNumberEdit* pXEdit = new MwNumberEdit(ID_EDIT_POS_X, 50, _T("X"));
+	MwNumberEdit* pYEdit = new MwNumberEdit(ID_EDIT_POS_Y, 50, _T("Y"));
+
+
+	pPosPanel->Add(pXEdit);
+	pPosPanel->Add(pYEdit);
 
 	return TRUE;
 }

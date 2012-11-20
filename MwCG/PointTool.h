@@ -33,6 +33,7 @@ namespace mw
 
 		virtual shared_ptr<GlElement> GetEditingElement();
 
+
 	};
 	
 }

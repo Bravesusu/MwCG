@@ -14,9 +14,13 @@
 #define IDS_UI_EDIT                     108
 #define IDS_STATUS_RECT                 109
 #define IDB_WRITESMALL                  110
+#define ID_BUTTON_COLOR                 110
 #define IDB_WRITELARGE                  111
+#define ID_EDIT_POS_X                   111
 #define IDB_MAIN                        112
+#define ID_EDIT_POS_Y                   112
 #define IDB_BUTTONS                     113
+#define ID_TEMP_CATEGORY                113
 #define IDB_FILELARGE                   114
 #define IDB_FILESMALL                   115
 #define IDR_POPUP_EDIT                  119
@@ -118,12 +122,7 @@
 #define ID_TOOL_SELECT                  32778
 #define ID_SHAPE_GALLERY                32779
 #define ID_CHECK_GIRD                   32783
-#define ID_CONTEXT_SHAPE                32784
-#define ID_EDIT_POS_X                   32785
-#define ID_EDIT_POS_Y                   32786
-#define ID_BUTTON_COLOR                 32790
 #define ID_STROKE_GALLERY               32793
-#define ID_SPIN2                        32794
 #define ID_EDIT_SIZE                    32794
 
 // Next default values for new objects

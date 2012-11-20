@@ -59,8 +59,10 @@ private:
 	shared_ptr<PointTool> toolPoint_;
 	shared_ptr<LineTool> toolLine_;
 	shared_ptr<CircleTool> toolCircle_;
+	int floaty_input_index_;
 	void InitializeTools();
 	void UpdateToolColor(const COLORREF elementColor);
+	bool ValidateFloatyInput(Vector2& pos);
 	// Operations
 public:
 
@@ -138,6 +140,10 @@ public:
 	afx_msg void OnEditSize();
 	void UpdateToolSize( int size );
 	void ShowFloaty( int inputIndex, UINT nFlags, CPoint point );
+	afx_msg void OnUpdateEditPosX(CCmdUI *pCmdUI);
+	afx_msg void OnEditPosY();
+	afx_msg void OnUpdateEditPosY(CCmdUI *pCmdUI);
+	afx_msg void OnEditPosX();
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

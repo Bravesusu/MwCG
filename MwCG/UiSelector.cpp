@@ -19,7 +19,8 @@ mw::OperationPtr mw::UiSelector::PopNewOperation()
 
 bool mw::UiSelector::IsFinished() const
 {
-	throw std::exception("The method or operation is not implemented.");
+	return false;
+	//throw std::exception("The method or operation is not implemented.");
 }
 
 void mw::UiSelector::Draw()

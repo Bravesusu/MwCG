@@ -14,8 +14,6 @@ using namespace mw;
 UiEdit::UiEdit(void) : mouse_left_down_(false), just_finished_(false)
 {
 	selector_.reset(new UiSelector());
-	line_.reset(new LineTool());
-	point_.reset(new PointTool());
 }
 
 
@@ -120,7 +118,7 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 
 void mw::UiEdit::use_selector()
 {
-	set_tool(line_);
+	set_tool(selector_);
 }
 
 void mw::UiEdit::Draw()

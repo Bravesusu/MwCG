@@ -76,3 +76,11 @@ void mw::UiEditorTool::TrySetElementSize()
 	if (GetEditingElement() != NULL)
 		GetEditingElement()->set_size(elementSize_);
 }
+
+bool mw::UiEditorTool::GetInput( int index, Vector2& pos ) const
+{
+	if (index < 0 && index >= inputs_.size())
+		return false;
+	pos = inputs_.at(index);
+	return true;
+}

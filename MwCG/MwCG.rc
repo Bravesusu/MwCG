@@ -482,6 +482,8 @@ BEGIN
     IDS_UI_NAVIGATION       "Navigation"
     IDS_UI_EDIT             "Edit"
     IDS_STATUS_RECT         "XY Rect of current view."
+    ID_BUTTON_COLOR         "The color button"
+    ID_EDIT_POS_X           "The X pos edit"
 END
 
 STRINGTABLE
@@ -662,6 +664,12 @@ END
 STRINGTABLE
 BEGIN
     ID_MW_DYNAMIC           "Dynamic command"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_POS_Y           "The Y pos edit"
+    ID_TEMP_CATEGORY        "The temp category"
 END
 
 #endif    // English (United States) resources

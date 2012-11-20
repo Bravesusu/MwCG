@@ -30,6 +30,7 @@ namespace mw
 		shared_ptr<UiSelector> selector() const { return selector_; }
 		//Set tool from command
 		void set_tool(shared_ptr<UiEditorTool> tool);
+		const shared_ptr<UiEditorTool> tool() const { return tool_; }
 		void use_selector();
 	public:
 		UiEdit(void);

@@ -60,26 +60,30 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		//ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
 		ON_UPDATE_COMMAND_UI(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnUpdateIdsStatusZoomSlider)
 		ON_COMMAND(IDS_STATUS_ZOOM_SLIDER, &CMwCGView::OnIdsStatusZoomSlider)
-//		ON_WM_MBUTTONDOWN()
+		//		ON_WM_MBUTTONDOWN()
 		ON_WM_LBUTTONUP()
 		ON_WM_LBUTTONDOWN()
 		ON_WM_KEYDOWN()
 		ON_WM_KEYUP()
 		ON_UPDATE_COMMAND_UI(IDS_STATUS_MODE, &CMwCGView::OnUpdateIdsStatusMode)
-//		ON_UPDATE_COMMAND_UI(ID_FILE_PRINT_PREVIEW, &CMwCGView::OnUpdateFilePrintPreview)
-ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
-ON_UPDATE_COMMAND_UI(IDS_STATUS_RECT, &CMwCGView::OnUpdateIdsStatusRect)
-ON_COMMAND(ID_EDIT_UNDO, &CMwCGView::OnEditUndo)
-ON_COMMAND(ID_EDIT_REDO, &CMwCGView::OnEditRedo)
-ON_COMMAND(ID_TOOL_SELECT, &CMwCGView::OnToolSelect)
-ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
-ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
-ON_COMMAND(ID_BUTTON_COLOR, &CMwCGView::OnButtonColor)
-ON_UPDATE_COMMAND_UI(ID_BUTTON_COLOR, &CMwCGView::OnUpdateButtonColor)
-//ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
-//ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
-ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
-ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
+		//		ON_UPDATE_COMMAND_UI(ID_FILE_PRINT_PREVIEW, &CMwCGView::OnUpdateFilePrintPreview)
+		ON_UPDATE_COMMAND_UI(ID_CHECK_GIRD, &CMwCGView::OnUpdateCheckGird)
+		ON_UPDATE_COMMAND_UI(IDS_STATUS_RECT, &CMwCGView::OnUpdateIdsStatusRect)
+		ON_COMMAND(ID_EDIT_UNDO, &CMwCGView::OnEditUndo)
+		ON_COMMAND(ID_EDIT_REDO, &CMwCGView::OnEditRedo)
+		ON_COMMAND(ID_TOOL_SELECT, &CMwCGView::OnToolSelect)
+		ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
+		ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
+		ON_COMMAND(ID_BUTTON_COLOR, &CMwCGView::OnButtonColor)
+		ON_UPDATE_COMMAND_UI(ID_BUTTON_COLOR, &CMwCGView::OnUpdateButtonColor)
+		//ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
+		//ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
+		ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
+		ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
+		ON_UPDATE_COMMAND_UI(ID_EDIT_POS_X, &CMwCGView::OnUpdateEditPosX)
+		ON_COMMAND(ID_EDIT_POS_Y, &CMwCGView::OnEditPosY)
+		ON_UPDATE_COMMAND_UI(ID_EDIT_POS_Y, &CMwCGView::OnUpdateEditPosY)
+		ON_COMMAND(ID_EDIT_POS_X, &CMwCGView::OnEditPosX)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -216,7 +220,7 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 		uiEditState_.reset(new UiEdit());
 		uiNavState_->Initialize(pDoc, this);
 		uiEditState_->Initialize(pDoc, this);
-		
+
 		InitializeTools();
 
 		SwitchToEditMode();
@@ -391,14 +395,14 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 	}
 
 
-//	void CMwCGView::OnMButtonDown(UINT nFlags, CPoint point)
-//	{
-//		// TODO: Add your message handler code here and/or call default
-//
-//		CView::OnMButtonDown(nFlags, point);
-//
-//		
-//	}
+	//	void CMwCGView::OnMButtonDown(UINT nFlags, CPoint point)
+	//	{
+	//		// TODO: Add your message handler code here and/or call default
+	//
+	//		CView::OnMButtonDown(nFlags, point);
+	//
+	//		
+	//	}
 
 
 	void CMwCGView::OnLButtonUp(UINT nFlags, CPoint point)
@@ -444,7 +448,7 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 		//CMwCGDoc* pDoc = GetDocument();
 		//ASSERT_VALID(pDoc);
 		//if (!pDoc)
-			//return;
+		//return;
 
 		m_bMouseDown = true;
 	}
@@ -483,10 +487,10 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 
 
 
-//	void CMwCGView::OnUpdateFilePrintPreview(CCmdUI *pCmdUI)
-//	{
-//		// TODO: Add your command update UI handler code here
-//	}
+	//	void CMwCGView::OnUpdateFilePrintPreview(CCmdUI *pCmdUI)
+	//	{
+	//		// TODO: Add your command update UI handler code here
+	//	}
 
 
 	void CMwCGView::OnUpdateCheckGird(CCmdUI *pCmdUI)
@@ -522,22 +526,6 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 		pFloaty->Show(point.x, point.y);
 	}
 
-	void CMwCGView::InitFloaty( MwMiniToolBar* pFloaty )
-	{
-		ASSERT_VALID(pFloaty);
-
-		CList<UINT, UINT> lstCmds;
-		lstCmds.AddTail(ID_EDIT_SIZE);
-		lstCmds.AddTail(ID_BUTTON_COLOR);
-		lstCmds.AddTail(ID_EDIT_PASTE);
-		lstCmds.AddTail(ID_SHAPE_GALLERY);
-		lstCmds.AddTail(ID_CHECK_GIRD);
-		lstCmds.AddTail(ID_EDIT_POS_X);
-		lstCmds.AddTail(ID_EDIT_POS_Y);
-		pFloaty->SetCommands(((CMainFrame*) GetTopLevelFrame())->GetRibbonBar(), lstCmds);
-	}
-
-
 	void CMwCGView::OnEditUndo()
 	{
 		// TODO: Add your command handler code here
@@ -559,7 +547,7 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 		ASSERT_VALID(pDoc);
 		if (!pDoc)
 			return;
-		
+
 		pDoc->Redo();
 		Invalidate();
 	}
@@ -569,6 +557,9 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 	{
 		// TODO: Add your command handler code here
 		uiEditState_->use_selector();
+		CMFCRibbonGallery* shape = theApp.FindRibbonUIById<CMFCRibbonGallery>(ID_SHAPE_GALLERY);
+
+		shape->SelectItem(-1);
 	}
 
 
@@ -641,6 +632,7 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 		toolCircle_.reset(new CircleTool());
 		tools_.push_back(toolCircle_);
 
+		OnToolSelect();
 		OnButtonColor();
 		OnEditSize();
 	}
@@ -665,12 +657,12 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 	void CMwCGView::OnEditSize()
 	{
 		// TODO: Add your command handler code here
-		
+
 		CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_SIZE);
 		int size = _ttoi(pEdit->GetEditText());
 		//TRACE(pEdit->GetText());
 		TRACE("Size: %d\n", size);
-		
+
 		UpdateToolSize(size);
 
 		Invalidate();
@@ -687,5 +679,81 @@ ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 
 	void CMwCGView::ShowFloaty( int inputIndex, UINT nFlags, CPoint point )
 	{
-		FooFloaty(point);
+		//Store index
+		floaty_input_index_ = inputIndex;
+
+		//New floaty
+		MwMiniToolBar* pFloaty = new MwMiniToolBar(this);
+
+		//Default floaty component
+		InitFloaty(pFloaty);
+
+		//TODO: Tool specific component
+
+		//Show floaty
+		ClientToScreen(&point);
+		pFloaty->Show(point.x, point.y);
+	}
+
+	void CMwCGView::InitFloaty( MwMiniToolBar* pFloaty )
+	{
+		ASSERT_VALID(pFloaty);
+
+		CList<UINT, UINT> lstCmds;
+		lstCmds.AddTail(ID_EDIT_SIZE);
+		lstCmds.AddTail(ID_BUTTON_COLOR);
+		lstCmds.AddTail(ID_EDIT_POS_X);
+		lstCmds.AddTail(ID_EDIT_POS_Y);
+		pFloaty->SetCommands(((CMainFrame*) GetTopLevelFrame())->GetRibbonBar(), lstCmds);
+	}
+
+
+	void CMwCGView::OnUpdateEditPosX(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		Vector2 pos;
+		bool enabled = ValidateFloatyInput(pos);
+		pCmdUI->Enable(enabled);
+		if (enabled)
+		{
+			CString str;
+			str.Format(_T("%f"), pos.x());
+			pCmdUI->SetText(str);
+		}
+	}
+
+	void CMwCGView::OnUpdateEditPosY(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		Vector2 pos;
+		bool enabled = ValidateFloatyInput(pos);
+		pCmdUI->Enable(enabled);
+		if (enabled)
+		{
+			CString str;
+			str.Format(_T("%f"), pos.y());
+			pCmdUI->SetText(str);
+		}
+	}
+
+	void CMwCGView::OnEditPosY()
+	{
+		// TODO: Add your command handler code here
+	}
+
+
+	void CMwCGView::OnEditPosX()
+	{
+		// TODO: Add your command handler code here
+	}
+
+	bool CMwCGView::ValidateFloatyInput( Vector2& pos )
+	{
+
+		if (uiEditState_->tool()->GetInput(floaty_input_index_, pos))
+		{
+			return true;
+		}
+
+		return false;
 	}
