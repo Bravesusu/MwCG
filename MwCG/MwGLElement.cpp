@@ -8,7 +8,7 @@ using namespace mw;
 
 IMPLEMENT_SERIAL(GlElement, CObject, 1);
 
-GlElement::GlElement(void) : hidden_(false)
+GlElement::GlElement(void) : hidden_(false), size_(1)
 {
 }
 
@@ -22,6 +22,14 @@ void GlElement::Serialize(CArchive& ar)
 	CObject::Serialize(ar);
 
 	color_.Serialize(ar);
+	if (ar.IsStoring())
+	{
+		ar<<size_;
+	}
+	else
+	{
+		ar>>size_;
+	}
 }
 
 Rect mw::GlElement::bound() const

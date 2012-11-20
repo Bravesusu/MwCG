@@ -30,6 +30,7 @@ void mw::UiEditorTool::New()
 	inputs_.clear();
 	DoNew();
 	TrySetElementColor();
+	TrySetElementSize();
 }
 
 int mw::UiEditorTool::NextInput()
@@ -61,4 +62,17 @@ void mw::UiEditorTool::TrySetElementColor()
 {
 	if (GetEditingElement() != NULL)
 		GetEditingElement()->set_color(elementColor_);
+}
+
+void mw::UiEditorTool::UpdateElementSize( int size )
+{
+	elementSize_ = size;
+	TrySetElementSize();
+}
+
+void mw::UiEditorTool::TrySetElementSize()
+{
+
+	if (GetEditingElement() != NULL)
+		GetEditingElement()->set_size(elementSize_);
 }

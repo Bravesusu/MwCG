@@ -45,14 +45,14 @@ CMFCRibbonBar* CMwCGApp::GetRibbonBar()
 	return pRibbon;
 }
 
-template<class UI>
-UI* CMwCGApp::FindRibbonUIById(UINT uiCmdId)
-{
-	CMFCRibbonBar* pRibbon = GetRibbonBar();
-	UI* pUI = DYNAMIC_DOWNCAST(UI, pRibbon->FindByID(uiCmdId));
-	ASSERT_VALID(pUI);
-	return pUI;
-}
+//template<class UI>
+//UI* CMwCGApp::FindRibbonUIById(UINT uiCmdId)
+//{
+//	CMFCRibbonBar* pRibbon = GetRibbonBar();
+//	//UI* pUI = DYNAMIC_DOWNCAST(UI, pRibbon->FindByID(uiCmdId));
+//	//ASSERT_VALID(pUI);
+//	return DYNAMIC_DOWNCAST(UI, pRibbon->FindByID(uiCmdId));
+//}
 
 CMFCRibbonColorButton* CMwCGApp::GetClearColorButton()
 {

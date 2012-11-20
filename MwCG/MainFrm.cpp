@@ -464,15 +464,12 @@ void CMainFrame::SetCaptionBarText(const CString& strText)
 
 BOOL CMainFrame::CreateDynamicRibbon(void)
 {
-	//CMFCRibbonCategory* pInsert = m_wndRibbonBar.GetCategory(0);
+	//CMFCRibbonCategory* pInsert = m_wndRibbonBar.GetCategory(1);
 	//ASSERT_VALID(pInsert);
-	//CMFCRibbonPanel* pPanel = pInsert->GetPanel(2);
+	//CMFCRibbonPanel* pPanel = pInsert->GetPanel(3);
 	//ASSERT_VALID(pPanel);
 	//MwNumberEdit* pMwEdit = new MwNumberEdit(ID_EDIT_SIZE, 50, _T("Size"));
 	//pPanel->Add(pMwEdit);
-	CMFCRibbonCategory* pCate = m_wndRibbonBar.AddCategory(_T("Foo"), 0, 0);
-	CMFCRibbonPanel* pPanel = pCate->AddPanel(_T("Bar"));
-	pPanel->Add(new MwNumberEdit(ID_EDIT_SIZE, 50, _T("Size")));
 	return TRUE;
 }
 

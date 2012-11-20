@@ -14,23 +14,12 @@ void Point::Serialize(CArchive& ar)
 	GlElement::Serialize(ar);
 
 	position_.Serialize(ar);
-
-	if (ar.IsStoring())
-	{	
-		// storing code
-		ar<<size_;
-	}
-	else
-	{	
-		// loading code
-		ar>>size_;
-	}
 }
 
 void Point::DoDraw()
 {
 	//color()();
-	glPointSize(size_);
+	glPointSize(size());
 	glBegin(GL_POINTS);
 	position_();
 	//Vertex(position_);

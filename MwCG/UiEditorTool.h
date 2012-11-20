@@ -33,6 +33,7 @@ namespace mw
 		~UiEditorTool(void);
 	protected:
 		Color elementColor_;
+		int elementSize_;
 	public:
 		virtual OperationPtr PopNewOperation() = 0;
 		virtual void DoNew() {};
@@ -47,8 +48,10 @@ namespace mw
 		void FixInput(const int index, const Vector2& pos);
 		int NextInput();
 		void UpdateElementColor( const COLORREF elementColor );
+		void UpdateElementSize( int size );
 	protected:
 		void TrySetElementColor();
+		void TrySetElementSize();
 	};
 }
 

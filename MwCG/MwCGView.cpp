@@ -76,8 +76,10 @@ ON_UPDATE_COMMAND_UI(ID_TOOL_SELECT, &CMwCGView::OnUpdateToolSelect)
 ON_COMMAND(ID_SHAPE_GALLERY, &CMwCGView::OnShapeGallery)
 ON_COMMAND(ID_BUTTON_COLOR, &CMwCGView::OnButtonColor)
 ON_UPDATE_COMMAND_UI(ID_BUTTON_COLOR, &CMwCGView::OnUpdateButtonColor)
-ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
+//ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
+//ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
 ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
+ON_COMMAND(ID_EDIT_SIZE, &CMwCGView::OnEditSize)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -526,6 +528,7 @@ ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
 		ASSERT_VALID(pFloaty);
 
 		CList<UINT, UINT> lstCmds;
+		lstCmds.AddTail(ID_EDIT_SIZE);
 		lstCmds.AddTail(ID_BUTTON_COLOR);
 		lstCmds.AddTail(ID_EDIT_PASTE);
 		lstCmds.AddTail(ID_SHAPE_GALLERY);
@@ -640,6 +643,7 @@ ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
 		tools_.push_back(toolCircle_);
 
 		OnButtonColor();
+		OnEditSize();
 	}
 
 	void CMwCGView::UpdateToolColor( const COLORREF elementColor )
@@ -652,16 +656,32 @@ ON_UPDATE_COMMAND_UI(ID_EDIT_SIZE, &CMwCGView::OnUpdateEditSize)
 	}
 
 
-	void CMwCGView::OnEditSize()
-	{
-		// TODO: Add your command handler code here
-	}
-
-
 	void CMwCGView::OnUpdateEditSize(CCmdUI *pCmdUI)
 	{
 		// TODO: Add your command update UI handler code here
 		pCmdUI->Enable(m_render.IsValid());
-		/*CMFCRibbonEdit *pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_SIZE);
-		*/
+	}
+
+
+	void CMwCGView::OnEditSize()
+	{
+		// TODO: Add your command handler code here
+		
+		CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_SIZE);
+		int size = _ttoi(pEdit->GetEditText());
+		//TRACE(pEdit->GetText());
+		TRACE("Size: %d\n", size);
+		
+		UpdateToolSize(size);
+
+		Invalidate();
+	}
+
+	void CMwCGView::UpdateToolSize( int size )
+	{
+		for (vector<shared_ptr<UiEditorTool>>::iterator it = tools_.begin();
+			it != tools_.end(); it++)
+		{
+			(*it)->UpdateElementSize(size);
+		}
 	}

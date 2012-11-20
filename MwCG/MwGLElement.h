@@ -17,6 +17,10 @@ namespace mw
 		DECLARE_SERIAL(GlElement); 
 	private:
 		Color color_;
+		int size_;
+	public:
+		int size() const { return size_; }
+		void set_size(int size) { size_ = size; }
 	private:
 		list<shared_ptr<Decorator>> decorators_;
 	public:

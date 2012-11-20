@@ -6,7 +6,7 @@ using namespace mw;
 
 IMPLEMENT_SERIAL(Line, GlElement, 1);
 
-Line::Line(void) :  width_(1), pattern_(0xFFFF)
+Line::Line(void) :  pattern_(0xFFFF)
 {
 }
 
@@ -15,7 +15,7 @@ Line::~Line(void)
 }
 
 
-Line::Line(float x1, float y1, float x2, float y2, float width) : width_(width), pattern_(0xFFFF)
+Line::Line(float x1, float y1, float x2, float y2) : pattern_(0xFFFF)
 {
 	point_from_.set(x1, y1);
 	point_to_.set(x2, y2);
@@ -39,7 +39,7 @@ void Line::Serialize(CArchive& ar)
 void Line::DoDraw()
 {
 	//color()();
-	glLineWidth(width_);
+	glLineWidth(size());
 
 	glEnable(GL_LINE_STIPPLE);
 	glLineStipple(1, pattern_);

@@ -49,7 +49,13 @@ public:
 	CMFCRibbonColorButton* GetClearColorButton();
 	CMFCRibbonBar* GetRibbonBar();
 	template<class UI>
-	UI* FindRibbonUIById(UINT uiCmdId);
+	UI* FindRibbonUIById(UINT uiCmdId)
+	{
+		CMFCRibbonBar* pRibbon = GetRibbonBar();
+		UI* pUI = DYNAMIC_DOWNCAST(UI, pRibbon->FindByID(uiCmdId));
+		ASSERT_VALID(pUI);
+		return pUI;
+	}
 };
 
 extern CMwCGApp theApp;

@@ -44,7 +44,7 @@ void Canvas::DrawAxisGird()
 	float bottom = screen()->bottom();
 
 	//Draw axis
-	gird_line_.set_width(2);
+	gird_line_.set_size(2);
 
 	gird_line_.set(0, top, 0, bottom);
 	gird_line_.Draw();
@@ -55,7 +55,7 @@ void Canvas::DrawAxisGird()
 	int x_min = (int)left / gird_unit * gird_unit;
 	int x_max = (int)right / gird_unit * gird_unit;
 
-	gird_line_.set_width(1);
+	gird_line_.set_size(1);
 	for (int x = x_min; x <= x_max; x += gird_unit)
 	{
 		gird_line_.set(x, top, x, bottom);
