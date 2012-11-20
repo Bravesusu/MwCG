@@ -31,6 +31,7 @@ void mw::UiEditorTool::New()
 	DoNew();
 	TrySetElementColor();
 	TrySetElementSize();
+	TrySetElementStroke();
 }
 
 int mw::UiEditorTool::NextInput()
@@ -83,4 +84,17 @@ bool mw::UiEditorTool::GetInput( int index, Vector2& pos ) const
 		return false;
 	pos = inputs_.at(index);
 	return true;
+}
+
+void mw::UiEditorTool::UpdateElementStroke( Stroke stroke )
+{
+	elementStroke_ = stroke;
+	TrySetElementStroke();
+}
+
+void mw::UiEditorTool::TrySetElementStroke()
+{
+	if (GetEditingElement() != NULL)
+		GetEditingElement()->set_stroke(elementStroke_);
+
 }

@@ -84,6 +84,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_COMMAND(ID_EDIT_POS_Y, &CMwCGView::OnEditPosY)
 		ON_UPDATE_COMMAND_UI(ID_EDIT_POS_Y, &CMwCGView::OnUpdateEditPosY)
 		ON_COMMAND(ID_EDIT_POS_X, &CMwCGView::OnEditPosX)
+		ON_UPDATE_COMMAND_UI(ID_STROKE_GALLERY, &CMwCGView::OnUpdateStrokeGallery)
+		ON_COMMAND(ID_STROKE_GALLERY, &CMwCGView::OnStrokeGallery)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -635,6 +637,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		OnToolSelect();
 		OnButtonColor();
 		OnEditSize();
+		OnStrokeGallery();
 	}
 
 	void CMwCGView::UpdateToolColor( const COLORREF elementColor )
@@ -693,6 +696,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		//Show floaty
 		ClientToScreen(&point);
 		pFloaty->Show(point.x, point.y);
+
+		//((CMainFrame*)GetParent())->ActivateContextCategory(ID_TEMP_CATEGORY);
 	}
 
 	void CMwCGView::InitFloaty( MwMiniToolBar* pFloaty )
@@ -702,6 +707,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		CList<UINT, UINT> lstCmds;
 		lstCmds.AddTail(ID_EDIT_SIZE);
 		lstCmds.AddTail(ID_BUTTON_COLOR);
+		lstCmds.AddTail(ID_STROKE_GALLERY);
 		lstCmds.AddTail(ID_EDIT_POS_X);
 		lstCmds.AddTail(ID_EDIT_POS_Y);
 		pFloaty->SetCommands(((CMainFrame*) GetTopLevelFrame())->GetRibbonBar(), lstCmds);
@@ -739,12 +745,22 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	void CMwCGView::OnEditPosY()
 	{
 		// TODO: Add your command handler code here
+		//CMainFrame* pMainFrm = (CMainFrame*)GetParent();
+		//CMFCRibbonBaseElement* pBaseElem = pMainFrm->floaty_category()->FindByID(ID_EDIT_POS_Y);
+		//ASSERT_VALID(pBaseElem);
+		//CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_POS_Y);
+		//TRACE(_T("Y: %s"), pEdit->GetEditText());
 	}
 
 
 	void CMwCGView::OnEditPosX()
 	{
 		// TODO: Add your command handler code here
+		//CMainFrame* pMainFrm = (CMainFrame*)GetParent();
+		//CMFCRibbonBaseElement* pBaseElem = pMainFrm->floaty_category()->FindByID(ID_EDIT_POS_X);
+		//ASSERT_VALID(pBaseElem);
+		//CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_POS_X);
+		//TRACE(_T("X: %s"), pEdit->GetEditText());
 	}
 
 	bool CMwCGView::ValidateFloatyInput( Vector2& pos )
@@ -756,4 +772,35 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		}
 
 		return false;
+	}
+
+
+	void CMwCGView::OnUpdateStrokeGallery(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(m_render.IsValid());
+	}
+
+
+	void CMwCGView::OnStrokeGallery()
+	{
+		// TODO: Add your command handler code here
+		CMFCRibbonComboBox* pCombo = theApp.FindRibbonUIById<CMFCRibbonComboBox>(ID_STROKE_GALLERY);
+		int index = pCombo->GetCurSel();
+		
+		if (index >= 0 && index < StrokeCount)
+		{
+			UpdateToolStroke(Strokes[index]);
+		}
+
+		Invalidate();
+	}
+
+	void CMwCGView::UpdateToolStroke( const Stroke stroke )
+	{
+		for (vector<shared_ptr<UiEditorTool>>::iterator it = tools_.begin();
+			it != tools_.end(); it++)
+		{
+			(*it)->UpdateElementStroke(stroke);
+		}
 	}

@@ -241,6 +241,7 @@
   <ItemGroup>
     <Image Include="res\bitmap2.bmp" />
     <Image Include="res\buttons.bmp" />
+    <Image Include="res\ChartFormat.bmp" />
     <Image Include="res\classview.bmp" />
     <Image Include="res\classview_hc.bmp" />
     <Image Include="res\class_view.ico" />

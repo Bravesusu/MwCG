@@ -35,6 +35,7 @@ namespace mw
 	protected:
 		Color elementColor_;
 		int elementSize_;
+		Stroke elementStroke_;
 	public:
 		virtual OperationPtr PopNewOperation() = 0;
 		virtual void DoNew() {};
@@ -51,9 +52,11 @@ namespace mw
 		int NextInput();
 		void UpdateElementColor( const COLORREF elementColor );
 		void UpdateElementSize( int size );
+		void UpdateElementStroke(Stroke stroke);
 	protected:
 		void TrySetElementColor();
 		void TrySetElementSize();
+		void TrySetElementStroke();
 	};
 }
 

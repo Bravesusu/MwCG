@@ -62,6 +62,7 @@ private:
 	int floaty_input_index_;
 	void InitializeTools();
 	void UpdateToolColor(const COLORREF elementColor);
+	void UpdateToolStroke(const Stroke stroke);
 	bool ValidateFloatyInput(Vector2& pos);
 	// Operations
 public:
@@ -144,6 +145,8 @@ public:
 	afx_msg void OnEditPosY();
 	afx_msg void OnUpdateEditPosY(CCmdUI *pCmdUI);
 	afx_msg void OnEditPosX();
+	afx_msg void OnUpdateStrokeGallery(CCmdUI *pCmdUI);
+	afx_msg void OnStrokeGallery();
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

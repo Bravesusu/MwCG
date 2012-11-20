@@ -71,6 +71,7 @@ END
 //
 
 IDB_GL_PRIM             BITMAP                  "res\\GLPrimitives.bmp"
+IDB_CHART_FORMAT        BITMAP                  "res\\ChartFormat.bmp"
 #endif    // Chinese (Simplified, PRC) resources
 /////////////////////////////////////////////////////////////////////////////
 

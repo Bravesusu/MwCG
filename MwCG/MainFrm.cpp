@@ -481,15 +481,17 @@ BOOL CMainFrame::CreateDynamicRibbon(void)
 
 	pPanel->Add(pColorBtn);
 
-	CMFCRibbonCategory* pTemp = m_wndRibbonBar.AddContextCategory(_T("Temp"), _T("Temp"), ID_TEMP_CATEGORY, AFX_CategoryColor_Yellow, 0, 0);
+	CMFCRibbonCategory* pFloatyCate = m_wndRibbonBar.AddContextCategory(_T("Floaty"), _T("Floaty"), ID_TEMP_CATEGORY, AFX_CategoryColor_Yellow, 0, 0);
 
-	CMFCRibbonPanel* pPosPanel = pTemp->AddPanel(_T("Pos"));
-	MwNumberEdit* pXEdit = new MwNumberEdit(ID_EDIT_POS_X, 50, _T("X"));
-	MwNumberEdit* pYEdit = new MwNumberEdit(ID_EDIT_POS_Y, 50, _T("Y"));
-
+	CMFCRibbonPanel* pPosPanel = pFloatyCate->AddPanel(_T("Pos"));
+	CMFCRibbonEdit* pXEdit = new CMFCRibbonEdit(ID_EDIT_POS_X, 50, _T("X"));
+	CMFCRibbonEdit* pYEdit = new CMFCRibbonEdit(ID_EDIT_POS_Y, 50, _T("Y"));
 
 	pPosPanel->Add(pXEdit);
 	pPosPanel->Add(pYEdit);
+
+	//CMFCRibbonComboBox* pStrokeList = theApp.FindRibbonUIById<CMFCRibbonComboBox>(ID_STROKE_GALLERY);
+	//pStrokeList->SelectItem(0);
 
 	return TRUE;
 }
@@ -681,4 +683,9 @@ void CMainFrame::CreateDocumentColors()
 		m_lstStandardColors.AddTail(colorsStandard [i].color);
 		CMFCRibbonColorButton::SetColorName(colorsStandard [i].color, colorsStandard [i].szName);
 	};
+}
+
+void CMainFrame::ActivateContextCategory( UINT uiCategoryID )
+{
+	m_wndRibbonBar.ActivateContextCategory(uiCategoryID);
 }

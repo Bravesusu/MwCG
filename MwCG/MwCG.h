@@ -52,7 +52,9 @@ public:
 	UI* FindRibbonUIById(UINT uiCmdId)
 	{
 		CMFCRibbonBar* pRibbon = GetRibbonBar();
-		UI* pUI = DYNAMIC_DOWNCAST(UI, pRibbon->FindByID(uiCmdId));
+		CMFCRibbonBaseElement* pBaseElem = pRibbon->FindByID(uiCmdId);
+		ASSERT_VALID(pBaseElem);
+		UI* pUI = DYNAMIC_DOWNCAST(UI, pBaseElem);
 		ASSERT_VALID(pUI);
 		return pUI;
 	}

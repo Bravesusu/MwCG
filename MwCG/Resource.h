@@ -114,6 +114,7 @@
 #define IDS_EDIT_MENU                   306
 #define IDR_RIBBON                      307
 #define IDB_GL_PRIM                     310
+#define IDB_CHART_FORMAT                312
 #define ID_MW_DYNAMIC                   30000
 #define ID_WRITE_PASTEASHYPERLINK       32770
 #define ID_CLEAR_COLOR                  32772
@@ -124,13 +125,14 @@
 #define ID_CHECK_GIRD                   32783
 #define ID_STROKE_GALLERY               32793
 #define ID_EDIT_SIZE                    32794
+#define ID_DASH_STROKE                  32798
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        312
-#define _APS_NEXT_COMMAND_VALUE         32795
+#define _APS_NEXT_RESOURCE_VALUE        313
+#define _APS_NEXT_COMMAND_VALUE         32800
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

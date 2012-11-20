@@ -34,7 +34,8 @@ class CMainFrame : public CMDIFrameWndEx
 	DECLARE_DYNAMIC(CMainFrame)
 public:
 	CMainFrame();
-
+public:
+	void ActivateContextCategory(UINT uiCategoryID);
 // Attributes
 public:
 
@@ -54,6 +55,7 @@ public:
 #endif
 
 protected:  // control bar embedded members
+	CMFCRibbonCategory* m_pFloatyCategory;
 	MwRibbonBar     m_wndRibbonBar;
 	CMFCRibbonApplicationButton m_MainButton;
 	CMFCToolBarImages m_PanelImages;
@@ -65,7 +67,8 @@ protected:  // control bar embedded members
 	CMFCShellTreeCtrl m_wndTree;
 	CCalendarBar      m_wndCalendar;
 	CMFCCaptionBar    m_wndCaptionBar;
-
+public:
+	CMFCRibbonCategory* floaty_category() const { return m_pFloatyCategory; }
 // Generated message map functions
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
