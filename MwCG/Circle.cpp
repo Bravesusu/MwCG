@@ -29,7 +29,11 @@ void FooCircle(float x, float y, float r, int segments)
 
 void mw::Circle::DoDraw()
 {
+	glEnable(GL_LINE_STIPPLE);
+	glLineWidth(size());
+	glLineStipple(size(), stroke().pattern);
 	FooCircle(center_.x(), center_.y(), radius_, 100);
+	glDisable(GL_LINE_STIPPLE);
 }
 
 //bool mw::Circle::HitTest()

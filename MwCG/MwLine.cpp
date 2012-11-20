@@ -42,7 +42,7 @@ void Line::DoDraw()
 	glLineWidth(size());
 
 	glEnable(GL_LINE_STIPPLE);
-	glLineStipple(1, stroke().pattern);
+	glLineStipple(size(), stroke().pattern);
 	glBegin(GL_LINES);
 	point_from_();
 	point_to_();

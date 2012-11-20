@@ -3,12 +3,14 @@
 
 namespace mw
 {
+	class Line;
 	class Polygon :
 		public GlElement
 	{
 		//DECLARE_SERIAL(Polygon);
 	private:
 		list<shared_ptr<Vector2>> vertex_;
+		shared_ptr<Line> line_;
 	public:
 		int count() const { return vertex_.size(); }
 	public:

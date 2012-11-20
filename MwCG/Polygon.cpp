@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Polygon.h"
 #include "Rect.h"
+#include "mwline.h"
 
 using namespace mw;
 
@@ -8,6 +9,7 @@ using namespace mw;
 
 Polygon::Polygon(void)
 {
+	line_.reset(new Line());
 }
 
 
@@ -47,5 +49,10 @@ Rect mw::Polygon::bound() const
 
 void mw::Polygon::Draw()
 {
-	throw std::exception("The method or operation is not implemented.");
+	//line_->set_color(color());
+	//line_->set_size(size());
+	//line_->set_stroke(stroke());
+	//for(list<shared_ptr<Vector2>>::const_iterator it = vertex_.begin(); (it+1) != vertex_.end(); it++)
+	//{
+	//}
 }
