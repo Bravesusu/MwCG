@@ -1,5 +1,6 @@
 #pragma once
 #include "uieditortool.h"
+#include "LineFactory.h"
 
 namespace mw
 {
@@ -10,8 +11,9 @@ namespace mw
 	private:
 		bool recvEnter_;
 		shared_ptr<Polygon> polygon_;
+		shared_ptr<LineFactory> line_factory_;
 	public:
-		PolygonTool(void);
+		PolygonTool(LineFactory* lineFactory);
 		~PolygonTool(void);
 
 		virtual shared_ptr<GlElement> GetEditingElement();

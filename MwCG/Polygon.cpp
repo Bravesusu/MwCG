@@ -2,6 +2,7 @@
 #include "Polygon.h"
 #include "Rect.h"
 #include "mwline.h"
+#include "BresLine.h"
 
 using namespace mw;
 
@@ -9,9 +10,18 @@ using namespace mw;
 
 Polygon::Polygon(void)
 {
-	line_.reset(new Line());
+	line_.reset(line_factory_->Get());
 }
 
+mw::Polygon::Polygon( LineFactory* factory ) : line_factory_(factory)
+{
+	line_.reset(line_factory_->Get());
+}
+
+mw::Polygon::Polygon( shared_ptr<LineFactory> factory ) : line_factory_(factory)
+{
+	line_.reset(line_factory_->Get());
+}
 
 Polygon::~Polygon(void)
 {
@@ -85,4 +95,20 @@ void mw::Polygon::UpdateLastVertext( const Vector2& pos )
 	if (vertex_.size() == 0)
 		NewVertex(pos);
 	vertex_.back()->set(pos);
+}
+
+void mw::Polygon::set_line( LineFactory* factory )
+{
+	line_factory_.reset(factory);
+	line_.reset(line_factory_->Get());
+}
+
+Line* mw::BresLineFactory::Get() const
+{
+	return new BresLine();
+}
+
+Line* mw::LineFactory::Get() const
+{
+	return new Line();
 }

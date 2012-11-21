@@ -635,7 +635,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		toolCircle_.reset(new CircleTool());
 		tools_.push_back(toolCircle_);
 
-		toolPolygon_.reset(new PolygonTool());
+		LineFactory* lineFac = new LineFactory();
+		toolPolygon_.reset(new PolygonTool(lineFac));
 		tools_.push_back(toolPolygon_);
 
 

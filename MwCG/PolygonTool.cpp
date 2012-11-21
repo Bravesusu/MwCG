@@ -6,8 +6,9 @@
 
 using namespace mw;
 
-PolygonTool::PolygonTool(void)
+PolygonTool::PolygonTool(LineFactory* lineFactory)
 {
+	line_factory_.reset(lineFactory);
 }
 
 
@@ -29,7 +30,7 @@ mw::OperationPtr mw::PolygonTool::PopNewOperation()
 
 void mw::PolygonTool::DoNew()
 {
-	polygon_.reset(new Polygon());
+	polygon_.reset(new Polygon(line_factory_));
 	recvEnter_ = false;
 }
 

@@ -122,6 +122,7 @@
     <ClInclude Include="FileView.h" />
     <ClInclude Include="GlCmd.h" />
     <ClInclude Include="GlColor.h" />
+    <ClInclude Include="LineFactory.h" />
     <ClInclude Include="IOperation.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IRecvView.h" />
