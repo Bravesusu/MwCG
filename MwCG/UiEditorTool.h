@@ -6,6 +6,7 @@
 namespace mw
 {
 	//enum InputStatus { AcceptUpdate, AcceptFix, AcceptNone };
+	class Point;
 	class UiEditorTool :
 		public IDrawable
 	{
@@ -60,6 +61,8 @@ namespace mw
 		void TrySetElementColor();
 		void TrySetElementSize();
 		void TrySetElementStroke();
+		shared_ptr<Point> inputPoint_;
+		void DrawInputPoint(int maxCount) const;
 	};
 }
 

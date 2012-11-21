@@ -1,10 +1,16 @@
 #include "stdafx.h"
 #include "UiEditorTool.h"
 
+#include "MwPoint.h"
+
 using namespace mw;
 
 UiEditorTool::UiEditorTool(void) : input_index(-1)
 {
+	inputPoint_.reset(new Point());
+	//inputPoint_->set_hidden(true);
+	inputPoint_->set_size(10);
+	inputPoint_->set_color(1, 0, 0);
 }
 
 
@@ -98,4 +104,13 @@ void mw::UiEditorTool::TrySetElementStroke()
 	if (GetEditingElement() != NULL)
 		GetEditingElement()->set_stroke(elementStroke_);
 
+}
+
+void mw::UiEditorTool::DrawInputPoint( int maxCount ) const
+{
+	for (int i = 0; i < min(maxCount, inputs_.size()); i++)
+	{
+		inputPoint_->set_position(inputs_.at(i));
+		inputPoint_->Draw();
+	}
 }

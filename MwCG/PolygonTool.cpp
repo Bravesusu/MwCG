@@ -30,7 +30,7 @@ mw::OperationPtr mw::PolygonTool::PopNewOperation()
 
 void mw::PolygonTool::DoNew()
 {
-	polygon_.reset(new Polygon(line_factory_));
+	polygon_.reset(new MwPolygon(line_factory_));
 	recvEnter_ = false;
 }
 
@@ -57,6 +57,7 @@ void mw::PolygonTool::Draw()
 {
 	//TODO: add decorator
 	polygon_->Draw();
+	DrawInputPoint(input_count());
 }
 
 bool mw::PolygonTool::CanFinishByEnter()

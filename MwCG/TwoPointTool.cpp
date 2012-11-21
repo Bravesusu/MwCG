@@ -67,8 +67,9 @@ void mw::TwoPointTool::DoFixInput()
 void mw::TwoPointTool::Draw()
 {
 	OnDraw();
-	first_->Draw();
-	second_->Draw();
+	//first_->Draw();
+	//second_->Draw();
+	DrawInputPoint(2);
 }
 
 bool mw::TwoPointTool::IsFinished() const

@@ -4,13 +4,13 @@
 
 namespace mw
 {
-	class Polygon;
+	class MwPolygon;
 	class PolygonTool :
 		public UiEditorTool
 	{
 	private:
 		bool recvEnter_;
-		shared_ptr<Polygon> polygon_;
+		shared_ptr<MwPolygon> polygon_;
 		shared_ptr<LineFactory> line_factory_;
 	public:
 		PolygonTool(LineFactory* lineFactory);

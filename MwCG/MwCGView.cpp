@@ -519,16 +519,6 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		pCmdUI->SetText(strRect);
 	}
 
-	void CMwCGView::FooFloaty( CPoint point )
-	{
-		//CMFCRibbonMiniToolBar* pFloaty = new CMFCRibbonMiniToolBar;
-		MwMiniToolBar* pFloaty = new MwMiniToolBar(this);
-		InitFloaty(pFloaty);
-
-		ClientToScreen(&point);
-		pFloaty->Show(point.x, point.y);
-	}
-
 	void CMwCGView::OnEditUndo()
 	{
 		// TODO: Add your command handler code here
@@ -691,6 +681,9 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 	void CMwCGView::ShowFloaty( int inputIndex, UINT nFlags, CPoint point )
 	{
+
+		if ((nFlags & MK_CONTROL) == MK_CONTROL)
+			return;
 		//Store index
 		floaty_input_index_ = inputIndex;
 

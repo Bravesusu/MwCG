@@ -4,34 +4,59 @@
 #include "mwline.h"
 #include "BresLine.h"
 
+
 using namespace mw;
 
-//IMPLEMENT_SERIAL(Polygon, GlElement, 1);
+IMPLEMENT_SERIAL(MwPolygon, GlElement, 1);
 
-Polygon::Polygon(void)
+MwPolygon::MwPolygon(void)
+{
+	if (line_factory_ == NULL)
+		line_factory_.reset(new LineFactory());
+	line_.reset(line_factory_->Get());
+}
+
+mw::MwPolygon::MwPolygon( LineFactory* factory ) : line_factory_(factory)
 {
 	line_.reset(line_factory_->Get());
 }
 
-mw::Polygon::Polygon( LineFactory* factory ) : line_factory_(factory)
+mw::MwPolygon::MwPolygon( shared_ptr<LineFactory> factory ) : line_factory_(factory)
 {
 	line_.reset(line_factory_->Get());
 }
 
-mw::Polygon::Polygon( shared_ptr<LineFactory> factory ) : line_factory_(factory)
-{
-	line_.reset(line_factory_->Get());
-}
-
-Polygon::~Polygon(void)
+MwPolygon::~MwPolygon(void)
 {
 }
 
-void mw::Polygon::Serialize( CArchive& ar )
+void mw::MwPolygon::Serialize( CArchive& ar )
 {
+	GlElement::Serialize(ar);
+
+	CObArray arr;
+
+	if (ar.IsStoring())
+	{
+		for (list<shared_ptr<Vector2>>::const_iterator it = vertex_.begin(); it != vertex_.end(); it++)
+		{
+			arr.Add(it->get());
+		}
+		arr.Serialize(ar);
+	}
+	else
+	{
+		arr.Serialize(ar);
+		for (int i = 0; i < arr.GetSize(); i++)
+		{			
+			shared_ptr<Vector2> v = shared_ptr<Vector2>(DYNAMIC_DOWNCAST(Vector2, arr[i]));
+			vertex_.push_back(v);
+		}
+		line_factory_.reset(new LineFactory());
+	}
 }
 
-void mw::Polygon::DoDraw()
+void mw::MwPolygon::DoDraw()
 {
 }
 
@@ -39,7 +64,7 @@ void mw::Polygon::DoDraw()
 //{
 //}
 
-Rect mw::Polygon::bound() const
+Rect mw::MwPolygon::bound() const
 {
 	float left = (*vertex_.begin())->x();
 	float right = left;
@@ -57,7 +82,7 @@ Rect mw::Polygon::bound() const
 	return Rect(left, right, top, bottom);
 }
 
-void mw::Polygon::Draw()
+void mw::MwPolygon::Draw()
 {
 	if (vertex_.size() <= 1)
 		return;
@@ -85,19 +110,19 @@ void mw::Polygon::Draw()
 	line_->Draw();
 }
 
-void mw::Polygon::NewVertex(const Vector2& pos)
+void mw::MwPolygon::NewVertex(const Vector2& pos)
 {
 	vertex_.push_back(shared_ptr<Vector2>(new Vector2(pos)));
 }
 
-void mw::Polygon::UpdateLastVertext( const Vector2& pos )
+void mw::MwPolygon::UpdateLastVertext( const Vector2& pos )
 {
 	if (vertex_.size() == 0)
 		NewVertex(pos);
 	vertex_.back()->set(pos);
 }
 
-void mw::Polygon::set_line( LineFactory* factory )
+void mw::MwPolygon::set_line( LineFactory* factory )
 {
 	line_factory_.reset(factory);
 	line_.reset(line_factory_->Get());

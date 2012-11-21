@@ -1,4 +1,4 @@
-
+#pragma once
 #include "mwglelement.h"
 #include "LineFactory.h"
 namespace mw
@@ -7,10 +7,10 @@ namespace mw
 	class BresLine;
 
 	
-	class Polygon :
+	class MwPolygon :
 		public GlElement
 	{
-		//DECLARE_SERIAL(Polygon);
+		DECLARE_SERIAL(MwPolygon);
 	private:
 		list<shared_ptr<Vector2>> vertex_;
 		shared_ptr<Line> line_;
@@ -22,10 +22,10 @@ namespace mw
 		void NewVertex(const Vector2& pos);
 		void UpdateLastVertext(const Vector2& pos);
 	public:
-		Polygon(void);
-		Polygon(LineFactory* factory);
-		Polygon(shared_ptr<LineFactory> factory);
-		~Polygon(void);
+		MwPolygon(void);
+		MwPolygon(LineFactory* factory);
+		MwPolygon(shared_ptr<LineFactory> factory);
+		~MwPolygon(void);
 
 		virtual void Serialize( CArchive& ar );
 

@@ -127,7 +127,6 @@ public:
 //	afx_msg void OnUpdateFilePrintPreview(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateCheckGird(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateIdsStatusRect(CCmdUI *pCmdUI);
-	void FooFloaty( CPoint point );
 	void InitFloaty( MwMiniToolBar* pFloaty );
 	afx_msg void OnEditUndo();
 	afx_msg void OnEditRedo();
