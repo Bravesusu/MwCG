@@ -246,6 +246,9 @@
     <ClInclude Include="LineFactory.h">
       <Filter>Mw\Content</Filter>
     </ClInclude>
+    <ClInclude Include="PixelStroker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -417,6 +420,9 @@
       <Filter>Mw\UI State\Edit</Filter>
     </ClCompile>
     <ClCompile Include="BresLine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelStroker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

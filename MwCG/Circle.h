@@ -1,5 +1,6 @@
 #pragma once
 #include "mwglelement.h"
+#include "PixelStroker.h"
 
 namespace mw
 {
@@ -10,6 +11,7 @@ namespace mw
 	private:
 		Vector2 center_;
 		float radius_;
+		PixelStroker stroker_;
 	public:
 		Vector2 center() const { return center_; }
 		void set_center(const Vector2& center) { center_ = center; }
@@ -27,6 +29,10 @@ namespace mw
 
 		virtual void Serialize( CArchive& ar );
 
+	private:
+		void MidPointCircle(int cx, int cy, int radius);
+		void Plot8Points(int cx, int cy, int x, int y);
+		void Plot4Points(int cx, int cy, int x, int y);
 
 	};
 	
