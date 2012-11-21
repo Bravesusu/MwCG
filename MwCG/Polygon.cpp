@@ -90,8 +90,8 @@ void mw::MwPolygon::Draw()
 	line_->set_size(size());
 	line_->set_stroke(stroke());
 	for(list<shared_ptr<Vector2>>::const_iterator 
-			it_from = vertex_.begin(), 
-			it_to	= vertex_.begin()
+		it_from = vertex_.begin(), 
+		it_to	= vertex_.begin()
 		; it_from != vertex_.end() && it_to != vertex_.end(); it_from++, it_to++)
 	{
 		if (it_from == it_to)
@@ -115,7 +115,7 @@ void mw::MwPolygon::NewVertex(const Vector2& pos)
 	vertex_.push_back(shared_ptr<Vector2>(new Vector2(pos)));
 }
 
-void mw::MwPolygon::UpdateLastVertext( const Vector2& pos )
+void mw::MwPolygon::UpdateLastVertex( const Vector2& pos )
 {
 	if (vertex_.size() == 0)
 		NewVertex(pos);
@@ -126,6 +126,23 @@ void mw::MwPolygon::set_line( LineFactory* factory )
 {
 	line_factory_.reset(factory);
 	line_.reset(line_factory_->Get());
+}
+
+void mw::MwPolygon::SetVertex( int index, const Vector2& pos )
+{
+	if (index < 0 || index > vertex_.size())
+		return;
+	int i = 0;
+	for(list<shared_ptr<Vector2>>::const_iterator it = vertex_.begin(); 
+		it != vertex_.end(); it++)
+	{
+		if (i == index)
+		{
+			(*it)->set(pos);
+			break;
+		}
+		i++;
+	}
 }
 
 Line* mw::BresLineFactory::Get() const

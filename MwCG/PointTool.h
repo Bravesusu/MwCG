@@ -27,7 +27,8 @@ namespace mw
 
 		virtual void DoUpdateInput();
 
-		virtual void DoFixInput();
+
+		virtual void DoFixInput( const int index );
 
 		virtual bool IsFinished() const;
 

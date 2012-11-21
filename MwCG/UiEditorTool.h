@@ -63,6 +63,8 @@ namespace mw
 		void TrySetElementStroke();
 		shared_ptr<Point> inputPoint_;
 		void DrawInputPoint(int maxCount) const;
+	protected:
+		Vector2 get_input(const int index) const;
 	};
 }
 

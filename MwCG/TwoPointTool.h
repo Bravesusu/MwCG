@@ -10,7 +10,7 @@ namespace mw
 	{
 	private:
 		shared_ptr<Point> first_, second_;
-		void DoInput();
+		void DoInput(int index);
 	public:
 		Vector2 first() const;
 		Vector2 second() const;
@@ -24,7 +24,7 @@ namespace mw
 
 		void DoUpdateInput();
 
-		void DoFixInput();
+		virtual void DoFixInput( const int index );
 
 		bool IsFinished() const;
 	private:

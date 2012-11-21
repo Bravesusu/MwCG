@@ -41,11 +41,12 @@ void mw::PolygonTool::DoNextInput()
 
 void mw::PolygonTool::DoUpdateInput()
 {
-	polygon_->UpdateLastVertext(current());
+	polygon_->UpdateLastVertex(current());
 }
 
 void mw::PolygonTool::DoFixInput( const int index )
 {
+	polygon_->SetVertex(index, get_input(index));
 }
 
 bool mw::PolygonTool::IsFinished() const

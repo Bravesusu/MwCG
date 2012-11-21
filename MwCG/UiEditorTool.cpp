@@ -87,7 +87,7 @@ void mw::UiEditorTool::TrySetElementSize()
 
 bool mw::UiEditorTool::GetInput( int index, Vector2& pos ) const
 {
-	if (index < 0 && index >= inputs_.size())
+	if (index < 0 || index >= inputs_.size())
 		return false;
 	pos = inputs_.at(index);
 	return true;
@@ -113,4 +113,9 @@ void mw::UiEditorTool::DrawInputPoint( int maxCount ) const
 		inputPoint_->set_position(inputs_.at(i));
 		inputPoint_->Draw();
 	}
+}
+
+mw::Vector2 mw::UiEditorTool::get_input( const int index ) const
+{
+	return inputs_.at(index);
 }

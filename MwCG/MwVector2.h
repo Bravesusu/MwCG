@@ -20,8 +20,8 @@ namespace mw
 	public:
 		float x() const { return x_; }
 		float y() const { return y_; }
-		float set_x(float fx) { x_ = fx; }
-		float set_y(float fy) { y_ = fy; }
+		void set_x(float fx) { x_ = fx; }
+		void set_y(float fy) { y_ = fy; }
 		void set(float fx, float fy) { x_ = fx; y_ = fy; }
 		void set(const Vector2& pos) { x_ = pos.x_; y_ = pos.y_; }
 	public:

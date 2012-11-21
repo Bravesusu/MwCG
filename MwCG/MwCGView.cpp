@@ -682,6 +682,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	void CMwCGView::ShowFloaty( int inputIndex, UINT nFlags, CPoint point )
 	{
 
+		((CMainFrame*) GetTopLevelFrame())->ActivateContextCategory(ID_CONTEXT_ELEMENT);
+
 		if ((nFlags & MK_CONTROL) == MK_CONTROL)
 			return;
 		//Store index
@@ -699,12 +701,22 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ClientToScreen(&point);
 		pFloaty->Show(point.x, point.y);
 
-		//((CMainFrame*)GetParent())->ActivateContextCategory(ID_TEMP_CATEGORY);
 	}
 
 	void CMwCGView::InitFloaty( MwMiniToolBar* pFloaty )
 	{
 		ASSERT_VALID(pFloaty);
+		Vector2 pos;
+		if (uiEditState_->tool()->GetInput(floaty_input_index_, pos))
+		{
+			CMFCRibbonEdit* pEditX = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_POS_X);
+			CMFCRibbonEdit* pEditY = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_POS_Y);
+			CString str;
+			str.Format(_T("%f"), pos.x());
+			pEditX->SetEditText(str);
+			str.Format(_T("%f"), pos.y());
+			pEditY->SetEditText(str);
+		}
 
 		CList<UINT, UINT> lstCmds;
 		lstCmds.AddTail(ID_EDIT_SIZE);
@@ -712,7 +724,10 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		lstCmds.AddTail(ID_STROKE_GALLERY);
 		lstCmds.AddTail(ID_EDIT_POS_X);
 		lstCmds.AddTail(ID_EDIT_POS_Y);
-		pFloaty->SetCommands(((CMainFrame*) GetTopLevelFrame())->GetRibbonBar(), lstCmds);
+		CMFCRibbonBar* pRibbon = ((CMainFrame*) GetTopLevelFrame())->GetRibbonBar();
+		pFloaty->SetCommands(pRibbon, lstCmds);
+
+		
 	}
 
 
@@ -722,12 +737,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		Vector2 pos;
 		bool enabled = ValidateFloatyInput(pos);
 		pCmdUI->Enable(enabled);
-		if (enabled)
-		{
-			CString str;
-			str.Format(_T("%f"), pos.x());
-			pCmdUI->SetText(str);
-		}
+		
 	}
 
 	void CMwCGView::OnUpdateEditPosY(CCmdUI *pCmdUI)
@@ -736,33 +746,41 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		Vector2 pos;
 		bool enabled = ValidateFloatyInput(pos);
 		pCmdUI->Enable(enabled);
-		if (enabled)
-		{
-			CString str;
-			str.Format(_T("%f"), pos.y());
-			pCmdUI->SetText(str);
-		}
 	}
 
 	void CMwCGView::OnEditPosY()
 	{
 		// TODO: Add your command handler code here
-		//CMainFrame* pMainFrm = (CMainFrame*)GetParent();
-		//CMFCRibbonBaseElement* pBaseElem = pMainFrm->floaty_category()->FindByID(ID_EDIT_POS_Y);
-		//ASSERT_VALID(pBaseElem);
-		//CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_POS_Y);
-		//TRACE(_T("Y: %s"), pEdit->GetEditText());
+		CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_POS_Y);
+
+		float y = _ttof(pEdit->GetEditText());
+		shared_ptr<UiEditorTool> currentTool = uiEditState_->tool();
+		Vector2 pos;
+		if (currentTool->GetInput(floaty_input_index_, pos))
+		{
+			pos.set_y(y);
+			currentTool->FixInput(floaty_input_index_, pos);
+		}
+
+		Invalidate();
 	}
 
 
 	void CMwCGView::OnEditPosX()
 	{
 		// TODO: Add your command handler code here
-		//CMainFrame* pMainFrm = (CMainFrame*)GetParent();
-		//CMFCRibbonBaseElement* pBaseElem = pMainFrm->floaty_category()->FindByID(ID_EDIT_POS_X);
-		//ASSERT_VALID(pBaseElem);
-		//CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_POS_X);
-		//TRACE(_T("X: %s"), pEdit->GetEditText());
+		CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_POS_X);
+
+		float x = _ttof(pEdit->GetEditText());
+		shared_ptr<UiEditorTool> currentTool = uiEditState_->tool();
+		Vector2 pos;
+		if (currentTool->GetInput(floaty_input_index_, pos))
+		{
+			pos.set_x(x);
+			currentTool->FixInput(floaty_input_index_, pos);
+		}
+
+		Invalidate();
 	}
 
 	bool CMwCGView::ValidateFloatyInput( Vector2& pos )

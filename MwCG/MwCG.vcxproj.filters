@@ -247,7 +247,7 @@
       <Filter>Mw\Content</Filter>
     </ClInclude>
     <ClInclude Include="PixelStroker.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -423,7 +423,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PixelStroker.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -125,14 +125,14 @@
 #define ID_CHECK_GIRD                   32783
 #define ID_STROKE_GALLERY               32793
 #define ID_EDIT_SIZE                    32794
-#define ID_DASH_STROKE                  32798
+#define ID_CONTEXT_ELEMENT              32800
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        313
-#define _APS_NEXT_COMMAND_VALUE         32800
+#define _APS_NEXT_COMMAND_VALUE         32803
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

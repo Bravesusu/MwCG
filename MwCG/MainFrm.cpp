@@ -481,14 +481,14 @@ BOOL CMainFrame::CreateDynamicRibbon(void)
 
 	pPanel->Add(pColorBtn);
 
-	CMFCRibbonCategory* pFloatyCate = m_wndRibbonBar.AddContextCategory(_T("Floaty"), _T("Floaty"), ID_TEMP_CATEGORY, AFX_CategoryColor_Yellow, 0, 0);
+	/*CMFCRibbonCategory* pFloatyCate = m_wndRibbonBar.getcontext(_T("Floaty"), _T("Floaty"), ID_TEMP_CATEGORY, AFX_CategoryColor_Yellow, 0, 0);
 
 	CMFCRibbonPanel* pPosPanel = pFloatyCate->AddPanel(_T("Pos"));
 	CMFCRibbonEdit* pXEdit = new CMFCRibbonEdit(ID_EDIT_POS_X, 50, _T("X"));
 	CMFCRibbonEdit* pYEdit = new CMFCRibbonEdit(ID_EDIT_POS_Y, 50, _T("Y"));
 
 	pPosPanel->Add(pXEdit);
-	pPosPanel->Add(pYEdit);
+	pPosPanel->Add(pYEdit);*/
 
 	//CMFCRibbonComboBox* pStrokeList = theApp.FindRibbonUIById<CMFCRibbonComboBox>(ID_STROKE_GALLERY);
 	//pStrokeList->SelectItem(0);
@@ -687,5 +687,6 @@ void CMainFrame::CreateDocumentColors()
 
 void CMainFrame::ActivateContextCategory( UINT uiCategoryID )
 {
-	m_wndRibbonBar.ActivateContextCategory(uiCategoryID);
+	m_wndRibbonBar.ShowContextCategories(uiCategoryID);
+	//m_wndRibbonBar.ActivateContextCategory(uiCategoryID);
 }

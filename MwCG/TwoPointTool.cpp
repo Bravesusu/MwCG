@@ -26,21 +26,22 @@ TwoPointTool::~TwoPointTool(void)
 {
 }
 
-void mw::TwoPointTool::DoInput()
+void mw::TwoPointTool::DoInput(int index)
 {
-	switch (currentIndex())
+	Vector2 pos = get_input(index);
+	switch (index)
 	{
 	case 0:
 		//TRACE("Set from(%.3f, %.3f)\n", curent().x(), curent().y());
-		first_->set_position(current());
+		first_->set_position(pos);
 		first_->set_hidden(false);
-		OnFirstPoint(current());
+		OnFirstPoint(pos);
 		break;
 	case 1:
-		TRACE("Set to(%.3f, %.3f)\n", current().x(), current().y());
-		second_->set_position(current());
+		//TRACE("Set to(%.3f, %.3f)\n", current().x(), current().y());
+		second_->set_position(pos);
 		second_->set_hidden(false);
-		OnSecondPoint(current());
+		OnSecondPoint(pos);
 		break;
 	default:
 		break;
@@ -56,12 +57,12 @@ void mw::TwoPointTool::DoNew()
 
 void mw::TwoPointTool::DoUpdateInput()
 {
-	DoInput();
+	DoInput(currentIndex());
 }
 
-void mw::TwoPointTool::DoFixInput()
+void mw::TwoPointTool::DoFixInput( const int index )
 {
-	//TODO:
+	DoInput(index);
 }
 
 void mw::TwoPointTool::Draw()

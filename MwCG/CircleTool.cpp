@@ -17,7 +17,7 @@ CircleTool::~CircleTool(void)
 
 void mw::CircleTool::OnFirstPoint( const Vector2& point )
 {
-	circle_->set_center(current());
+	circle_->set_center(point);
 }
 
 void mw::CircleTool::OnSecondPoint( const Vector2& point )

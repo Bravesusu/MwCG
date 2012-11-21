@@ -20,7 +20,8 @@ namespace mw
 	public:
 		int count() const { return vertex_.size(); }
 		void NewVertex(const Vector2& pos);
-		void UpdateLastVertext(const Vector2& pos);
+		void UpdateLastVertex(const Vector2& pos);
+		void SetVertex(int index, const Vector2& pos);
 	public:
 		MwPolygon(void);
 		MwPolygon(LineFactory* factory);
