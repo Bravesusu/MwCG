@@ -14,5 +14,5 @@ BresLine::~BresLine(void)
 
 void mw::BresLine::DoDraw()
 {
-	throw std::exception("The method or operation is not implemented.");
+	//throw std::exception("The method or operation is not implemented.");
 }

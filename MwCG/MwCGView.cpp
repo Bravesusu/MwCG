@@ -638,6 +638,10 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		toolPolygon_.reset(new PolygonTool());
 		tools_.push_back(toolPolygon_);
 
+
+		toolBresLine_.reset(new LineTool<BresLine>());
+		tools_.push_back(toolBresLine_);
+
 		OnToolSelect();
 		OnButtonColor();
 		OnEditSize();

@@ -21,6 +21,7 @@
 #include "UiEdit.h"
 #include "IRecvView.h"
 #include "LineTool.h"
+#include "BresLine.h"
 
 using namespace mw;
 
@@ -61,6 +62,7 @@ private:
 	shared_ptr<LineTool<Line>> toolLine_;
 	shared_ptr<CircleTool> toolCircle_;
 	shared_ptr<PolygonTool> toolPolygon_;
+	shared_ptr<LineTool<BresLine>> toolBresLine_;
 	int floaty_input_index_;
 	void InitializeTools();
 	void UpdateToolColor(const COLORREF elementColor);
