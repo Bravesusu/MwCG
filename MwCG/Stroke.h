@@ -19,6 +19,7 @@ namespace mw
 	const struct Stroke DotStroke = { ST_DOT };
 	const struct Stroke DashStroke = { ST_DASH };
 	const int StrokeCount = 3;
+	const int StrokePatternLength = 16;
 	const Stroke Strokes[] = { FullStroke, DotStroke, DashStroke };
 }
 

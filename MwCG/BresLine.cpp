@@ -5,18 +5,12 @@ using namespace mw;
 
 BresLine::BresLine(void)
 {
+	stroker_.set_stroke(stroke());
 }
 
 
 BresLine::~BresLine(void)
 {
-}
-
-void setPixel(int px, int py)
-{
-	glBegin(GL_POINTS);
-	glVertex2i(px, py);
-	glEnd();
 }
 
 /**
@@ -29,7 +23,7 @@ void setPixel(int px, int py)
  * Note that you have to define your own customized setPixel(x,y) function, 
  * which essentially lights a pixel on the screen.
  */
-void lineBresenham(int p1x, int p1y, int p2x, int p2y)
+void BresLine::lineBresenham(int p1x, int p1y, int p2x, int p2y)
 {
     int F, x, y;
 
@@ -52,7 +46,7 @@ void lineBresenham(int p1x, int p1y, int p2x, int p2y)
         y = p1y;
         while (y <= p2y)
         {
-            setPixel(x, y);
+            stroker_.SetPixel(x, y);
             y++;
         }
         return;
@@ -65,7 +59,7 @@ void lineBresenham(int p1x, int p1y, int p2x, int p2y)
 
         while (x <= p2x)
         {
-            setPixel(x, y);
+            stroker_.SetPixel(x, y);
             x++;
         }
         return;
@@ -91,7 +85,7 @@ void lineBresenham(int p1x, int p1y, int p2x, int p2y)
             y = p1y;
             while (x <= p2x)
             {
-                setPixel(x, y);
+                stroker_.SetPixel(x, y);
                 if (F <= 0)
                 {
                     F += dy2;
@@ -114,7 +108,7 @@ void lineBresenham(int p1x, int p1y, int p2x, int p2y)
             x = p1x;
             while (y <= p2y)
             {
-                setPixel(x, y);
+                stroker_.SetPixel(x, y);
                 if (F <= 0)
                 {
                     F += dx2;
@@ -139,7 +133,7 @@ void lineBresenham(int p1x, int p1y, int p2x, int p2y)
             y = p1y;
             while (x <= p2x)
             {
-                setPixel(x, y);
+                stroker_.SetPixel(x, y);
                 if (F <= 0)
                 {
                     F -= dy2;
@@ -162,7 +156,7 @@ void lineBresenham(int p1x, int p1y, int p2x, int p2y)
             x = p1x;
             while (y >= p2y)
             {
-                setPixel(x, y);
+                stroker_.SetPixel(x, y);
                 if (F <= 0)
                 {
                     F += dx2;
@@ -179,6 +173,8 @@ void lineBresenham(int p1x, int p1y, int p2x, int p2y)
 }
 void mw::BresLine::DoDraw()
 {
+	stroker_.Reset();
+	stroker_.set_stroke(stroke());
 	glPointSize(size());
 	lineBresenham(point_from().x(), point_from().y(), point_to().x(), point_to().y());
 }
