@@ -49,10 +49,28 @@ Rect mw::Polygon::bound() const
 
 void mw::Polygon::Draw()
 {
-	//line_->set_color(color());
-	//line_->set_size(size());
-	//line_->set_stroke(stroke());
-	//for(list<shared_ptr<Vector2>>::const_iterator it = vertex_.begin(); (it+1) != vertex_.end(); it++)
-	//{
-	//}
+	if (vertex_.size() <= 1)
+		return;
+	line_->set_color(color());
+	line_->set_size(size());
+	line_->set_stroke(stroke());
+	for(list<shared_ptr<Vector2>>::const_iterator 
+			it_from = vertex_.begin(), 
+			it_to	= vertex_.begin()
+		; it_from != vertex_.end() && it_to != vertex_.end(); it_from++, it_to++)
+	{
+		if (it_from == it_to)
+		{
+			it_to++;
+			if (it_to == vertex_.end())
+				break;
+		}
+		line_->set(**it_from, **it_to);
+		line_->Draw();
+	}
+	if (vertex_.size() < 3)
+		return;
+	//Last line
+	line_->set(*vertex_.back(), *vertex_.front());
+	line_->Draw();
 }
