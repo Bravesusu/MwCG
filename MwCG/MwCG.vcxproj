@@ -109,6 +109,7 @@
   <ItemGroup>
     <ClInclude Include="AddElementToContent.h" />
     <ClInclude Include="BoundDecorator.h" />
+    <ClInclude Include="BresLine.h" />
     <ClInclude Include="CalendarBar.h" />
     <ClInclude Include="ChangeElementColor.h" />
     <ClInclude Include="ChildFrm.h" />
@@ -174,6 +175,7 @@
   <ItemGroup>
     <ClCompile Include="AddElementToContent.cpp" />
     <ClCompile Include="BoundDecorator.cpp" />
+    <ClCompile Include="BresLine.cpp" />
     <ClCompile Include="CalendarBar.cpp" />
     <ClCompile Include="ChangeElementColor.cpp" />
     <ClCompile Include="ChildFrm.cpp" />

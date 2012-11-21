@@ -26,7 +26,7 @@
 
 #include "MwCanvas.h"
 #include "PointTool.h"
-#include "LineTool.h"
+//#include "LineTool.h"
 #include "CircleTool.h"
 #include "PolygonTool.h"
 
@@ -629,7 +629,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		toolPoint_.reset(new PointTool());
 		tools_.push_back(toolPoint_);
 
-		toolLine_.reset(new LineTool());
+		toolLine_.reset(new LineTool<Line>());
 		tools_.push_back(toolLine_);
 
 		toolCircle_.reset(new CircleTool());

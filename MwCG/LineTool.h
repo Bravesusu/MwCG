@@ -1,30 +1,61 @@
 #pragma once
 #include "TwoPointTool.h"
+#include "AddElementToContent.h"
 
 namespace mw
 {
-	class Line;
+	//class Line;
 	//class Point;
+	template<class TLine>
 	class LineTool :
 		public TwoPointTool
 	{
 	private:
-		shared_ptr<Line> line_;
+		shared_ptr<TLine> line_;
 	public:
-		LineTool(void);
-		~LineTool(void);
+		LineTool(void)
+		{
+			//static_assert(is_base_of(Line, TLine)::value);
+		}
 
-		virtual OperationPtr PopNewOperation();
+		~LineTool(void)
+		{
 
-		virtual void OnFirstPoint( const Vector2& point );
+		}
 
-		virtual void OnSecondPoint( const Vector2& point );
+		virtual OperationPtr PopNewOperation()
+		{
+			//TRACE("Try pop operation\n");
+			if (!IsFinished())
+				return NULL;
+			return OperationPtr(new AddElementToContent(content(), line_));
+		}
 
-		virtual void OnNew();
+		virtual void OnFirstPoint( const Vector2& point )
+		{
+			line_->set_from(current());
+			line_->set_to(current());
+		}
 
-		virtual void OnDraw();
+		virtual void OnSecondPoint( const Vector2& point )
+		{
+			line_->set_to(current());
+		}
 
-		virtual shared_ptr<GlElement> GetEditingElement();
+		virtual void OnNew()
+		{
+			line_.reset(new TLine());
+		}
+
+		virtual void OnDraw()
+		{
+			line_->Draw();
+		}
+
+		virtual shared_ptr<GlElement> GetEditingElement()
+		{
+			return line_;
+		}
 
 	};
 	

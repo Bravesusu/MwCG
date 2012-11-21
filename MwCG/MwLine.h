@@ -28,7 +28,7 @@ namespace mw
 		virtual void Serialize(CArchive& ar);
 		virtual Rect bound() const;
 	private:
-		void DoDraw();
+		virtual void DoDraw();
 
 
 	};

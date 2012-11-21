@@ -9,14 +9,12 @@ namespace mw
 {
 	class UiEditorTool;
 	class UiSelector;
-	class LineTool;
 	class PointTool;
 
 	class UiEdit :
 		public UiState
 	{
 	private:
-		shared_ptr<LineTool> line_;
 		shared_ptr<PointTool> point_;
 	private:
 		shared_ptr<UiEditorTool> tool_;

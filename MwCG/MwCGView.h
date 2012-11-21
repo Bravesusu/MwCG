@@ -20,12 +20,12 @@
 #include "UiNav.h"
 #include "UiEdit.h"
 #include "IRecvView.h"
+#include "LineTool.h"
 
 using namespace mw;
 
 namespace mw
 {
-	class LineTool;
 	class PointTool;
 	class CircleTool;
 	class PolygonTool;
@@ -58,7 +58,7 @@ protected:
 private:
 	vector<shared_ptr<UiEditorTool>> tools_;
 	shared_ptr<PointTool> toolPoint_;
-	shared_ptr<LineTool> toolLine_;
+	shared_ptr<LineTool<Line>> toolLine_;
 	shared_ptr<CircleTool> toolCircle_;
 	shared_ptr<PolygonTool> toolPolygon_;
 	int floaty_input_index_;
