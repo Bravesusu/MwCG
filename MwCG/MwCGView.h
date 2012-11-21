@@ -28,6 +28,7 @@ namespace mw
 	class LineTool;
 	class PointTool;
 	class CircleTool;
+	class PolygonTool;
 	class UiEditorTool;
 }
 
@@ -59,6 +60,7 @@ private:
 	shared_ptr<PointTool> toolPoint_;
 	shared_ptr<LineTool> toolLine_;
 	shared_ptr<CircleTool> toolCircle_;
+	shared_ptr<PolygonTool> toolPolygon_;
 	int floaty_input_index_;
 	void InitializeTools();
 	void UpdateToolColor(const COLORREF elementColor);

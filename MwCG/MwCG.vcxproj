@@ -126,6 +126,7 @@
     <ClInclude Include="IRecvView.h" />
     <ClInclude Include="MwMiniToolBar.h" />
     <ClInclude Include="MwNumberEdit.h" />
+    <ClInclude Include="PolygonTool.h" />
     <ClInclude Include="RectBase.h" />
     <ClInclude Include="IReversible.h" />
     <ClInclude Include="LineTool.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="IRecvView.cpp" />
     <ClCompile Include="MwMiniToolBar.cpp" />
     <ClCompile Include="MwNumberEdit.cpp" />
+    <ClCompile Include="PolygonTool.cpp" />
     <ClCompile Include="RectBase.cpp" />
     <ClCompile Include="LineTool.cpp" />
     <ClCompile Include="MwGlScreen.cpp" />

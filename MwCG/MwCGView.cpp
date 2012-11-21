@@ -28,6 +28,7 @@
 #include "PointTool.h"
 #include "LineTool.h"
 #include "CircleTool.h"
+#include "PolygonTool.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -633,6 +634,9 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		toolCircle_.reset(new CircleTool());
 		tools_.push_back(toolCircle_);
+
+		toolPolygon_.reset(new PolygonTool());
+		tools_.push_back(toolPolygon_);
 
 		OnToolSelect();
 		OnButtonColor();

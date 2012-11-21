@@ -4,7 +4,7 @@
 namespace mw
 {
 	class Line;
-	class Point;
+	//class Point;
 	class LineTool :
 		public TwoPointTool
 	{

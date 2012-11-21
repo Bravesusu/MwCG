@@ -14,6 +14,7 @@ namespace mw
 		//InputStatus status_;
 		vector<Vector2> inputs_;
 		int input_index;
+		Vector2 mouse_;
 		//Vector2 current_;
 	protected:
 		virtual shared_ptr<GlElement> GetEditingElement() { return NULL; }
@@ -22,7 +23,7 @@ namespace mw
 
 		int currentIndex() const { return input_index; }
 		Vector2 current() const { return inputs_.at(input_index); }
-
+		Vector2 mouse_pos() const { return mouse_; }
 		//void set_status(InputStatus status) {status_ = status; }
 	public:
 		//InputStatus status() const { return status_; }
@@ -44,6 +45,8 @@ namespace mw
 		virtual void DoFixInput(const int index) {};
 		virtual void DidCancel() {};
 		virtual bool IsFinished() const = 0;
+		//Called when receving enter key. Return true and set IsFinished if can
+		virtual bool CanFinishByEnter() { return IsFinished(); };
 		//virtual bool CanFixInput() const { return false; }
 		void New();
 		void Cancel();

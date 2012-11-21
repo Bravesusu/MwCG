@@ -13,6 +13,8 @@ namespace mw
 		shared_ptr<Line> line_;
 	public:
 		int count() const { return vertex_.size(); }
+		void NewVertex(const Vector2& pos);
+		void UpdateLastVertext(const Vector2& pos);
 	public:
 		Polygon(void);
 		~Polygon(void);

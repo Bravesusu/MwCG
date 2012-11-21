@@ -14,6 +14,7 @@ UiEditorTool::~UiEditorTool(void)
 
 void mw::UiEditorTool::UpdateInput( const Vector2& pos )
 {
+	mouse_ = pos;
 	if (input_index >= inputs_.size())
 		inputs_.push_back(pos);
 	else

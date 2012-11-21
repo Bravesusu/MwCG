@@ -237,6 +237,9 @@
     <ClInclude Include="MwNumberEdit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PolygonTool.h">
+      <Filter>Mw\UI State\Edit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -403,6 +406,9 @@
     </ClCompile>
     <ClCompile Include="MwNumberEdit.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PolygonTool.cpp">
+      <Filter>Mw\UI State\Edit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

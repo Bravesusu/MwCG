@@ -25,7 +25,7 @@ void mw::UiEdit::OnMouseMove( UINT nFlags, CPoint point )
 {
 	UpdateMouseInput(nFlags, point);
 
-	if (!tool_)
+	if (tool_ == NULL)
 		return;
 	if (!tool_->IsFinished())
 		tool_->UpdateInput(mouse_xy_);
@@ -35,7 +35,7 @@ void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
 {
 	mouse_left_down_ = true;
 	UpdateMouseInput(nFlags, point);
-	if (!tool_)
+	if (tool_ == NULL)
 		return;
 
 	if (TryFinishTool())
@@ -49,7 +49,7 @@ void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
 void mw::UiEdit::OnLButtonUp( UINT nFlags, CPoint point )
 {
 	UpdateMouseInput(nFlags, point);
-	if (!tool_)
+	if (tool_ == NULL)
 		return;
 
 	tool_->UpdateInput(mouse_xy_);
@@ -83,6 +83,22 @@ void mw::UiEdit::OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags )
 
 void mw::UiEdit::OnKeyUp( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
+
+	if (13 == nChar)
+	{
+		if (tool_ == NULL)
+			return;
+		if (!tool_->IsFinished())
+		{
+			if (tool_->CanFinishByEnter() && TryFinishTool())
+			{
+				if (mouse_left_down_)
+					just_finished_ = true;
+				tool_->New();
+				view()->Invalidate();
+			}
+		}
+	}
 }
 
 void mw::UiEdit::InitializeName()

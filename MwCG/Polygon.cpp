@@ -74,3 +74,15 @@ void mw::Polygon::Draw()
 	line_->set(*vertex_.back(), *vertex_.front());
 	line_->Draw();
 }
+
+void mw::Polygon::NewVertex(const Vector2& pos)
+{
+	vertex_.push_back(shared_ptr<Vector2>(new Vector2(pos)));
+}
+
+void mw::Polygon::UpdateLastVertext( const Vector2& pos )
+{
+	if (vertex_.size() == 0)
+		NewVertex(pos);
+	vertex_.back()->set(pos);
+}
