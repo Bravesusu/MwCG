@@ -80,10 +80,10 @@ bool mw::TwoPointTool::IsFinished() const
 
 mw::Vector2 mw::TwoPointTool::first() const
 {
-	return first_->position();
+	return first_->transform().position();
 }
 
 mw::Vector2 mw::TwoPointTool::second() const
 {
-	return second_->position();
+	return second_->transform().position();
 }

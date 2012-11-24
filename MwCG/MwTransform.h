@@ -10,7 +10,7 @@ namespace mw
 	private:
 		Vector2 pos_;
 	public:
-		Vector2& Position() { return pos_; }
+		Vector2& position() { return pos_; }
 	public:
 		Transform(void);
 		~Transform(void);

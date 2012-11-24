@@ -13,7 +13,6 @@ void Point::Serialize(CArchive& ar)
 {
 	GlElement::Serialize(ar);
 
-	position_.Serialize(ar);
 }
 
 void Point::DoDraw()
@@ -21,7 +20,7 @@ void Point::DoDraw()
 	//color()();
 	glPointSize(size());
 	glBegin(GL_POINTS);
-	position_();
+	glVertex2i(0, 0);
 	//Vertex(position_);
 	glEnd();
 }

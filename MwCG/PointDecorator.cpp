@@ -8,7 +8,7 @@ void mw::PointDecorator::DoDecorate()
 {
 	if (!point_)
 		return;
-	dec_->set_position(point_->position());
+	//dec_->transform().Position.set(point_->position());
 	dec_->Draw();
 }
 
