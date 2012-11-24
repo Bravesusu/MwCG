@@ -21,7 +21,7 @@ GlElement::~GlElement(void)
 void GlElement::Serialize(CArchive& ar)
 {
 	CObject::Serialize(ar);
-
+	transform_.Serialize(ar);
 	color_.Serialize(ar);
 	if (ar.IsStoring())
 	{

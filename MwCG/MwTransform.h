@@ -6,6 +6,7 @@ namespace mw
 	class Transform :
 		public GlObject
 	{
+		DECLARE_SERIAL(Transform);
 	private:
 		Vector2 pos_;
 	public:
@@ -17,6 +18,9 @@ namespace mw
 		//NOTE: need a mechanism to forbid classes other than GlElement to call  
 		void Push() const;
 		void Pop() const;
+
+		virtual void Serialize( CArchive& ar );
+
 	};
 
 }
