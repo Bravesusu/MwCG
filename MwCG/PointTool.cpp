@@ -26,7 +26,8 @@ mw::OperationPtr mw::PointTool::PopNewOperation()
 void mw::PointTool::DoUpdateInput()
 {
 	point_->set_hidden(false);
-	point_->set_position(current());
+	//point_->set_position(current());
+	point_->transform().Position().set(current());
 }
 
 void mw::PointTool::Draw()
@@ -50,7 +51,8 @@ void mw::PointTool::DoNextInput()
 
 void mw::PointTool::DoFixInput( const int index )
 {
-	point_->set_position(get_input(index));
+	//point_->set_position(get_input(index));
+	point_->transform().Position().set(current());
 }
 
 bool mw::PointTool::IsFinished() const
