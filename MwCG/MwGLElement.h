@@ -29,6 +29,7 @@ namespace mw
 		void set_stroke(Stroke stroke) { stroke_ = stroke; }
 	public:
 		Transform& transform() { return transform_; }
+		const Transform& transform() const { return transform_; }
 		void set_position(const Vector2& pos) { transform_.position().set(pos); }
 		void set_position(float x, float y) { transform_.position().set(x, y); }
 	private:

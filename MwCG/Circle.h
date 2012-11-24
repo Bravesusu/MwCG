@@ -9,12 +9,11 @@ namespace mw
 	{
 		DECLARE_SERIAL(Circle);
 	private:
-		Vector2 center_;
 		float radius_;
 		PixelStroker stroker_;
 	public:
-		Vector2 center() const { return center_; }
-		void set_center(const Vector2& center) { center_ = center; }
+		Vector2 center() const { return transform().position(); }
+		void set_center(const Vector2& center) { transform().position().set(center); }
 		float radius() const { return radius_; }
 		void set_radius(float radius) { radius_ = radius; }
 	public:

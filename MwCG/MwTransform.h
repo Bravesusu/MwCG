@@ -11,6 +11,7 @@ namespace mw
 		Vector2 pos_;
 	public:
 		Vector2& position() { return pos_; }
+		Vector2 position() const { return pos_; }
 	public:
 		void LocalToWorld(Vector2& localPos) const;
 		void WorldToLocal(Vector2& worldPos) const;

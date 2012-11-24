@@ -16,17 +16,6 @@ Circle::~Circle(void)
 {
 }
 
-void FooCircle(float x, float y, float r, int segments)
-{
-	glBegin( GL_LINE_LOOP );
-	glVertex2f(x, y);
-	for( int n = 0; n <= segments; ++n ) {
-		float const t = 2*3.14*(float)n/(float)segments;
-		glVertex2f(x + sin(t)*r, y + cos(t)*r);
-	}
-	glEnd();
-}
-
 // 'cx' and 'cy' denote the offset of the circle center from the origin.
 void Circle::MidPointCircle(int cx, int cy, int radius)
 {
@@ -89,7 +78,7 @@ void mw::Circle::DoDraw()
 	stroker_.set_stroke(stroke());
 	glPointSize(size());
 	stroker_.Reset();
-	MidPointCircle(center_.x(), center_.y(), radius_);
+	MidPointCircle(0, 0, radius_);
 }
 
 //bool mw::Circle::HitTest()
@@ -100,18 +89,17 @@ void mw::Circle::DoDraw()
 Rect mw::Circle::bound() const
 {
 	return Rect(
-		center_.x() - radius_, 
-		center_.x() + radius_,
-		center_.y() + radius_,
-		center_.y() - radius_
+		-radius_, 
+		radius_,
+		radius_,
+		-radius_
 		);
 }
 
 void mw::Circle::Serialize( CArchive& ar )
 {
 	GlElement::Serialize(ar);
-	center_.Serialize(ar);
-	
+
 	if (ar.IsStoring())
 	{
 		ar<<radius_;
