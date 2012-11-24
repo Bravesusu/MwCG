@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MwCanvas.h"
 
+#include "MwGlScreen.h"
+
 using namespace mw;
 
 IMPLEMENT_SERIAL(Canvas, GlElement, 1);

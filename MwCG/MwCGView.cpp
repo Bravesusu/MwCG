@@ -24,6 +24,8 @@
 #include "MwCGDoc.h"
 #include "MwCGView.h"
 
+#include "MwGlScreen.h"
+
 #include "MwCanvas.h"
 #include "PointTool.h"
 //#include "LineTool.h"

@@ -4,6 +4,7 @@
 #include "MwCanvas.h"
 #include "MwPoint.h"
 #include "MwMouse.h"
+#include "MwGlScreen.h"
 
 using namespace mw;
 

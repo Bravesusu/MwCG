@@ -19,9 +19,3 @@
 //#include "IReversible.h"
 
 #include "MwGLObject.h"  
-//Forward declaration 
-//namespace mw 
-//{
-//	class GlRenderer;
-//	class GlContent;
-//};

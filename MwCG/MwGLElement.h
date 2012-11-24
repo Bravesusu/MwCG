@@ -3,7 +3,7 @@
 #include "Stroke.h"
 #include "IDrawable.h"
 #include "MwColor.h"
-#include "MwGlScreen.h"
+#include "MwTransform.h"
 
 using namespace std;
 
@@ -11,8 +11,9 @@ namespace mw
 {
 	class Rect;
 	class Decorator;
+	class GlScreen;
 	class GlElement :
-		public CObject, 
+		public GlObject, 
 		public IDrawable
 	{
 		DECLARE_SERIAL(GlElement); 
@@ -20,11 +21,13 @@ namespace mw
 		Color color_;
 		int size_;
 		Stroke stroke_;
+		Transform transform_;
 	public:
 		int size() const { return size_; }
 		void set_size(int size) { size_ = size; }
 		Stroke stroke() const { return stroke_; }
 		void set_stroke(Stroke stroke) { stroke_ = stroke; }
+		Transform& transform() { return transform_; }
 	private:
 		list<shared_ptr<Decorator>> decorators_;
 	public:

@@ -3,10 +3,11 @@
 
 #include "Rect.h"
 #include "Decorator.h"
+#include "MwGlScreen.h"
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(GlElement, CObject, 1);
+IMPLEMENT_SERIAL(GlElement, GlObject, 1);
 
 GlElement::GlElement(void) : hidden_(false), size_(1), stroke_(FullStroke)
 {
@@ -41,6 +42,8 @@ void mw::GlElement::Draw()
 {
 	if (hidden_)
 		return;
+
+	transform_.Push();
 	//TODO: do coloring
 	color()();
 	//TODO: do sizing
@@ -50,6 +53,7 @@ void mw::GlElement::Draw()
 	{
 		(*it)->Decorate();
 	}
+	transform_.Pop();
 }
 
 void mw::GlElement::RemoveDecorator( shared_ptr<Decorator> decorator )
