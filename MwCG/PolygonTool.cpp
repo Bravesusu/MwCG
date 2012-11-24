@@ -36,17 +36,27 @@ void mw::PolygonTool::DoNew()
 
 void mw::PolygonTool::DoNextInput()
 {
-	polygon_->NewVertex(mouse_pos());
+	polygon_->NewVertex(polygon_->transform().WorldToLocal(mouse_pos()));
 }
 
 void mw::PolygonTool::DoUpdateInput()
 {
-	polygon_->UpdateLastVertex(current());
+	Vector2 localPos;
+	if (currentIndex() == 0)
+	{
+		polygon_->transform().position().set(current());
+	}
+	else
+	{
+		localPos = polygon_->transform().WorldToLocal(current());
+	}
+	polygon_->UpdateLastVertex(localPos);
 }
 
 void mw::PolygonTool::DoFixInput( const int index )
 {
-	polygon_->SetVertex(index, get_input(index));
+	Vector2 localPos = polygon_->transform().WorldToLocal(get_input(index));
+	polygon_->SetVertex(index, localPos);
 }
 
 bool mw::PolygonTool::IsFinished() const

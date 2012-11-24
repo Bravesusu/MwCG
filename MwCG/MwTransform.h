@@ -15,6 +15,8 @@ namespace mw
 	public:
 		void LocalToWorld(Vector2& localPos) const;
 		void WorldToLocal(Vector2& worldPos) const;
+		Vector2 LocalToWorld(const Vector2& localPos) const;
+		Vector2 WorldToLocal(const Vector2& worldPos) const;
 	public:
 		Transform(void);
 		~Transform(void);

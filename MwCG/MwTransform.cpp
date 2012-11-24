@@ -42,8 +42,18 @@ void mw::Transform::LocalToWorld( Vector2& localPos ) const
 	localPos += pos_;
 }
 
+mw::Vector2 mw::Transform::LocalToWorld( const Vector2& localPos ) const
+{
+	return localPos + pos_;
+}
+
 void mw::Transform::WorldToLocal( Vector2& worldPos ) const
 {
 	//Apply position
 	worldPos -= pos_;
+}
+
+mw::Vector2 mw::Transform::WorldToLocal( const Vector2& worldPos ) const
+{
+	return worldPos - pos_;
 }

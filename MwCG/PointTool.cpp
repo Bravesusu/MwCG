@@ -51,8 +51,8 @@ void mw::PointTool::DoNextInput()
 
 void mw::PointTool::DoFixInput( const int index )
 {
-	//point_->set_position(get_input(index));
-	point_->transform().position().set(current());
+	point_->set_position(get_input(index));
+	//point_->transform().position().set(current());
 }
 
 bool mw::PointTool::IsFinished() const

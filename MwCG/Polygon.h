@@ -19,9 +19,9 @@ namespace mw
 		void set_line(LineFactory* factory);
 	public:
 		int count() const { return vertex_.size(); }
-		void NewVertex(const Vector2& pos);
-		void UpdateLastVertex(const Vector2& pos);
-		void SetVertex(int index, const Vector2& pos);
+		void NewVertex(const Vector2& localPos);
+		void UpdateLastVertex(const Vector2& localPos);
+		void SetVertex(int index, const Vector2& localPos);
 	public:
 		MwPolygon(void);
 		MwPolygon(LineFactory* factory);

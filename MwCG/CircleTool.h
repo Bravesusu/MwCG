@@ -13,9 +13,9 @@ namespace mw
 		CircleTool(void);
 		~CircleTool(void);
 
-		virtual void OnFirstPoint( const Vector2& point );
+		virtual void OnFirstPoint( const Vector2& worldPos );
 
-		virtual void OnSecondPoint( const Vector2& point );
+		virtual void OnSecondPoint( const Vector2& worldPos );
 
 		virtual void OnNew();
 

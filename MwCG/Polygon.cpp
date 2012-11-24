@@ -89,6 +89,7 @@ void mw::MwPolygon::Draw()
 	line_->set_color(color());
 	line_->set_size(size());
 	line_->set_stroke(stroke());
+	line_->transform().position().set(transform().position());
 	for(list<shared_ptr<Vector2>>::const_iterator 
 		it_from = vertex_.begin(), 
 		it_to	= vertex_.begin()
@@ -110,16 +111,16 @@ void mw::MwPolygon::Draw()
 	line_->Draw();
 }
 
-void mw::MwPolygon::NewVertex(const Vector2& pos)
+void mw::MwPolygon::NewVertex(const Vector2& localPos)
 {
-	vertex_.push_back(shared_ptr<Vector2>(new Vector2(pos)));
+	vertex_.push_back(shared_ptr<Vector2>(new Vector2(localPos)));
 }
 
-void mw::MwPolygon::UpdateLastVertex( const Vector2& pos )
+void mw::MwPolygon::UpdateLastVertex( const Vector2& localPos )
 {
 	if (vertex_.size() == 0)
-		NewVertex(pos);
-	vertex_.back()->set(pos);
+		NewVertex(localPos);
+	vertex_.back()->set(localPos);
 }
 
 void mw::MwPolygon::set_line( LineFactory* factory )
@@ -128,7 +129,7 @@ void mw::MwPolygon::set_line( LineFactory* factory )
 	line_.reset(line_factory_->Get());
 }
 
-void mw::MwPolygon::SetVertex( int index, const Vector2& pos )
+void mw::MwPolygon::SetVertex( int index, const Vector2& localPos )
 {
 	if (index < 0 || index > vertex_.size())
 		return;
@@ -138,7 +139,7 @@ void mw::MwPolygon::SetVertex( int index, const Vector2& pos )
 	{
 		if (i == index)
 		{
-			(*it)->set(pos);
+			(*it)->set(localPos);
 			break;
 		}
 		i++;

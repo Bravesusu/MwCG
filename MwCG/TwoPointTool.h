@@ -28,8 +28,8 @@ namespace mw
 
 		bool IsFinished() const;
 	private:
-		virtual void OnFirstPoint(const Vector2& point) {};
-		virtual void OnSecondPoint(const Vector2& point) {};
+		virtual void OnFirstPoint(const Vector2& worldPos) {};
+		virtual void OnSecondPoint(const Vector2& worldPos) {};
 		virtual void OnNew() {};
 		virtual void OnDraw() {};
 	};

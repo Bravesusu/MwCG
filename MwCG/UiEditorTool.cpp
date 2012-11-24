@@ -18,14 +18,14 @@ UiEditorTool::~UiEditorTool(void)
 {
 }
 
-void mw::UiEditorTool::UpdateInput( const Vector2& pos )
+void mw::UiEditorTool::UpdateInput( const Vector2& worldPos )
 {
-	mouse_ = pos;
+	mouse_ = worldPos;
 	if (input_index >= inputs_.size())
-		inputs_.push_back(pos);
+		inputs_.push_back(worldPos);
 	else
 	{
-		inputs_[input_index] = pos;
+		inputs_[input_index] = worldPos;
 	}
 	ASSERT(input_index == inputs_.size() - 1);
 	DoUpdateInput();
@@ -54,9 +54,9 @@ void mw::UiEditorTool::Cancel()
 	New();
 }
 
-void mw::UiEditorTool::FixInput( const int index, const Vector2& pos )
+void mw::UiEditorTool::FixInput( const int index, const Vector2& worldPos )
 {
-	inputs_[index] = pos;
+	inputs_[index] = worldPos;
 	DoFixInput(index);
 }
 
@@ -85,11 +85,11 @@ void mw::UiEditorTool::TrySetElementSize()
 		GetEditingElement()->set_size(elementSize_);
 }
 
-bool mw::UiEditorTool::GetInput( int index, Vector2& pos ) const
+bool mw::UiEditorTool::GetInput( int index, Vector2& worldPos ) const
 {
 	if (index < 0 || index >= inputs_.size())
 		return false;
-	pos = inputs_.at(index);
+	worldPos = inputs_.at(index);
 	return true;
 }
 

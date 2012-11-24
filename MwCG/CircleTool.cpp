@@ -15,12 +15,12 @@ CircleTool::~CircleTool(void)
 {
 }
 
-void mw::CircleTool::OnFirstPoint( const Vector2& point )
+void mw::CircleTool::OnFirstPoint( const Vector2& worldPos )
 {
-	circle_->set_center(point);
+	circle_->set_center(worldPos);
 }
 
-void mw::CircleTool::OnSecondPoint( const Vector2& point )
+void mw::CircleTool::OnSecondPoint( const Vector2& worldPos )
 {
 	float radius = (second() - first()).magnitude();
 	//TRACE("Radius: %.2f\n", radius);

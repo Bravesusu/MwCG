@@ -31,16 +31,16 @@ namespace mw
 			return OperationPtr(new AddElementToContent(content(), line_));
 		}
 
-		virtual void OnFirstPoint( const Vector2& point )
+		virtual void OnFirstPoint( const Vector2& worldPos )
 		{
-			line_->set_position(point);
+			line_->set_position(worldPos);
 			line_->set_from(0, 0);
 			line_->set_to(0, 0);
 		}
 
-		virtual void OnSecondPoint( const Vector2& point )
+		virtual void OnSecondPoint( const Vector2& worldPos )
 		{
-			Vector2 pos = point;
+			Vector2 pos = worldPos;
 			line_->transform().WorldToLocal(pos);
 			line_->set_to(pos);
 		}
