@@ -3,7 +3,7 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(Color, MwGLObject, 1);
+IMPLEMENT_SERIAL(Color, GlObject, 1);
 
 Color::Color(void)
 {
@@ -21,7 +21,7 @@ void Color::GL()
 
 void Color::Serialize(CArchive& ar)
 {
-	MwGLObject::Serialize(ar);
+	GlObject::Serialize(ar);
 	if (ar.IsStoring())
 	{	// storing code
 		ar<<r_<<g_<<b_<<a_;

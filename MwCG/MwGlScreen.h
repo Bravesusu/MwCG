@@ -4,7 +4,7 @@
 
 namespace mw
 {
-	class GlScreen : public MwGLObject
+	class GlScreen : public GlObject
 	{
 		DECLARE_SERIAL(GlScreen);
 	private:

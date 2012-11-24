@@ -6,7 +6,7 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(Rect, MwGLObject, 1);
+IMPLEMENT_SERIAL(Rect, GlObject, 1);
 
 Rect::Rect(void) : RectBase()
 {

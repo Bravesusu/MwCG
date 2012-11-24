@@ -3,18 +3,18 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(MwGLObject, CObject, 1)
+IMPLEMENT_SERIAL(GlObject, CObject, 1)
 
-MwGLObject::MwGLObject(void)
+GlObject::GlObject(void)
 {
 }
 
 
-MwGLObject::~MwGLObject(void)
+GlObject::~GlObject(void)
 {
 }
 
-void MwGLObject::Serialize(CArchive& ar)
+void GlObject::Serialize(CArchive& ar)
 {
 	CObject::Serialize(ar);
 

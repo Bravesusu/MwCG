@@ -12,7 +12,7 @@ namespace mw
 	#define MW_GREEN			0, 0, 1
 	
 	class Color :
-		public MwGLObject
+		public GlObject
 	{
 		DECLARE_SERIAL(Color);
 	private:

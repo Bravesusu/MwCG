@@ -3,7 +3,7 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(GlScreen, MwGLObject, 1);
+IMPLEMENT_SERIAL(GlScreen, GlObject, 1);
 
 GlScreen::~GlScreen(void)
 {
@@ -81,7 +81,7 @@ void mw::GlScreen::translate_xy_scr( int dx, int dy )
 
 void mw::GlScreen::Serialize( CArchive& ar )
 {
-	MwGLObject::Serialize(ar);
+	GlObject::Serialize(ar);
 	if (ar.IsStoring())
 	{
 		ar<<width_<<height_<<x0_<<y0_<<scale_;

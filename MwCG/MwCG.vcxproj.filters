@@ -249,6 +249,9 @@
     <ClInclude Include="PixelStroker.h">
       <Filter>Mw</Filter>
     </ClInclude>
+    <ClInclude Include="MwTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -424,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="PixelStroker.cpp">
       <Filter>Mw</Filter>
+    </ClCompile>
+    <ClCompile Include="MwTransform.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

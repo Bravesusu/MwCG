@@ -3,12 +3,12 @@
 
 namespace mw
 {
-	class MwGLObject : public CObject
+	class GlObject : public CObject
 	{
-		DECLARE_SERIAL(MwGLObject)
+		DECLARE_SERIAL(GlObject)
 	public:
-		MwGLObject(void);
-		~MwGLObject(void);
+		GlObject(void);
+		~GlObject(void);
 		virtual void Serialize(CArchive& ar);
 		//Execute GL command
 		virtual void GL() {  };

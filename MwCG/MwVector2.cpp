@@ -3,7 +3,7 @@
 
 using namespace mw;
 
-IMPLEMENT_SERIAL(Vector2, MwGLObject, 1);
+IMPLEMENT_SERIAL(Vector2, GlObject, 1);
 
 Vector2::~Vector2(void)
 {
@@ -11,7 +11,7 @@ Vector2::~Vector2(void)
 
 void Vector2::Serialize(CArchive& ar)
 {
-	MwGLObject::Serialize(ar);
+	GlObject::Serialize(ar);
 	if (ar.IsStoring())
 	{	// storing code
 		ar<<x_<<y_;

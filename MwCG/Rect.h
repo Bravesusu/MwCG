@@ -4,9 +4,9 @@
 namespace mw
 {
 	class Vector2;
-	class MwGLObject;
+	class GlObject;
 	class Rect :
-		public MwGLObject,
+		public GlObject,
 		public RectBase
 	{
 		DECLARE_SERIAL(Rect);

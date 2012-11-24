@@ -6,7 +6,7 @@
 namespace mw
 {
 	class Vector2 :
-		public MwGLObject
+		public GlObject
 	{
 		DECLARE_SERIAL(Vector2)
 	private:
