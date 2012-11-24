@@ -33,13 +33,16 @@ namespace mw
 
 		virtual void OnFirstPoint( const Vector2& point )
 		{
-			line_->set_from(point);
-			line_->set_to(point);
+			line_->set_position(point);
+			line_->set_from(0, 0);
+			line_->set_to(0, 0);
 		}
 
 		virtual void OnSecondPoint( const Vector2& point )
 		{
-			line_->set_to(point);
+			Vector2 pos = point;
+			line_->transform().WorldToLocal(pos);
+			line_->set_to(pos);
 		}
 
 		virtual void OnNew()

@@ -35,3 +35,15 @@ void mw::Transform::Serialize( CArchive& ar )
 
 	pos_.Serialize(ar);
 }
+
+void mw::Transform::LocalToWorld( Vector2& localPos ) const
+{
+	//Apply position
+	localPos += pos_;
+}
+
+void mw::Transform::WorldToLocal( Vector2& worldPos ) const
+{
+	//Apply position
+	worldPos -= pos_;
+}

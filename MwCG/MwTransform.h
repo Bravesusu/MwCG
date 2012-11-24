@@ -12,6 +12,9 @@ namespace mw
 	public:
 		Vector2& position() { return pos_; }
 	public:
+		void LocalToWorld(Vector2& localPos) const;
+		void WorldToLocal(Vector2& worldPos) const;
+	public:
 		Transform(void);
 		~Transform(void);
 	public:
