@@ -561,7 +561,14 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	void CMwCGView::OnUpdateToolSelect(CCmdUI *pCmdUI)
 	{
 		// TODO: Add your command update UI handler code here
-		pCmdUI->Enable(m_render.IsValid());
+		bool enabled = m_render.IsValid();
+		pCmdUI->Enable(enabled);
+		if (enabled)
+		{
+			CMFCRibbonGallery* shape = theApp.FindRibbonUIById<CMFCRibbonGallery>(ID_SHAPE_GALLERY);
+
+			pCmdUI->SetCheck(shape->GetSelectedItem() == -1);
+		}
 	}
 
 

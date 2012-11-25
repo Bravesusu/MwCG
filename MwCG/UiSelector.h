@@ -16,6 +16,14 @@ namespace mw
 
 		virtual void Draw();
 
+		virtual void DoNew();
+
+		virtual void DoNextInput();
+
+		virtual void DoUpdateInput();
+
+		virtual void DoFixInput( const int index );
+
 	};
 }
 
