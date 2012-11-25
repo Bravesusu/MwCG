@@ -7,6 +7,7 @@ namespace mw
 {
 	//enum InputStatus { AcceptUpdate, AcceptFix, AcceptNone };
 	class Point;
+	class UiEdit;
 	class UiEditorTool :
 		public IDrawable
 	{
@@ -17,6 +18,10 @@ namespace mw
 		int input_index;
 		Vector2 mouse_;
 		//Vector2 current_;
+		shared_ptr<UiEdit> ui_;
+		bool just_finished_;
+	public:
+		void set_ui(shared_ptr<UiEdit> ui) { ui_ = ui; }
 	protected:
 		virtual shared_ptr<GlElement> GetEditingElement() { return NULL; }
 	protected:
@@ -51,9 +56,17 @@ namespace mw
 		//virtual bool CanFixInput() const { return false; }
 		void New();
 		void Cancel();
+
+		void BeginInput(const Vector2& worldPos);
 		void UpdateInput(const Vector2& worldPos);
+
+		void HandleInput( const Vector2& worldPos );
+
+		void EndInput(const Vector2& worldPos);
 		void FixInput(const int index, const Vector2& worldPos);
+
 		int NextInput();
+
 		void UpdateElementColor( const COLORREF elementColor );
 		void UpdateElementSize( int size );
 		void UpdateElementStroke(Stroke stroke);

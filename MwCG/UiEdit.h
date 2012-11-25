@@ -12,7 +12,8 @@ namespace mw
 	class PointTool;
 
 	class UiEdit :
-		public UiState
+		public UiState//,
+		//public enable_shared_from_this<UiEdit>
 	{
 	private:
 		shared_ptr<PointTool> point_;
@@ -30,6 +31,8 @@ namespace mw
 		void set_tool(shared_ptr<UiEditorTool> tool);
 		const shared_ptr<UiEditorTool> tool() const { return tool_; }
 		void use_selector();
+	public:
+		void NotifyToolFinished();
 	public:
 		UiEdit(void);
 		~UiEdit(void);

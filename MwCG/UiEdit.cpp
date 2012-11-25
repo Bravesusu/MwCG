@@ -21,6 +21,22 @@ UiEdit::~UiEdit(void)
 {
 }
 
+void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
+{
+	mouse_left_down_ = true;
+	UpdateMouseInput(nFlags, point);
+	if (tool_ == NULL)
+		return;
+
+	tool_->BeginInput(mouse_xy_);
+	/*if (TryFinishTool())
+	{
+		just_finished_ = true;
+		tool_->New();
+		view()->Invalidate();
+	}*/
+}
+
 void mw::UiEdit::OnMouseMove( UINT nFlags, CPoint point )
 {
 	UpdateMouseInput(nFlags, point);
@@ -31,41 +47,28 @@ void mw::UiEdit::OnMouseMove( UINT nFlags, CPoint point )
 		tool_->UpdateInput(mouse_xy_);
 }
 
-void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
-{
-	mouse_left_down_ = true;
-	UpdateMouseInput(nFlags, point);
-	if (tool_ == NULL)
-		return;
-
-	if (TryFinishTool())
-	{
-		just_finished_ = true;
-		tool_->New();
-		view()->Invalidate();
-	}
-}
-
 void mw::UiEdit::OnLButtonUp( UINT nFlags, CPoint point )
 {
 	UpdateMouseInput(nFlags, point);
 	if (tool_ == NULL)
 		return;
 
-	tool_->UpdateInput(mouse_xy_);
+
+	//tool_->UpdateInput(mouse_xy_);
 
 	//A click
 	if (mouse_left_down_)
 	{
-		if (just_finished_)
+		tool_->EndInput(mouse_xy_);
+		/*if (just_finished_)
 		{
 			just_finished_ = false;
 		}
-		else if (!tool_->IsFinished())
+		else if (!tool_->IsFinished())	
 		{
 			int oldIndex = tool_->NextInput();
 			view()->ShowFloaty(oldIndex, nFlags, point);
-		}
+		}*/
 	}
 
 	mouse_left_down_ = false;
@@ -125,6 +128,8 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 		}
 	}
 
+	tool->set_ui(/*shared_from_this()*/NULL);
+	//TODO: tool does not need to know about content
 	tool->set_content(doc()->glContent());
 	tool_ = tool;
 
@@ -158,5 +163,10 @@ bool mw::UiEdit::TryFinishTool()
 		return true;
 	}
 	return false;
+}
+
+void mw::UiEdit::NotifyToolFinished()
+{
+	TryFinishTool();
 }
 
