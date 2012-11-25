@@ -68,8 +68,7 @@ namespace mw
 		virtual void DoDraw() {};
 	public:
 		void Draw();
-		virtual bool HitTest() { return false; };
-
+		virtual bool HitTest(const Vector2& worldPos) const { return false; }
 		//TODO: components
 	public:
 

@@ -31,8 +31,12 @@ namespace mw
 	private:
 		void DoDraw();
 	public:
-		bool HitTest();
 		Vector2 set_mouse(const CPoint& viewPoint) const;
+
+		virtual bool HitTest( const Vector2& worldPos ) const;
+
+		//Return true if hits and set the hit pointer. hit == NULL if false
+		bool HitTest( const Vector2& worldPos, shared_ptr<GlElement>& hit ) const;
 
 	};
 }

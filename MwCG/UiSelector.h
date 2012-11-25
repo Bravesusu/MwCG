@@ -6,6 +6,14 @@ namespace mw
 	class UiSelector :
 		public UiEditorTool
 	{
+	private:
+		shared_ptr<GlElement> click_hit_;
+		shared_ptr<GlElement> hover_hit_;
+	protected:
+		void Select(shared_ptr<GlElement> element);
+		void Deselect(shared_ptr<GlElement> element);
+		void Enter(shared_ptr<GlElement> element);
+		void Leave(shared_ptr<GlElement> element);
 	public:
 		UiSelector(void);
 		~UiSelector(void);
@@ -23,6 +31,10 @@ namespace mw
 		virtual void DoUpdateInput();
 
 		virtual void DoFixInput( const int index );
+
+		virtual void DoBeginInput();
+
+		virtual void DoEndInput();
 
 	};
 }

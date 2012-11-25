@@ -73,10 +73,6 @@ void GlContent::DoDraw()
 	//Update screen
 	screen()->GL();
 
-	//Handle events
-	HitTest();
-	//TODO: keyboard
-
 	//Canvas
 	canvas_->Draw();
 
@@ -88,19 +84,6 @@ void GlContent::DoDraw()
 
 	//Decorator & interaction layer
 	mouse_->Draw();
-}
-
-bool GlContent::HitTest()
-{
-	//TODO: point of optimization
-
-	for (list<GlElementPtr>::iterator i = elements_.begin(); i != elements_.end(); i++)
-	{
-		if ((*i)->HitTest())
-			return true;
-	}
-
-	return false;
 }
 
 //Set current mouse position with in view coordinate and return screen coordinate.
@@ -125,4 +108,29 @@ void mw::GlContent::RemoveElement( GlElementPtr element )
 	//TO REMOVE: hide element for the result, not final implementations
 	//WARNING: possible hazard for duplications
 	//element->set_hidden(true);
+}
+
+bool mw::GlContent::HitTest( const Vector2& worldPos ) const
+{
+	for (list<GlElementPtr>::const_iterator it = elements_.begin(); it != elements_.end(); it++)
+	{
+		if ((*it)->HitTest(worldPos))
+			return true;
+	}
+
+	return false;
+}
+
+bool mw::GlContent::HitTest( const Vector2& worldPos, shared_ptr<GlElement>& hit ) const
+{
+	for (list<GlElementPtr>::const_iterator it = elements_.begin(); it != elements_.end(); it++)
+	{
+		if ((*it)->HitTest(worldPos))
+		{
+			hit = *it;
+			return true;
+		}
+	}
+	hit = NULL;
+	return false;
 }
