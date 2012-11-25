@@ -29,20 +29,16 @@ void mw::UiSelector::Draw()
 
 void mw::UiSelector::DoNew()
 {
-	throw std::exception("The method or operation is not implemented.");
 }
 
 void mw::UiSelector::DoNextInput()
 {
-	throw std::exception("The method or operation is not implemented.");
 }
 
 void mw::UiSelector::DoUpdateInput()
 {
-	throw std::exception("The method or operation is not implemented.");
 }
 
 void mw::UiSelector::DoFixInput( const int index )
 {
-	throw std::exception("The method or operation is not implemented.");
 }

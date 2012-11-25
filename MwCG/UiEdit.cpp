@@ -128,7 +128,7 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 		}
 	}
 
-	tool->set_ui(/*shared_from_this()*/NULL);
+	tool->set_ui(shared_from_this());
 	//TODO: tool does not need to know about content
 	tool->set_content(doc()->glContent());
 	tool_ = tool;
