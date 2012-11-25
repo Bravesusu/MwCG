@@ -47,6 +47,8 @@ void mw::UiSelector::DoFixInput( const int index )
 
 void mw::UiSelector::DoBeginInput()
 {
+	if (content() == NULL)
+		return;
 	shared_ptr<GlElement> newHit;
 	content()->HitTest(mouse_pos(), newHit);
 	if (click_hit_ != newHit)
@@ -62,26 +64,30 @@ void mw::UiSelector::DoBeginInput()
 
 void mw::UiSelector::DoUpdateInput()
 {
+	if (content() == NULL)
+		return;
 	//Do hover hit if no click hit
 	if (click_hit_ == NULL)
 	{
-		shared_ptr<GlElement> newHit;
-		content()->HitTest(mouse_pos(), newHit);
-		if (hover_hit_ != newHit)
-		{
-			//Leave old one
-			Leave(hover_hit_);
-			//Enter new one
-			Enter(newHit);
-			//Assign (Can be NULL)
-			hover_hit_ = newHit;
-		}
+		
 	}
 	else
 	{
 		//TODO: pipe inputs to editor
 		//(transform editor from click)
 		//(anchor points editor from dbl-click)
+	}
+	//Handle hover all the time
+	shared_ptr<GlElement> newHit;
+	content()->HitTest(mouse_pos(), newHit);
+	if (hover_hit_ != newHit)
+	{
+		//Leave old one
+		Leave(hover_hit_);
+		//Enter new one
+		Enter(newHit);
+		//Assign (Can be NULL)
+		hover_hit_ = newHit;
 	}
 }
 
