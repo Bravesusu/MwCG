@@ -19,6 +19,11 @@ namespace mw
 		virtual void Serialize(CArchive& ar);
 	private:
 		void DoDraw();
+
+		virtual bool HitTest( const Vector2& worldPos ) const;
+
+		virtual Rect bound() const;
+
 	};
 
 	

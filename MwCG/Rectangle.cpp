@@ -19,7 +19,13 @@ void mw::Rectangle::Serialize( CArchive& ar )
 
 void mw::Rectangle::DoDraw()
 {
-	DoGL();
+	//DoGL();
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(left(), top());
+	glVertex2f(right(), top());
+	glVertex2f(right(), bottom());
+	glVertex2f(left(), bottom());
+	glEnd();
 }
 
 //bool mw::Rectangle::HitTest()

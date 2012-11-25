@@ -32,7 +32,7 @@ GlContent::~GlContent(void)
 
 void GlContent::Serialize(CArchive& ar)
 {
-	
+
 	GlElement::Serialize(ar);
 	canvas_->Serialize(ar);
 	theScreen_->Serialize(ar);
@@ -123,14 +123,21 @@ bool mw::GlContent::HitTest( const Vector2& worldPos ) const
 
 bool mw::GlContent::HitTest( const Vector2& worldPos, shared_ptr<GlElement>& hit ) const
 {
-	for (list<GlElementPtr>::const_iterator it = elements_.begin(); it != elements_.end(); it++)
+	try
 	{
-		if ((*it)->HitTest(worldPos))
+		for (list<GlElementPtr>::const_iterator it = elements_.begin(); it != elements_.end(); it++)
 		{
-			hit = *it;
-			return true;
+			if ((*it)->HitTest(worldPos))
+			{
+				hit = *it;
+				return true;
+			}
 		}
 	}
+	catch (CException* e)
+	{
+	}
+
 	hit = NULL;
 	return false;
 }
