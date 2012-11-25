@@ -11,7 +11,7 @@
 
 using namespace mw;
 
-UiEdit::UiEdit(void) : mouse_left_down_(false), just_finished_(false)
+UiEdit::UiEdit(void) : mouse_left_down_(false)
 {
 	selector_.reset(new UiSelector());
 }
@@ -29,12 +29,8 @@ void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
 		return;
 
 	tool_->BeginInput(mouse_xy_);
-	/*if (TryFinishTool())
-	{
-		just_finished_ = true;
-		tool_->New();
-		view()->Invalidate();
-	}*/
+
+	view()->Invalidate();
 }
 
 void mw::UiEdit::OnMouseMove( UINT nFlags, CPoint point )
@@ -53,22 +49,10 @@ void mw::UiEdit::OnLButtonUp( UINT nFlags, CPoint point )
 	if (tool_ == NULL)
 		return;
 
-
-	//tool_->UpdateInput(mouse_xy_);
-
 	//A click
 	if (mouse_left_down_)
 	{
 		tool_->EndInput(mouse_xy_);
-		/*if (just_finished_)
-		{
-			just_finished_ = false;
-		}
-		else if (!tool_->IsFinished())	
-		{
-			int oldIndex = tool_->NextInput();
-			view()->ShowFloaty(oldIndex, nFlags, point);
-		}*/
 	}
 
 	mouse_left_down_ = false;
@@ -95,8 +79,6 @@ void mw::UiEdit::OnKeyUp( UINT nChar, UINT nRepCnt, UINT nFlags )
 		{
 			if (tool_->CanFinishByEnter() && TryFinishTool())
 			{
-				if (mouse_left_down_)
-					just_finished_ = true;
 				tool_->New();
 				view()->Invalidate();
 			}

@@ -43,13 +43,18 @@ namespace mw
 		Color elementColor_;
 		int elementSize_;
 		Stroke elementStroke_;
-	public:
-		virtual OperationPtr PopNewOperation() = 0;
+	protected:
 		virtual void DoNew() {};
 		virtual void DoNextInput() {};
+		virtual void DoBeginInput() {};
 		virtual void DoUpdateInput() {};
+		virtual void DoEndInput() {};
 		virtual void DoFixInput(const int index) {};
 		virtual void DidCancel() {};
+		int NextInput();
+	public:
+		virtual OperationPtr PopNewOperation() = 0;
+
 		virtual bool IsFinished() const = 0;
 		//Called when receving enter key. Return true and set IsFinished if can
 		virtual bool CanFinishByEnter() { return IsFinished(); };
@@ -59,18 +64,16 @@ namespace mw
 
 		void BeginInput(const Vector2& worldPos);
 		void UpdateInput(const Vector2& worldPos);
-
-		void HandleInput( const Vector2& worldPos );
-
 		void EndInput(const Vector2& worldPos);
+
 		void FixInput(const int index, const Vector2& worldPos);
 
-		int NextInput();
 
 		void UpdateElementColor( const COLORREF elementColor );
 		void UpdateElementSize( int size );
 		void UpdateElementStroke(Stroke stroke);
 	protected:
+		void HandleInput( const Vector2& worldPos );
 		void TrySetElementColor();
 		void TrySetElementSize();
 		void TrySetElementStroke();

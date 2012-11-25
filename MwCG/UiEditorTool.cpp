@@ -114,7 +114,6 @@ void mw::UiEditorTool::BeginInput( const Vector2& worldPos )
 	{
 		//New() if just finished
 		New();
-		//TODO: may need to notify view to invalidate
 	}
 	else
 	{
@@ -124,6 +123,7 @@ void mw::UiEditorTool::BeginInput( const Vector2& worldPos )
 
 	//Handle the input
 	HandleInput(worldPos);
+	DoBeginInput();
 }
 
 void mw::UiEditorTool::UpdateInput( const Vector2& worldPos )
@@ -137,7 +137,7 @@ void mw::UiEditorTool::EndInput( const Vector2& worldPos )
 {
 	//Handle the input
 	HandleInput(worldPos);
-	//TODO: try finish and notify ui_
+	//Try finish and notify ui_
 	if (IsFinished())
 	{
 		if (ui_ != NULL)
@@ -146,6 +146,7 @@ void mw::UiEditorTool::EndInput( const Vector2& worldPos )
 		}
 		just_finished_ = true;
 	}
+	DoEndInput();
 }
 
 void mw::UiEditorTool::HandleInput( const Vector2& worldPos )
