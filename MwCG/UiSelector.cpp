@@ -1,10 +1,16 @@
 #include "stdafx.h"
 #include "UiSelector.h"
 
+#include "BoundDecorator.h"
+
 using namespace mw;
 
 UiSelector::UiSelector(void)
 {
+	selDec_.reset(new BoundDecorator());
+	selDec_->color().set(0, 0, 1, 0.5);
+	hoverDec_.reset(new BoundDecorator());
+	hoverDec_->color().set(0, 1, 0, 0.5);
 }
 
 
@@ -43,12 +49,15 @@ void mw::UiSelector::DoBeginInput()
 {
 	shared_ptr<GlElement> newHit;
 	content()->HitTest(mouse_pos(), newHit);
-	//clean up old hit
-	Deselect(click_hit_);
-	//Select new one 
-	Select(newHit);
-	//Store (if no hit, hit_ = newHit <- NULL)
-	click_hit_ = newHit;
+	if (click_hit_ != newHit)
+	{
+		//clean up old hit
+		Deselect(click_hit_);
+		//Select new one 
+		Select(newHit);
+		//Store (if no hit, hit_ = newHit <- NULL)
+		click_hit_ = newHit;
+	}
 }
 
 void mw::UiSelector::DoUpdateInput()
@@ -58,12 +67,15 @@ void mw::UiSelector::DoUpdateInput()
 	{
 		shared_ptr<GlElement> newHit;
 		content()->HitTest(mouse_pos(), newHit);
-		//Leave old one
-		Leave(hover_hit_);
-		//Enter new one
-		Enter(newHit);
-		//Assign (Can be NULL)
-		hover_hit_ = newHit;
+		if (hover_hit_ != newHit)
+		{
+			//Leave old one
+			Leave(hover_hit_);
+			//Enter new one
+			Enter(newHit);
+			//Assign (Can be NULL)
+			hover_hit_ = newHit;
+		}
 	}
 	else
 	{
@@ -81,23 +93,26 @@ void mw::UiSelector::Select( shared_ptr<GlElement> element )
 {
 	if (element == NULL)
 		return;
+	element += selDec_;
 }
 
 void mw::UiSelector::Deselect( shared_ptr<GlElement> element )
 {
 	if (element == NULL)
 		return;
-
+	element -= selDec_;
 }
 
 void mw::UiSelector::Enter( shared_ptr<GlElement> element )
 {
 	if (element == NULL)
 		return;
+	element += hoverDec_;
 }
 
 void mw::UiSelector::Leave( shared_ptr<GlElement> element )
 {
 	if (element == NULL)
 		return;
+	element -= hoverDec_;
 }
