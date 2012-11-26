@@ -152,8 +152,29 @@ void mw::UiEdit::NotifyToolFinished()
 	TryFinishTool();
 }
 
-void mw::UiEdit::NotfiyToolOperation( shared_ptr<IOperation> operation )
+void mw::UiEdit::NotifyToolOperation( const shared_ptr<IOperation>& operation )
 {
 	doc()->CommitOperation(operation);
+}
+
+void mw::UiEdit::NotifyToolPreview( const shared_ptr<IOperation>& operation )
+{
+	doc()->BeginPreviewOperation(operation);
+}
+
+void mw::UiEdit::NotifyToolUpdatePreview()
+{
+	doc()->UpdatePreviewOperation();
+
+}
+
+void mw::UiEdit::NotifyToolCommitPreview()
+{
+	doc()->CommitPreviewOperation();
+}
+
+void mw::UiEdit::NotifyToolCancelPreview()
+{
+	doc()->CancelPreviewOperation();
 }
 

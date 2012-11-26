@@ -14,6 +14,7 @@ SingleSelection::~SingleSelection(void)
 mw::SingleSelection::SingleSelection( shared_ptr<GlContent> content, shared_ptr<GlElement> element )
 {
 	Initialize(content, element);
+	last_selection_ = content->selected_elements();
 }
 
 void mw::SingleSelection::Undo()
@@ -28,6 +29,5 @@ void mw::SingleSelection::Undo()
 
 void mw::SingleSelection::Redo()
 {
-	last_selection_ = content()->selected_elements();
 	content()->SingleSelect(element());
 }

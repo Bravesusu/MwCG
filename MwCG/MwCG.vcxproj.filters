@@ -258,6 +258,9 @@
     <ClInclude Include="SingleDeselection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MoveElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -441,6 +444,9 @@
       <Filter>Mw\Commands</Filter>
     </ClCompile>
     <ClCompile Include="SingleDeselection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

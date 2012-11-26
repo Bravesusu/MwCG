@@ -130,6 +130,7 @@
     <ClInclude Include="IOperation.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IRecvView.h" />
+    <ClInclude Include="MoveElement.h" />
     <ClInclude Include="MwMiniToolBar.h" />
     <ClInclude Include="MwNumberEdit.h" />
     <ClInclude Include="MwTransform.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="GlCmd.cpp" />
     <ClCompile Include="GlColor.cpp" />
     <ClCompile Include="IRecvView.cpp" />
+    <ClCompile Include="MoveElement.cpp" />
     <ClCompile Include="MwMiniToolBar.cpp" />
     <ClCompile Include="MwNumberEdit.cpp" />
     <ClCompile Include="MwTransform.cpp" />

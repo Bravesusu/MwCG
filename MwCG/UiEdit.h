@@ -33,7 +33,11 @@ namespace mw
 		void use_selector();
 	public:
 		void NotifyToolFinished();
-		void NotfiyToolOperation(shared_ptr<IOperation> operation);
+		void NotifyToolOperation(const shared_ptr<IOperation>& operation);
+		void NotifyToolPreview(const shared_ptr<IOperation>& operation);
+		void NotifyToolUpdatePreview();
+		void NotifyToolCommitPreview();
+		void NotifyToolCancelPreview();
 	public:
 		UiEdit(void);
 		~UiEdit(void);

@@ -4,6 +4,7 @@
 namespace mw
 {
 	class BoundDecorator;
+	class MoveElement;
 	class UiSelector :
 		public UiEditorTool
 	{
@@ -14,6 +15,8 @@ namespace mw
 	private:
 		shared_ptr<BoundDecorator> selDec_;
 		shared_ptr<BoundDecorator> hoverDec_;
+	private:
+		shared_ptr<MoveElement> move_op_;
 	protected:
 		void SingleSelect(shared_ptr<GlElement> element);
 		void Deselect(shared_ptr<GlElement> element);

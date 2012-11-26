@@ -5,6 +5,8 @@
 #include "SingleSelection.h"
 #include "SingleDeselection.h"
 
+#include "MoveElement.h"
+
 using namespace mw;
 
 UiSelector::UiSelector(void)
@@ -14,6 +16,7 @@ UiSelector::UiSelector(void)
 	selDec_->color().set(0, 0, 1, 0.5);
 	hoverDec_.reset(new BoundDecorator());
 	hoverDec_->color().set(0, 1, 0, 0.5);
+
 }
 
 
@@ -67,7 +70,13 @@ void mw::UiSelector::DoBeginInput()
 			//Select new one 
 			SingleSelect(newHit);
 			//TODO: apply transformer
+			move_op_.reset(new MoveElement(content(), newHit));
+			move_op_->set_element(newHit);
+			move_op_->set_initial_position(newHit->transform().position());
+			move_op_->set_move_to_position(newHit->transform().position());
+			ui()->NotifyToolPreview(move_op_);
 			moving_ = true;
+			
 		}
 		//Store (if no hit, hit_ = newHit <- NULL)
 		click_hit_ = newHit;
@@ -77,6 +86,10 @@ void mw::UiSelector::DoBeginInput()
 		if (click_hit_ != NULL)
 		{
 			//TODO: send msg to transformer
+			move_op_->set_element(newHit);
+			move_op_->set_initial_position(newHit->transform().position());
+			move_op_->set_move_to_position(newHit->transform().position());
+			ui()->NotifyToolPreview(move_op_);
 			moving_ = true;
 		}
 	}
@@ -100,7 +113,8 @@ void mw::UiSelector::DoUpdateInput()
 		if (moving_)
 		{
 			//click_hit_->set_position(mouse_pos());
-			click_hit_->transform().position() += mouse_inst_delta();
+			move_op_->set_move_to_position(click_hit_->transform().position() + mouse_inst_delta());
+			ui()->NotifyToolUpdatePreview();
 		}
 	}
 	//Handle hover all the time
@@ -120,6 +134,7 @@ void mw::UiSelector::DoUpdateInput()
 void mw::UiSelector::DoEndInput()
 {
 	moving_ = false;
+	ui()->NotifyToolCommitPreview();
 }
 
 void mw::UiSelector::SingleSelect( shared_ptr<GlElement> element )
@@ -127,7 +142,7 @@ void mw::UiSelector::SingleSelect( shared_ptr<GlElement> element )
 	if (element == NULL)
 		return;
 	//element += selDec_;
-	ui()->NotfiyToolOperation(OperationPtr(
+	ui()->NotifyToolOperation(OperationPtr(
 		new SingleSelection(content(), element)
 		));
 }
@@ -137,7 +152,7 @@ void mw::UiSelector::Deselect( shared_ptr<GlElement> element )
 	if (element == NULL)
 		return;
 	//element -= selDec_;
-	ui()->NotfiyToolOperation(OperationPtr(
+	ui()->NotifyToolOperation(OperationPtr(
 		new SingleDeselection(content(), element)
 		));
 }
@@ -186,4 +201,6 @@ void mw::UiSelector::OnContentInitialized()
 
 	content()->set_on_select(sel_callback);
 	content()->set_on_deselect(desel_callback);
+
+
 }

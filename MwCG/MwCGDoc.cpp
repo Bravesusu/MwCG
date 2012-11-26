@@ -341,6 +341,8 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	void CMwCGDoc::CancelPreviewOperation()
 	{
+		if (!op_preview_)
+			return;
 		op_preview_ = false;
 		ops_.back()->Undo();
 		ops_.pop_back();
