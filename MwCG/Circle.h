@@ -33,6 +33,8 @@ namespace mw
 		void Plot8Points(int cx, int cy, int x, int y);
 		void Plot4Points(int cx, int cy, int x, int y);
 
+		virtual bool HitTest( const Vector2& worldPos ) const;
+
 	};
 	
 }

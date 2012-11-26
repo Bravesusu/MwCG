@@ -109,3 +109,12 @@ void mw::Circle::Serialize( CArchive& ar )
 		ar>>radius_;
 	}
 }
+
+bool mw::Circle::HitTest( const Vector2& worldPos ) const
+{
+	Vector2 delta = worldPos - center();
+
+	float dist = delta.magnitude();
+
+	return dist < 3 || (dist > radius_ - 3 && dist < radius_ + 3);
+}
