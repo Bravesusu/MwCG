@@ -166,6 +166,8 @@ void mw::GlContent::Select( const shared_ptr<GlElement> element )
 	{
 		selectedElements_.push_back(element);
 		//TODO: select event
+		if (onSelectEvtHandler_ != NULL)
+			onSelectEvtHandler_(shared_from_this(), element);
 	}
 }
 
@@ -175,6 +177,8 @@ void mw::GlContent::Deselect( const shared_ptr<GlElement> element )
 	{
 		selectedElements_.remove(element);
 		//TODO: deselect event
+		if (onDeselectEvtHandler_ != NULL)
+			onDeselectEvtHandler_(shared_from_this(), element);
 	}
 }
 

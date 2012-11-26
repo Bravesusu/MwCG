@@ -5,6 +5,7 @@
 #include <list>
 #include <memory>
 #include <string>
+#include <functional>
 
 //OpenGL
 #include <gl/gl.h>   

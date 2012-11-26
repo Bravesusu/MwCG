@@ -126,3 +126,13 @@ void mw::UiSelector::Leave( shared_ptr<GlElement> element )
 		return;
 	element -= hoverDec_;
 }
+
+void mw::UiSelector::OnElementSelect( shared_ptr<GlContent> content, shared_ptr<GlElement> element )
+{
+
+}
+
+void mw::UiSelector::OnElementDeselect( shared_ptr<GlContent> content, shared_ptr<GlElement> element )
+{
+
+}
