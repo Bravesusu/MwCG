@@ -152,3 +152,8 @@ void mw::UiEdit::NotifyToolFinished()
 	TryFinishTool();
 }
 
+void mw::UiEdit::NotfiyToolOperation( shared_ptr<IOperation> operation )
+{
+	doc()->CommitOperation(operation);
+}
+

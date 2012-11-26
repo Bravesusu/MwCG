@@ -108,9 +108,7 @@ void mw::GlContent::RemoveElement( GlElementPtr element )
 {
 	//remove element from hierarchy
 	elements_.remove(element);
-	//TO REMOVE: hide element for the result, not final implementations
-	//WARNING: possible hazard for duplications
-	//element->set_hidden(true);
+	selectedElements_.remove(element);
 }
 
 bool mw::GlContent::HitTest( const Vector2& worldPos ) const
@@ -147,4 +145,49 @@ bool mw::GlContent::HitTest( const Vector2& worldPos, shared_ptr<GlElement>& hit
 
 	hit = NULL;
 	return false;
+}
+
+bool mw::GlContent::IsAlreadySelected( const shared_ptr<GlElement> element) const
+{
+	list<shared_ptr<GlElement>>::const_iterator it = find(elements_.begin(), elements_.end(), element);
+
+	if (*it == NULL)
+		return false;
+
+	list<shared_ptr<GlElement>>::const_iterator sel_it = find(selectedElements_.begin(), selectedElements_.end(), element);
+
+	return *sel_it != NULL;
+}
+
+void mw::GlContent::Select( const shared_ptr<GlElement> element )
+{
+
+	if (!IsAlreadySelected(element))
+	{
+		selectedElements_.push_back(element);
+		//TODO: select event
+	}
+}
+
+void mw::GlContent::Deselect( const shared_ptr<GlElement> element )
+{
+	if (IsAlreadySelected(element))
+	{
+		selectedElements_.remove(element);
+		//TODO: deselect event
+	}
+}
+
+void mw::GlContent::SingleSelect( const shared_ptr<GlElement> element )
+{
+	DeselectAll();
+	Select(element);
+}
+
+void mw::GlContent::DeselectAll()
+{
+	for (list<shared_ptr<GlElement>>::iterator it = selectedElements_.begin(); it != selectedElements_.end(); it++)
+	{
+		Deselect(*it);
+	}
 }

@@ -20,6 +20,8 @@ namespace mw
 		//Vector2 current_;
 		shared_ptr<UiEdit> ui_;
 		bool just_finished_;
+	protected:
+		const shared_ptr<UiEdit> ui() const { return ui_; }
 	public:
 		void set_ui(shared_ptr<UiEdit> ui) { ui_ = ui; }
 	protected:

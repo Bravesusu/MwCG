@@ -37,6 +37,15 @@ namespace mw
 
 		//Return true if hits and set the hit pointer. hit == NULL if false
 		bool HitTest( const Vector2& worldPos, shared_ptr<GlElement>& hit ) const;
-
+	private:
+		list<shared_ptr<GlElement>> selectedElements_;
+	protected:
+		bool IsAlreadySelected( const shared_ptr<GlElement> element ) const;
+	public:
+		const list<shared_ptr<GlElement>>& selected_elements() const { return selectedElements_; }
+		void SingleSelect(const shared_ptr<GlElement> element);
+		void Select(const shared_ptr<GlElement> element);
+		void Deselect(const shared_ptr<GlElement> element);
+		void DeselectAll();
 	};
 }

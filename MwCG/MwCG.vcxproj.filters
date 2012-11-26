@@ -252,6 +252,9 @@
     <ClInclude Include="MwTransform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SingleSelection.h">
+      <Filter>Mw\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -430,6 +433,9 @@
     </ClCompile>
     <ClCompile Include="MwTransform.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleSelection.cpp">
+      <Filter>Mw\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

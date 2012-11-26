@@ -10,6 +10,7 @@ namespace mw
 	class UiEditorTool;
 	class UiSelector;
 	class PointTool;
+	class IOperation;
 
 	class UiEdit :
 		public UiState,
@@ -32,6 +33,7 @@ namespace mw
 		void use_selector();
 	public:
 		void NotifyToolFinished();
+		void NotfiyToolOperation(shared_ptr<IOperation> operation);
 	public:
 		UiEdit(void);
 		~UiEdit(void);
@@ -54,7 +56,6 @@ namespace mw
 
 	private:
 		bool TryFinishTool();
-
 	public:
 
 	};

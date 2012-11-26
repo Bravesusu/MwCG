@@ -2,6 +2,7 @@
 #include "UiSelector.h"
 
 #include "BoundDecorator.h"
+#include "SingleSelection.h"
 
 using namespace mw;
 
@@ -100,6 +101,9 @@ void mw::UiSelector::Select( shared_ptr<GlElement> element )
 	if (element == NULL)
 		return;
 	element += selDec_;
+	ui()->NotfiyToolOperation(OperationPtr(
+		new SingleSelection(content(), element)
+		));
 }
 
 void mw::UiSelector::Deselect( shared_ptr<GlElement> element )
