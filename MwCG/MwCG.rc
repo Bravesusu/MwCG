@@ -85,22 +85,6 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "res\\MwCG.ico"
-IDR_MwCGTYPE            ICON                    "res\\MwCGDoc.ico"
-IDI_FILE_VIEW           ICON                    "res\\file_view.ico"
-IDI_FILE_VIEW_HC        ICON                    "res\\file_view_hc.ico"
-IDI_CLASS_VIEW          ICON                    "res\\class_view.ico"
-IDI_CLASS_VIEW_HC       ICON                    "res\\class_view_hc.ico"
-IDI_OUTPUT_WND          ICON                    "res\\output_wnd.ico"
-IDI_OUTPUT_WND_HC       ICON                    "res\\output_wnd_hc.ico"
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Bitmap
 //
 
@@ -128,6 +112,22 @@ IDB_PAGES_HC            BITMAP                  "res\\pages_hc.bmp"
 IDB_PAGES_SMALL         BITMAP                  "res\\pages_small.bmp"
 IDB_PAGES_SMALL_HC      BITMAP                  "res\\pages_small_hc.bmp"
 IDB_INFO                BITMAP                  "res\\info.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\MwCG.ico"
+IDR_MwCGTYPE            ICON                    "res\\MwCGDoc.ico"
+IDI_FILE_VIEW           ICON                    "res\\file_view.ico"
+IDI_FILE_VIEW_HC        ICON                    "res\\file_view_hc.ico"
+IDI_CLASS_VIEW          ICON                    "res\\class_view.ico"
+IDI_CLASS_VIEW_HC       ICON                    "res\\class_view_hc.ico"
+IDI_OUTPUT_WND          ICON                    "res\\output_wnd.ico"
+IDI_OUTPUT_WND_HC       ICON                    "res\\output_wnd_hc.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //

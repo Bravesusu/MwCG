@@ -255,11 +255,14 @@
     <ClInclude Include="SingleSelection.h">
       <Filter>Mw\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="SingleDeselection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MoveElement.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleDeselection.h">
+      <Filter>Mw\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="IAnchorable.h">
+      <Filter>Mw\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -447,6 +450,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MoveElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IAnchorable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

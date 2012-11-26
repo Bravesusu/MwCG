@@ -126,6 +126,7 @@
     <ClInclude Include="FileView.h" />
     <ClInclude Include="GlCmd.h" />
     <ClInclude Include="GlColor.h" />
+    <ClInclude Include="IAnchorable.h" />
     <ClInclude Include="LineFactory.h" />
     <ClInclude Include="IOperation.h" />
     <ClInclude Include="IDrawable.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="GlCmd.cpp" />
     <ClCompile Include="GlColor.cpp" />
+    <ClCompile Include="IAnchorable.cpp" />
     <ClCompile Include="IRecvView.cpp" />
     <ClCompile Include="MoveElement.cpp" />
     <ClCompile Include="MwMiniToolBar.cpp" />
