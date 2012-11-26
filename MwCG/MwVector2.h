@@ -37,9 +37,14 @@ namespace mw
 		Vector2 operator/(float f) const;
 		Vector2& operator/=(float f);
 		Vector2& operator =(const Vector2 & rhs);
+		Vector2 operator*(float f) const;
+		Vector2& operator*=(float f);
+		float Dot(const Vector2& rhs) const;
 	public:
 		void Vertex() const;
 	};
+
+	Vector2 operator*(float lhs, const Vector2& rhs);
 	
 	void glVertex(const Vector2& vector);
 }

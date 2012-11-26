@@ -55,3 +55,16 @@ Rect mw::Line::bound() const
 	//TODO: cache result and update only when changed
 	return Rect(point_from_, point_to_);
 }
+
+bool mw::Line::HitTest( const Vector2& worldPos ) const
+{
+	//Ref: http://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line
+	Vector2 n = point_to_ - point_from_;
+	Vector2 a = transform().position();
+	Vector2 p = worldPos;
+	Vector2 a_p = a - p;
+	Vector2 n1 = n / n.magnitude();
+	float dist = (a_p - (n1 * (a_p.Dot(n1)))).magnitude();
+	TRACE("Dist: %.2f\n", dist);
+	return dist < 3;
+}

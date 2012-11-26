@@ -30,6 +30,8 @@ namespace mw
 	private:
 		virtual void DoDraw();
 
+		virtual bool HitTest( const Vector2& worldPos ) const;
+
 
 	};
 	

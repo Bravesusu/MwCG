@@ -93,3 +93,25 @@ float mw::Vector2::magnitude() const
 {
 	return sqrt(x_ * x_ + y_ * y_);
 }
+
+float mw::Vector2::Dot( const Vector2& rhs ) const
+{
+	return x_ * rhs.x_ + y_ * rhs.y_;
+}
+
+mw::Vector2 mw::Vector2::operator*( float f ) const
+{
+	return Vector2(x_ * f, y_ * f);
+}
+
+Vector2& mw::Vector2::operator*=( float f )
+{
+	x_ *= f;
+	y_ *= f;
+	return *this;
+}
+
+Vector2 mw::operator*( float lhs, const Vector2& rhs )
+{
+	return Vector2(lhs * rhs.x(), lhs * rhs.y());
+}
