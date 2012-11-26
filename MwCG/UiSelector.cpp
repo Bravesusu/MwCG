@@ -129,10 +129,20 @@ void mw::UiSelector::Leave( shared_ptr<GlElement> element )
 
 void mw::UiSelector::OnElementSelect( shared_ptr<GlContent> content, shared_ptr<GlElement> element )
 {
-
+	if (element == NULL)
+		return;
+	element += selDec_;
 }
 
 void mw::UiSelector::OnElementDeselect( shared_ptr<GlContent> content, shared_ptr<GlElement> element )
 {
+	if (element == NULL)
+		return;
+	element -= selDec_;
+}
 
+void mw::UiSelector::OnContentInitialized()
+{
+	content()->set_on_select(&OnElementSelect);
+	content()->set_on_deselect(&OnElementDeselect);
 }

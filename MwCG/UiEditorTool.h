@@ -33,10 +33,12 @@ namespace mw
 		Vector2 current() const { return inputs_.at(input_index); }
 		Vector2 mouse_pos() const { return mouse_; }
 		//void set_status(InputStatus status) {status_ = status; }
+	protected:
+		virtual void OnContentInitialized() {};
 	public:
 		//InputStatus status() const { return status_; }
 		shared_ptr<GlContent> content() const { return content_; }
-		void set_content(const shared_ptr<GlContent>& content) { content_ = content; }
+		void set_content(const shared_ptr<GlContent>& content) { content_ = content; OnContentInitialized(); }
 		bool GetInput(int index, Vector2& worldPos) const;
 	public:
 		UiEditorTool(void);

@@ -42,6 +42,9 @@ namespace mw
 		list<shared_ptr<GlElement>> selectedElements_;
 		GlContentCallback onSelectEvtHandler_;
 		GlContentCallback onDeselectEvtHandler_;
+	public:
+		void set_on_select(const GlContentCallback handler) { onSelectEvtHandler_ = handler; }
+		void set_on_deselect(const GlContentCallback handler) { onDeselectEvtHandler_ = handler; }
 	protected:
 		bool IsAlreadySelected( const shared_ptr<GlElement> element ) const;
 	public:
