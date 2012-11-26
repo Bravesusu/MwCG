@@ -55,10 +55,16 @@ void mw::UiSelector::DoBeginInput()
 	content()->HitTest(mouse_pos(), newHit);
 	if (click_hit_ != newHit)
 	{
-		//clean up old hit
-		Deselect(click_hit_);
-		//Select new one 
-		Select(newHit);
+		if (newHit == NULL)
+		{
+			//clean up old hit
+			Deselect(click_hit_);
+		}
+		else
+		{
+			//Select new one 
+			SingleSelect(newHit);
+		}
 		//Store (if no hit, hit_ = newHit <- NULL)
 		click_hit_ = newHit;
 	}
@@ -97,7 +103,7 @@ void mw::UiSelector::DoEndInput()
 {
 }
 
-void mw::UiSelector::Select( shared_ptr<GlElement> element )
+void mw::UiSelector::SingleSelect( shared_ptr<GlElement> element )
 {
 	if (element == NULL)
 		return;

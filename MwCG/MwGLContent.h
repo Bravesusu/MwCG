@@ -46,12 +46,14 @@ namespace mw
 		void set_on_select(const GlContentCallback handler) { onSelectEvtHandler_ = handler; }
 		void set_on_deselect(const GlContentCallback handler) { onDeselectEvtHandler_ = handler; }
 	protected:
-		bool IsAlreadySelected( const shared_ptr<GlElement> element ) const;
+		bool IsAlreadySelected( const shared_ptr<GlElement>& element ) const;
+		void InvokeSelectHandler( const shared_ptr<GlElement>& element );
+		void InvokeDeselectHandler( const shared_ptr<GlElement>& element );
 	public:
 		const list<shared_ptr<GlElement>>& selected_elements() const { return selectedElements_; }
-		void SingleSelect(const shared_ptr<GlElement> element);
-		void Select(const shared_ptr<GlElement> element);
-		void Deselect(const shared_ptr<GlElement> element);
+		void SingleSelect(const shared_ptr<GlElement>& element);
+		void Select(const shared_ptr<GlElement>& element);
+		void Deselect(const shared_ptr<GlElement>& element);
 		void DeselectAll();
 	};
 }

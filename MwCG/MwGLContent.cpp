@@ -147,11 +147,11 @@ bool mw::GlContent::HitTest( const Vector2& worldPos, shared_ptr<GlElement>& hit
 	return false;
 }
 
-bool mw::GlContent::IsAlreadySelected( const shared_ptr<GlElement> element) const
+bool mw::GlContent::IsAlreadySelected( const shared_ptr<GlElement>& element) const
 {
 	list<shared_ptr<GlElement>>::const_iterator it = find(elements_.begin(), elements_.end(), element);
 
-	//Not even an elment
+	//Not even an element
 	if (it == elements_.end())
 		return false;
 
@@ -160,30 +160,28 @@ bool mw::GlContent::IsAlreadySelected( const shared_ptr<GlElement> element) cons
 	return sel_it != selectedElements_.end();
 }
 
-void mw::GlContent::Select( const shared_ptr<GlElement> element )
+void mw::GlContent::Select( const shared_ptr<GlElement>& element )
 {
 
 	if (!IsAlreadySelected(element))
 	{
 		selectedElements_.push_back(element);
 		//TODO: select event
-		if (onSelectEvtHandler_ != NULL)
-			onSelectEvtHandler_(shared_from_this(), element);
+		InvokeSelectHandler(element);
 	}
 }
 
-void mw::GlContent::Deselect( const shared_ptr<GlElement> element )
+void mw::GlContent::Deselect( const shared_ptr<GlElement>& element )
 {
 	if (IsAlreadySelected(element))
 	{
 		selectedElements_.remove(element);
 		//TODO: deselect event
-		if (onDeselectEvtHandler_ != NULL)
-			onDeselectEvtHandler_(shared_from_this(), element);
+		InvokeDeselectHandler(element);
 	}
 }
 
-void mw::GlContent::SingleSelect( const shared_ptr<GlElement> element )
+void mw::GlContent::SingleSelect( const shared_ptr<GlElement>& element )
 {
 	DeselectAll();
 	Select(element);
@@ -191,8 +189,24 @@ void mw::GlContent::SingleSelect( const shared_ptr<GlElement> element )
 
 void mw::GlContent::DeselectAll()
 {
+	if (selectedElements_.empty())
+		return;
 	for (list<shared_ptr<GlElement>>::iterator it = selectedElements_.begin(); it != selectedElements_.end(); it++)
 	{
-		Deselect(*it);
+		InvokeDeselectHandler(*it);
 	}
+
+	selectedElements_.clear();
+}
+
+void mw::GlContent::InvokeSelectHandler( const shared_ptr<GlElement>& element )
+{
+	if (onSelectEvtHandler_ != NULL)
+		onSelectEvtHandler_(shared_from_this(), element);
+}
+
+void mw::GlContent::InvokeDeselectHandler( const shared_ptr<GlElement>& element )
+{
+	if (onDeselectEvtHandler_ != NULL)
+		onDeselectEvtHandler_(shared_from_this(), element);
 }

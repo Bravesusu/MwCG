@@ -14,7 +14,7 @@ namespace mw
 		shared_ptr<BoundDecorator> selDec_;
 		shared_ptr<BoundDecorator> hoverDec_;
 	protected:
-		void Select(shared_ptr<GlElement> element);
+		void SingleSelect(shared_ptr<GlElement> element);
 		void Deselect(shared_ptr<GlElement> element);
 		void Enter(shared_ptr<GlElement> element);
 		void Leave(shared_ptr<GlElement> element);
