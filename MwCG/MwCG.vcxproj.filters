@@ -267,6 +267,9 @@
     <ClInclude Include="IAnchorable.h">
       <Filter>Mw\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -456,6 +459,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IAnchorable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
