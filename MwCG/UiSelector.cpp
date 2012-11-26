@@ -3,6 +3,7 @@
 
 #include "BoundDecorator.h"
 #include "SingleSelection.h"
+#include "SingleDeselection.h"
 
 using namespace mw;
 
@@ -100,7 +101,7 @@ void mw::UiSelector::Select( shared_ptr<GlElement> element )
 {
 	if (element == NULL)
 		return;
-	element += selDec_;
+	//element += selDec_;
 	ui()->NotfiyToolOperation(OperationPtr(
 		new SingleSelection(content(), element)
 		));
@@ -110,7 +111,10 @@ void mw::UiSelector::Deselect( shared_ptr<GlElement> element )
 {
 	if (element == NULL)
 		return;
-	element -= selDec_;
+	//element -= selDec_;
+	ui()->NotfiyToolOperation(OperationPtr(
+		new SingleDeselection(content(), element)
+		));
 }
 
 void mw::UiSelector::Enter( shared_ptr<GlElement> element )
@@ -143,6 +147,18 @@ void mw::UiSelector::OnElementDeselect( shared_ptr<GlContent> content, shared_pt
 
 void mw::UiSelector::OnContentInitialized()
 {
-	content()->set_on_select(&OnElementSelect);
-	content()->set_on_deselect(&OnElementDeselect);
+	GlContentCallback sel_callback = 
+		[this] ( shared_ptr<GlContent> content, shared_ptr<GlElement> element) 
+	{ 
+		OnElementSelect(content, element); 
+	};
+
+	GlContentCallback desel_callback = 
+		[this] ( shared_ptr<GlContent> content, shared_ptr<GlElement> element)
+	{
+		OnElementDeselect(content, element);
+	};
+
+	content()->set_on_select(sel_callback);
+	content()->set_on_deselect(desel_callback);
 }

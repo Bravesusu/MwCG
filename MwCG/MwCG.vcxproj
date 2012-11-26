@@ -167,6 +167,7 @@
     <ClInclude Include="RemoveElementFromContent.h" />
     <ClInclude Include="RenderContext.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SingleDeselection.h" />
     <ClInclude Include="SingleSelection.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Stroke.h" />
@@ -230,6 +231,7 @@
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RemoveElementFromContent.cpp" />
     <ClCompile Include="RenderContext.cpp" />
+    <ClCompile Include="SingleDeselection.cpp" />
     <ClCompile Include="SingleSelection.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

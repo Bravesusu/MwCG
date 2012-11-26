@@ -151,12 +151,13 @@ bool mw::GlContent::IsAlreadySelected( const shared_ptr<GlElement> element) cons
 {
 	list<shared_ptr<GlElement>>::const_iterator it = find(elements_.begin(), elements_.end(), element);
 
-	if (*it == NULL)
+	//Not even an elment
+	if (it == elements_.end())
 		return false;
 
 	list<shared_ptr<GlElement>>::const_iterator sel_it = find(selectedElements_.begin(), selectedElements_.end(), element);
 
-	return *sel_it != NULL;
+	return sel_it != selectedElements_.end();
 }
 
 void mw::GlContent::Select( const shared_ptr<GlElement> element )

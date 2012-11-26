@@ -226,11 +226,39 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		uiNavState_->Initialize(pDoc, this);
 		uiEditState_->Initialize(pDoc, this);
 
+
+		return 0;
+	}
+
+
+	void CMwCGView::OnInitialUpdate()
+	{
+		CView::OnInitialUpdate();
+
+		// TODO: Add your specialized code here and/or call the base class
+		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
+
+		CMwCGDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (!pDoc)
+			return;
+
+		content_ = pDoc->glContent();
+		screen_ = content_->screen();
+		canvas_ = content_->canvas();
+		pColorBtn->SetColor(canvas_->color().get_color_ref());
+
+		CRect rect;
+		GetClientRect(rect);
+
+		shared_ptr<GlScreen> scr = content_->screen();
+		scr->set(rect.Width(), rect.Height());
+		scr->set_xy(0, 0, 1);
+
+		//m_render.SetViewSize(0, 0, rect.Width(), rect.Height());
 		InitializeTools();
 
 		SwitchToEditMode();
-
-		return 0;
 	}
 
 
@@ -274,34 +302,6 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		//return CView::OnEraseBkgnd(pDC);
 		return TRUE;
-	}
-
-
-	void CMwCGView::OnInitialUpdate()
-	{
-		CView::OnInitialUpdate();
-
-		// TODO: Add your specialized code here and/or call the base class
-		CMFCRibbonColorButton* pColorBtn = theApp.GetClearColorButton();
-
-		CMwCGDoc* pDoc = GetDocument();
-		ASSERT_VALID(pDoc);
-		if (!pDoc)
-			return;
-
-		content_ = pDoc->glContent();
-		screen_ = content_->screen();
-		canvas_ = content_->canvas();
-		pColorBtn->SetColor(canvas_->color().get_color_ref());
-
-		CRect rect;
-		GetClientRect(rect);
-
-		shared_ptr<GlScreen> scr = content_->screen();
-		scr->set(rect.Width(), rect.Height());
-		scr->set_xy(0, 0, 1);
-
-		//m_render.SetViewSize(0, 0, rect.Width(), rect.Height());
 	}
 
 

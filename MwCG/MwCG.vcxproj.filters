@@ -255,6 +255,9 @@
     <ClInclude Include="SingleSelection.h">
       <Filter>Mw\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="SingleDeselection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -436,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="SingleSelection.cpp">
       <Filter>Mw\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleDeselection.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

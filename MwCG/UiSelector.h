@@ -18,7 +18,7 @@ namespace mw
 		void Deselect(shared_ptr<GlElement> element);
 		void Enter(shared_ptr<GlElement> element);
 		void Leave(shared_ptr<GlElement> element);
-	protected:
+	public:
 		void OnElementSelect(shared_ptr<GlContent> content, shared_ptr<GlElement> element);
 		void OnElementDeselect(shared_ptr<GlContent> content, shared_ptr<GlElement> element);
 	public:
@@ -42,6 +42,8 @@ namespace mw
 		virtual void DoBeginInput();
 
 		virtual void DoEndInput();
+
+		virtual void OnContentInitialized();
 
 	};
 }
