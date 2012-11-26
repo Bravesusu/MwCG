@@ -34,10 +34,15 @@ private:
 	vector<shared_ptr<IOperation>> ops_;
 	//Point to current op [-1, ops_.size())
 	int op_index;
+	bool op_preview_;
 public:
 	bool CanUndo() const;
 	bool CanRedo() const;
-	void CommitOperation(shared_ptr<IOperation> operation);
+	void CommitOperation(const shared_ptr<IOperation>& operation);
+	void BeginPreviewOperation(const shared_ptr<IOperation>& operation);
+	void UpdatePreviewOperation();
+	void CommitPreviewOperation();
+	void CancelPreviewOperation();
 	void Redo();
 	void Undo();
 

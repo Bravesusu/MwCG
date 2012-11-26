@@ -49,7 +49,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	// CMwCGDoc construction/destruction
 
-	CMwCGDoc::CMwCGDoc() : op_index(-1)
+	CMwCGDoc::CMwCGDoc() : op_index(-1), op_preview_(false)
 	{
 		// TODO: add one-time construction code here
 
@@ -279,6 +279,8 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	bool CMwCGDoc::CanUndo() const
 	{
+		if (op_preview_)
+			return false;
 		int size = ops_.size();
 		ASSERT(op_index >= -1 && op_index < size);
 		return !ops_.empty() && op_index > -1 && op_index < size;
@@ -286,13 +288,18 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 
 	bool CMwCGDoc::CanRedo() const
 	{
+		if (op_preview_)
+			return false;
 		int size = ops_.size();
 		ASSERT(op_index >= -1 && op_index < size);
 		return !ops_.empty() > 0 && op_index >= -1 && op_index < size - 1;
 	}
 
-	void CMwCGDoc::CommitOperation( shared_ptr<IOperation> operation )
+	void CMwCGDoc::CommitOperation( const shared_ptr<IOperation>& operation )
 	{
+		//Do not allow new operation while in preview
+		if (op_preview_)
+			return;
 		//Increase index
 		op_index++;
 
@@ -303,6 +310,40 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		ops_.push_back(operation);
 
 		operation->Redo();
+	}
+
+	void CMwCGDoc::BeginPreviewOperation( const shared_ptr<IOperation>& operation )
+	{
+		//Normal commit
+		CommitOperation(operation);
+		//Marked as preview 
+		op_preview_ = true;
+	}
+
+	void CMwCGDoc::UpdatePreviewOperation()
+	{
+		if (!op_preview_)
+			return;
+		if (!ops_.empty())
+		{
+			ops_.back()->Redo();
+		}
+		else
+		{
+			//TODO: something is really wrong
+		}
+	}
+
+	void CMwCGDoc::CommitPreviewOperation()
+	{
+		op_preview_ = false;
+	}
+
+	void CMwCGDoc::CancelPreviewOperation()
+	{
+		op_preview_ = false;
+		ops_.back()->Undo();
+		ops_.pop_back();
 	}
 
 	void CMwCGDoc::Redo()
