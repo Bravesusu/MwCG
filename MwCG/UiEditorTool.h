@@ -17,6 +17,8 @@ namespace mw
 		vector<Vector2> inputs_;
 		int input_index;
 		Vector2 mouse_;
+		Vector2 mouse_down_;
+		Vector2 mouse_last_;
 		//Vector2 current_;
 		shared_ptr<UiEdit> ui_;
 		bool just_finished_;
@@ -31,7 +33,12 @@ namespace mw
 
 		int currentIndex() const { return input_index; }
 		Vector2 current() const { return inputs_.at(input_index); }
+		//The pos of last update
+		Vector2 mouse_last_pos() const { return mouse_last_; }
+		Vector2 mouse_down_pos() const { return mouse_down_; }
 		Vector2 mouse_pos() const { return mouse_; }
+		Vector2 mouse_delta() const { return mouse_ - mouse_down_; }
+		Vector2 mouse_inst_delta() const { return mouse_ - mouse_last_; }
 		//void set_status(InputStatus status) {status_ = status; }
 	protected:
 		virtual void OnContentInitialized() {};

@@ -123,6 +123,8 @@ void mw::UiEditorTool::BeginInput( const Vector2& worldPos )
 
 	//Handle the input
 	HandleInput(worldPos);
+	mouse_down_ = mouse_;
+	mouse_last_ = mouse_;
 	DoBeginInput();
 }
 
@@ -131,6 +133,7 @@ void mw::UiEditorTool::UpdateInput( const Vector2& worldPos )
 	HandleInput(worldPos);
 
 	DoUpdateInput();
+	mouse_last_ = mouse_;
 }
 
 void mw::UiEditorTool::EndInput( const Vector2& worldPos )

@@ -10,6 +10,7 @@ namespace mw
 	private:
 		shared_ptr<GlElement> click_hit_;
 		shared_ptr<GlElement> hover_hit_;
+		bool moving_;
 	private:
 		shared_ptr<BoundDecorator> selDec_;
 		shared_ptr<BoundDecorator> hoverDec_;

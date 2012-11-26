@@ -9,6 +9,7 @@ using namespace mw;
 
 UiSelector::UiSelector(void)
 {
+	moving_ = false;
 	selDec_.reset(new BoundDecorator());
 	selDec_->color().set(0, 0, 1, 0.5);
 	hoverDec_.reset(new BoundDecorator());
@@ -53,6 +54,7 @@ void mw::UiSelector::DoBeginInput()
 		return;
 	shared_ptr<GlElement> newHit;
 	content()->HitTest(mouse_pos(), newHit);
+	//Hit changed
 	if (click_hit_ != newHit)
 	{
 		if (newHit == NULL)
@@ -64,9 +66,19 @@ void mw::UiSelector::DoBeginInput()
 		{
 			//Select new one 
 			SingleSelect(newHit);
+			//TODO: apply transformer
+			moving_ = true;
 		}
 		//Store (if no hit, hit_ = newHit <- NULL)
 		click_hit_ = newHit;
+	}
+	else
+	{
+		if (click_hit_ != NULL)
+		{
+			//TODO: send msg to transformer
+			moving_ = true;
+		}
 	}
 }
 
@@ -84,6 +96,12 @@ void mw::UiSelector::DoUpdateInput()
 		//TODO: pipe inputs to editor
 		//(transform editor from click)
 		//(anchor points editor from dbl-click)
+		//TEMP CODE: concept demo
+		if (moving_)
+		{
+			//click_hit_->set_position(mouse_pos());
+			click_hit_->transform().position() += mouse_inst_delta();
+		}
 	}
 	//Handle hover all the time
 	shared_ptr<GlElement> newHit;
@@ -101,6 +119,7 @@ void mw::UiSelector::DoUpdateInput()
 
 void mw::UiSelector::DoEndInput()
 {
+	moving_ = false;
 }
 
 void mw::UiSelector::SingleSelect( shared_ptr<GlElement> element )
