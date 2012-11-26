@@ -46,6 +46,9 @@
     <Filter Include="Mw\Content\Decorator">
       <UniqueIdentifier>{bc5db0ef-bb8a-43a6-b542-11bce56a23c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mw\Anchor">
+      <UniqueIdentifier>{dca50e1e-d474-4cb5-a45b-ddc30090263f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
