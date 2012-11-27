@@ -98,7 +98,7 @@ namespace mw
 		virtual int anchor_count() const;
 
 		//0 == transform's position
-		virtual void set_anchor( int index, const Vector2& localPos );
+		virtual void set_anchor( int index, const Vector2& worldPos );
 
 		//0 == transform's position
 		virtual Vector2 anchor( int index ) const;

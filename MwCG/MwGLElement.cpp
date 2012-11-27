@@ -77,11 +77,11 @@ int mw::GlElement::anchor_count() const
 	return 1;
 }
 
-void mw::GlElement::set_anchor( int index, const Vector2& localPos )
+void mw::GlElement::set_anchor( int index, const Vector2& worldPos )
 {
 	if (index == 0)
 	{
-		transform().position() += localPos;
+		transform().position() = worldPos;
 	}
 	else
 	{
@@ -98,35 +98,3 @@ mw::Vector2 mw::GlElement::anchor( int index ) const
 	else
 		throw std::exception("The anchor index is out of range");
 }
-
-//shared_ptr<GlElement> mw::GlElement::operator+( shared_ptr<Decorator> decorator )
-//{
-//	AddDecorator(decorator);
-//	return shared_ptr<GlElement>(this);
-//}
-//
-//shared_ptr<GlElement> mw::GlElement::operator+( Decorator* decorator )
-//{
-//	AddDecorator(shared_ptr<Decorator>(decorator));
-//	return shared_ptr<GlElement>(this);
-//}
-//
-//GlElement& mw::GlElement::operator+( Decorator& decorator )
-//{
-//	AddDecorator(shared_ptr<Decorator>(&decorator));
-//	return *this;
-//}
-//
-//shared_ptr<GlElement> mw::GlElement::operator-( shared_ptr<Decorator> decorator )
-//{
-//	RemoveDecorator(decorator);
-//	return shared_ptr<GlElement>(this);
-//}
-//
-//GlElement& mw::GlElement::operator-( Decorator& decorator )
-//{
-//	RemoveDecorator(shared_ptr<Decorator>(&decorator));
-//	return *this;
-//}
-
-

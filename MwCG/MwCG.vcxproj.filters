@@ -274,7 +274,7 @@
       <Filter>Mw\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="AnchorDecorator.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Content\Decorator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -474,7 +474,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AnchorDecorator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\Content\Decorator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

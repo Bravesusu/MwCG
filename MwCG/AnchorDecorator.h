@@ -9,6 +9,8 @@ namespace mw
 		public DecoratorOp<GlElement>,
 		public IMouseInput
 	{
+	private:
+		int hit_anchor_index_;
 	public:
 		AnchorDecorator(void);
 		~AnchorDecorator(void);
