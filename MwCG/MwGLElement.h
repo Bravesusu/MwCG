@@ -103,6 +103,7 @@ namespace mw
 		//0 == transform's position
 		virtual Vector2 anchor( int index ) const;
 
+		void ResetTransformToAnchor(int anchor_index);
 	};
 
 	typedef shared_ptr<GlElement> GlElementPtr;

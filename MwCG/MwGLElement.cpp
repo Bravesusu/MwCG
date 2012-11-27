@@ -105,3 +105,15 @@ mw::Vector2 mw::GlElement::anchor( int index ) const
 	else
 		throw std::exception("The anchor index is out of range");
 }
+
+void mw::GlElement::ResetTransformToAnchor( int anchor_index )
+{
+	Vector2 newOrigin = anchor(anchor_index);
+
+	transform().position() += newOrigin;
+
+	for (int i = 0; i < anchor_count(); i++)
+	{
+		set_anchor(i, anchor(i) - newOrigin);
+	}
+}

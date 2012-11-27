@@ -63,6 +63,7 @@ void mw::UiSelector::DoDoubleClick()
 		//No hit, exit
 		if (newHit == NULL)
 		{
+			click_hit_->ResetTransformToAnchor(0);
 			click_hit_ -= anchroDec_;
 			dbl_clicked_ = false;
 		}
