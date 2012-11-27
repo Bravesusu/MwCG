@@ -7,7 +7,7 @@ using namespace mw;
 
 IMPLEMENT_DECORATOR_OP(GlElement, AnchorDecorator);
 
-AnchorDecorator::AnchorDecorator(void) : hit_anchor_index_(-1)
+AnchorDecorator::AnchorDecorator(void) : hit_anchor_index_(-1), draging_(false)
 {
 	InitializeAnchor();
 }
@@ -26,12 +26,21 @@ void mw::AnchorDecorator::DoDecorate()
 		Vector2 anchor_pos = decoratee()->anchor(i);
 		//TODO: draw it.
 		anchor_->set_position(anchor_pos);
+		if (i == hit_anchor_index_)
+		{
+			anchor_->set_color(0, 0, 1);
+		}
+		else
+		{
+			anchor_->set_color(1, 0, 0);
+		}
 		anchor_->Draw();
 	}
 }
 
 void mw::AnchorDecorator::BeginInput( const Vector2& worldPos )
 {
+	draging_ = true;
 	//TODO: HitTest anchor point, begin move
 	local_pos_ = decoratee()->transform().WorldToLocal(worldPos);
 	int new_hit_index = 0;
@@ -60,7 +69,7 @@ void mw::AnchorDecorator::BeginInput( const Vector2& worldPos )
 void mw::AnchorDecorator::UpdateInput( const Vector2& worldPos )
 {
 	local_pos_ = decoratee()->transform().WorldToLocal(worldPos);
-	if (hit_anchor_index_ != -1)
+	if (draging_ && hit_anchor_index_ != -1)
 	{
 		//TODO: update preview
 		decoratee()->set_anchor(hit_anchor_index_, local_pos_);
@@ -73,8 +82,9 @@ void mw::AnchorDecorator::EndInput( const Vector2& worldPos )
 	if (hit_anchor_index_ != -1)
 	{
 		//TODO: commit operation
-		hit_anchor_index_ = -1;
+		//hit_anchor_index_ = -1;
 	}
+	draging_ = false;
 }
 
 void mw::AnchorDecorator::InitializeAnchor()

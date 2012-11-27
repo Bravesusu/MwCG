@@ -14,6 +14,7 @@ namespace mw
 		int hit_anchor_index_;
 		shared_ptr<Point> anchor_;
 		Vector2 local_pos_;
+		bool draging_;
 	protected:
 		void InitializeAnchor();
 	public:
