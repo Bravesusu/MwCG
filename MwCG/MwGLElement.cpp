@@ -49,16 +49,21 @@ void mw::GlElement::Draw()
 	//TODO: do sizing
 
 	DoDraw();
-	for (list<shared_ptr<Decorator>>::iterator it = decorators_.begin(); it != decorators_.end(); it++)
+	for (list<weak_ptr<Decorator>>::iterator it = decorators_.begin(); it != decorators_.end(); it++)
 	{
-		(*it)->Decorate();
+		(*it).lock()->Decorate();
 	}
 	transform_.Pop();
 }
 
 void mw::GlElement::RemoveDecorator( shared_ptr<Decorator> decorator )
 {
-	decorators_.remove(decorator);
+	decorators_.remove_if(
+		[&] (weak_ptr<Decorator> wp) 
+	{
+		return wp.lock() == decorator;
+	}
+		);
 }
 
 void mw::GlElement::AddDecorator( shared_ptr<Decorator> decorator )

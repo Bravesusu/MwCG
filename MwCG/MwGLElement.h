@@ -35,7 +35,7 @@ namespace mw
 		void set_position(const Vector2& pos) { transform_.position().set(pos); }
 		void set_position(float x, float y) { transform_.position().set(x, y); }
 	private:
-		list<shared_ptr<Decorator>> decorators_;
+		list<weak_ptr<Decorator>> decorators_;
 	public:
 		void RemoveDecorator(shared_ptr<Decorator> decorator);
 		void AddDecorator(shared_ptr<Decorator> decorator);
