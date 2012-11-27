@@ -6,7 +6,7 @@ using namespace mw;
 
 void mw::PointDecorator::DoDecorate()
 {
-	if (!point_)
+	if (decoratee() == NULL)
 		return;
 	//dec_->transform().Position.set(point_->position());
 	dec_->Draw();
@@ -24,12 +24,12 @@ mw::PointDecorator::~PointDecorator( void )
 
 }
 
-shared_ptr<Point> mw::PointDecorator::operator+( shared_ptr<Point> rhs )
-{
-	rhs->AddDecorator(DecoratorPtr(this));
-	set(rhs);
-	return rhs;
-}
+//shared_ptr<Point> mw::PointDecorator::operator+( shared_ptr<Point> rhs )
+//{
+//	rhs->AddDecorator(DecoratorPtr(this));
+//	set(rhs);
+//	return rhs;
+//}
 
 shared_ptr<Point> mw::operator+( shared_ptr<Point> lhs, shared_ptr<PointDecorator> rhs )
 {

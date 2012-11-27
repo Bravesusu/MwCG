@@ -19,22 +19,22 @@ BoundDecorator::~BoundDecorator(void)
 
 void mw::BoundDecorator::DoDecorate()
 {
-	rectangle_->set(dec_->bound());
+	rectangle_->set(decoratee()->bound());
 	rectangle_->set_color(color_);
 	rectangle_->Draw();
 }
 
-shared_ptr<GlElement> mw::BoundDecorator::operator+( shared_ptr<GlElement> rhs )
-{
-	rhs->AddDecorator(DecoratorPtr(this));
-	set(rhs);
-	return rhs;
-}
+//shared_ptr<GlElement> mw::BoundDecorator::operator+( shared_ptr<GlElement> rhs )
+//{
+//	rhs->AddDecorator(DecoratorPtr(this));
+//	set(rhs);
+//	return rhs;
+//}
 
-void mw::BoundDecorator::set( shared_ptr<GlElement> element )
-{
-	dec_ = element;
-}
+//void mw::BoundDecorator::set( shared_ptr<GlElement> element )
+//{
+	//dec_ = element;
+//}
 
 shared_ptr<GlElement> mw::operator+( shared_ptr<GlElement> lhs, shared_ptr<BoundDecorator> rhs )
 {
