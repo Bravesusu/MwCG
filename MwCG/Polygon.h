@@ -22,6 +22,7 @@ namespace mw
 		void NewVertex(const Vector2& localPos);
 		void UpdateLastVertex(const Vector2& localPos);
 		void SetVertex(int index, const Vector2& localPos);
+		Vector2 vertex(int index) const;
 	public:
 		MwPolygon(void);
 		MwPolygon(LineFactory* factory);
@@ -37,7 +38,12 @@ namespace mw
 		virtual Rect bound() const;
 
 		virtual void Draw();
+	public:
+		int anchor_count() const;
 
+		void set_anchor( int index, const Vector2& localPos );
+
+		Vector2 anchor( int index ) const;
 	};
 	
 }

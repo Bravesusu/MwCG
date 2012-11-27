@@ -146,6 +146,35 @@ void mw::MwPolygon::SetVertex( int index, const Vector2& localPos )
 	}
 }
 
+int mw::MwPolygon::anchor_count() const
+{
+	return count();
+}
+
+void mw::MwPolygon::set_anchor( int index, const Vector2& localPos )
+{
+	SetVertex(index, localPos);
+}
+
+mw::Vector2 mw::MwPolygon::anchor( int index ) const
+{
+	return vertex(index);
+}
+
+mw::Vector2 mw::MwPolygon::vertex( int index ) const
+{
+	int i = 0;
+	for(list<shared_ptr<Vector2>>::const_iterator it = vertex_.begin(); 
+		it != vertex_.end(); it++)
+	{
+		if (i == index)
+		{
+			return Vector2(**it);
+		}
+		i++;
+	}
+}
+
 Line* mw::BresLineFactory::Get() const
 {
 	return new BresLine();
