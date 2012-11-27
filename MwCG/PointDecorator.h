@@ -18,8 +18,4 @@ namespace mw
 
 	};
 	DECLARE_DECORATOR_OP(Point, PointDecorator);
-	//shared_ptr<Point> operator +(shared_ptr<Point> lhs, shared_ptr<PointDecorator> rhs);
-	//shared_ptr<Point> operator -(shared_ptr<Point> lhs, shared_ptr<PointDecorator> rhs);
-	//shared_ptr<Point> operator +=(shared_ptr<Point> lhs, shared_ptr<PointDecorator> rhs);
-	//shared_ptr<Point> operator -=(shared_ptr<Point> lhs, shared_ptr<PointDecorator> rhs);
 }

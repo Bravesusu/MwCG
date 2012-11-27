@@ -24,9 +24,5 @@ namespace mw
 	};
 
 	DECLARE_DECORATOR_OP(GlElement, BoundDecorator);
-	//shared_ptr<GlElement> operator +(shared_ptr<GlElement> lhs, shared_ptr<BoundDecorator> rhs);
-	//shared_ptr<GlElement> operator -(shared_ptr<GlElement> lhs, shared_ptr<BoundDecorator> rhs);
-	//shared_ptr<GlElement> operator +=(shared_ptr<GlElement> lhs, shared_ptr<BoundDecorator> rhs);
-	//shared_ptr<GlElement> operator -=(shared_ptr<GlElement> lhs, shared_ptr<BoundDecorator> rhs);
 }
 

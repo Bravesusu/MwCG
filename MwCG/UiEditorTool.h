@@ -2,6 +2,7 @@
 #include "MwGLContent.h"
 #include "IDrawable.h"
 #include "IOperation.h"
+#include  "IMouseInput.h"
 
 namespace mw
 {
@@ -9,7 +10,8 @@ namespace mw
 	class Point;
 	class UiEdit;
 	class UiEditorTool :
-		public IDrawable
+		public IDrawable,
+		public IMouseInput
 	{
 	private:
 		shared_ptr<GlContent> content_;
