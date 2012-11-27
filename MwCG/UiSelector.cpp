@@ -4,6 +4,7 @@
 #include "BoundDecorator.h"
 #include "SingleSelection.h"
 #include "SingleDeselection.h"
+#include "AnchorDecorator.h"
 
 #include "MoveElement.h"
 
@@ -12,11 +13,12 @@ using namespace mw;
 UiSelector::UiSelector(void)
 {
 	moving_ = false;
+	dbl_clicked_ = false;
 	selDec_.reset(new BoundDecorator());
 	selDec_->color().set(0, 0, 1, 0.5);
 	hoverDec_.reset(new BoundDecorator());
 	hoverDec_->color().set(0, 1, 0, 0.5);
-
+	anchroDec_.reset(new AnchorDecorator());
 }
 
 
@@ -51,46 +53,64 @@ void mw::UiSelector::DoFixInput( const int index )
 {
 }
 
+void mw::UiSelector::DoDoubleClick()
+{
+	if (click_hit_ != NULL)
+	{
+		//TODO: apply anchor decorator
+		//Mark decorated
+		click_hit_ += anchroDec_;
+		dbl_clicked_ = true;
+	}
+}
+
 void mw::UiSelector::DoBeginInput()
 {
 	if (content() == NULL)
 		return;
-	shared_ptr<GlElement> newHit;
-	content()->HitTest(mouse_pos(), newHit);
-	//Hit changed
-	if (click_hit_ != newHit)
+	if (dbl_clicked_)
 	{
-		if (newHit == NULL)
-		{
-			//clean up old hit
-			Deselect(click_hit_);
-		}
-		else
-		{
-			//Select new one 
-			SingleSelect(newHit);
-			//TODO: apply transformer
-			move_op_.reset(new MoveElement(content(), newHit));
-			move_op_->set_element(newHit);
-			move_op_->set_initial_position(newHit->transform().position());
-			move_op_->set_move_to_position(newHit->transform().position());
-			ui()->NotifyToolPreview(move_op_);
-			moving_ = true;
-			
-		}
-		//Store (if no hit, hit_ = newHit <- NULL)
-		click_hit_ = newHit;
+		anchroDec_->BeginInput(mouse_pos());
 	}
 	else
 	{
-		if (click_hit_ != NULL)
+		shared_ptr<GlElement> newHit;
+		content()->HitTest(mouse_pos(), newHit);
+		//Hit changed
+		if (click_hit_ != newHit)
 		{
-			//TODO: send msg to transformer
-			move_op_->set_element(newHit);
-			move_op_->set_initial_position(newHit->transform().position());
-			move_op_->set_move_to_position(newHit->transform().position());
-			ui()->NotifyToolPreview(move_op_);
-			moving_ = true;
+			if (newHit == NULL)
+			{
+				//clean up old hit
+				Deselect(click_hit_);
+			}
+			else
+			{
+				//Select new one 
+				SingleSelect(newHit);
+				//TODO: apply transformer
+				move_op_.reset(new MoveElement(content(), newHit));
+				move_op_->set_element(newHit);
+				move_op_->set_initial_position(newHit->transform().position());
+				move_op_->set_move_to_position(newHit->transform().position());
+				ui()->NotifyToolPreview(move_op_);
+				moving_ = true;
+
+			}
+			//Store (if no hit, hit_ = newHit <- NULL)
+			click_hit_ = newHit;
+		}
+		else
+		{
+			if (click_hit_ != NULL)
+			{
+				//TODO: send msg to transformer
+				move_op_->set_element(newHit);
+				move_op_->set_initial_position(newHit->transform().position());
+				move_op_->set_move_to_position(newHit->transform().position());
+				ui()->NotifyToolPreview(move_op_);
+				moving_ = true;
+			}
 		}
 	}
 }
@@ -99,42 +119,52 @@ void mw::UiSelector::DoUpdateInput()
 {
 	if (content() == NULL)
 		return;
-	//Do hover hit if no click hit
-	if (click_hit_ == NULL)
+
+	if (dbl_clicked_)
 	{
-		
+		anchroDec_->UpdateInput(mouse_pos());
 	}
 	else
 	{
-		//TODO: pipe inputs to editor
-		//(transform editor from click)
-		//(anchor points editor from dbl-click)
-		//TEMP CODE: concept demo
-		if (moving_)
+		if (click_hit_ != NULL)
 		{
-			//click_hit_->set_position(mouse_pos());
-			move_op_->set_move_to_position(click_hit_->transform().position() + mouse_inst_delta());
-			ui()->NotifyToolUpdatePreview();
+			//TODO: pipe inputs to editor
+			//(transform editor from click)
+			//(anchor points editor from dbl-click)
+			//TEMP CODE: concept demo
+			if (moving_)
+			{
+				//click_hit_->set_position(mouse_pos());
+				move_op_->set_move_to_position(click_hit_->transform().position() + mouse_inst_delta());
+				ui()->NotifyToolUpdatePreview();
+			}
 		}
-	}
-	//Handle hover all the time
-	shared_ptr<GlElement> newHit;
-	content()->HitTest(mouse_pos(), newHit);
-	if (hover_hit_ != newHit)
-	{
-		//Leave old one
-		Leave(hover_hit_);
-		//Enter new one
-		Enter(newHit);
-		//Assign (Can be NULL)
-		hover_hit_ = newHit;
+		//Handle hover all the time
+		shared_ptr<GlElement> newHit;
+		content()->HitTest(mouse_pos(), newHit);
+		if (hover_hit_ != newHit)
+		{
+			//Leave old one
+			Leave(hover_hit_);
+			//Enter new one
+			Enter(newHit);
+			//Assign (Can be NULL)
+			hover_hit_ = newHit;
+		}
 	}
 }
 
 void mw::UiSelector::DoEndInput()
 {
-	moving_ = false;
-	ui()->NotifyToolCommitPreview();
+	if (dbl_clicked_)
+	{
+		anchroDec_->EndInput(mouse_pos());
+	}
+	else
+	{
+		moving_ = false;
+		ui()->NotifyToolCommitPreview();
+	}
 }
 
 void mw::UiSelector::SingleSelect( shared_ptr<GlElement> element )

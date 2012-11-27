@@ -118,3 +118,43 @@ bool mw::Circle::HitTest( const Vector2& worldPos ) const
 
 	return dist < 3 || (dist > radius_ - 3 && dist < radius_ + 3);
 }
+
+int mw::Circle::anchor_count() const
+{
+	return 2;
+}
+
+void mw::Circle::set_anchor( int index, const Vector2& localPos )
+{
+	float r = localPos.magnitude();
+	switch (index)
+	{
+	case 0:
+		transform().position() += localPos;
+		break;
+	case 1:
+		if (r > 0)
+		{
+			radius_ = r;
+			radius_anchor_ = localPos;
+		}
+		break;
+	default:
+		throw std::exception("The anchor index is out of range");
+		break;
+	}
+}
+
+mw::Vector2 mw::Circle::anchor( int index ) const
+{
+	switch (index)
+	{
+	case 0:
+		return Vector2(0, 0);
+	case 1:
+		return radius_anchor_;
+	default:
+		throw std::exception("The anchor index is out of range");
+		break;
+	}
+}

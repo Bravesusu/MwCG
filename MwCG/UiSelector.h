@@ -4,6 +4,7 @@
 namespace mw
 {
 	class BoundDecorator;
+	class AnchorDecorator;
 	class MoveElement;
 	class UiSelector :
 		public UiEditorTool
@@ -12,9 +13,11 @@ namespace mw
 		shared_ptr<GlElement> click_hit_;
 		shared_ptr<GlElement> hover_hit_;
 		bool moving_;
+		bool dbl_clicked_;
 	private:
 		shared_ptr<BoundDecorator> selDec_;
 		shared_ptr<BoundDecorator> hoverDec_;
+		shared_ptr<AnchorDecorator> anchroDec_;
 	private:
 		shared_ptr<MoveElement> move_op_;
 	protected:
@@ -48,6 +51,8 @@ namespace mw
 		virtual void DoEndInput();
 
 		virtual void OnContentInitialized();
+
+		virtual void DoDoubleClick();
 
 	};
 }

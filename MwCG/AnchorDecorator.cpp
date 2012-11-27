@@ -33,10 +33,11 @@ void mw::AnchorDecorator::DoDecorate()
 void mw::AnchorDecorator::BeginInput( const Vector2& worldPos )
 {
 	//TODO: HitTest anchor point, begin move
+	local_pos_ = decoratee()->transform().WorldToLocal(worldPos);
 	int new_hit_index = 0;
 	for (new_hit_index = 0; new_hit_index < decoratee()->anchor_count(); new_hit_index++)
 	{
-		float dist = (decoratee()->anchor(new_hit_index) - worldPos).magnitude();
+		float dist = (decoratee()->anchor(new_hit_index) - local_pos_).magnitude();
 		//TODO: the anchor size
 		if (dist < anchor_->size())
 		{
@@ -58,16 +59,17 @@ void mw::AnchorDecorator::BeginInput( const Vector2& worldPos )
 
 void mw::AnchorDecorator::UpdateInput( const Vector2& worldPos )
 {
+	local_pos_ = decoratee()->transform().WorldToLocal(worldPos);
 	if (hit_anchor_index_ != -1)
 	{
 		//TODO: update preview
-		Vector2 newPos = decoratee()->transform().WorldToLocal(worldPos);
-		decoratee()->set_anchor(hit_anchor_index_, newPos);
+		decoratee()->set_anchor(hit_anchor_index_, local_pos_);
 	}
 }
 
 void mw::AnchorDecorator::EndInput( const Vector2& worldPos )
 {
+	local_pos_ = decoratee()->transform().WorldToLocal(worldPos);
 	if (hit_anchor_index_ != -1)
 	{
 		//TODO: commit operation

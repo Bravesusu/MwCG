@@ -13,6 +13,7 @@ namespace mw
 	private:
 		int hit_anchor_index_;
 		shared_ptr<Point> anchor_;
+		Vector2 local_pos_;
 	protected:
 		void InitializeAnchor();
 	public:

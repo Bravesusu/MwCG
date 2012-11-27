@@ -32,7 +32,12 @@ namespace mw
 
 		virtual bool HitTest( const Vector2& worldPos ) const;
 
+	public:
+		int anchor_count() const;
 
+		void set_anchor( int index, const Vector2& localPos );
+
+		Vector2 anchor( int index ) const;
 	};
 	
 }

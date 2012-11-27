@@ -68,3 +68,38 @@ bool mw::Line::HitTest( const Vector2& worldPos ) const
 	TRACE("Dist: %.2f\n", dist);
 	return dist < 3;
 }
+
+int mw::Line::anchor_count() const
+{
+	return 2;
+}
+
+void mw::Line::set_anchor( int index, const Vector2& localPos )
+{
+	switch (index)
+	{
+	case 0:
+		point_from_ = localPos;
+		break;
+	case 1:
+		point_to_ = localPos;
+		break;
+	default:
+		throw std::exception("The anchor index is out of range");
+		break;
+	}
+}
+
+mw::Vector2 mw::Line::anchor( int index ) const
+{
+	switch (index)
+	{
+	case 0:
+		return point_from_;
+	case 1:
+		return point_to_;
+	default:
+		throw std::exception("The anchor index is out of range");
+		break;
+	}
+}
