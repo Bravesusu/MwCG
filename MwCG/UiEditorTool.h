@@ -64,6 +64,7 @@ namespace mw
 		virtual void DoEndInput() {};
 		virtual void DoFixInput(const int index) {};
 		virtual void DidCancel() {};
+		virtual void DoDoubleClick() {}
 		int NextInput();
 	public:
 		virtual OperationPtr PopNewOperation() = 0;
@@ -78,6 +79,8 @@ namespace mw
 		void BeginInput(const Vector2& worldPos);
 		void UpdateInput(const Vector2& worldPos);
 		void EndInput(const Vector2& worldPos);
+
+		void DoubleClick(const Vector2& worldPos);
 
 		void FixInput(const int index, const Vector2& worldPos);
 

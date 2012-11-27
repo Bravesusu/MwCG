@@ -89,6 +89,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_COMMAND(ID_EDIT_POS_X, &CMwCGView::OnEditPosX)
 		ON_UPDATE_COMMAND_UI(ID_STROKE_GALLERY, &CMwCGView::OnUpdateStrokeGallery)
 		ON_COMMAND(ID_STROKE_GALLERY, &CMwCGView::OnStrokeGallery)
+		ON_WM_LBUTTONDBLCLK()
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -832,4 +833,13 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		{
 			(*it)->UpdateElementStroke(stroke);
 		}
+	}
+
+
+	void CMwCGView::OnLButtonDblClk(UINT nFlags, CPoint point)
+	{
+		// TODO: Add your message handler code here and/or call default
+
+		__super::OnLButtonDblClk(nFlags, point);
+		uiState_->OnLButtonDblClk(nFlags, point);
 	}

@@ -60,6 +60,9 @@ namespace mw
 
 	private:
 		bool TryFinishTool();
+
+		virtual void OnLButtonDblClk( UINT nFlags, CPoint point );
+
 	public:
 
 	};

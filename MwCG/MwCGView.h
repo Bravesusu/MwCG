@@ -150,6 +150,7 @@ public:
 	afx_msg void OnEditPosX();
 	afx_msg void OnUpdateStrokeGallery(CCmdUI *pCmdUI);
 	afx_msg void OnStrokeGallery();
+	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

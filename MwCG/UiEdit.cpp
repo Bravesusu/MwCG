@@ -59,6 +59,18 @@ void mw::UiEdit::OnLButtonUp( UINT nFlags, CPoint point )
 	view()->Invalidate();
 }
 
+void mw::UiEdit::OnLButtonDblClk( UINT nFlags, CPoint point )
+{
+	UpdateMouseInput(nFlags, point);
+	if (tool_ == NULL)
+		return;
+
+	tool_->DoubleClick(mouse_xy_);
+
+	view()->Invalidate();
+}
+
+
 void mw::UiEdit::OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
 	if (' ' == nChar)
@@ -177,4 +189,3 @@ void mw::UiEdit::NotifyToolCancelPreview()
 {
 	doc()->CancelPreviewOperation();
 }
-

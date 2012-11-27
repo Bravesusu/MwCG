@@ -27,6 +27,8 @@ namespace mw
 	public:
 		virtual void Draw();
 
+		virtual void OnLButtonDblClk( UINT nFlags, CPoint point );
+
 
 	private:
 		bool m_bMouseDown;
