@@ -277,7 +277,7 @@
       <Filter>Mw\Content\Decorator</Filter>
     </ClInclude>
     <ClInclude Include="EditAnchor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -480,7 +480,7 @@
       <Filter>Mw\Content\Decorator</Filter>
     </ClCompile>
     <ClCompile Include="EditAnchor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

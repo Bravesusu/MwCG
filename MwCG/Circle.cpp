@@ -107,6 +107,7 @@ void mw::Circle::Serialize( CArchive& ar )
 	else
 	{
 		ar>>radius_;
+		set_radius(radius_);
 	}
 }
 
