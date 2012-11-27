@@ -15,9 +15,11 @@ UiSelector::UiSelector(void)
 	moving_ = false;
 	dbl_clicked_ = false;
 	selDec_.reset(new BoundDecorator());
-	selDec_->color().set(0, 0, 1, 0.5);
+	selDec_->color().set(0, 0, 0, 0.5);
+	selDec_->set_stroke(DashStroke);
 	hoverDec_.reset(new BoundDecorator());
-	hoverDec_->color().set(0, 1, 0, 0.5);
+	hoverDec_->color().set(0, 0, 0, 0.5);
+	hoverDec_->set_stroke(DotStroke);
 	anchroDec_.reset(new AnchorDecorator());
 }
 

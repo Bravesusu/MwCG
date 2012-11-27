@@ -20,12 +20,15 @@ void mw::Rectangle::Serialize( CArchive& ar )
 void mw::Rectangle::DoDraw()
 {
 	//DoGL();
+	glEnable(GL_LINE_STIPPLE);
+	glLineStipple(size(), stroke().pattern);
 	glBegin(GL_LINE_LOOP);
 	glVertex2f(left(), top());
 	glVertex2f(right(), top());
 	glVertex2f(right(), bottom());
 	glVertex2f(left(), bottom());
 	glEnd();
+	glDisable(GL_LINE_STIPPLE);
 }
 
 //bool mw::Rectangle::HitTest()

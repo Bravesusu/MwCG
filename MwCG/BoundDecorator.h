@@ -1,6 +1,7 @@
 #pragma once
 #include "decorator.h"
 #include "MwColor.h"
+#include "Stroke.h"
 
 namespace mw
 {
@@ -16,6 +17,9 @@ namespace mw
 	public:
 		Color& color() { return color_; }
 		const Color& color() const { return color_; }
+	public:
+		Stroke stroke() const;
+		void set_stroke(const Stroke& stroke);
 	public:
 		BoundDecorator(void);
 		~BoundDecorator(void);

@@ -25,3 +25,13 @@ void mw::BoundDecorator::DoDecorate()
 	rectangle_->set_color(color_);
 	rectangle_->Draw();
 }
+
+mw::Stroke mw::BoundDecorator::stroke() const
+{
+	return rectangle_->stroke();
+}
+
+void mw::BoundDecorator::set_stroke( const Stroke& stroke )
+{
+	rectangle_->set_stroke(stroke);
+}
