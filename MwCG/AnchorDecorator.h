@@ -5,6 +5,7 @@
 namespace mw
 {
 	class Point;
+	class EditAnchor;
 	class AnchorDecorator :
 		public Decorator,
 		public DecoratorOp<GlElement>,
@@ -15,6 +16,10 @@ namespace mw
 		shared_ptr<Point> anchor_;
 		Vector2 local_pos_;
 		bool draging_;
+		shared_ptr<EditAnchor> op_;
+	public:
+		shared_ptr<EditAnchor> operation() const { return op_; }
+		void reset_operation() { op_.reset(); }
 	protected:
 		void InitializeAnchor();
 	public:

@@ -346,6 +346,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		op_preview_ = false;
 		ops_.back()->Undo();
 		ops_.pop_back();
+		op_index--;
 	}
 
 	void CMwCGDoc::Redo()

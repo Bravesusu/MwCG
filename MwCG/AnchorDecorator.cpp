@@ -2,6 +2,7 @@
 #include "AnchorDecorator.h"
 #include "MwGLElement.h"
 #include "MwPoint.h"
+#include "EditAnchor.h"
 
 using namespace mw;
 
@@ -51,6 +52,11 @@ void mw::AnchorDecorator::BeginInput( const Vector2& worldPos )
 		if (dist < anchor_->size())
 		{
 			//Hit!
+			op_.reset(new EditAnchor(decoratee(), new_hit_index));
+			Vector2 oldWorldPos = decoratee()->anchor(new_hit_index);
+			decoratee()->transform().LocalToWorld(oldWorldPos);
+			op_->set_old_anchor(oldWorldPos);
+			op_->set_new_anchor(worldPos);
 			break;
 		}
 	}
@@ -72,7 +78,8 @@ void mw::AnchorDecorator::UpdateInput( const Vector2& worldPos )
 	if (draging_ && hit_anchor_index_ != -1)
 	{
 		//TODO: update preview
-		decoratee()->set_anchor(hit_anchor_index_, local_pos_);
+		//decoratee()->set_anchor(hit_anchor_index_, local_pos_);
+		op_->set_new_anchor(worldPos);
 	}
 }
 

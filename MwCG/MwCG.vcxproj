@@ -123,6 +123,7 @@
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="ContentElementOperation.h" />
     <ClInclude Include="Decorator.h" />
+    <ClInclude Include="EditAnchor.h" />
     <ClInclude Include="ElementOperation.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="FileView.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="ContentElementOperation.cpp" />
     <ClCompile Include="Decorator.cpp" />
+    <ClCompile Include="EditAnchor.cpp" />
     <ClCompile Include="ElementOperation.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="FileView.cpp" />

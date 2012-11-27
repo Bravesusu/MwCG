@@ -5,6 +5,7 @@
 #include "SingleSelection.h"
 #include "SingleDeselection.h"
 #include "AnchorDecorator.h"
+#include "EditAnchor.h"
 
 #include "MoveElement.h"
 
@@ -65,7 +66,7 @@ void mw::UiSelector::DoDoubleClick()
 		//No hit, exit
 		if (newHit == NULL)
 		{
-			click_hit_->ResetTransformToAnchor(0);
+			//click_hit_->ResetTransformToAnchor(0);
 			click_hit_ -= anchroDec_;
 			dbl_clicked_ = false;
 		}
@@ -87,6 +88,10 @@ void mw::UiSelector::DoBeginInput()
 	if (dbl_clicked_)
 	{
 		anchroDec_->BeginInput(mouse_pos());
+		if (anchroDec_->operation() != NULL)
+		{
+			NotifyToolPreview(anchroDec_->operation());
+		}
 	}
 	else
 	{
@@ -139,6 +144,10 @@ void mw::UiSelector::DoUpdateInput()
 	if (dbl_clicked_)
 	{
 		anchroDec_->UpdateInput(mouse_pos());
+		if (anchroDec_->operation() != NULL)
+		{
+			NotifyToolUpdatePreview();
+		}
 	}
 	else
 	{
@@ -175,11 +184,23 @@ void mw::UiSelector::DoEndInput()
 	if (dbl_clicked_)
 	{
 		anchroDec_->EndInput(mouse_pos());
+		if (anchroDec_->operation() != NULL)
+		{
+			NotifyToolCommitPreview();
+			anchroDec_->reset_operation();
+		}
 	}
 	else
 	{
 		moving_ = false;
-		NotifyToolCommitPreview();
+		if (mouse_delta().magnitude() == 0)
+		{
+			NotifyToolCancelPreview();
+		}
+		else
+		{
+			NotifyToolCommitPreview();
+		}
 	}
 }
 
