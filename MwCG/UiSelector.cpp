@@ -55,7 +55,20 @@ void mw::UiSelector::DoFixInput( const int index )
 
 void mw::UiSelector::DoDoubleClick()
 {
-	if (click_hit_ != NULL)
+	shared_ptr<GlElement> newHit;
+	content()->HitTest(mouse_pos(), newHit);
+	//Hit changed
+	if (click_hit_ != newHit)
+	{
+		//No hit, exit
+		if (newHit == NULL)
+		{
+			click_hit_ -= anchroDec_;
+			dbl_clicked_ = false;
+		}
+		click_hit_ = newHit;
+	}
+	else if (click_hit_ != NULL)
 	{
 		//TODO: apply anchor decorator
 		//Mark decorated
