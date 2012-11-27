@@ -77,11 +77,11 @@ int mw::GlElement::anchor_count() const
 	return 1;
 }
 
-void mw::GlElement::set_anchor( int index, const Vector2& worldPos )
+void mw::GlElement::set_anchor( int index, const Vector2& localPos )
 {
 	if (index == 0)
 	{
-		transform().position() = worldPos;
+		transform().position() += localPos;
 	}
 	else
 	{
@@ -93,7 +93,9 @@ mw::Vector2 mw::GlElement::anchor( int index ) const
 {
 	if (index == 0)
 	{
-		return transform().position();
+		//Local coordinate system is defined by the position.
+		//Anchor pos of position is alway Zero in local
+		return Vector2();
 	}
 	else
 		throw std::exception("The anchor index is out of range");

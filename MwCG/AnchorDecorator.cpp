@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "AnchorDecorator.h"
 #include "MwGLElement.h"
+#include "MwPoint.h"
 
 using namespace mw;
 
@@ -8,6 +9,7 @@ IMPLEMENT_DECORATOR_OP(GlElement, AnchorDecorator);
 
 AnchorDecorator::AnchorDecorator(void) : hit_anchor_index_(-1)
 {
+	InitializeAnchor();
 }
 
 
@@ -23,6 +25,8 @@ void mw::AnchorDecorator::DoDecorate()
 	{
 		Vector2 anchor_pos = decoratee()->anchor(i);
 		//TODO: draw it.
+		anchor_->set_position(anchor_pos);
+		anchor_->Draw();
 	}
 }
 
@@ -34,7 +38,7 @@ void mw::AnchorDecorator::BeginInput( const Vector2& worldPos )
 	{
 		float dist = (decoratee()->anchor(new_hit_index) - worldPos).magnitude();
 		//TODO: the anchor size
-		if (dist < 3)
+		if (dist < anchor_->size())
 		{
 			//Hit!
 			break;
@@ -57,6 +61,8 @@ void mw::AnchorDecorator::UpdateInput( const Vector2& worldPos )
 	if (hit_anchor_index_ != -1)
 	{
 		//TODO: update preview
+		Vector2 newPos = decoratee()->transform().WorldToLocal(worldPos);
+		decoratee()->set_anchor(hit_anchor_index_, newPos);
 	}
 }
 
@@ -67,4 +73,11 @@ void mw::AnchorDecorator::EndInput( const Vector2& worldPos )
 		//TODO: commit operation
 		hit_anchor_index_ = -1;
 	}
+}
+
+void mw::AnchorDecorator::InitializeAnchor()
+{
+	anchor_.reset(new Point());
+	anchor_->set_color(1, 0, 0);
+	anchor_->set_size(10);
 }

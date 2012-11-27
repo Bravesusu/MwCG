@@ -4,6 +4,7 @@
 
 namespace mw
 {
+	class Point;
 	class AnchorDecorator :
 		public Decorator,
 		public DecoratorOp<GlElement>,
@@ -11,6 +12,9 @@ namespace mw
 	{
 	private:
 		int hit_anchor_index_;
+		shared_ptr<Point> anchor_;
+	protected:
+		void InitializeAnchor();
 	public:
 		AnchorDecorator(void);
 		~AnchorDecorator(void);
