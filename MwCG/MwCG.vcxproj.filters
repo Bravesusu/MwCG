@@ -271,6 +271,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IMouseInput.h">
+      <Filter>Mw\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="AnchorDecorator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -468,6 +471,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IMouseInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnchorDecorator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

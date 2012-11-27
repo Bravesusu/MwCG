@@ -4,6 +4,7 @@
 #include "IDrawable.h"
 #include "MwColor.h"
 #include "MwTransform.h"
+#include "IAnchorable.h"
 
 using namespace std;
 
@@ -14,7 +15,8 @@ namespace mw
 	class GlScreen;
 	class GlElement :
 		public GlObject, 
-		public IDrawable
+		public IDrawable,
+		public IAnchorable
 	{
 		DECLARE_SERIAL(GlElement); 
 	private:
@@ -88,6 +90,19 @@ namespace mw
 	public:
 		bool hidden() const { return hidden_; }
 		void set_hidden(bool hidden) { hidden_ = hidden; }
+
+	public:
+		//Default implementation of IAnchorable
+
+		//Default to 1. The transform's position.
+		virtual int anchor_count() const;
+
+		//0 == transform's position
+		virtual void set_anchor( int index, const Vector2& localPos );
+
+		//0 == transform's position
+		virtual Vector2 anchor( int index ) const;
+
 	};
 
 	typedef shared_ptr<GlElement> GlElementPtr;
