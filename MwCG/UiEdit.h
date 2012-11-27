@@ -32,12 +32,12 @@ namespace mw
 		const shared_ptr<UiEditorTool> tool() const { return tool_; }
 		void use_selector();
 	public:
-		void NotifyToolFinished();
-		void NotifyToolOperation(const shared_ptr<IOperation>& operation);
-		void NotifyToolPreview(const shared_ptr<IOperation>& operation);
-		void NotifyToolUpdatePreview();
-		void NotifyToolCommitPreview();
-		void NotifyToolCancelPreview();
+		//void NotifyToolFinished();
+	//	void NotifyToolOperation(const shared_ptr<IOperation>& operation);
+	//	void NotifyToolPreview(const shared_ptr<IOperation>& operation);
+	//	void NotifyToolUpdatePreview();
+	//	void NotifyToolCommitPreview();
+	//	void NotifyToolCancelPreview();
 	public:
 		UiEdit(void);
 		~UiEdit(void);
@@ -59,7 +59,7 @@ namespace mw
 		virtual void OnRButtonUp( UINT nFlags, CPoint point );
 
 	private:
-		bool TryFinishTool();
+		//bool TryFinishTool();
 
 		virtual void OnLButtonDblClk( UINT nFlags, CPoint point );
 

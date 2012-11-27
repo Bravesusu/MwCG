@@ -9,8 +9,8 @@ namespace mw
 	class GlScreen;
 	class Mouse;
 	class GlContent;
-	typedef function<void(const shared_ptr<GlContent>, const shared_ptr<GlElement>)> GlContentCallback;
-	class GlContent : public GlElement, public enable_shared_from_this<GlContent>
+	typedef function<void(const shared_ptr<GlElement>)> GlContentCallback;
+	class GlContent : public GlElement//, public enable_shared_from_this<GlContent>
 	{
 		DECLARE_SERIAL(GlContent);
 	public:

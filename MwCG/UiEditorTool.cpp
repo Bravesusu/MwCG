@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "UiEditorTool.h"
 
+#include "MwCGDoc.h"
+
 #include "MwPoint.h"
 
 using namespace mw;
@@ -143,10 +145,7 @@ void mw::UiEditorTool::EndInput( const Vector2& worldPos )
 	//Try finish and notify ui_
 	if (IsFinished())
 	{
-		if (ui_ != NULL)
-		{
-			ui_->NotifyToolFinished();
-		}
+		TryFinish();
 		just_finished_ = true;
 	}
 	DoEndInput();
@@ -167,4 +166,45 @@ void mw::UiEditorTool::HandleInput( const Vector2& worldPos )
 void mw::UiEditorTool::DoubleClick( const Vector2& worldPos )
 {
 	DoDoubleClick();
+}
+
+void mw::UiEditorTool::set_doc( CMwCGDoc* doc )
+{
+	doc_ = doc;
+	set_content(doc_->glContent());
+}
+
+void mw::UiEditorTool::NotifyToolOperation( const shared_ptr<IOperation>& operation )
+{
+	doc()->CommitOperation(operation);
+}
+
+void mw::UiEditorTool::NotifyToolPreview( const shared_ptr<IOperation>& operation )
+{
+	doc()->BeginPreviewOperation(operation);
+}
+
+void mw::UiEditorTool::NotifyToolUpdatePreview()
+{
+	doc()->UpdatePreviewOperation();
+}
+
+void mw::UiEditorTool::NotifyToolCommitPreview()
+{
+	doc()->CommitPreviewOperation();
+}
+
+void mw::UiEditorTool::NotifyToolCancelPreview()
+{
+	doc()->CancelPreviewOperation();
+}
+
+bool mw::UiEditorTool::TryFinish()
+{
+	if (IsFinished())
+	{
+		doc()->CommitOperation(PopNewOperation());
+		return true;
+	}
+	return false;
 }

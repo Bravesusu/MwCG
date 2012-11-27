@@ -83,7 +83,7 @@ protected:
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
 public:
-	const shared_ptr<GlContent>& glContent(void) const { return glContent_; }
+	shared_ptr<GlContent> glContent(void) const { return glContent_; }
 	virtual void OnCloseDocument();
 	afx_msg void OnClearColor();
 	virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);

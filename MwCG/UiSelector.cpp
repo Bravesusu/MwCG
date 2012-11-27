@@ -93,7 +93,7 @@ void mw::UiSelector::DoBeginInput()
 				move_op_->set_element(newHit);
 				move_op_->set_initial_position(newHit->transform().position());
 				move_op_->set_move_to_position(newHit->transform().position());
-				ui()->NotifyToolPreview(move_op_);
+				NotifyToolPreview(move_op_);
 				moving_ = true;
 
 			}
@@ -108,7 +108,7 @@ void mw::UiSelector::DoBeginInput()
 				move_op_->set_element(newHit);
 				move_op_->set_initial_position(newHit->transform().position());
 				move_op_->set_move_to_position(newHit->transform().position());
-				ui()->NotifyToolPreview(move_op_);
+				NotifyToolPreview(move_op_);
 				moving_ = true;
 			}
 		}
@@ -136,7 +136,7 @@ void mw::UiSelector::DoUpdateInput()
 			{
 				//click_hit_->set_position(mouse_pos());
 				move_op_->set_move_to_position(click_hit_->transform().position() + mouse_inst_delta());
-				ui()->NotifyToolUpdatePreview();
+				NotifyToolUpdatePreview();
 			}
 		}
 		//Handle hover all the time
@@ -163,7 +163,7 @@ void mw::UiSelector::DoEndInput()
 	else
 	{
 		moving_ = false;
-		ui()->NotifyToolCommitPreview();
+		NotifyToolCommitPreview();
 	}
 }
 
@@ -172,7 +172,7 @@ void mw::UiSelector::SingleSelect( shared_ptr<GlElement> element )
 	if (element == NULL)
 		return;
 	//element += selDec_;
-	ui()->NotifyToolOperation(OperationPtr(
+	NotifyToolOperation(OperationPtr(
 		new SingleSelection(content(), element)
 		));
 }
@@ -182,7 +182,7 @@ void mw::UiSelector::Deselect( shared_ptr<GlElement> element )
 	if (element == NULL)
 		return;
 	//element -= selDec_;
-	ui()->NotifyToolOperation(OperationPtr(
+	NotifyToolOperation(OperationPtr(
 		new SingleDeselection(content(), element)
 		));
 }
@@ -201,14 +201,14 @@ void mw::UiSelector::Leave( shared_ptr<GlElement> element )
 	element -= hoverDec_;
 }
 
-void mw::UiSelector::OnElementSelect( shared_ptr<GlContent> content, shared_ptr<GlElement> element )
+void mw::UiSelector::OnElementSelect(shared_ptr<GlElement> element )
 {
 	if (element == NULL)
 		return;
 	element += selDec_;
 }
 
-void mw::UiSelector::OnElementDeselect( shared_ptr<GlContent> content, shared_ptr<GlElement> element )
+void mw::UiSelector::OnElementDeselect(shared_ptr<GlElement> element )
 {
 	if (element == NULL)
 		return;
@@ -218,15 +218,15 @@ void mw::UiSelector::OnElementDeselect( shared_ptr<GlContent> content, shared_pt
 void mw::UiSelector::OnContentInitialized()
 {
 	GlContentCallback sel_callback = 
-		[this] ( shared_ptr<GlContent> content, shared_ptr<GlElement> element) 
+		[this] ( shared_ptr<GlElement> element) 
 	{ 
-		OnElementSelect(content, element); 
+		OnElementSelect(element); 
 	};
 
 	GlContentCallback desel_callback = 
-		[this] ( shared_ptr<GlContent> content, shared_ptr<GlElement> element)
+		[this] ( shared_ptr<GlElement> element)
 	{
-		OnElementDeselect(content, element);
+		OnElementDeselect(element);
 	};
 
 	content()->set_on_select(sel_callback);

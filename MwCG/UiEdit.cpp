@@ -89,7 +89,7 @@ void mw::UiEdit::OnKeyUp( UINT nChar, UINT nRepCnt, UINT nFlags )
 			return;
 		if (!tool_->IsFinished())
 		{
-			if (tool_->CanFinishByEnter() && TryFinishTool())
+			if (tool_->CanFinishByEnter() && tool_->TryFinish())
 			{
 				tool_->New();
 				view()->Invalidate();
@@ -112,9 +112,9 @@ void mw::UiEdit::UpdateMouseInput( UINT nFlags, CPoint point )
 void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 {
 	//Cancel current one
-	if (tool_)
+	if (tool_ != NULL)
 	{
-		if (!TryFinishTool())
+		if (!tool_->TryFinish())
 			tool_->Cancel();
 		else
 		{
@@ -122,9 +122,7 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 		}
 	}
 
-	tool->set_ui(NULL);
-	//TODO: tool does not need to know about content
-	tool->set_content(doc()->glContent());
+	tool->set_doc(doc());
 	tool_ = tool;
 
 	//Initialize new one
@@ -147,45 +145,45 @@ void mw::UiEdit::OnRButtonUp( UINT nFlags, CPoint point )
 	tool_->Cancel();
 }
 
-bool mw::UiEdit::TryFinishTool()
-{
-	if (tool_->IsFinished())
-	{
-		TRACE("Finish\n");
-		doc()->CommitOperation(tool_->PopNewOperation());
+//bool mw::UiEdit::TryFinishTool()
+//{
+//	if (tool_->IsFinished())
+//	{
+//		TRACE("Finish\n");
+//		doc()->CommitOperation(tool_->PopNewOperation());
+//
+//		return true;
+//	}
+//	return false;
+//}
 
-		return true;
-	}
-	return false;
-}
+//void mw::UiEdit::NotifyToolFinished()
+//{
+//	TryFinishTool();
+//}
 
-void mw::UiEdit::NotifyToolFinished()
-{
-	TryFinishTool();
-}
-
-void mw::UiEdit::NotifyToolOperation( const shared_ptr<IOperation>& operation )
-{
-	doc()->CommitOperation(operation);
-}
-
-void mw::UiEdit::NotifyToolPreview( const shared_ptr<IOperation>& operation )
-{
-	doc()->BeginPreviewOperation(operation);
-}
-
-void mw::UiEdit::NotifyToolUpdatePreview()
-{
-	doc()->UpdatePreviewOperation();
-
-}
-
-void mw::UiEdit::NotifyToolCommitPreview()
-{
-	doc()->CommitPreviewOperation();
-}
-
-void mw::UiEdit::NotifyToolCancelPreview()
-{
-	doc()->CancelPreviewOperation();
-}
+//void mw::UiEdit::NotifyToolOperation( const shared_ptr<IOperation>& operation )
+//{
+//	doc()->CommitOperation(operation);
+//}
+//
+//void mw::UiEdit::NotifyToolPreview( const shared_ptr<IOperation>& operation )
+//{
+//	doc()->BeginPreviewOperation(operation);
+//}
+//
+//void mw::UiEdit::NotifyToolUpdatePreview()
+//{
+//	doc()->UpdatePreviewOperation();
+//
+//}
+//
+//void mw::UiEdit::NotifyToolCommitPreview()
+//{
+//	doc()->CommitPreviewOperation();
+//}
+//
+//void mw::UiEdit::NotifyToolCancelPreview()
+//{
+//	doc()->CancelPreviewOperation();
+//}

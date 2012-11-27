@@ -26,8 +26,8 @@ namespace mw
 		void Enter(shared_ptr<GlElement> element);
 		void Leave(shared_ptr<GlElement> element);
 	public:
-		void OnElementSelect(shared_ptr<GlContent> content, shared_ptr<GlElement> element);
-		void OnElementDeselect(shared_ptr<GlContent> content, shared_ptr<GlElement> element);
+		void OnElementSelect(shared_ptr<GlElement> element);
+		void OnElementDeselect(shared_ptr<GlElement> element);
 	public:
 		UiSelector(void);
 		~UiSelector(void);

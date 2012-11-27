@@ -14,7 +14,7 @@ namespace mw
 		public IMouseInput
 	{
 	private:
-		shared_ptr<GlContent> content_;
+		weak_ptr<GlContent> content_;
 		//InputStatus status_;
 		vector<Vector2> inputs_;
 		int input_index;
@@ -24,10 +24,12 @@ namespace mw
 		//Vector2 current_;
 		shared_ptr<UiEdit> ui_;
 		bool just_finished_;
+		CMwCGDoc* doc_;
 	protected:
-		const shared_ptr<UiEdit> ui() const { return ui_; }
+		//const shared_ptr<UiEdit> ui() const { return ui_; }
+		CMwCGDoc* doc() const { return doc_; }
 	public:
-		void set_ui(shared_ptr<UiEdit> ui) { ui_ = ui; }
+		void set_doc(CMwCGDoc* doc);
 	protected:
 		virtual shared_ptr<GlElement> GetEditingElement() { return NULL; }
 	protected:
@@ -44,10 +46,10 @@ namespace mw
 		//void set_status(InputStatus status) {status_ = status; }
 	protected:
 		virtual void OnContentInitialized() {};
+		void set_content(const shared_ptr<GlContent>& content) { content_ = content; OnContentInitialized(); }
 	public:
 		//InputStatus status() const { return status_; }
-		shared_ptr<GlContent> content() const { return content_; }
-		void set_content(const shared_ptr<GlContent>& content) { content_ = content; OnContentInitialized(); }
+		shared_ptr<GlContent> content() const { return content_.lock(); }
 		bool GetInput(int index, Vector2& worldPos) const;
 	public:
 		UiEditorTool(void);
@@ -97,6 +99,14 @@ namespace mw
 		void DrawInputPoint(int maxCount) const;
 	protected:
 		Vector2 get_input(const int index) const;
+	public:
+		bool TryFinish();
+	protected:
+		void NotifyToolOperation(const shared_ptr<IOperation>& operation);
+		void NotifyToolPreview(const shared_ptr<IOperation>& operation);
+		void NotifyToolUpdatePreview();
+		void NotifyToolCommitPreview();
+		void NotifyToolCancelPreview();
 	};
 }
 

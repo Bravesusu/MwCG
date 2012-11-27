@@ -202,11 +202,11 @@ void mw::GlContent::DeselectAll()
 void mw::GlContent::InvokeSelectHandler( const shared_ptr<GlElement>& element )
 {
 	if (onSelectEvtHandler_ != NULL)
-		onSelectEvtHandler_(shared_from_this(), element);
+		onSelectEvtHandler_(element);
 }
 
 void mw::GlContent::InvokeDeselectHandler( const shared_ptr<GlElement>& element )
 {
 	if (onDeselectEvtHandler_ != NULL)
-		onDeselectEvtHandler_(shared_from_this(), element);
+		onDeselectEvtHandler_(element);
 }
