@@ -175,6 +175,36 @@ mw::Vector2 mw::MwPolygon::vertex( int index ) const
 	}
 }
 
+bool mw::MwPolygon::HitTest( const Vector2& worldPos ) const
+{
+	if (vertex_.size() <= 1)
+		return false;
+	line_->transform().position().set(transform().position());
+	for(list<shared_ptr<Vector2>>::const_iterator 
+		it_from = vertex_.begin(), 
+		it_to	= vertex_.begin()
+		; it_from != vertex_.end() && it_to != vertex_.end(); it_from++, it_to++)
+	{
+		if (it_from == it_to)
+		{
+			it_to++;
+			if (it_to == vertex_.end())
+				break;
+		}
+		line_->set(**it_from, **it_to);
+		if (line_->HitTest(worldPos))
+			return true;
+
+	}
+	if (vertex_.size() < 3)
+		return false;
+	//Last line
+	line_->set(*vertex_.back(), *vertex_.front());
+	if (line_->HitTest(worldPos))
+		return true;
+	return false;
+}
+
 Line* mw::BresLineFactory::Get() const
 {
 	return new BresLine();

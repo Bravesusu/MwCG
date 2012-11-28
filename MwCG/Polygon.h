@@ -35,7 +35,7 @@ namespace mw
 
 		//virtual bool HitTest();
 
-		virtual Rect bound() const;
+		Rect bound() const;
 
 		virtual void Draw();
 	public:
@@ -44,6 +44,9 @@ namespace mw
 		void set_anchor( int index, const Vector2& localPos );
 
 		Vector2 anchor( int index ) const;
+
+		virtual bool HitTest( const Vector2& worldPos ) const;
+
 	};
 	
 }

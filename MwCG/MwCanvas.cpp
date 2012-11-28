@@ -2,6 +2,7 @@
 #include "MwCanvas.h"
 
 #include "MwGlScreen.h"
+#include "Rect.h"
 
 using namespace mw;
 
@@ -72,4 +73,9 @@ void Canvas::DrawAxisGird()
 		gird_line_.set(left, y, right, y);
 		gird_line_.Draw();
 	}
+}
+
+Rect mw::Canvas::bound() const
+{
+	return GlElement::bound();
 }

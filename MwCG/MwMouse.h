@@ -22,6 +22,9 @@ namespace mw
 		void set_position(const Vector2& pos) { position_.set(pos); }
 	private:
 		void DoDraw();
+
+		virtual Rect bound() const;
+
 	};
 };
 

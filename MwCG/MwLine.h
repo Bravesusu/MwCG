@@ -29,7 +29,7 @@ namespace mw
 		virtual Rect bound() const;
 	private:
 		virtual void DoDraw();
-
+	public:
 		virtual bool HitTest( const Vector2& worldPos ) const;
 
 	public:

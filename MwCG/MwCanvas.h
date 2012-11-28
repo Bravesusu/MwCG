@@ -29,6 +29,9 @@ namespace mw
 		bool gird_enabled() const { return enable_gird_; }
 		void set_enable_gird(bool enabled) { enable_gird_ = enabled; } 
 		void toggle_gird() { enable_gird_ = !enable_gird_; }
+
+		virtual Rect bound() const;
+
 	};
 }
 

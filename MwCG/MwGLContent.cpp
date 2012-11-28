@@ -5,6 +5,7 @@
 #include "MwPoint.h"
 #include "MwMouse.h"
 #include "MwGlScreen.h"
+#include "Rect.h"
 
 using namespace mw;
 
@@ -209,4 +210,9 @@ void mw::GlContent::InvokeDeselectHandler( const shared_ptr<GlElement>& element 
 {
 	if (onDeselectEvtHandler_ != NULL)
 		onDeselectEvtHandler_(element);
+}
+
+Rect mw::GlContent::bound() const
+{
+	return GlElement::bound();
 }

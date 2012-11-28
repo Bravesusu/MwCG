@@ -55,5 +55,8 @@ namespace mw
 		void Select(const shared_ptr<GlElement>& element);
 		void Deselect(const shared_ptr<GlElement>& element);
 		void DeselectAll();
+
+		virtual Rect bound() const;
+
 	};
 }

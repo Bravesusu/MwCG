@@ -3,6 +3,7 @@
 
 #include "MwGlScreen.h"
 #include "MwLine.h"
+#include "Rect.h"
 
 using namespace mw;
 
@@ -27,4 +28,9 @@ void mw::Mouse::DoDraw()
 	
 	line_h_.Draw();
 	line_v_.Draw();
+}
+
+Rect mw::Mouse::bound() const
+{
+	return GlElement::bound();
 }
