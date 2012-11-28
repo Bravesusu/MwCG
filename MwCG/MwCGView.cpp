@@ -92,6 +92,10 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_WM_LBUTTONDBLCLK()
 		ON_UPDATE_COMMAND_UI(ID_EDIT_DELETE, &CMwCGView::OnUpdateEditDelete)
 		ON_COMMAND(ID_EDIT_DELETE, &CMwCGView::OnEditDelete)
+		ON_UPDATE_COMMAND_UI(ID_ELEMENT_SIZE, &CMwCGView::OnUpdateElementSize)
+		ON_COMMAND(ID_ELEMENT_STROKE, &CMwCGView::OnElementStroke)
+		ON_UPDATE_COMMAND_UI(ID_ELEMENT_STROKE, &CMwCGView::OnUpdateElementStroke)
+		ON_COMMAND(ID_ELEMENT_SIZE, &CMwCGView::OnElementSize)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -897,5 +901,55 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		// TODO: Add your command handler code here
 		uiState_->OnCommand(ID_EDIT_DELETE);
+		Invalidate();
+	}
+
+
+	void CMwCGView::OnUpdateElementSize(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(!context_element_.expired());
+	}
+
+
+	void CMwCGView::OnUpdateElementStroke(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(!context_element_.expired());
+	}
+
+
+	void CMwCGView::OnElementStroke()
+	{
+		// TODO: Add your command handler code here
+		if (context_element_.expired())
+			return;
+		CMFCRibbonComboBox* pCombo = theApp.FindRibbonUIById<CMFCRibbonComboBox>(ID_ELEMENT_STROKE);
+
+		int index = pCombo->GetCurSel();
+		if (index >= 0 && index < StrokeCount)
+		{
+			//TODO: wrap in operation
+			context_element_.lock()->set_stroke(Strokes[index]);
+		}
+
+		Invalidate();
+	}
+
+
+	void CMwCGView::OnElementSize()
+	{
+		// TODO: Add your command handler code here
+		if (context_element_.expired())
+			return;
+
+		CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_ELEMENT_SIZE);
+		int size = _ttoi(pEdit->GetEditText());
+		//TRACE(pEdit->GetText());
+		TRACE("Size: %d\n", size);
+
+		//TODO: wrap in operation
+		context_element_.lock()->set_size(size);
+
 		Invalidate();
 	}
