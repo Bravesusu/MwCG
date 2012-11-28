@@ -32,6 +32,8 @@
 #include "CircleTool.h"
 #include "PolygonTool.h"
 
+#include "ChangeElementStroke.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -929,8 +931,9 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		int index = pCombo->GetCurSel();
 		if (index >= 0 && index < StrokeCount)
 		{
-			//TODO: wrap in operation
-			context_element_.lock()->set_stroke(Strokes[index]);
+			GetDocument()->CommitOperation(OperationPtr(
+				new ChangeElementStroke(context_element_.lock(), Strokes[index])
+				));
 		}
 
 		Invalidate();

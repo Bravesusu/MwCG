@@ -279,6 +279,9 @@
     <ClInclude Include="EditAnchor.h">
       <Filter>Mw\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="ChangeElementStroke.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -481,6 +484,9 @@
     </ClCompile>
     <ClCompile Include="EditAnchor.cpp">
       <Filter>Mw\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeElementStroke.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
