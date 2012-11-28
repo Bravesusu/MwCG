@@ -85,6 +85,8 @@ namespace mw
 		void UpdateInput(const Vector2& worldPos);
 		void EndInput(const Vector2& worldPos);
 
+		virtual void OnDelete() {};
+
 		void DoubleClick(const Vector2& worldPos);
 
 		void FixInput(const int index, const Vector2& worldPos);

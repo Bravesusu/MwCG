@@ -70,3 +70,7 @@ void mw::UiNav::OnRButtonUp( UINT nFlags, CPoint point )
 void mw::UiNav::OnLButtonDblClk( UINT nFlags, CPoint point )
 {
 }
+
+void mw::UiNav::OnCommand( UINT nCmdId )
+{
+}

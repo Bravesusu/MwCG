@@ -29,6 +29,8 @@ namespace mw
 
 		virtual void OnLButtonDblClk( UINT nFlags, CPoint point );
 
+		virtual void OnCommand( UINT nCmdId );
+
 
 	private:
 		bool m_bMouseDown;

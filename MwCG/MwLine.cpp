@@ -65,7 +65,7 @@ bool mw::Line::HitTest( const Vector2& worldPos ) const
 	Vector2 a_p = a - p;
 	Vector2 n1 = n / n.magnitude();
 	float dist = (a_p - (n1 * (a_p.Dot(n1)))).magnitude();
-	TRACE("Dist: %.2f\n", dist);
+	//TRACE("Dist: %.2f\n", dist);
 	return dist < 3;
 }
 

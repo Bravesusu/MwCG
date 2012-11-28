@@ -162,6 +162,8 @@ public:
 	afx_msg void OnUpdateStrokeGallery(CCmdUI *pCmdUI);
 	afx_msg void OnStrokeGallery();
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	afx_msg void OnUpdateEditDelete(CCmdUI *pCmdUI);
+	afx_msg void OnEditDelete();
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

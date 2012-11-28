@@ -90,6 +90,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_UPDATE_COMMAND_UI(ID_STROKE_GALLERY, &CMwCGView::OnUpdateStrokeGallery)
 		ON_COMMAND(ID_STROKE_GALLERY, &CMwCGView::OnStrokeGallery)
 		ON_WM_LBUTTONDBLCLK()
+		ON_UPDATE_COMMAND_UI(ID_EDIT_DELETE, &CMwCGView::OnUpdateEditDelete)
+		ON_COMMAND(ID_EDIT_DELETE, &CMwCGView::OnEditDelete)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -881,4 +883,18 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		{
 			MainFrame()->ActivateContextCategory(ID_CONTEXT_ELEMENT, true);
 		}
+	}
+
+
+	void CMwCGView::OnUpdateEditDelete(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(!context_element_.expired());
+	}
+
+
+	void CMwCGView::OnEditDelete()
+	{
+		// TODO: Add your command handler code here
+		uiState_->OnCommand(ID_EDIT_DELETE);
 	}

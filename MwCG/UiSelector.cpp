@@ -288,3 +288,12 @@ void mw::UiSelector::OnContentInitialized()
 
 
 }
+
+void mw::UiSelector::OnDelete()
+{
+	if (click_hit_ != NULL)
+	{
+		//TODO: do delete
+		TRACE0("Delete!\n");
+	}
+}

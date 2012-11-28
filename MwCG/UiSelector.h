@@ -54,6 +54,8 @@ namespace mw
 
 		virtual void DoDoubleClick();
 
+		virtual void OnDelete();
+
 	};
 }
 

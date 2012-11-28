@@ -63,6 +63,8 @@ namespace mw
 
 		virtual void OnLButtonDblClk( UINT nFlags, CPoint point );
 
+		virtual void OnCommand( UINT nCmdId );
+
 	public:
 
 	};

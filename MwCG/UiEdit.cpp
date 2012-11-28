@@ -73,18 +73,28 @@ void mw::UiEdit::OnLButtonDblClk( UINT nFlags, CPoint point )
 
 void mw::UiEdit::OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	if (' ' == nChar)
+	switch (nChar)
 	{
-		//TODO: switch to nav mode
+	case ' ':
 		view()->SwitchToNavMode();
+		break;
+	case VK_DELETE:
+		//No repeat
+		if (nRepCnt == 1)
+		{
+			OnCommand(ID_EDIT_DELETE);
+		}
+		break;
+	default:
+		break;
 	}
 }
 
 void mw::UiEdit::OnKeyUp( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-
-	if (13 == nChar)
+	switch (nChar)
 	{
+	case 13:
 		if (tool_ == NULL)
 			return;
 		if (!tool_->IsFinished())
@@ -95,6 +105,9 @@ void mw::UiEdit::OnKeyUp( UINT nChar, UINT nRepCnt, UINT nFlags )
 				view()->Invalidate();
 			}
 		}
+		break;;
+	default:
+		break;
 	}
 }
 
@@ -144,6 +157,19 @@ void mw::UiEdit::Draw()
 void mw::UiEdit::OnRButtonUp( UINT nFlags, CPoint point )
 {
 	tool_->Cancel();
+}
+
+void mw::UiEdit::OnCommand( UINT nCmdId )
+{
+	switch (nCmdId)
+	{
+	case ID_EDIT_DELETE:
+		if (tool_ != NULL)
+			tool_->OnDelete();
+		break;
+	default:
+		break;
+	}
 }
 
 //bool mw::UiEdit::TryFinishTool()
