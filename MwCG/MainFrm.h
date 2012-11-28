@@ -35,7 +35,8 @@ class CMainFrame : public CMDIFrameWndEx
 public:
 	CMainFrame();
 public:
-	void ActivateContextCategory(UINT uiCategoryID);
+	void ActivateContextCategory(UINT uiCategoryID, bool active = false);
+	void HideContextCategory(UINT uiCategoryID);
 // Attributes
 public:
 

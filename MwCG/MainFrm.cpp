@@ -685,8 +685,16 @@ void CMainFrame::CreateDocumentColors()
 	};
 }
 
-void CMainFrame::ActivateContextCategory( UINT uiCategoryID )
+void CMainFrame::ActivateContextCategory( UINT uiCategoryID, bool active )
 {
 	m_wndRibbonBar.ShowContextCategories(uiCategoryID);
-	//m_wndRibbonBar.ActivateContextCategory(uiCategoryID);
+	if (active)
+	{
+		m_wndRibbonBar.ActivateContextCategory(uiCategoryID);
+	}
+}
+
+void CMainFrame::HideContextCategory( UINT uiCategoryID )
+{
+	m_wndRibbonBar.ShowContextCategories(uiCategoryID, 0);
 }

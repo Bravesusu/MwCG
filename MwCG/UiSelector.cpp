@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "UiSelector.h"
 
+#include "MwCGView.h"
 #include "BoundDecorator.h"
 #include "SingleSelection.h"
 #include "SingleDeselection.h"
@@ -69,6 +70,11 @@ void mw::UiSelector::DoDoubleClick()
 			//click_hit_->ResetTransformToAnchor(0);
 			click_hit_ -= anchroDec_;
 			dbl_clicked_ = false;
+			//clean up old hit
+			Deselect(click_hit_);
+			//TODO: Clear Element context
+			view()->ClearAnchorContext();
+			view()->ClearElementContext();
 		}
 		click_hit_ = newHit;
 	}
@@ -78,6 +84,7 @@ void mw::UiSelector::DoDoubleClick()
 		//Mark decorated
 		click_hit_ += anchroDec_;
 		dbl_clicked_ = true;
+
 	}
 }
 
@@ -92,6 +99,14 @@ void mw::UiSelector::DoBeginInput()
 		{
 			NotifyToolPreview(anchroDec_->operation());
 		}
+		if (anchroDec_->active_anchor_index() != -1)
+		{
+			view()->ShowAnchorContext(click_hit_, anchroDec_->active_anchor_index());
+		}
+		else
+		{
+			view()->ClearAnchorContext();
+		}
 	}
 	else
 	{
@@ -104,6 +119,8 @@ void mw::UiSelector::DoBeginInput()
 			{
 				//clean up old hit
 				Deselect(click_hit_);
+				//TODO: Clear Element context
+				view()->ClearElementContext();
 			}
 			else
 			{
@@ -116,7 +133,7 @@ void mw::UiSelector::DoBeginInput()
 				move_op_->set_move_to_position(newHit->transform().position());
 				NotifyToolPreview(move_op_);
 				moving_ = true;
-
+				view()->ShowElementContext(newHit);
 			}
 			//Store (if no hit, hit_ = newHit <- NULL)
 			click_hit_ = newHit;

@@ -25,11 +25,14 @@ namespace mw
 		shared_ptr<UiEdit> ui_;
 		bool just_finished_;
 		CMwCGDoc* doc_;
+		CMwCGView* view_;
 	protected:
 		//const shared_ptr<UiEdit> ui() const { return ui_; }
 		CMwCGDoc* doc() const { return doc_; }
+		CMwCGView* view() const { return view_; }
 	public:
 		void set_doc(CMwCGDoc* doc);
+		void set_view(CMwCGView* view);
 	protected:
 		virtual shared_ptr<GlElement> GetEditingElement() { return NULL; }
 	protected:

@@ -43,6 +43,17 @@ protected: // create from serialization only
 	// Attributes
 public:
 	CMwCGDoc* GetDocument() const;
+	CMainFrame* MainFrame() const;
+private:
+	weak_ptr<GlElement> context_element_;
+	int anchor_index;
+protected:
+	void set_context_element(shared_ptr<GlElement> element);
+public:
+	void ShowElementContext(shared_ptr<GlElement> element);
+	void ShowAnchorContext(shared_ptr<GlElement> element, int anchor_index);
+	void ClearElementContext();
+	void ClearAnchorContext();
 protected:
 	GlRenderer m_render;
 	HDC m_hDC;

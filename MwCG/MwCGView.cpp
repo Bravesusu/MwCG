@@ -190,6 +190,11 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CMwCGDoc)));
 		return (CMwCGDoc*)m_pDocument;
 	}
+	CMainFrame* CMwCGView::MainFrame() const
+	{
+		return (CMainFrame*) GetTopLevelFrame();
+	}
+
 #endif //_DEBUG
 
 
@@ -213,8 +218,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 			BOOL bStrValid = strInitFailed.LoadStringW(ID_RENDER_INIT_FAILED);
 			ASSERT(bStrValid);
 
-			CMainFrame* pMainFrm = (CMainFrame*)GetParent();
-			pMainFrm->SetCaptionBarText(strInitFailed);
+			MainFrame()->SetCaptionBarText(strInitFailed);
 		}
 		CMwCGDoc* pDoc = GetDocument();
 		ASSERT_VALID(pDoc);
@@ -692,7 +696,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	void CMwCGView::ShowFloaty( int inputIndex, UINT nFlags, CPoint point )
 	{
 
-		((CMainFrame*) GetTopLevelFrame())->ActivateContextCategory(ID_CONTEXT_ELEMENT);
+		MainFrame()->ActivateContextCategory(ID_CONTEXT_ELEMENT);
 
 		if ((nFlags & MK_CONTROL) == MK_CONTROL)
 			return;
@@ -734,7 +738,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		lstCmds.AddTail(ID_STROKE_GALLERY);
 		lstCmds.AddTail(ID_EDIT_POS_X);
 		lstCmds.AddTail(ID_EDIT_POS_Y);
-		CMFCRibbonBar* pRibbon = ((CMainFrame*) GetTopLevelFrame())->GetRibbonBar();
+		CMFCRibbonBar* pRibbon = MainFrame()->GetRibbonBar();
 		pFloaty->SetCommands(pRibbon, lstCmds);
 
 		
@@ -842,4 +846,39 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		__super::OnLButtonDblClk(nFlags, point);
 		uiState_->OnLButtonDblClk(nFlags, point);
+	}
+
+	void CMwCGView::ShowElementContext( shared_ptr<GlElement> element )
+	{
+		set_context_element(element);
+		MainFrame()->ActivateContextCategory(ID_CONTEXT_ELEMENT, true);
+	}
+
+	void CMwCGView::ShowAnchorContext( shared_ptr<GlElement> element, int anchor_index )
+	{
+		set_context_element(element);
+		anchor_index = anchor_index;
+		MainFrame()->ActivateContextCategory(ID_CONTEXT_ANCHOR, true);
+	}
+
+	void CMwCGView::set_context_element( shared_ptr<GlElement> element )
+	{
+		//TODO: point for more setups
+		context_element_ = element;
+	}
+
+	void CMwCGView::ClearElementContext()
+	{
+		MainFrame()->HideContextCategory(ID_CONTEXT_ELEMENT);
+		context_element_.reset();
+	}
+
+	void CMwCGView::ClearAnchorContext()
+	{
+		MainFrame()->HideContextCategory(ID_CONTEXT_ANCHOR);
+		anchor_index = -1;
+		if (!context_element_.expired())
+		{
+			MainFrame()->ActivateContextCategory(ID_CONTEXT_ELEMENT, true);
+		}
 	}

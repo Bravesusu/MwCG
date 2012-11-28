@@ -20,6 +20,7 @@ namespace mw
 	public:
 		shared_ptr<EditAnchor> operation() const { return op_; }
 		void reset_operation() { op_.reset(); }
+		int active_anchor_index() const { return hit_anchor_index_; }
 	protected:
 		void InitializeAnchor();
 	public:

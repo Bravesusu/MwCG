@@ -123,6 +123,7 @@ void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 	}
 
 	tool->set_doc(doc());
+	tool->set_view(view());
 	tool_ = tool;
 
 	//Initialize new one

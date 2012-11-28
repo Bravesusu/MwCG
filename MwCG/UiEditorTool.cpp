@@ -208,3 +208,8 @@ bool mw::UiEditorTool::TryFinish()
 	}
 	return false;
 }
+
+void mw::UiEditorTool::set_view( CMwCGView* view )
+{
+	view_ = view;
+}
