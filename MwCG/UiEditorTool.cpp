@@ -164,7 +164,7 @@ void mw::UiEditorTool::HandleInput( const Vector2& worldPos )
 	{
 		inputs_[input_index] = worldPos;
 	}
-	ASSERT(input_index == inputs_.size() - 1);
+	//ASSERT(input_index == inputs_.size() - 1);
 }
 
 void mw::UiEditorTool::DoubleClick( const Vector2& worldPos )

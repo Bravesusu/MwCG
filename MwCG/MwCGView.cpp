@@ -120,6 +120,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		// TODO: add construction code here
 		transform_changed = false;
+		anchor_changed = false;
 	}
 
 	CMwCGView::~CMwCGView()
@@ -1177,11 +1178,50 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 	bool CMwCGView::ValidateElementAnchor()
 	{
-		return !context_element_.expired() && anchor_index_ >= 0;
+		bool bEnabled = !context_element_.expired() && anchor_index_ >= 0;
+
+		if (bEnabled)
+		{
+			shared_ptr<GlElement> lockElement = context_element_.lock();
+			Vector2 pos = lockElement->anchor(anchor_index_);
+			lockElement->transform().LocalToWorld(pos);
+			Vector2 new_pos = ValidateAndGetPos(pos, ID_ANCHOR_POS_X, ID_ANCHOR_POS_Y);
+
+			//Changed
+			if (pos != new_pos)
+			{
+				if (anchor_changed)
+				{
+					//update operation
+					anchor_op_->set_new_anchor(new_pos);
+					GetDocument()->UpdatePreviewOperation();
+				}
+				else
+				{
+					//reset operation
+					anchor_op_.reset(new EditAnchor(lockElement, anchor_index_));
+					anchor_op_->set_old_anchor(pos);
+					anchor_op_->set_new_anchor(new_pos);
+					//begin preview
+					GetDocument()->BeginPreviewOperation(OperationPtr(anchor_op_));
+					anchor_changed = true;
+				}
+				Invalidate();
+			}
+		}
+
+		return bEnabled;
 	}
 
 	void CMwCGView::MoveSelAnchor()
 	{
+		if (anchor_changed)
+		{
+			GetDocument()->CommitPreviewOperation();
+			anchor_changed = false;
+		}
+		Invalidate();
+		return;
 		float x = ValidateAndGetFloat(ID_ANCHOR_POS_X);
 		float y = ValidateAndGetFloat(ID_ANCHOR_POS_Y);
 

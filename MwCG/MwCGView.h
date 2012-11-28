@@ -32,6 +32,7 @@ namespace mw
 	class PolygonTool;
 	class UiEditorTool;
 	class MoveElement;
+	class EditAnchor;
 }
 
 class MwMiniToolBar;
@@ -49,7 +50,9 @@ private:
 	weak_ptr<GlElement> context_element_;
 	int anchor_index_;
 	bool transform_changed;
+	bool anchor_changed;
 	shared_ptr<MoveElement> move_op_;
+	shared_ptr<EditAnchor> anchor_op_;
 protected:
 	void set_context_element(shared_ptr<GlElement> element);
 public:
