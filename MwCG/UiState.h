@@ -1,5 +1,6 @@
 #pragma once
 #include "IDrawable.h"
+#include "MwVector2.h"
 class CMwCGView;
 class CMwCGDoc;
 
@@ -11,8 +12,12 @@ namespace mw
 	private:
 		CMwCGView* pView_;
 		CMwCGDoc* pDoc_;
+		CPoint scr_pt_;
+		Vector2 mouse_xy_;
 	protected:
 		CString name_;
+		void UpdateMouseInput(UINT nFlags, CPoint point);
+		Vector2 mouse_xy() const { return mouse_xy_; }
 	private:
 		virtual void InitializeName() = 0;
 	public:
@@ -22,6 +27,7 @@ namespace mw
 	public:
 		UiState(void);
 		~UiState(void);
+		CPoint screen_point() const { return scr_pt_; }
 	public:
 		virtual void OnMouseMove(UINT nFlags, CPoint point) = 0;
 		virtual void OnLButtonDown(UINT nFlags, CPoint point) = 0;

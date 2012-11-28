@@ -1044,3 +1044,34 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		
 		Invalidate();
 	}
+
+	void CMwCGView::ShowElementFloaty()
+	{
+		if (context_element_.expired())
+			return;
+		//New floaty
+		MwMiniToolBar* pFloaty = new MwMiniToolBar(this);
+
+		//Default floaty component
+		InitElementFloaty(pFloaty);
+
+		//Show floaty
+		CPoint point = uiState_->screen_point();
+		ClientToScreen(&point);
+		pFloaty->Show(point.x, point.y);
+	}
+
+	void CMwCGView::InitElementFloaty( MwMiniToolBar* pFloaty )
+	{
+		ASSERT_VALID(pFloaty);
+
+		CList<UINT, UINT> lstCmds;
+		lstCmds.AddTail(ID_ELEMENT_COLOR);
+		lstCmds.AddTail(ID_ELEMENT_SIZE);
+		lstCmds.AddTail(ID_ELEMENT_STROKE);
+		lstCmds.AddTail(ID_ELEMENT_POS_X);
+		lstCmds.AddTail(ID_ELEMENT_POS_Y);
+		lstCmds.AddTail(ID_EDIT_DELETE);
+		CMFCRibbonBar* pRibbon = MainFrame()->GetRibbonBar();
+		pFloaty->SetCommands(pRibbon, lstCmds);
+	}

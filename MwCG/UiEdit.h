@@ -21,9 +21,10 @@ namespace mw
 	private:
 		shared_ptr<UiEditorTool> tool_;
 		shared_ptr<UiSelector> selector_;
-		Vector2 mouse_xy_;
+		//CPoint scr_pt_;
+		//Vector2 mouse_xy_;
 		bool mouse_left_down_;
-		void UpdateMouseInput(UINT nFlags, CPoint point);
+		//void UpdateMouseInput(UINT nFlags, CPoint point);
 	public:
 		//Get default selector
 		shared_ptr<UiSelector> selector() const { return selector_; }
@@ -31,6 +32,7 @@ namespace mw
 		void set_tool(shared_ptr<UiEditorTool> tool);
 		const shared_ptr<UiEditorTool> tool() const { return tool_; }
 		void use_selector();
+
 	public:
 		//void NotifyToolFinished();
 	//	void NotifyToolOperation(const shared_ptr<IOperation>& operation);

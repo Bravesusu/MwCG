@@ -219,6 +219,10 @@ void mw::UiSelector::DoEndInput()
 		{
 			NotifyToolCommitPreview();
 		}
+		if (click_hit_)
+		{
+			view()->ShowElementFloaty();
+		}
 	}
 }
 

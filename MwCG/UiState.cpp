@@ -23,3 +23,9 @@ void mw::UiState::Initialize( CMwCGDoc* pDoc, CMwCGView* pView )
 	ASSERT_VALID(pView_);
 	InitializeName();
 }
+
+void mw::UiState::UpdateMouseInput( UINT nFlags, CPoint point )
+{
+	scr_pt_ = point;
+	mouse_xy_ = doc()->SetMousePos(point);
+}

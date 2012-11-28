@@ -52,6 +52,7 @@ protected:
 public:
 	void ShowElementContext(shared_ptr<GlElement> element);
 	void ShowAnchorContext(shared_ptr<GlElement> element, int anchor_index);
+	void ShowElementFloaty();
 	void ClearElementContext();
 	void ClearAnchorContext();
 protected:
@@ -177,6 +178,7 @@ public:
 	afx_msg void OnElementPosY();
 	afx_msg void OnUpdateElementColor(CCmdUI *pCmdUI);
 	afx_msg void OnElementColor();
+	void InitElementFloaty( MwMiniToolBar* pFloaty );
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

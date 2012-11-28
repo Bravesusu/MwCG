@@ -28,7 +28,7 @@ void mw::UiEdit::OnLButtonDown( UINT nFlags, CPoint point )
 	if (tool_ == NULL)
 		return;
 
-	tool_->BeginInput(mouse_xy_);
+	tool_->BeginInput(mouse_xy());
 
 	view()->Invalidate();
 }
@@ -40,7 +40,7 @@ void mw::UiEdit::OnMouseMove( UINT nFlags, CPoint point )
 	if (tool_ == NULL)
 		return;
 	if (!tool_->IsFinished())
-		tool_->UpdateInput(mouse_xy_);
+		tool_->UpdateInput(mouse_xy());
 }
 
 void mw::UiEdit::OnLButtonUp( UINT nFlags, CPoint point )
@@ -52,7 +52,7 @@ void mw::UiEdit::OnLButtonUp( UINT nFlags, CPoint point )
 	//A click
 	if (mouse_left_down_)
 	{
-		tool_->EndInput(mouse_xy_);
+		tool_->EndInput(mouse_xy());
 	}
 
 	mouse_left_down_ = false;
@@ -65,7 +65,7 @@ void mw::UiEdit::OnLButtonDblClk( UINT nFlags, CPoint point )
 	if (tool_ == NULL)
 		return;
 
-	tool_->DoubleClick(mouse_xy_);
+	tool_->DoubleClick(mouse_xy());
 
 	view()->Invalidate();
 }
@@ -117,10 +117,11 @@ void mw::UiEdit::InitializeName()
 	ASSERT(name_);
 }
 
-void mw::UiEdit::UpdateMouseInput( UINT nFlags, CPoint point )
-{
-	mouse_xy_ = doc()->SetMousePos(point);
-}
+//void mw::UiEdit::UpdateMouseInput( UINT nFlags, CPoint point )
+//{
+//	scr_pt_ = point;
+//	mouse_xy_ = doc()->SetMousePos(point);
+//}
 
 void mw::UiEdit::set_tool( shared_ptr<UiEditorTool> tool )
 {
