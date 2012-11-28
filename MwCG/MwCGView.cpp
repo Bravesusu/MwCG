@@ -35,6 +35,7 @@
 #include "ChangeElementStroke.h"
 #include "ChangeElementSize.h"
 #include "MoveElement.h"
+#include "ChangeElementColor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -104,6 +105,8 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_UPDATE_COMMAND_UI(ID_ELEMENT_POS_Y, &CMwCGView::OnUpdateElementPosY)
 		ON_COMMAND(ID_ELEMENT_POS_X, &CMwCGView::OnElementPosX)
 		ON_COMMAND(ID_ELEMENT_POS_Y, &CMwCGView::OnElementPosY)
+		ON_UPDATE_COMMAND_UI(ID_ELEMENT_COLOR, &CMwCGView::OnUpdateElementColor)
+		ON_COMMAND(ID_ELEMENT_COLOR, &CMwCGView::OnElementColor)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -1018,4 +1021,26 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		valid_str.Format(_T("%f"), f);
 		pEdit->SetEditText(valid_str);
 		return f;
+	}
+
+
+	void CMwCGView::OnUpdateElementColor(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(!context_element_.expired());
+	}
+
+
+	void CMwCGView::OnElementColor()
+	{
+		// TODO: Add your command handler code here
+
+		CMFCRibbonColorButton* pColorButton = theApp.FindRibbonUIById<CMFCRibbonColorButton>(ID_ELEMENT_COLOR);
+		Color newColor(pColorButton->GetColor());
+
+		GetDocument()->CommitOperation(OperationPtr(
+			new ChangeElementColor(context_element_.lock(), newColor)
+			));
+		
+		Invalidate();
 	}

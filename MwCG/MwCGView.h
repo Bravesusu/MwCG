@@ -175,6 +175,8 @@ public:
 	afx_msg void OnUpdateElementPosY(CCmdUI *pCmdUI);
 	afx_msg void OnElementPosX();
 	afx_msg void OnElementPosY();
+	afx_msg void OnUpdateElementColor(CCmdUI *pCmdUI);
+	afx_msg void OnElementColor();
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp
