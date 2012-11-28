@@ -7,6 +7,7 @@
 #include "SingleDeselection.h"
 #include "AnchorDecorator.h"
 #include "EditAnchor.h"
+#include "RemoveElementFromContent.h"
 
 #include "MoveElement.h"
 
@@ -293,7 +294,16 @@ void mw::UiSelector::OnDelete()
 {
 	if (click_hit_ != NULL)
 	{
-		//TODO: do delete
-		TRACE0("Delete!\n");
+		//TRACE0("Delete!\n");
+		//Clean decorators
+		click_hit_->ClearAllDecorators();
+		//TODO: the delete 
+		NotifyToolOperation(OperationPtr(
+			new RemoveElementFromContent(content(), click_hit_)
+			));
+		//TODO: clean up
+		click_hit_ = NULL;
+		view()->ClearAnchorContext();
+		view()->ClearElementContext();
 	}
 }

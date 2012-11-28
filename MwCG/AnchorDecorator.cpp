@@ -20,6 +20,11 @@ AnchorDecorator::~AnchorDecorator(void)
 
 void mw::AnchorDecorator::DoDecorate()
 {
+	if (decoratee() == NULL)
+	{
+		TRACE0("Trying to anchor NULL element.\n");
+		return;
+	}
 	int anchor_count = decoratee()->anchor_count();
 
 	for (int i = 0; i < anchor_count; i++)

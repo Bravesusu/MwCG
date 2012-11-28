@@ -897,4 +897,5 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		// TODO: Add your command handler code here
 		uiState_->OnCommand(ID_EDIT_DELETE);
+		Invalidate();
 	}

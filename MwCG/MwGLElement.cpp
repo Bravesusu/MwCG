@@ -51,7 +51,8 @@ void mw::GlElement::Draw()
 	DoDraw();
 	for (list<weak_ptr<Decorator>>::iterator it = decorators_.begin(); it != decorators_.end(); it++)
 	{
-		(*it).lock()->Decorate();
+		if (!it->expired())
+			(*it).lock()->Decorate();
 	}
 	transform_.Pop();
 }
@@ -63,7 +64,7 @@ void mw::GlElement::RemoveDecorator( shared_ptr<Decorator> decorator )
 	{
 		return wp.lock() == decorator;
 	}
-		);
+	);
 }
 
 void mw::GlElement::AddDecorator( shared_ptr<Decorator> decorator )
