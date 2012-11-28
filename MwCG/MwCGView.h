@@ -79,6 +79,9 @@ private:
 	void UpdateToolColor(const COLORREF elementColor);
 	void UpdateToolStroke(const Stroke stroke);
 	bool ValidateFloatyInput(Vector2& pos);
+	bool ValidateElementTransform() const;
+	void MoveSelElement();
+	float ValidateAndGetFloat(UINT nCmdId);
 	// Operations
 public:
 
@@ -168,6 +171,10 @@ public:
 	afx_msg void OnElementStroke();
 	afx_msg void OnUpdateElementStroke(CCmdUI *pCmdUI);
 	afx_msg void OnElementSize();
+	afx_msg void OnUpdateElementPosX(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateElementPosY(CCmdUI *pCmdUI);
+	afx_msg void OnElementPosX();
+	afx_msg void OnElementPosY();
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

@@ -34,6 +34,7 @@
 
 #include "ChangeElementStroke.h"
 #include "ChangeElementSize.h"
+#include "MoveElement.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -99,6 +100,10 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_COMMAND(ID_ELEMENT_STROKE, &CMwCGView::OnElementStroke)
 		ON_UPDATE_COMMAND_UI(ID_ELEMENT_STROKE, &CMwCGView::OnUpdateElementStroke)
 		ON_COMMAND(ID_ELEMENT_SIZE, &CMwCGView::OnElementSize)
+		ON_UPDATE_COMMAND_UI(ID_ELEMENT_POS_X, &CMwCGView::OnUpdateElementPosX)
+		ON_UPDATE_COMMAND_UI(ID_ELEMENT_POS_Y, &CMwCGView::OnUpdateElementPosY)
+		ON_COMMAND(ID_ELEMENT_POS_X, &CMwCGView::OnElementPosX)
+		ON_COMMAND(ID_ELEMENT_POS_Y, &CMwCGView::OnElementPosY)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -958,4 +963,59 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 			));
 
 		Invalidate();
+	}
+
+
+	void CMwCGView::OnUpdateElementPosX(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(ValidateElementTransform());
+	}
+
+
+	void CMwCGView::OnUpdateElementPosY(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(ValidateElementTransform());
+	}
+
+
+	void CMwCGView::OnElementPosX()
+	{
+		MoveSelElement();
+	}
+
+
+	void CMwCGView::OnElementPosY()
+	{
+		// TODO: Add your command handler code here
+		MoveSelElement();
+	}
+
+	bool CMwCGView::ValidateElementTransform() const
+	{
+		return !context_element_.expired();
+	}
+
+	void CMwCGView::MoveSelElement()
+	{
+		float x = ValidateAndGetFloat(ID_ELEMENT_POS_X);
+		float y = ValidateAndGetFloat(ID_ELEMENT_POS_Y);
+
+		shared_ptr<GlElement> lockElement = context_element_.lock();
+		shared_ptr<MoveElement> move_op(new MoveElement(content_, context_element_.lock()));
+		move_op->set_initial_position(lockElement->transform().position());
+		move_op->set_move_to_position(Vector2(x, y));
+		GetDocument()->CommitOperation(OperationPtr(move_op));
+		Invalidate();
+	}
+
+	float CMwCGView::ValidateAndGetFloat( UINT nCmdId )
+	{
+		CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(nCmdId);
+		float f = _ttof(pEdit->GetEditText());
+		CString valid_str;
+		valid_str.Format(_T("%f"), f);
+		pEdit->SetEditText(valid_str);
+		return f;
 	}

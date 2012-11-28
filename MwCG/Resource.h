@@ -131,14 +131,15 @@
 #define ID_EDIT_DELETE                  32804
 #define ID_ELEMENT_SIZE                 32805
 #define ID_ELEMENT_STROKE               32806
-#define ID_BUTTON2                      32807
+#define ID_ELEMENT_POS_X                32808
+#define ID_ELEMENT_POS_Y                32809
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        313
-#define _APS_NEXT_COMMAND_VALUE         32808
+#define _APS_NEXT_COMMAND_VALUE         32810
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
