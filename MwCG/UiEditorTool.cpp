@@ -7,7 +7,7 @@
 
 using namespace mw;
 
-UiEditorTool::UiEditorTool(void) : input_index(-1), just_finished_(true)
+UiEditorTool::UiEditorTool(void) : input_index(-1), just_finished_(true),is_new_(false)
 {
 	inputPoint_.reset(new Point());
 	//inputPoint_->set_hidden(true);
@@ -23,6 +23,7 @@ UiEditorTool::~UiEditorTool(void)
 void mw::UiEditorTool::New()
 {
 	just_finished_ = false;
+	is_new_ = true;
 	input_index = 0;
 	inputs_.clear();
 	DoNew();
@@ -128,12 +129,14 @@ void mw::UiEditorTool::BeginInput( const Vector2& worldPos )
 	mouse_down_ = mouse_;
 	mouse_last_ = mouse_;
 	DoBeginInput();
+	is_new_ = false;
 }
 
 void mw::UiEditorTool::UpdateInput( const Vector2& worldPos )
 {
 	HandleInput(worldPos);
 
+	//is_new_ = false;
 	DoUpdateInput();
 	mouse_last_ = mouse_;
 }
@@ -142,6 +145,7 @@ void mw::UiEditorTool::EndInput( const Vector2& worldPos )
 {
 	//Handle the input
 	HandleInput(worldPos);
+	//is_new_ = false;
 	//Try finish and notify ui_
 	if (IsFinished())
 	{

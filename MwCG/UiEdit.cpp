@@ -85,6 +85,12 @@ void mw::UiEdit::OnKeyDown( UINT nChar, UINT nRepCnt, UINT nFlags )
 			OnCommand(ID_EDIT_DELETE);
 		}
 		break;
+	case VK_ESCAPE:
+		if (nRepCnt == 1)
+		{
+			DoCancel();
+		}
+		break;
 	default:
 		break;
 	}
@@ -157,7 +163,8 @@ void mw::UiEdit::Draw()
 
 void mw::UiEdit::OnRButtonUp( UINT nFlags, CPoint point )
 {
-	tool_->Cancel();
+	DoCancel();
+
 }
 
 void mw::UiEdit::OnCommand( UINT nCmdId )
@@ -173,45 +180,14 @@ void mw::UiEdit::OnCommand( UINT nCmdId )
 	}
 }
 
-//bool mw::UiEdit::TryFinishTool()
-//{
-//	if (tool_->IsFinished())
-//	{
-//		TRACE("Finish\n");
-//		doc()->CommitOperation(tool_->PopNewOperation());
-//
-//		return true;
-//	}
-//	return false;
-//}
-
-//void mw::UiEdit::NotifyToolFinished()
-//{
-//	TryFinishTool();
-//}
-
-//void mw::UiEdit::NotifyToolOperation( const shared_ptr<IOperation>& operation )
-//{
-//	doc()->CommitOperation(operation);
-//}
-//
-//void mw::UiEdit::NotifyToolPreview( const shared_ptr<IOperation>& operation )
-//{
-//	doc()->BeginPreviewOperation(operation);
-//}
-//
-//void mw::UiEdit::NotifyToolUpdatePreview()
-//{
-//	doc()->UpdatePreviewOperation();
-//
-//}
-//
-//void mw::UiEdit::NotifyToolCommitPreview()
-//{
-//	doc()->CommitPreviewOperation();
-//}
-//
-//void mw::UiEdit::NotifyToolCancelPreview()
-//{
-//	doc()->CancelPreviewOperation();
-//}
+void mw::UiEdit::DoCancel()
+{
+	if (tool_->IsNew())
+	{
+		view()->OnToolSelect();
+	}
+	else
+	{
+		tool_->Cancel();
+	}
+}

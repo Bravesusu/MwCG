@@ -26,6 +26,7 @@ namespace mw
 		bool just_finished_;
 		CMwCGDoc* doc_;
 		CMwCGView* view_;
+		bool is_new_;
 	protected:
 		//const shared_ptr<UiEdit> ui() const { return ui_; }
 		CMwCGDoc* doc() const { return doc_; }
@@ -79,6 +80,7 @@ namespace mw
 		virtual bool CanFinishByEnter() { return IsFinished(); };
 		//virtual bool CanFixInput() const { return false; }
 		void New();
+		bool IsNew() const { return is_new_; }
 		void Cancel();
 
 		void BeginInput(const Vector2& worldPos);
