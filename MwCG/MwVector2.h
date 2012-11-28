@@ -39,6 +39,8 @@ namespace mw
 		Vector2& operator =(const Vector2 & rhs);
 		Vector2 operator*(float f) const;
 		Vector2& operator*=(float f);
+		bool operator==(const Vector2& rhs) const;
+		bool operator!=(const Vector2& rhs) const;
 		float Dot(const Vector2& rhs) const;
 	public:
 		void Vertex() const;

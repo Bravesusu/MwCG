@@ -111,6 +111,16 @@ Vector2& mw::Vector2::operator*=( float f )
 	return *this;
 }
 
+bool mw::Vector2::operator==( const Vector2& rhs ) const
+{
+	return x_ == rhs.x_ && y_ == rhs.y_;
+}
+
+bool mw::Vector2::operator!=( const Vector2& rhs ) const
+{
+	return x_ != rhs.x_ || y_ != rhs.y_;
+}
+
 Vector2 mw::operator*( float lhs, const Vector2& rhs )
 {
 	return Vector2(lhs * rhs.x(), lhs * rhs.y());

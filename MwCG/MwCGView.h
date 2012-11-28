@@ -31,6 +31,7 @@ namespace mw
 	class CircleTool;
 	class PolygonTool;
 	class UiEditorTool;
+	class MoveElement;
 }
 
 class MwMiniToolBar;
@@ -47,9 +48,12 @@ public:
 private:
 	weak_ptr<GlElement> context_element_;
 	int anchor_index_;
+	bool transform_changed;
+	shared_ptr<MoveElement> move_op_;
 protected:
 	void set_context_element(shared_ptr<GlElement> element);
 public:
+	Vector2 ValidateAndGetPos(const Vector2& oldPos, UINT nCmdIdX, UINT nCmdIdY);
 	void ShowElementContext(shared_ptr<GlElement> element);
 	void ShowAnchorContext(shared_ptr<GlElement> element, int anchor_index);
 	void ShowElementFloaty();
@@ -81,8 +85,8 @@ private:
 	void UpdateToolColor(const COLORREF elementColor);
 	void UpdateToolStroke(const Stroke stroke);
 	bool ValidateFloatyInput(Vector2& pos);
-	bool ValidateElementTransform() const;
-	bool ValidateElementAnchor() const;
+	bool ValidateElementTransform();
+	bool ValidateElementAnchor();
 	void MoveSelAnchor();
 	void MoveSelElement();
 	float ValidateAndGetFloat(UINT nCmdId);

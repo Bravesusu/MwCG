@@ -119,6 +119,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	CMwCGView::CMwCGView()
 	{
 		// TODO: add construction code here
+		transform_changed = false;
 	}
 
 	CMwCGView::~CMwCGView()
@@ -763,7 +764,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		CMFCRibbonBar* pRibbon = MainFrame()->GetRibbonBar();
 		pFloaty->SetCommands(pRibbon, lstCmds);
 
-		
+
 	}
 
 
@@ -773,7 +774,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		Vector2 pos;
 		bool enabled = ValidateFloatyInput(pos);
 		pCmdUI->Enable(enabled);
-		
+
 	}
 
 	void CMwCGView::OnUpdateEditPosY(CCmdUI *pCmdUI)
@@ -843,7 +844,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		// TODO: Add your command handler code here
 		CMFCRibbonComboBox* pCombo = theApp.FindRibbonUIById<CMFCRibbonComboBox>(ID_STROKE_GALLERY);
 		int index = pCombo->GetCurSel();
-		
+
 		if (index >= 0 && index < StrokeCount)
 		{
 			UpdateToolStroke(Strokes[index]);
@@ -985,6 +986,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		// TODO: Add your command update UI handler code here
 		pCmdUI->Enable(ValidateElementTransform());
+
 	}
 
 
@@ -1000,21 +1002,84 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		MoveSelElement();
 	}
 
-	bool CMwCGView::ValidateElementTransform() const
+	Vector2 CMwCGView::ValidateAndGetPos(const Vector2& pos, UINT nCmdIdX, UINT nCmdIdY)
 	{
-		return !context_element_.expired();
+		Vector2 new_pos = pos;
+		CString str;
+
+		CMFCRibbonEdit* pEditX = theApp.FindRibbonUIById<CMFCRibbonEdit>(nCmdIdX);
+		float x = 0;
+		if (!pEditX->HasFocus())
+		{
+			x = pos.x();
+		}
+		else
+		{
+			x = _ttof(pEditX->GetEditText());
+			new_pos.set_x(x);
+		}
+		str.Format(_T("%f"), x);
+		pEditX->SetEditText(str);
+
+		CMFCRibbonEdit* pEditY = theApp.FindRibbonUIById<CMFCRibbonEdit>(nCmdIdY);
+		float y = 0;
+		if (!pEditY->HasFocus())
+		{
+			y = pos.y();
+		}
+		else
+		{
+			y = _ttof(pEditY->GetEditText());
+			new_pos.set_y(y);
+		}
+		str.Format(_T("%f"), y);
+		pEditY->SetEditText(str);
+
+		return new_pos;
+	}
+
+	bool CMwCGView::ValidateElementTransform() 
+	{
+		bool bEnabled = !context_element_.expired();
+
+		if (bEnabled)
+		{
+			Vector2 pos = context_element_.lock()->transform().position();
+			Vector2 new_pos = ValidateAndGetPos(pos, ID_ELEMENT_POS_X, ID_ELEMENT_POS_Y);
+
+			//Changed
+			if (pos != new_pos)
+			{
+				if (transform_changed)
+				{
+					//update operation
+					move_op_->set_move_to_position(new_pos);
+					GetDocument()->UpdatePreviewOperation();
+				}
+				else
+				{
+					//reset operation
+					move_op_.reset(new MoveElement(content_, context_element_.lock()));
+					move_op_->set_initial_position(context_element_.lock()->transform().position());
+					move_op_->set_move_to_position(new_pos);
+					//begin preview
+					GetDocument()->BeginPreviewOperation(OperationPtr(move_op_));
+					transform_changed = true;
+				}
+				Invalidate();
+			}
+		}
+		return bEnabled;
 	}
 
 	void CMwCGView::MoveSelElement()
 	{
-		float x = ValidateAndGetFloat(ID_ELEMENT_POS_X);
-		float y = ValidateAndGetFloat(ID_ELEMENT_POS_Y);
-
-		shared_ptr<GlElement> lockElement = context_element_.lock();
-		shared_ptr<MoveElement> move_op(new MoveElement(content_, context_element_.lock()));
-		move_op->set_initial_position(lockElement->transform().position());
-		move_op->set_move_to_position(Vector2(x, y));
-		GetDocument()->CommitOperation(OperationPtr(move_op));
+		if (transform_changed)
+		{
+			//TODO: Commit preview
+			transform_changed = false;
+			GetDocument()->CommitPreviewOperation();
+		} 
 		Invalidate();
 	}
 
@@ -1046,7 +1111,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		GetDocument()->CommitOperation(OperationPtr(
 			new ChangeElementColor(context_element_.lock(), newColor)
 			));
-		
+
 		Invalidate();
 	}
 
@@ -1086,6 +1151,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		// TODO: Add your command update UI handler code here
 		pCmdUI->Enable(ValidateElementAnchor());
+
 	}
 
 
@@ -1109,7 +1175,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		MoveSelAnchor();
 	}
 
-	bool CMwCGView::ValidateElementAnchor() const
+	bool CMwCGView::ValidateElementAnchor()
 	{
 		return !context_element_.expired() && anchor_index_ >= 0;
 	}
