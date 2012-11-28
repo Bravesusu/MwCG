@@ -881,6 +881,24 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	{
 		set_context_element(element);
 		MainFrame()->ActivateContextCategory(ID_CONTEXT_ELEMENT, true);
+
+		if (element != NULL)
+		{
+			CMFCRibbonEdit* pEditSize = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_ELEMENT_SIZE);
+			CString str;
+			str.Format(_T("%d"), element->size());
+			pEditSize->SetEditText(str);
+			CMFCRibbonComboBox* pCombo = theApp.FindRibbonUIById<CMFCRibbonComboBox>(ID_ELEMENT_STROKE);
+			for (int i = 0; i < StrokeCount; i++)
+			{
+				if (element->stroke().pattern == Strokes[i].pattern)
+				{
+					pCombo->SelectItem(i);
+				}
+			}
+
+			CMFCRibbonColorButton* pColorButton = theApp.FindRibbonUIById<CMFCRibbonColorButton>(ID_ELEMENT_COLOR);
+		}
 	}
 
 	void CMwCGView::ShowAnchorContext( shared_ptr<GlElement> element, int anchor_index )
