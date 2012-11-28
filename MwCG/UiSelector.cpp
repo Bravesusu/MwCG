@@ -207,6 +207,10 @@ void mw::UiSelector::DoEndInput()
 			NotifyToolCommitPreview();
 			anchroDec_->reset_operation();
 		}
+		if (anchroDec_->active_anchor_index() != -1)
+		{
+			view()->ShowAnchorFloaty();
+		}
 	}
 	else
 	{

@@ -1130,3 +1130,30 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		Invalidate();
 	}
+
+	void CMwCGView::ShowAnchorFloaty()
+	{
+		if (context_element_.expired() || anchor_index_ < 0)
+			return;
+		//New floaty
+		MwMiniToolBar* pFloaty = new MwMiniToolBar(this);
+
+		//Default floaty component
+		InitAnchorFloaty(pFloaty);
+
+		//Show floaty
+		CPoint point = uiState_->screen_point();
+		ClientToScreen(&point);
+		pFloaty->Show(point.x, point.y);
+	}
+
+	void CMwCGView::InitAnchorFloaty( MwMiniToolBar* pFloaty )
+	{
+		ASSERT_VALID(pFloaty);
+
+		CList<UINT, UINT> lstCmds;
+		lstCmds.AddTail(ID_ANCHOR_POS_X);
+		lstCmds.AddTail(ID_ANCHOR_POS_Y);
+		CMFCRibbonBar* pRibbon = MainFrame()->GetRibbonBar();
+		pFloaty->SetCommands(pRibbon, lstCmds);
+	}

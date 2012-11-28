@@ -53,6 +53,7 @@ public:
 	void ShowElementContext(shared_ptr<GlElement> element);
 	void ShowAnchorContext(shared_ptr<GlElement> element, int anchor_index);
 	void ShowElementFloaty();
+	void ShowAnchorFloaty();
 	void ClearElementContext();
 	void ClearAnchorContext();
 protected:
@@ -85,6 +86,8 @@ private:
 	void MoveSelAnchor();
 	void MoveSelElement();
 	float ValidateAndGetFloat(UINT nCmdId);
+	void InitElementFloaty( MwMiniToolBar* pFloaty );
+	void InitAnchorFloaty( MwMiniToolBar* pFloaty );
 	// Operations
 public:
 
@@ -180,7 +183,6 @@ public:
 	afx_msg void OnElementPosY();
 	afx_msg void OnUpdateElementColor(CCmdUI *pCmdUI);
 	afx_msg void OnElementColor();
-	void InitElementFloaty( MwMiniToolBar* pFloaty );
 	afx_msg void OnUpdateAnchorPosX(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateAnchorPosY(CCmdUI *pCmdUI);
 	afx_msg void OnAnchorPosX();
