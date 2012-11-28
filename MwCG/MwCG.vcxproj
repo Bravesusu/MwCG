@@ -113,6 +113,7 @@
   <ItemGroup>
     <ClInclude Include="AddElementToContent.h" />
     <ClInclude Include="AnchorDecorator.h" />
+    <ClInclude Include="AnchorTool.h" />
     <ClInclude Include="BoundDecorator.h" />
     <ClInclude Include="BresLine.h" />
     <ClInclude Include="CalendarBar.h" />
@@ -192,6 +193,7 @@
   <ItemGroup>
     <ClCompile Include="AddElementToContent.cpp" />
     <ClCompile Include="AnchorDecorator.cpp" />
+    <ClCompile Include="AnchorTool.cpp" />
     <ClCompile Include="BoundDecorator.cpp" />
     <ClCompile Include="BresLine.cpp" />
     <ClCompile Include="CalendarBar.cpp" />

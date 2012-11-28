@@ -38,6 +38,8 @@
 #include "ChangeElementColor.h"
 #include "EditAnchor.h"
 
+#include "AnchorTool.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -670,6 +672,9 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 
 		toolBresLine_.reset(new LineTool<BresLine>());
 		tools_.push_back(toolBresLine_);
+
+		shared_ptr<AnchorTool> anchorTool;
+		anchorTool.reset(new AnchorTool(ElementFactory<Line>()));
 
 		OnToolSelect();
 		OnButtonColor();
