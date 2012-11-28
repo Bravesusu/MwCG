@@ -468,19 +468,15 @@ BOOL CMainFrame::CreateDynamicRibbon(void)
 {
 	CMFCRibbonCategory* pInsert = m_wndRibbonBar.GetCategory(1);
 	CMFCRibbonPanel* pPanel = pInsert->GetPanel(2);
-	CMFCRibbonColorButton* pColorBtn = new CMFCRibbonColorButton(ID_BUTTON_COLOR, _T("Color"), 0, 0);
-	pColorBtn->EnableAutomaticButton(_T("&Automatic"), RGB(0, 0, 0));
-	pColorBtn->EnableOtherButton(_T("&More Colors..."), _T("More Colors"));
-	pColorBtn->SetColumns(10);
-	pColorBtn->SetColor(RGB(255, 0, 0));
-	pColorBtn->SetColorBoxSize(CSize(32, 32));
-
-	pColorBtn->AddColorsGroup(_T("Theme Colors"), m_lstMainColors);
-	pColorBtn->AddColorsGroup(_T(""), m_lstAdditionalColors, TRUE /* Contiguous Columns*/);
-	pColorBtn->AddColorsGroup(_T("Standard Colors"), m_lstStandardColors);
-
+	CMFCRibbonColorButton* pColorBtn = CreateRibbonColorButton(ID_BUTTON_COLOR);
 	pPanel->Add(pColorBtn);
 
+	CMFCRibbonCategory* pCanvas = m_wndRibbonBar.GetCategory(3);
+	CMFCRibbonPanel* pCvsPanel = pCanvas->GetPanel(0);
+	CMFCRibbonColorButton* pCvsColorBtn = CreateRibbonColorButton(ID_CLEAR_COLOR);
+	pCvsPanel->Add(pCvsColorBtn);
+
+	
 	/*CMFCRibbonCategory* pFloatyCate = m_wndRibbonBar.getcontext(_T("Floaty"), _T("Floaty"), ID_TEMP_CATEGORY, AFX_CategoryColor_Yellow, 0, 0);
 
 	CMFCRibbonPanel* pPosPanel = pFloatyCate->AddPanel(_T("Pos"));
@@ -692,9 +688,29 @@ void CMainFrame::ActivateContextCategory( UINT uiCategoryID, bool active )
 	{
 		m_wndRibbonBar.ActivateContextCategory(uiCategoryID);
 	}
+	//if (uiCategoryID == ID_CONTEXT_ELEMENT)
+	//{
+	//	CMFCRibbonCategory* pElement = DYNAMIC_DOWNCAST(CMFCRibbonCategory, m_wndRibbonBar.FindByID(ID_CONTEXT_ELEMENT));
+	//	TRACE("Panel#%d\n", pElement->GetPanelCount());
+	//}
 }
 
 void CMainFrame::HideContextCategory( UINT uiCategoryID )
 {
 	m_wndRibbonBar.ShowContextCategories(uiCategoryID, 0);
+}
+
+CMFCRibbonColorButton* CMainFrame::CreateRibbonColorButton( UINT nCmdId )
+{
+	CMFCRibbonColorButton* pColorBtn = new CMFCRibbonColorButton(nCmdId, _T("Color"), 0, 0);
+	pColorBtn->EnableAutomaticButton(_T("&Automatic"), RGB(0, 0, 0));
+	pColorBtn->EnableOtherButton(_T("&More Colors..."), _T("More Colors"));
+	pColorBtn->SetColumns(10);
+	pColorBtn->SetColor(RGB(255, 0, 0));
+	pColorBtn->SetColorBoxSize(CSize(32, 32));
+
+	pColorBtn->AddColorsGroup(_T("Theme Colors"), m_lstMainColors);
+	pColorBtn->AddColorsGroup(_T(""), m_lstAdditionalColors, TRUE /* Contiguous Columns*/);
+	pColorBtn->AddColorsGroup(_T("Standard Colors"), m_lstStandardColors);
+	return pColorBtn;
 }

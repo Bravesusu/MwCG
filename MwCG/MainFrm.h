@@ -98,6 +98,8 @@ public:
 	BOOL CreateStatusBar(void);
 	BOOL CreateDynamicRibbon(void);
 
+	CMFCRibbonColorButton* CreateRibbonColorButton(UINT nCmdId);
+
 private:
 	// Document colors for demo:
 	CList<COLORREF,COLORREF> m_lstMainColors;

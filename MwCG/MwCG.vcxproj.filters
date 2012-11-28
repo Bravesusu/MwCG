@@ -283,7 +283,7 @@
       <Filter>Mw\Commands</Filter>
     </ClInclude>
     <ClInclude Include="ChangeElementSize.h">
-      <Filter>Header Files</Filter>
+      <Filter>Mw\Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -492,7 +492,7 @@
       <Filter>Mw\Commands</Filter>
     </ClCompile>
     <ClCompile Include="ChangeElementSize.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Mw\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

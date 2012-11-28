@@ -119,6 +119,7 @@
 #define ID_WRITE_PASTEASHYPERLINK       32770
 #define ID_CLEAR_COLOR                  32772
 #define ID_BUTTON4                      32773
+#define ID_ELEMENT_COLOR                32773
 #define ID_BUTTON5                      32774
 #define ID_TOOL_SELECT                  32778
 #define ID_SHAPE_GALLERY                32779
@@ -128,16 +129,16 @@
 #define ID_CONTEXT_ELEMENT              32800
 #define ID_CONTEXT_ANCHOR               32803
 #define ID_EDIT_DELETE                  32804
-#define ID_EDIT_ELEMENT_SIZE            32805
 #define ID_ELEMENT_SIZE                 32805
 #define ID_ELEMENT_STROKE               32806
+#define ID_BUTTON2                      32807
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        313
-#define _APS_NEXT_COMMAND_VALUE         32807
+#define _APS_NEXT_COMMAND_VALUE         32808
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
