@@ -46,7 +46,7 @@ public:
 	CMainFrame* MainFrame() const;
 private:
 	weak_ptr<GlElement> context_element_;
-	int anchor_index;
+	int anchor_index_;
 protected:
 	void set_context_element(shared_ptr<GlElement> element);
 public:
@@ -81,6 +81,8 @@ private:
 	void UpdateToolStroke(const Stroke stroke);
 	bool ValidateFloatyInput(Vector2& pos);
 	bool ValidateElementTransform() const;
+	bool ValidateElementAnchor() const;
+	void MoveSelAnchor();
 	void MoveSelElement();
 	float ValidateAndGetFloat(UINT nCmdId);
 	// Operations
@@ -179,6 +181,10 @@ public:
 	afx_msg void OnUpdateElementColor(CCmdUI *pCmdUI);
 	afx_msg void OnElementColor();
 	void InitElementFloaty( MwMiniToolBar* pFloaty );
+	afx_msg void OnUpdateAnchorPosX(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateAnchorPosY(CCmdUI *pCmdUI);
+	afx_msg void OnAnchorPosX();
+	afx_msg void OnAnchorPosY();
 };
 
 #ifndef _DEBUG  // debug version in MwCGView.cpp

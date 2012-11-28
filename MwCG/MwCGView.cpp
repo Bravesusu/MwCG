@@ -36,6 +36,7 @@
 #include "ChangeElementSize.h"
 #include "MoveElement.h"
 #include "ChangeElementColor.h"
+#include "EditAnchor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -107,6 +108,10 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		ON_COMMAND(ID_ELEMENT_POS_Y, &CMwCGView::OnElementPosY)
 		ON_UPDATE_COMMAND_UI(ID_ELEMENT_COLOR, &CMwCGView::OnUpdateElementColor)
 		ON_COMMAND(ID_ELEMENT_COLOR, &CMwCGView::OnElementColor)
+		ON_UPDATE_COMMAND_UI(ID_ANCHOR_POS_X, &CMwCGView::OnUpdateAnchorPosX)
+		ON_UPDATE_COMMAND_UI(ID_ANCHOR_POS_Y, &CMwCGView::OnUpdateAnchorPosY)
+		ON_COMMAND(ID_ANCHOR_POS_X, &CMwCGView::OnAnchorPosX)
+		ON_COMMAND(ID_ANCHOR_POS_Y, &CMwCGView::OnAnchorPosY)
 	END_MESSAGE_MAP()
 
 	// CMwCGView construction/destruction
@@ -874,7 +879,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	void CMwCGView::ShowAnchorContext( shared_ptr<GlElement> element, int anchor_index )
 	{
 		set_context_element(element);
-		anchor_index = anchor_index;
+		anchor_index_ = anchor_index;
 		MainFrame()->ActivateContextCategory(ID_CONTEXT_ANCHOR, true);
 	}
 
@@ -893,7 +898,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	void CMwCGView::ClearAnchorContext()
 	{
 		MainFrame()->HideContextCategory(ID_CONTEXT_ANCHOR);
-		anchor_index = -1;
+		anchor_index_ = -1;
 		if (!context_element_.expired())
 		{
 			MainFrame()->ActivateContextCategory(ID_CONTEXT_ELEMENT, true);
@@ -1074,4 +1079,54 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		lstCmds.AddTail(ID_EDIT_DELETE);
 		CMFCRibbonBar* pRibbon = MainFrame()->GetRibbonBar();
 		pFloaty->SetCommands(pRibbon, lstCmds);
+	}
+
+
+	void CMwCGView::OnUpdateAnchorPosX(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(ValidateElementAnchor());
+	}
+
+
+	void CMwCGView::OnUpdateAnchorPosY(CCmdUI *pCmdUI)
+	{
+		// TODO: Add your command update UI handler code here
+		pCmdUI->Enable(ValidateElementAnchor());
+	}
+
+
+	void CMwCGView::OnAnchorPosX()
+	{
+		// TODO: Add your command handler code here
+		MoveSelAnchor();
+	}
+
+
+	void CMwCGView::OnAnchorPosY()
+	{
+		// TODO: Add your command handler code here
+		MoveSelAnchor();
+	}
+
+	bool CMwCGView::ValidateElementAnchor() const
+	{
+		return !context_element_.expired() && anchor_index_ >= 0;
+	}
+
+	void CMwCGView::MoveSelAnchor()
+	{
+		float x = ValidateAndGetFloat(ID_ANCHOR_POS_X);
+		float y = ValidateAndGetFloat(ID_ANCHOR_POS_Y);
+
+		shared_ptr<GlElement> lockElement = context_element_.lock();
+		shared_ptr<EditAnchor> anchor_op(new EditAnchor(lockElement, anchor_index_));
+		Vector2 old_world_pos = lockElement->anchor(anchor_index_);
+		lockElement->transform().LocalToWorld(old_world_pos);
+		anchor_op->set_old_anchor(old_world_pos);
+		anchor_op->set_new_anchor(Vector2(x, y));
+
+		GetDocument()->CommitOperation(anchor_op);
+
+		Invalidate();
 	}

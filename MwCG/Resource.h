@@ -133,13 +133,15 @@
 #define ID_ELEMENT_STROKE               32806
 #define ID_ELEMENT_POS_X                32808
 #define ID_ELEMENT_POS_Y                32809
+#define ID_ANCHOR_POS_X                 32810
+#define ID_ANCHOR_POS_Y                 32811
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        313
-#define _APS_NEXT_COMMAND_VALUE         32810
+#define _APS_NEXT_COMMAND_VALUE         32812
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
