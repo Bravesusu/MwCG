@@ -33,6 +33,7 @@
 #include "PolygonTool.h"
 
 #include "ChangeElementStroke.h"
+#include "ChangeElementSize.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -952,7 +953,9 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		TRACE("Size: %d\n", size);
 
 		//TODO: wrap in operation
-		context_element_.lock()->set_size(size);
+		GetDocument()->CommitOperation(OperationPtr(
+			new ChangeElementSize(context_element_.lock(), size)
+			));
 
 		Invalidate();
 	}

@@ -117,6 +117,7 @@
     <ClInclude Include="BresLine.h" />
     <ClInclude Include="CalendarBar.h" />
     <ClInclude Include="ChangeElementColor.h" />
+    <ClInclude Include="ChangeElementSize.h" />
     <ClInclude Include="ChangeElementStroke.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="Circle.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="BresLine.cpp" />
     <ClCompile Include="CalendarBar.cpp" />
     <ClCompile Include="ChangeElementColor.cpp" />
+    <ClCompile Include="ChangeElementSize.cpp" />
     <ClCompile Include="ChangeElementStroke.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="Circle.cpp" />

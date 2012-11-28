@@ -258,9 +258,6 @@
     <ClInclude Include="SingleSelection.h">
       <Filter>Mw\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="MoveElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SingleDeselection.h">
       <Filter>Mw\Commands</Filter>
     </ClInclude>
@@ -280,6 +277,12 @@
       <Filter>Mw\Commands</Filter>
     </ClInclude>
     <ClInclude Include="ChangeElementStroke.h">
+      <Filter>Mw\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveElement.h">
+      <Filter>Mw\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeElementSize.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -464,12 +467,6 @@
     <ClCompile Include="SingleSelection.cpp">
       <Filter>Mw\Commands</Filter>
     </ClCompile>
-    <ClCompile Include="SingleDeselection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IAnchorable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -486,6 +483,15 @@
       <Filter>Mw\Commands</Filter>
     </ClCompile>
     <ClCompile Include="ChangeElementStroke.cpp">
+      <Filter>Mw\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleDeselection.cpp">
+      <Filter>Mw\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveElement.cpp">
+      <Filter>Mw\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeElementSize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
