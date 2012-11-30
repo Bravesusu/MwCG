@@ -41,5 +41,17 @@ namespace mw
 			pixel_count_--;
 			return *this;
 		}
+
+		PixelStroker operator++(int) 
+		{
+			pixel_count_++;
+			return *this;
+		}
+
+		PixelStroker operator--(int) 
+		{
+			pixel_count_--;
+			return *this;
+		}
 	};
 }

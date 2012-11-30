@@ -175,6 +175,6 @@ void mw::BresLine::DoDraw()
 {
 	stroker_.Reset();
 	stroker_.set_stroke(stroke());
-	glPointSize(size());
-	lineBresenham(point_from().x(), point_from().y(), point_to().x(), point_to().y());
+	glPointSize(size_f());
+	lineBresenham((int)point_from().x(), (int)point_from().y(), (int)point_to().x(), (int)point_to().y());
 }

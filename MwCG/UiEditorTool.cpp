@@ -69,9 +69,9 @@ void mw::UiEditorTool::TrySetElementSize()
 		GetEditingElement()->set_size(elementSize_);
 }
 
-bool mw::UiEditorTool::GetInput( int index, Vector2& worldPos ) const
+bool mw::UiEditorTool::GetInput( size_t index, Vector2& worldPos ) const
 {
-	if (index < 0 || index >= inputs_.size())
+	if (/*index < 0 || */index >= inputs_.size())
 		return false;
 	worldPos = inputs_.at(index);
 	return true;
@@ -90,9 +90,9 @@ void mw::UiEditorTool::TrySetElementStroke()
 
 }
 
-void mw::UiEditorTool::DrawInputPoint( int maxCount ) const
+void mw::UiEditorTool::DrawInputPoint( size_t maxCount ) const
 {
-	for (int i = 0; i < min(maxCount, inputs_.size()); i++)
+	for (UINT i = 0; i < min(maxCount, inputs_.size()); i++)
 	{
 		inputPoint_->set_position(inputs_.at(i));
 		inputPoint_->Draw();
@@ -158,7 +158,7 @@ void mw::UiEditorTool::EndInput( const Vector2& worldPos )
 void mw::UiEditorTool::HandleInput( const Vector2& worldPos )
 {
 	mouse_ = worldPos;
-	if (input_index >= inputs_.size())
+	if (input_index >= (int)inputs_.size())
 		inputs_.push_back(worldPos);
 	else
 	{

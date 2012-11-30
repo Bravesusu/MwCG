@@ -39,7 +39,7 @@ void Line::Serialize(CArchive& ar)
 void Line::DoDraw()
 {
 	//color()();
-	glLineWidth(size());
+	glLineWidth(size_f());
 
 	glEnable(GL_LINE_STIPPLE);
 	glLineStipple(size(), stroke().pattern);

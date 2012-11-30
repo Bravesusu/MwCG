@@ -54,7 +54,7 @@ namespace mw
 	public:
 		//InputStatus status() const { return status_; }
 		shared_ptr<GlContent> content() const { return content_.lock(); }
-		bool GetInput(int index, Vector2& worldPos) const;
+		bool GetInput(size_t index, Vector2& worldPos) const;
 	public:
 		UiEditorTool(void);
 		virtual ~UiEditorTool(void) = 0;
@@ -103,7 +103,7 @@ namespace mw
 		void TrySetElementSize();
 		void TrySetElementStroke();
 		shared_ptr<Point> inputPoint_;
-		void DrawInputPoint(int maxCount) const;
+		void DrawInputPoint(size_t maxCount) const;
 	protected:
 		Vector2 get_input(const int index) const;
 	public:

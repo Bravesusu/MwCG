@@ -61,7 +61,7 @@ void Canvas::DrawAxisGird()
 	gird_line_.set_size(1);
 	for (int x = x_min; x <= x_max; x += gird_unit)
 	{
-		gird_line_.set(x, top, x, bottom);
+		gird_line_.set((float)x, top, (float)x, bottom);
 		gird_line_.Draw();
 	}
 
@@ -70,7 +70,7 @@ void Canvas::DrawAxisGird()
 
 	for (int y = y_min; y <= y_max; y += gird_unit)
 	{
-		gird_line_.set(left, y, right, y);
+		gird_line_.set(left, (float)y, right, (float)y);
 		gird_line_.Draw();
 	}
 }

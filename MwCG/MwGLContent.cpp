@@ -125,23 +125,17 @@ bool mw::GlContent::HitTest( const Vector2& worldPos ) const
 
 bool mw::GlContent::HitTest( const Vector2& worldPos, shared_ptr<GlElement>& hit ) const
 {
-	try
+	if (!elements_.empty())
 	{
-		if (!elements_.empty())
-		{
 
-			for (list<GlElementPtr>::const_iterator it = elements_.begin(); it != elements_.end(); it++)
+		for (list<GlElementPtr>::const_iterator it = elements_.begin(); it != elements_.end(); it++)
+		{
+			if ((*it)->HitTest(worldPos))
 			{
-				if ((*it)->HitTest(worldPos))
-				{
-					hit = *it;
-					return true;
-				}
+				hit = *it;
+				return true;
 			}
 		}
-	}
-	catch (CException* e)
-	{
 	}
 
 	hit = NULL;
