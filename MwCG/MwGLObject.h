@@ -3,6 +3,9 @@
 
 namespace mw
 {
+	// The base class of all. Defines interfaces for 
+	//* Serialization (inherited from CObject)
+	//* OpenGL Command Method
 	class GlObject : public CObject
 	{
 		DECLARE_SERIAL(GlObject)
@@ -12,6 +15,7 @@ namespace mw
 		virtual void Serialize(CArchive& ar);
 		//Execute GL command
 		virtual void GL() {  };
+		//Make it a callable object
 		void operator ()() { GL(); }
 	};
 }
