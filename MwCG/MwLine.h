@@ -14,7 +14,7 @@ namespace mw
 		Line(void);
 		Line(float x1, float y1, float x2, float y2) ;
 		Line(const Vector2& from, const Vector2& to) : point_from_(from), point_to_(to) {} ;
-		~Line(void);
+		virtual ~Line(void);
 		//Serialization
 		Vector2 point_from() const { return point_from_; }
 		Vector2 point_to() const { return point_to_; }

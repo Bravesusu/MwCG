@@ -39,7 +39,7 @@ namespace mw
 			: r_(fr), g_(fg), b_(fb), a_(1.0) {};
 		Color(float fr, float fg, float fb, float fa)  
 			: r_(fr), g_(fg), b_(fb), a_(fa) {};
-		~Color(void);
+		virtual ~Color(void);
 		void GL();
 		void ChangeColor() const { ::glColor4f(r_, g_, b_, a_); }
 		void Clear() const { ::glClearColor(r_, g_, b_, a_); }

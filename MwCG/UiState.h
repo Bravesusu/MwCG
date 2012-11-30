@@ -26,7 +26,7 @@ namespace mw
 		CMwCGView* view() const { return pView_; }
 	public:
 		UiState(void);
-		~UiState(void);
+		virtual ~UiState(void) = 0;
 		CPoint screen_point() const { return scr_pt_; }
 	public:
 		virtual void OnMouseMove(UINT nFlags, CPoint point) = 0;

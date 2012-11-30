@@ -35,6 +35,6 @@ namespace mw
 		RectBase(const Vector2& point1, const Vector2& point2);
 		RectBase(const RectBase& rect);
 		RectBase(void);
-		~RectBase(void);
+		virtual ~RectBase(void);
 	};
 }

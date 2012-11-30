@@ -16,7 +16,7 @@ namespace mw
 		Vector2(void) : x_(0), y_(0) {};
 		Vector2(float fx, float fy) : x_(fx), y_(fy){};
 		Vector2(const Vector2 & v2) : x_(v2.x_), y_(v2.y_) {}
-		~Vector2(void);
+		virtual ~Vector2(void);
 	public:
 		float x() const { return x_; }
 		float y() const { return y_; }

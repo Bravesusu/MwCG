@@ -9,11 +9,6 @@ GlObject::GlObject(void)
 {
 }
 
-
-GlObject::~GlObject(void)
-{
-}
-
 void GlObject::Serialize(CArchive& ar)
 {
 	CObject::Serialize(ar);

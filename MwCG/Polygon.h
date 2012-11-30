@@ -27,7 +27,7 @@ namespace mw
 		MwPolygon(void);
 		MwPolygon(LineFactory* factory);
 		MwPolygon(shared_ptr<LineFactory> factory);
-		~MwPolygon(void);
+		virtual ~MwPolygon(void);
 
 		virtual void Serialize( CArchive& ar );
 

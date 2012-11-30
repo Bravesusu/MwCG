@@ -8,7 +8,7 @@ namespace mw
 		DECLARE_SERIAL(GlObject)
 	public:
 		GlObject(void);
-		~GlObject(void);
+		virtual ~GlObject(void) {};
 		virtual void Serialize(CArchive& ar);
 		//Execute GL command
 		virtual void GL() {  };

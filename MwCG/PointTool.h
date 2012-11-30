@@ -14,7 +14,7 @@ namespace mw
 		shared_ptr<PointDecorator> decorator_;
 	public:
 		PointTool(void);
-		~PointTool(void);
+		virtual ~PointTool(void);
 
 		virtual OperationPtr PopNewOperation();
 

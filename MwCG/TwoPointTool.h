@@ -16,7 +16,7 @@ namespace mw
 		Vector2 second() const;
 	public:
 		TwoPointTool(void);
-		~TwoPointTool(void);
+		virtual ~TwoPointTool(void);
 	public:
 		void Draw();
 

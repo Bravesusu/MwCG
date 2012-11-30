@@ -18,7 +18,7 @@ namespace mw
 		void set_radius(float radius) { radius_ = radius; radius_anchor_.set(radius_, 0); }
 	public:
 		Circle(void);
-		~Circle(void);
+		virtual ~Circle(void);
 
 		virtual void DoDraw();
 

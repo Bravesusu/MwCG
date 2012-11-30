@@ -57,7 +57,7 @@ namespace mw
 		bool GetInput(int index, Vector2& worldPos) const;
 	public:
 		UiEditorTool(void);
-		~UiEditorTool(void);
+		virtual ~UiEditorTool(void) = 0;
 	protected:
 		Color elementColor_;
 		int elementSize_;

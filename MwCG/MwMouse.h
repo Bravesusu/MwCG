@@ -12,7 +12,7 @@ namespace mw
 	{
 	public:
 		Mouse(void);
-		~Mouse(void);
+		virtual ~Mouse(void);
 	private:
 		Vector2 position_;
 		Line line_v_, line_h_;
