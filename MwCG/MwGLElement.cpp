@@ -18,6 +18,7 @@ GlElement::~GlElement(void)
 {
 }
 
+//////////////////////////////////////////////////////////////////////////
 void GlElement::Serialize(CArchive& ar)
 {
 	CObject::Serialize(ar);
@@ -33,29 +34,43 @@ void GlElement::Serialize(CArchive& ar)
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////
 Rect mw::GlElement::bound() const
 {
 	return Rect();
 }
 
+//////////////////////////////////////////////////////////////////////////
+// IDrawable
+
 void mw::GlElement::Draw()
 {
+	//Visibility 
 	if (hidden_)
 		return;
 
+	//Push matrix
 	transform_.Push();
-	//TODO: do coloring
-	color()();
-	//TODO: do sizing
 
+	//Color context
+	color()();
+
+	//Actual drawing
 	DoDraw();
+
+	//Decorators
 	for (list<weak_ptr<Decorator>>::iterator it = decorators_.begin(); it != decorators_.end(); it++)
 	{
 		if (!it->expired())
 			(*it).lock()->Decorate();
 	}
+
+	//Pop matrix
 	transform_.Pop();
 }
+
+//////////////////////////////////////////////////////////////////////////
+// Decorators
 
 void mw::GlElement::RemoveDecorator( shared_ptr<Decorator> decorator )
 {
@@ -77,6 +92,9 @@ void mw::GlElement::ClearAllDecorators()
 {
 	decorators_.clear();
 }
+
+//////////////////////////////////////////////////////////////////////////
+//IAnchorable
 
 int mw::GlElement::anchor_count() const
 {
@@ -118,3 +136,4 @@ void mw::GlElement::ResetTransformToAnchor( int anchor_index )
 		set_anchor(i, anchor(i) - newOrigin);
 	}
 }
+//////////////////////////////////////////////////////////////////////////

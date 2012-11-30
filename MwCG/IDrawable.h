@@ -2,6 +2,7 @@
 
 namespace mw
 {
+	//The interface of all drawable objects
 	class IDrawable
 	{
 	public:
