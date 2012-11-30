@@ -17,7 +17,7 @@ public:
 	virtual void OnKillFocus(CWnd* pNewWnd)
 	{
 		CMFCRibbonRichEditCtrl::OnKillFocus(pNewWnd);
-		float nTempVal = _ttof(m_strOldText);
+		float nTempVal = (float)_ttof(m_strOldText);
 		if (nTempVal != 0) 
 		{
 			m_nValidNum = nTempVal;

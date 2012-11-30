@@ -21,7 +21,7 @@ namespace mw
 		int count() const { return vertex_.size(); }
 		void NewVertex(const Vector2& localPos);
 		void UpdateLastVertex(const Vector2& localPos);
-		void SetVertex(int index, const Vector2& localPos);
+		void SetVertex(size_t index, const Vector2& localPos);
 		Vector2 vertex(int index) const;
 	public:
 		MwPolygon(void);

@@ -173,7 +173,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 
 BOOL CMainFrame::CreateDockingWindows()
 {
-	BOOL bNameValid;
+	//BOOL bNameValid;
 
 #ifdef MW_ENABLE_CLASS_VIEW
 	// Create class view

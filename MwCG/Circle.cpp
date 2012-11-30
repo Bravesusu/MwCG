@@ -76,9 +76,9 @@ void mw::Circle::DoDraw()
 	//FooCircle(center_.x(), center_.y(), radius_, 100);
 	//glDisable(GL_LINE_STIPPLE);
 	stroker_.set_stroke(stroke());
-	glPointSize(size());
+	glPointSize(size_f());
 	stroker_.Reset();
-	MidPointCircle(0, 0, radius_);
+	MidPointCircle(0, 0, (int)radius_);
 }
 
 //bool mw::Circle::HitTest()

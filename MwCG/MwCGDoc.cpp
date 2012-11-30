@@ -292,7 +292,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 			return false;
 		int size = ops_.size();
 		ASSERT(op_index >= -1 && op_index < size);
-		return !ops_.empty() > 0 && op_index >= -1 && op_index < size - 1;
+		return !ops_.empty() && op_index >= -1 && op_index < size - 1;
 	}
 
 	void CMwCGDoc::CommitOperation( const shared_ptr<IOperation>& operation )
@@ -304,7 +304,7 @@ IMPLEMENT_DYNCREATE(CMwCGDoc, CDocument)
 		op_index++;
 
 		//Remove current index to the tail
-		if (op_index < ops_.size())
+		if (op_index < (int)ops_.size())
 			ops_.erase(ops_.begin() + op_index, ops_.end());
 
 		ops_.push_back(operation);

@@ -608,7 +608,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		// TODO: Add your command handler code here
 		int shape_index = CMFCRibbonGallery::GetLastSelectedItem(ID_SHAPE_GALLERY);
 
-		if (shape_index < tools_.size())
+		if (shape_index < (int)tools_.size())
 		{
 			uiEditState_->set_tool(tools_[shape_index]);
 		}
@@ -796,7 +796,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		// TODO: Add your command handler code here
 		CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_POS_Y);
 
-		float y = _ttof(pEdit->GetEditText());
+		float y = (float)_ttof(pEdit->GetEditText());
 		shared_ptr<UiEditorTool> currentTool = uiEditState_->tool();
 		Vector2 pos;
 		if (currentTool->GetInput(floaty_input_index_, pos))
@@ -814,7 +814,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		// TODO: Add your command handler code here
 		CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(ID_EDIT_POS_X);
 
-		float x = _ttof(pEdit->GetEditText());
+		float x = (float)_ttof(pEdit->GetEditText());
 		shared_ptr<UiEditorTool> currentTool = uiEditState_->tool();
 		Vector2 pos;
 		if (currentTool->GetInput(floaty_input_index_, pos))
@@ -1039,7 +1039,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		}
 		else
 		{
-			x = _ttof(pEditX->GetEditText());
+			x = (float)_ttof(pEditX->GetEditText());
 			new_pos.set_x(x);
 		}
 		str.Format(_T("%f"), x);
@@ -1053,7 +1053,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		}
 		else
 		{
-			y = _ttof(pEditY->GetEditText());
+			y = (float)_ttof(pEditY->GetEditText());
 			new_pos.set_y(y);
 		}
 		str.Format(_T("%f"), y);
@@ -1110,7 +1110,7 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 	float CMwCGView::ValidateAndGetFloat( UINT nCmdId )
 	{
 		CMFCRibbonEdit* pEdit = theApp.FindRibbonUIById<CMFCRibbonEdit>(nCmdId);
-		float f = _ttof(pEdit->GetEditText());
+		float f = (float)_ttof(pEdit->GetEditText());
 		CString valid_str;
 		valid_str.Format(_T("%f"), f);
 		pEdit->SetEditText(valid_str);

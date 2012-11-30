@@ -129,7 +129,7 @@ void mw::MwPolygon::set_line( LineFactory* factory )
 	line_.reset(line_factory_->Get());
 }
 
-void mw::MwPolygon::SetVertex( int index, const Vector2& localPos )
+void mw::MwPolygon::SetVertex( size_t index, const Vector2& localPos )
 {
 	if (index < 0 || index > vertex_.size())
 		return;
@@ -173,6 +173,7 @@ mw::Vector2 mw::MwPolygon::vertex( int index ) const
 		}
 		i++;
 	}
+	throw std::exception("Vertex index of out bound.");
 }
 
 bool mw::MwPolygon::HitTest( const Vector2& worldPos ) const

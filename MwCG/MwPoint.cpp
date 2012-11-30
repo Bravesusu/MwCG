@@ -19,7 +19,7 @@ void Point::Serialize(CArchive& ar)
 void Point::DoDraw()
 {
 	//color()();
-	glPointSize(size());
+	glPointSize(size_f());
 	glBegin(GL_POINTS);
 	glVertex2i(0, 0);
 	//Vertex(position_);
@@ -34,6 +34,6 @@ bool mw::Point::HitTest( const Vector2& worldPos ) const
 
 Rect mw::Point::bound() const
 {
-	float s = size() * 0.6;
+	float s = size() * 0.6f;
 	return Rect(-s, s, s, -s);
 }

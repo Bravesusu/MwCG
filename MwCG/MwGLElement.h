@@ -26,6 +26,7 @@ namespace mw
 		Transform transform_;
 	public:
 		int size() const { return size_; }
+		float size_f() const { return (float)size_; }
 		void set_size(int size) { size_ = size; }
 		Stroke stroke() const { return stroke_; }
 		void set_stroke(Stroke stroke) { stroke_ = stroke; }

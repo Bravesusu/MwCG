@@ -21,7 +21,7 @@ void mw::Rectangle::DoDraw()
 {
 	//DoGL();
 	glEnable(GL_LINE_STIPPLE);
-	glLineWidth(size());
+	glLineWidth(size_f());
 	glLineStipple(size(), stroke().pattern);
 	glBegin(GL_LINE_LOOP);
 	glVertex2f(left(), top());
