@@ -38,7 +38,15 @@
 #include "ChangeElementColor.h"
 #include "EditAnchor.h"
 
+#include "Circle.h"
+#include "Polygon.h"
+#include "Rect.h"
+#include "Rectangle.h"
+
 #include "AnchorTool.h"
+
+#define TRACE_SIZE(class_name) \
+	TRACE(#class_name": %d\n", sizeof(class_name));
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -123,6 +131,17 @@ IMPLEMENT_DYNCREATE(CMwCGView, CView)
 		// TODO: add construction code here
 		transform_changed = false;
 		anchor_changed = false;
+		TRACE_SIZE(GlObject);
+		TRACE_SIZE(GlElement);
+		TRACE_SIZE(GlRenderer);
+		TRACE_SIZE(GlContent);
+		TRACE_SIZE(Line);
+		TRACE_SIZE(BresLine);
+		TRACE_SIZE(Circle);
+		TRACE_SIZE(MwPolygon);
+		TRACE_SIZE(RectBase);
+		TRACE_SIZE(Rect);
+		TRACE_SIZE(mw::Rectangle);
 	}
 
 	CMwCGView::~CMwCGView()
