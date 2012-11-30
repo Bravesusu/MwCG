@@ -14,7 +14,7 @@ namespace mw
 		shared_ptr<LineFactory> line_factory_;
 	public:
 		PolygonTool(LineFactory* lineFactory);
-		~PolygonTool(void);
+		virtual ~PolygonTool(void);
 
 		virtual shared_ptr<GlElement> GetEditingElement();
 

@@ -17,7 +17,7 @@ namespace mw
 		void DoDraw();
 	public:
 		Canvas(void);
-		~Canvas(void);
+		virtual ~Canvas(void);
 
 	private:
 		Line gird_line_;

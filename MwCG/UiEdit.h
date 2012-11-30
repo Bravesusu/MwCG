@@ -42,7 +42,7 @@ namespace mw
 	//	void NotifyToolCancelPreview();
 	public:
 		UiEdit(void);
-		~UiEdit(void);
+		virtual ~UiEdit(void);
 
 		virtual void OnMouseMove( UINT nFlags, CPoint point );
 

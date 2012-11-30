@@ -9,7 +9,7 @@ namespace mw
 	{
 	public:
 		UiNav(void);
-		~UiNav(void);
+		virtual ~UiNav(void);
 
 		virtual void OnMouseMove( UINT nFlags, CPoint point );
 

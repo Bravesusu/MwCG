@@ -30,7 +30,7 @@ namespace mw
 		void OnElementDeselect(shared_ptr<GlElement> element);
 	public:
 		UiSelector(void);
-		~UiSelector(void);
+		virtual ~UiSelector(void);
 
 		virtual OperationPtr PopNewOperation();
 

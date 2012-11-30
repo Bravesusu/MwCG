@@ -15,7 +15,7 @@ namespace mw
 		Rect(float left, float right, float top, float bottom);
 		Rect(const Vector2& point1, const Vector2& point2);
 		Rect(const Rect& rect) : RectBase(rect) {}
-		~Rect(void);
+		virtual ~Rect(void);
 
 		virtual void Serialize( CArchive& ar );
 

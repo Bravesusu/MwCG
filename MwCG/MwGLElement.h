@@ -55,7 +55,7 @@ namespace mw
 
 	public:
 		GlElement(void);
-		~GlElement(void);
+		virtual ~GlElement(void);
 		Color color() const { return color_; }
 		void set_color(float r, float g, float b, float a = 1.0) { color_.set(r, g, b, a); }
 		void set_color(COLORREF color) { color_.set(color); }

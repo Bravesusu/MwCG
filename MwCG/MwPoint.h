@@ -12,7 +12,7 @@ namespace mw
 		vector<int> test;
 	public:
 		Point(void) {};
-		~Point(void);
+		virtual ~Point(void);
 		Point(float x, float y, float size = 1.0) { transform().position().set(x, y); } ;
 		//Serialization
 	public:

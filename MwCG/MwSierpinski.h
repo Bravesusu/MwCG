@@ -16,7 +16,7 @@ namespace mw
 		const Vector2& operator[] (int index) const;
 		Sierpinski(void) : point_count_(5000) {};
 		Sierpinski(const Vector2& v1, const Vector2& v2, const Vector2& v3);
-		~Sierpinski(void);
+		virtual ~Sierpinski(void);
 		int point_count() { return point_count_; }
 		void set_point_count(int count) { point_count_ = count; }
 		//Serialization

@@ -15,7 +15,7 @@ namespace mw
 		DECLARE_SERIAL(GlContent);
 	public:
 		GlContent(void);
-		~GlContent(void);
+		virtual ~GlContent(void);
 		virtual void Serialize(CArchive& ar);
 
 	public:

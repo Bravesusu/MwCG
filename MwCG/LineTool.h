@@ -18,7 +18,7 @@ namespace mw
 			//static_assert(is_base_of(Line, TLine)::value);
 		}
 
-		~LineTool(void)
+		virtual ~LineTool(void)
 		{
 
 		}

@@ -11,7 +11,7 @@ namespace mw
 		shared_ptr<Circle> circle_;
 	public:
 		CircleTool(void);
-		~CircleTool(void);
+		virtual ~CircleTool(void);
 
 		virtual void OnFirstPoint( const Vector2& worldPos );
 
