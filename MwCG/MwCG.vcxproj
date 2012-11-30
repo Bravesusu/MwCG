@@ -130,8 +130,6 @@
     <ClInclude Include="ElementOperation.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="FileView.h" />
-    <ClInclude Include="GlCmd.h" />
-    <ClInclude Include="GlColor.h" />
     <ClInclude Include="IAnchorable.h" />
     <ClInclude Include="IMouseInput.h" />
     <ClInclude Include="LineFactory.h" />
@@ -148,7 +146,6 @@
     <ClInclude Include="IReversible.h" />
     <ClInclude Include="LineTool.h" />
     <ClInclude Include="MwGlScreen.h" />
-    <ClInclude Include="GlVertex.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MwCanvas.h" />
     <ClInclude Include="MwCG.h" />
@@ -182,7 +179,6 @@
     <ClInclude Include="Stroke.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TwoPointTool.h" />
-    <ClInclude Include="UiCreator.h" />
     <ClInclude Include="UiEdit.h" />
     <ClInclude Include="UiEditorTool.h" />
     <ClInclude Include="UiNav.h" />
@@ -210,8 +206,6 @@
     <ClCompile Include="ElementOperation.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="FileView.cpp" />
-    <ClCompile Include="GlCmd.cpp" />
-    <ClCompile Include="GlColor.cpp" />
     <ClCompile Include="IAnchorable.cpp" />
     <ClCompile Include="IMouseInput.cpp" />
     <ClCompile Include="IRecvView.cpp" />
@@ -224,7 +218,6 @@
     <ClCompile Include="RectBase.cpp" />
     <ClCompile Include="LineTool.cpp" />
     <ClCompile Include="MwGlScreen.cpp" />
-    <ClCompile Include="GlVertex.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MwCanvas.cpp" />
     <ClCompile Include="MwCG.cpp" />
@@ -257,7 +250,6 @@
     </ClCompile>
     <ClCompile Include="Stroke.cpp" />
     <ClCompile Include="TwoPointTool.cpp" />
-    <ClCompile Include="UiCreator.cpp" />
     <ClCompile Include="UiEdit.cpp" />
     <ClCompile Include="UiEditorTool.cpp" />
     <ClCompile Include="UiNav.cpp" />
