@@ -170,6 +170,7 @@
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="RectType.h" />
     <ClInclude Include="RemoveElementFromContent.h" />
     <ClInclude Include="RenderContext.h" />
     <ClInclude Include="Resource.h" />
@@ -240,6 +241,7 @@
     <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="RectType.cpp" />
     <ClCompile Include="RemoveElementFromContent.cpp" />
     <ClCompile Include="RenderContext.cpp" />
     <ClCompile Include="SingleDeselection.cpp" />

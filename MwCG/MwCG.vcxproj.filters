@@ -273,6 +273,9 @@
     <ClInclude Include="AnchorTool.h">
       <Filter>Mw\Anchor</Filter>
     </ClInclude>
+    <ClInclude Include="RectType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MwCG.cpp">
@@ -472,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="AnchorTool.cpp">
       <Filter>Mw\Anchor</Filter>
+    </ClCompile>
+    <ClCompile Include="RectType.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
